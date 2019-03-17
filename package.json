@@ -1,11 +1,11 @@
-
 {
   "name": "react-native-picker",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
   },
   "keywords": [
     "react-native"
@@ -13,6 +13,15 @@
   "author": "",
   "license": "",
   "peerDependencies": {
+    "react": "16.8.3",
     "react-native": "^0.41.2"
-  }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/runtime": "^7.3.4",
+    "babel-jest": "^24.5.0",
+    "jest": "^24.5.0",
+    "metro-react-native-babel-preset": "^0.53.1",
+    "react-test-renderer": "16.8.3"
+  },
 }
