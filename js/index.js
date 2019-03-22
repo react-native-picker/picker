@@ -1,6 +1,3 @@
-
-import { NativeModules } from 'react-native';
-
-const { RNCPicker } = NativeModules;
-
-export default RNCPicker;
+import Picker from "./Picker";
+console.log("index picker", Picker);
+export default Picker;
