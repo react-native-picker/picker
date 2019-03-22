@@ -5,12 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-package com.facebook.react.views.picker;
+package com.reactnativecommunity.picker;
 
 import android.widget.Spinner;
 
 import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.uimanager.ThemedReactContext;
+
 
 /**
  * {@link ReactPickerManager} for {@link ReactPicker} with {@link Spinner#MODE_DIALOG}.

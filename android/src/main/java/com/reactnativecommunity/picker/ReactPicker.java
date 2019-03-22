@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-package com.facebook.react.views.picker;
+package com.reactnativecommunity.picker;
 
 import android.content.Context;
 import android.support.v7.widget.AppCompatSpinner;

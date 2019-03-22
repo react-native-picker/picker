@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-package com.facebook.react.views.picker;
+package com.reactnativecommunity.picker;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -23,7 +23,6 @@ import com.facebook.react.uimanager.UIManagerModule;
 import com.facebook.react.uimanager.ViewProps;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.EventDispatcher;
-import com.facebook.react.views.picker.events.PickerItemSelectEvent;
 import javax.annotation.Nullable;
 
 /**
