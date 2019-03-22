@@ -9,7 +9,7 @@
  */
 'use strict';
 
-const requireNativeComponent = require('requireNativeComponent');
+import {requireNativeComponent} from "react-native";
 
 import type {SyntheticEvent} from 'CoreEventTypes';
 import type {TextStyleProp} from 'StyleSheet';
