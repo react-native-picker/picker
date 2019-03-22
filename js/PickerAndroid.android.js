@@ -10,12 +10,15 @@
 
 'use strict';
 
-const AndroidDropdownPickerNativeComponent = require('AndroidDropdownPickerNativeComponent');
-const AndroidDialogPickerNativeComponent = require('AndroidDialogPickerNativeComponent');
-const React = require('React');
-const StyleSheet = require('StyleSheet');
+import React from "react";
+import {processColor, requireNativeComponent,NativeModules,StyleSheet} from 'react-native';
 
-const processColor = require('processColor');
+const AndroidDropdownPickerNativeComponent = requireNativeComponent(
+  'AndroidDropdownPicker'
+);
+const AndroidDialogPickerNativeComponent = requireNativeComponent(
+  'AndroidDialogPicker'
+);
 
 const REF_PICKER = 'picker';
 const MODE_DROPDOWN = 'dropdown';

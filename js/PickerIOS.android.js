@@ -12,4 +12,7 @@
 
 'use strict';
 
-module.exports = require('UnimplementedView');
+import React from "react";
+import {UnimplementedView} from "react-native";
+
+module.exports = <UnimplementedView/>;
