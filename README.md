@@ -1,13 +1,13 @@
 
-# react-native-picker
+#  `@react-native-community/picker`
 
 ## Getting started
 
-`$ npm install react-native-picker --save`
+`$ npm install @react-native-community/picker --save`
 
 ### Mostly automatic installation
 
-`$ react-native link react-native-picker`
+`$ react-native link @react-native-community/picker`
 
 ### Manual installation
 
@@ -15,7 +15,7 @@
 #### iOS
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-picker` and add `RNCPicker.xcodeproj`
+2. Go to `node_modules` ➜ ` @react-native-community/picker` and add `RNCPicker.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libRNCPicker.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)<
 
@@ -26,20 +26,168 @@
   - Add `new RNCPickerPackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
-  	include ':react-native-picker'
-  	project(':react-native-picker').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-picker/android')
+  	include ': @react-native-community/picker'
+  	project(': @react-native-community/picker').projectDir = new File(rootProject.projectDir, 	'../node_modules/ @react-native-community/picker/android')
   	```
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
   	```
-      compile project(':react-native-picker')
+      compile project(': @react-native-community/picker')
   	```
 
 
 ## Usage
-```javascript
-import RNCPicker from 'react-native-picker';
+### Picker
 
-// TODO: What to do with the module?
-RNCPicker;
+Renders the native picker component on iOS and Android. Example:
+
+```javascript
+<Picker
+  selectedValue={this.state.language}
+  style={{height: 50, width: 100}}
+  onValueChange={(itemValue, itemIndex) =>
+    this.setState({language: itemValue})
+  }>
+  <Picker.Item label="Java" value="java" />
+  <Picker.Item label="JavaScript" value="js" />
+</Picker>
 ```
+
+### Props
+
+* [View props...](https://facebook.github.io/react-native/docs/view#props)
+
+- [`onValueChange`](README.md#onvaluechange)
+- [`selectedValue`](README.md#selectedvalue)
+- [`style`](README.md#style)
+- [`testID`](README.md#testid)
+- [`enabled`](README.md#enabled)
+- [`mode`](README.md#mode)
+- [`prompt`](README.md#prompt)
+- [`itemStyle`](README.md#itemstyle)
+
+---
+
+# Reference
+
+## Props
+
+### `onValueChange`
+
+Callback for when an item is selected. This is called with the following parameters:
+
+* `itemValue`: the `value` prop of the item that was selected
+* `itemPosition`: the index of the selected item in this picker
+
+| Type     | Required |
+| -------- | -------- |
+| function | No       |
+
+---
+
+### `selectedValue`
+
+Value matching value of one of the items. Can be a string or an integer.
+
+| Type | Required |
+| ---- | -------- |
+| any  | No       |
+
+---
+
+### `style`
+
+| Type            | Required |
+| --------------- | -------- |
+| pickerStyleType | No       |
+
+---
+
+### `testID`
+
+Used to locate this view in end-to-end tests.
+
+| Type   | Required |
+| ------ | -------- |
+| string | No       |
+
+---
+
+### `enabled`
+
+If set to false, the picker will be disabled, i.e. the user will not be able to make a selection.
+
+| Type | Required | Platform |
+| ---- | -------- | -------- |
+| bool | No       | Android  |
+
+---
+
+### `mode`
+
+On Android, specifies how to display the selection items when the user taps on the picker:
+
+* 'dialog': Show a modal dialog. This is the default.
+* 'dropdown': Shows a dropdown anchored to the picker view
+
+| Type                       | Required | Platform |
+| -------------------------- | -------- | -------- |
+| enum('dialog', 'dropdown') | No       | Android  |
+
+---
+
+### `prompt`
+
+Prompt string for this picker, used on Android in dialog mode as the title of the dialog.
+
+| Type   | Required | Platform |
+| ------ | -------- | -------- |
+| string | No       | Android  |
+
+---
+
+### `itemStyle`
+
+Style to apply to each of the item labels.
+
+| Type                               | Required | Platform |
+| ---------------------------------- | -------- | -------- |
+| [text styles](https://facebook.github.io/react-native/docs/text-style-props) | No       | iOS      |
+
+### PickerIOS
+### Props
+
+* [View props...](https://facebook.github.io/react-native/docs/view#props)
+
+- [`itemStyle`](README.md#itemstyle)
+- [`onValueChange`](README.md#onvaluechange)
+- [`selectedValue`](README.md#selectedvalue)
+
+---
+
+# Reference
+
+## Props
+
+### `itemStyle`
+
+| Type                               | Required |
+| ---------------------------------- | -------- |
+| [text styles](https://facebook.github.io/react-native/docs/text-style-props) | No       |
+
+---
+
+### `onValueChange`
+
+| Type     | Required |
+| -------- | -------- |
+| function | No       |
+
+---
+
+### `selectedValue`
+
+| Type | Required |
+| ---- | -------- |
+| any  | No       |
+
   
