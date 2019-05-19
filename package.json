@@ -70,5 +70,9 @@
     "setupFilesAfterEnv": [
       "<rootDir>/jest.setup.js"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-native-community/react-native-picker.git"
   }
 }
