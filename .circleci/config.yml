@@ -42,9 +42,6 @@ jobs:
           at: .
       - rn/yarn_install
       - run:
-          name: Fix Github known hosts
-          command: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
-      - run:
           name: Publish to NPM
           command: yarn ci:publish
 
