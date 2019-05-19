@@ -108,7 +108,7 @@ class ColorPickerExample extends React.Component<{}, ColorState> {
 
   render() {
     return (
-      <View>
+      <>
         <Picker
           style={[styles.picker, {color: 'white', backgroundColor: '#333'}]}
           selectedValue={this.state.color}
@@ -127,7 +127,7 @@ class ColorPickerExample extends React.Component<{}, ColorState> {
           <Item label="green" color="green" value="green" />
           <Item label="blue" color="blue" value="blue" />
         </Picker>
-      </View>
+      </>
     );
   }
 }
