@@ -1,6 +1,8 @@
 
 #  `@react-native-community/picker`
 
+[![CircleCI Status](https://img.shields.io/circleci/project/github/react-native-community/react-native-picker/master.svg)](https://circleci.com/gh/react-native-community/workflows/react-native-picker/tree/master) ![Supports Android and iOS](https://img.shields.io/badge/platforms-android%20|%20ios-lightgrey.svg) ![MIT License](https://img.shields.io/npm/l/@react-native-community/picker.svg)
+
 ## Getting started
 
 `$ npm install @react-native-community/picker --save`
