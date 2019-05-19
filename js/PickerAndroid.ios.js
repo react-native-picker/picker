@@ -9,7 +9,7 @@
 
 'use strict';
 
-import React from "react";
-import {UnimplementedView} from "react-native";
+import React from 'react';
+import {UnimplementedView} from 'react-native';
 
-module.exports = <UnimplementedView/>;
+module.exports = <UnimplementedView />;

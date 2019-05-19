@@ -4,15 +4,12 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
- * This is a controlled component version of RCTPickerIOS
- *
  * @format
+ * @flow
  */
+/* eslint-env jest */
 
-'use strict';
-
-import React from 'react';
-import {UnimplementedView} from 'react-native';
-
-module.exports = <UnimplementedView />;
+// Reset the mocks before each test
+global.beforeEach(() => {
+  jest.resetAllMocks();
+});

@@ -9,7 +9,7 @@
  */
 'use strict';
 
-import {requireNativeComponent} from "react-native";
+import {requireNativeComponent} from 'react-native';
 
 import type {SyntheticEvent} from 'CoreEventTypes';
 import type {TextStyleProp} from 'StyleSheet';

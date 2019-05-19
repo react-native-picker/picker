@@ -1,28 +1,74 @@
 {
   "name": "react-native-picker",
   "version": "1.0.0",
-  "description": "",
+  "description": "React Native Picker for iOS & Android",
   "main": "js/index.js",
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "start": "react-native start",
+    "test": "yarn validate:eslint && yarn validate:flow && yarn validate:typescript && yarn test:jest",
+    "validate:eslint": "eslint 'js/**/*.js' 'example/**/*.js'",
+    "validate:flow": "flow check",
+    "validate:typescript": "tsc --project ./",
+    "test:jest": "jest js/",
+    "test:detox:android:test:debug": "detox test -c android.emu.debug",
+    "test:detox:android:test:release": "detox test -c android.emu.release",
+    "test:detox:android:build:debug": "detox build -c android.emu.debug",
+    "test:detox:android:build:release": "detox build -c android.emu.release",
+    "test:detox:android:bundle:release": "mkdir -p .tmp && react-native bundle --max-workers 4 --platform android --dev false --entry-file example/index.js --bundle-output .tmp/android-bundle.js",
+    "test:detox:ios:test:debug": "detox test -c ios.sim.debug",
+    "test:detox:ios:test:release": "detox test -c ios.sim.release",
+    "test:detox:ios:build:debug": "detox build -c ios.sim.debug",
+    "test:detox:ios:build:release": "detox build -c ios.sim.release",
+    "test:detox:ios:bundle:release": "mkdir -p .tmp && react-native bundle --max-workers 4 --platform ios --dev false --entry-file example/index.js --bundle-output .tmp/ios-bundle.js",
+    "test:detox:clean": "rimraf example/android/build && rimraf example/android/app/build && rimraf example/android/.gradle && rimraf example/ios/build",
+    "ci:publish": "yarn semantic-release",
+    "semantic-release": "semantic-release"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "react native",
+    "picker",
+    "dropdown",
+    "select"
   ],
   "author": "",
-  "license": "",
+  "license": "MIT",
   "peerDependencies": {
     "react": "^16.0",
-    "react-native": ">=0.57 <0.59"
+    "react-native": ">=0.57 <=0.59"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/runtime": "^7.3.4",
-    "babel-jest": "^24.5.0",
+    "@babel/core": "^7.4.3",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "@semantic-release/git": "7.0.8",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^24.7.0",
     "babel-plugin-module-resolver": "^3.2.0",
-    "jest": "^24.5.0",
-    "metro-react-native-babel-preset": "^0.53.1",
-    "react-test-renderer": "16.8.3"
+    "detox": "^12.1.2",
+    "eslint": "^5.16.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "flow-bin": "^0.86.0",
+    "husky": "^2.2.0",
+    "jest": "24.7.0",
+    "metro-react-native-babel-preset": "0.51.1",
+    "prettier": "^1.17.0",
+    "pretty-quick": "^1.10.0",
+    "react": "16.6.3",
+    "react-native": "0.58.4",
+    "react-test-renderer": "16.6.3",
+    "rimraf": "^2.6.3",
+    "semantic-release": "15.13.3",
+    "typescript": "^3.4.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "jest": {
+    "preset": "react-native",
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.js"
+    ]
   }
 }
