@@ -54,16 +54,16 @@ Renders the native picker component on iOS and Android. Example:
 
 ### Props
 
-* [View props...](https://facebook.github.io/react-native/docs/view#props)
+* [Inherited `View` props...](https://facebook.github.io/react-native/docs/view#props)
 
-- [`onValueChange`](README.md#onvaluechange)
-- [`selectedValue`](README.md#selectedvalue)
-- [`style`](README.md#style)
-- [`testID`](README.md#testid)
-- [`enabled`](README.md#enabled)
-- [`mode`](README.md#mode)
-- [`prompt`](README.md#prompt)
-- [`itemStyle`](README.md#itemstyle)
+- [`onValueChange`](#onvaluechange)
+- [`selectedValue`](#selectedvalue)
+- [`style`](#style)
+- [`testID`](#testid)
+- [`enabled`](#enabled)
+- [`mode`](#mode)
+- [`prompt`](#prompt)
+- [`itemStyle`](#itemstyle)
 
 ---
 
@@ -156,11 +156,11 @@ Style to apply to each of the item labels.
 ### PickerIOS
 ### Props
 
-* [View props...](https://facebook.github.io/react-native/docs/view#props)
+* [Inherited `View` props...](https://facebook.github.io/react-native/docs/view#props)
 
-- [`itemStyle`](README.md#itemstyle)
-- [`onValueChange`](README.md#onvaluechange)
-- [`selectedValue`](README.md#selectedvalue)
+- [`itemStyle`](#itemstyle)
+- [`onValueChange`](#onvaluechange)
+- [`selectedValue`](#selectedvalue)
 
 ---
 
