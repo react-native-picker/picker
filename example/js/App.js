@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import PickerExamples from './PickerExample';
 
@@ -15,7 +15,7 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text style={styles.heading}>Picker Examples</Text>
         {PickerExamples.examples.map(element => (
           <View style={styles.elementContainer} key={element.title}>
@@ -23,7 +23,7 @@ export default class App extends Component<Props> {
             {element.render()}
           </View>
         ))}
-      </View>
+      </ScrollView>
     );
   }
 }
