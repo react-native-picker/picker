@@ -12,7 +12,9 @@
 
 const React = require('react');
 const ReactNative = require('react-native');
-const {PickerIOS, Text, View} = ReactNative;
+const {Text, View} = ReactNative;
+
+import {PickerIOS} from '../../js';
 
 const PickerItemIOS = PickerIOS.Item;
 
