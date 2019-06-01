@@ -24,13 +24,16 @@ export default class App extends Component<Props> {
             {element.render()}
           </View>
         ))}
-        <Text style={styles.heading}>PickerIOS Examples</Text>
-        {PickerIOSExamples.examples.map(element => (
-          <View style={styles.elementContainer} key={element.title}>
-            <Text style={styles.title}> {element.title} </Text>
-            {element.render()}
-          </View>
-        ))}
+        {Platform.OS === 'ios' && (
+          <Text style={styles.heading}>{'PickerIOS Examples'}</Text>
+        )}
+        {Platform.OS === 'ios' &&
+          PickerIOSExamples.examples.map(element => (
+            <View style={styles.elementContainer} key={element.title}>
+              <Text style={styles.title}> {element.title} </Text>
+              {element.render()}
+            </View>
+          ))}
       </ScrollView>
     );
   }
