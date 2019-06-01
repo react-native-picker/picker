@@ -14,7 +14,9 @@ const React = require('react');
 const ReactNative = require('react-native');
 const StyleSheet = require('StyleSheet');
 
-const {Picker, Text} = ReactNative;
+const {Text} = ReactNative;
+
+import {Picker} from '../../js';
 
 const Item = Picker.Item;
 
@@ -133,9 +135,7 @@ class ColorPickerExample extends React.Component<{}, ColorState> {
 }
 
 const styles = StyleSheet.create({
-  picker: {
-    width: 100,
-  },
+  picker: {},
 });
 
 exports.title = '<Picker>';

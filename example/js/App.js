@@ -7,30 +7,40 @@
  */
 
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
+
+import PickerExamples from './PickerExample';
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
-    return <View style={styles.container} />;
+    return (
+      <View style={styles.container}>
+        <Text style={styles.heading}>Picker Examples</Text>
+        {PickerExamples.examples.map(element => (
+          <View style={styles.elementContainer} key={element.title}>
+            <Text style={styles.title}> {element.title} </Text>
+            {element.render()}
+          </View>
+        ))}
+      </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    padding: 16,
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  title: {
+    fontSize: 18,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  elementContainer: {
+    marginTop: 8,
+  },
+  heading: {
+    fontSize: 22,
+    color: 'black',
   },
 });
