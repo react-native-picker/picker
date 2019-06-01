@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Platform, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import PickerExamples from './PickerExample';
 
@@ -30,8 +30,13 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
+    ...Platform.select({
+      ios: {
+        paddingTop: 30,
+      },
+    }),
     backgroundColor: '#F5FCFF',
-    padding: 16,
+    margin: 16,
   },
   title: {
     fontSize: 18,
