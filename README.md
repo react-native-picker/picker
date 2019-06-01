@@ -1,6 +1,10 @@
 
 #  `@react-native-community/picker`
 
+<img src="./screenshots/picker-android.png" width="150">
+<img src="./screenshots/picker-ios.png" width="150">
+<img src="./screenshots/pickerios-ios.png" width="150">
+
 ## Getting started
 
 `$ npm install @react-native-community/picker --save`
