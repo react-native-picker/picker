@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  rn: react-native-community/react-native@dev:0.1.0-rc10
+  rn: react-native-community/react-native@1.2.1
 
 jobs:
   checkout_code:
