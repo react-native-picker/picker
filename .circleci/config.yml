@@ -20,9 +20,9 @@ jobs:
       - run:
           name: Eslint
           command: yarn run validate:eslint
-      # - run:
-      #     name: Flow
-      #     command: yarn run validate:flow
+      - run:
+          name: Flow
+          command: yarn run validate:flow
       # - run:
       #     name: TypeScript
       #     command: yarn run validate:typescript
