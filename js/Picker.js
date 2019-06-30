@@ -11,9 +11,10 @@
 'use strict';
 
 import React from 'react';
-const PickerAndroid = require('./PickerAndroid');
-const PickerIOS = require('./PickerIOS');
 import {Platform, UnimplementedView} from 'react-native';
+
+import PickerAndroid from './PickerAndroid';
+import PickerIOS from './PickerIOS';
 
 import type {TextStyleProp} from 'StyleSheet';
 import type {ColorValue} from 'StyleSheetTypes';

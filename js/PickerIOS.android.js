@@ -15,4 +15,4 @@
 import React from 'react';
 import {UnimplementedView} from 'react-native';
 
-module.exports = <UnimplementedView />;
+export default <UnimplementedView />;

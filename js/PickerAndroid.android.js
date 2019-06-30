@@ -161,4 +161,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = PickerAndroid;
+export default PickerAndroid;
