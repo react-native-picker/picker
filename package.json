@@ -60,6 +60,36 @@
     "semantic-release": "15.13.3",
     "typescript": "^3.4.1"
   },
+  "detox": {
+    "test-runner": "jest",
+    "runner-config": "example/e2e/config.json",
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "example/ios/build/Build/Products/Debug-iphonesimulator/PickerExample.app",
+        "build": "export RCT_NO_LAUNCH_PACKAGER=true && xcodebuild -project example/ios/PickerExample.xcodeproj -destination 'platform=iOS Simulator,name=iPhone X' -scheme PickerExample -parallelizeTargets -configuration Debug -derivedDataPath example/ios/build  -UseModernBuildSystem=YES | xcpretty -k",
+        "type": "ios.simulator",
+        "name": "iPhone X"
+      },
+      "ios.sim.release": {
+        "binaryPath": "example/ios/build/Build/Products/Release-iphonesimulator/PickerExample.app",
+        "build": "export RCT_NO_LAUNCH_PACKAGER=true && xcodebuild -project example/ios/PickerExample.xcodeproj -destination 'platform=iOS Simulator,name=iPhone X' -scheme PickerExample -parallelizeTargets -configuration Release -derivedDataPath example/ios/build  -UseModernBuildSystem=YES | xcpretty -k",
+        "type": "ios.simulator",
+        "name": "iPhone X"
+      },
+      "android.emu.debug": {
+        "binaryPath": "example/android/app/build/outputs/apk/debug/app-debug.apk",
+        "build": "export RCT_NO_LAUNCH_PACKAGER=true && pushd example/android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && popd",
+        "type": "android.emulator",
+        "name": "TestingAVD"
+      },
+      "android.emu.release": {
+        "binaryPath": "example/android/app/build/outputs/apk/release/app-release.apk",
+        "build": "export RCT_NO_LAUNCH_PACKAGER=true && pushd example/android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release && popd",
+        "type": "android.emulator",
+        "name": "TestingAVD"
+      }
+    }
+  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
