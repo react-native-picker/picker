@@ -14,7 +14,7 @@
 'use strict';
 
 import React from 'react';
-import ReactNative, {processColor, StyleSheet, View} from 'react-native';
+import {processColor, StyleSheet, View} from 'react-native';
 import RCTPickerNativeComponent from './RCTPickerNativeComponent';
 
 import type {SyntheticEvent} from 'CoreEventTypes';
