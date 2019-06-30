@@ -82,6 +82,7 @@ module.file_ext=.jsx
 module.file_ext=.json
 module.file_ext=.native.js
 module.file_ext=.ios.js
+module.file_ext=.android.js
 
 suppress_type=$FlowIssue
 suppress_type=$FlowFixMe
