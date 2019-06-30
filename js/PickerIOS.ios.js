@@ -21,6 +21,8 @@ import type {SyntheticEvent} from 'CoreEventTypes';
 import type {ColorValue} from 'StyleSheetTypes';
 import type {ViewProps} from 'ViewPropTypes';
 import type {TextStyleProp} from 'StyleSheet';
+import type {Element, ElementRef, ChildrenArray} from 'react';
+import type {NativeComponent} from 'ReactNative';
 
 type PickerIOSChangeEvent = SyntheticEvent<
   $ReadOnly<{|
@@ -36,7 +38,7 @@ type RCTPickerIOSItemType = $ReadOnly<{|
 |}>;
 
 type RCTPickerIOSType = Class<
-  ReactNative.NativeComponent<
+  NativeComponent<
     $ReadOnly<{|
       items: $ReadOnlyArray<RCTPickerIOSItemType>,
       onChange: (event: PickerIOSChangeEvent) => void,
@@ -53,7 +55,7 @@ type Label = Stringish | number;
 
 type Props = $ReadOnly<{|
   ...ViewProps,
-  children: React.ChildrenArray<React.Element<typeof PickerIOSItem>>,
+  children: ChildrenArray<Element<typeof PickerIOSItem>>,
   itemStyle?: ?TextStyleProp,
   onChange?: ?(event: PickerIOSChangeEvent) => mixed,
   onValueChange?: ?(itemValue: string | number, itemIndex: number) => mixed,
@@ -76,7 +78,7 @@ const PickerIOSItem = (props: ItemProps) => {
 };
 
 class PickerIOS extends React.Component<Props, State> {
-  _picker: ?React.ElementRef<RCTPickerIOSType> = null;
+  _picker: ?ElementRef<RCTPickerIOSType> = null;
 
   state = {
     selectedIndex: 0,
