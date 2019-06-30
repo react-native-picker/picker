@@ -18,6 +18,7 @@ import PickerIOS from './PickerIOS';
 
 import type {TextStyleProp} from 'StyleSheet';
 import type {ColorValue} from 'StyleSheetTypes';
+import type {Node} from 'react';
 
 const MODE_DIALOG = 'dialog';
 const MODE_DROPDOWN = 'dropdown';
@@ -57,7 +58,7 @@ class PickerItem extends React.Component<PickerItemProps> {
 }
 
 type PickerProps = $ReadOnly<{|
-  children?: React.Node,
+  children?: Node,
   style?: ?TextStyleProp,
 
   /**
