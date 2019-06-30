@@ -11,7 +11,7 @@
 'use strict';
 
 import React from 'react';
-import {Platform, UnimplementedView} from 'react-native';
+import {Platform} from 'react-native';
 
 import PickerAndroid from './PickerAndroid';
 import PickerIOS from './PickerIOS';
@@ -147,9 +147,9 @@ class Picker extends React.Component<PickerProps> {
         <PickerAndroid {...this.props}>{this.props.children}</PickerAndroid>
       );
     } else {
-      return <UnimplementedView />;
+      return null;
     }
   }
 }
 
-module.exports = Picker;
+export default Picker;
