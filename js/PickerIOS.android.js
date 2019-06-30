@@ -8,6 +8,7 @@
  * This is a controlled component version of RCTPickerIOS
  *
  * @format
+ * @flow
  */
 
 'use strict';
