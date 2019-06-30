@@ -14,7 +14,7 @@ const React = require('react');
 const ReactNative = require('react-native');
 const StyleSheet = require('StyleSheet');
 
-const {Text} = ReactNative;
+const {Text, View} = ReactNative;
 
 import {Picker} from '../../js';
 
@@ -99,6 +99,23 @@ class PromptPickerExample extends React.Component<{}, State> {
   }
 }
 
+class NoListenerPickerExample extends React.Component<{}, State> {
+  render() {
+    return (
+      <View>
+        <Picker style={styles.picker}>
+          <Item label="hello" value="key0" />
+          <Item label="world" value="key1" />
+        </Picker>
+        <Text>
+          Cannot change the value of this picker because it doesn't update
+          selectedValue.
+        </Text>
+      </View>
+    );
+  }
+}
+
 type ColorState = {
   color: string | number,
 };
@@ -168,19 +185,8 @@ exports.examples = [
   },
   {
     title: 'Picker with no listener',
-    render: function(): React.Element<typeof PromptPickerExample> {
-      return (
-        <>
-          <Picker style={styles.picker}>
-            <Item label="hello" value="key0" />
-            <Item label="world" value="key1" />
-          </Picker>
-          <Text>
-            Cannot change the value of this picker because it doesn't update
-            selectedValue.
-          </Text>
-        </>
-      );
+    render: function(): React.Element<typeof NoListenerPickerExample> {
+      return <NoListenerPickerExample />;
     },
   },
   {
