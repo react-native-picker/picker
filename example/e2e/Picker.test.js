@@ -9,10 +9,7 @@
  */
 
 /* global device, element, by, expect */
-const {
-  openComponentWithLabel,
-  openExampleWithTitle,
-} = require('../e2e-helpers');
+const {openComponentWithLabel, openExampleWithTitle} = require('./e2e-helpers');
 
 describe('Picker', () => {
   beforeAll(async () => {
