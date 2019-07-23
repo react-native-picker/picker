@@ -1,5 +1,5 @@
 {
-  "name": "react-native-picker",
+  "name": "@react-native-community/picker",
   "version": "1.0.0",
   "description": "React Native Picker for iOS & Android",
   "main": "js/index.js",
