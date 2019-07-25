@@ -37,6 +37,7 @@
     "react": "^16.0",
     "react-native": ">=0.57 <=0.59"
   },
+  "private": false,
   "devDependencies": {
     "@babel/core": "^7.4.3",
     "@react-native-community/eslint-config": "^0.0.5",
