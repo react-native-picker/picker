@@ -46,6 +46,11 @@
 
 Renders the native picker component on iOS and Android. Example:
 
+Import Picker from `@react-native-community/picker`
+```
+import {Picker} from '@react-native-community/picker';
+```
+Usage
 ```javascript
 <Picker
   selectedValue={this.state.language}
