@@ -58,7 +58,7 @@ Create state which will be used by the `Picker`
 
 ```javascript
 state = {
-  launguage: 'java',
+  language: 'java',
 };
 ```
 
