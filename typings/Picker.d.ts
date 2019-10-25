@@ -1,5 +1,5 @@
 import * as React from "react"
-import { TextStyle } from 'react-native'
+import { TextStyle, StyleProp, ViewProps } from 'react-native'
 
 type ItemValue  = number | string
 
@@ -10,9 +10,10 @@ export interface PickerItemProps {
 	testId?: string;
 }
 
-export interface PickerProps {
-	children?: React.ReactNode;
-	style?: TextStyle;
+class PickerItem extends React.Component<PickerItemProps, {}> {}
+
+export interface PickerProps extends ViewProps {
+	style?: StyleProp<TextStyle>;
 	/**
    * Value matching value of one of the items. Can be a string or an integer.
    */
@@ -42,7 +43,7 @@ export interface PickerProps {
    * Style to apply to each of the item labels.
    * @platform ios
    */
-	itemStyle?: TextStyle;
+	itemStyle?: StyleProp<TextStyle>;
 	/**
    * Prompt string for this picker, used on Android in dialog mode as the title of the dialog.
    * @platform android
@@ -54,6 +55,8 @@ export interface PickerProps {
   testID?: string;
 }
 
-declare class Picker extends React.Component<PickerProps, {}> {}
+declare class Picker extends React.Component<PickerProps, {}> {
+   static Item: PickerItem
+}
 
-export default Picker;
+export const Picker;
