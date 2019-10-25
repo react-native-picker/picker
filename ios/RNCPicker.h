@@ -1,11 +1,23 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
-#if __has_include("RCTBridgeModule.h")
-#import "RCTBridgeModule.h"
-#else
-#import <React/RCTBridgeModule.h>
-#endif
+#import <UIKit/UIKit.h>
 
-@interface RNCPicker : NSObject <RCTBridgeModule>
+#import <React/UIView+React.h>
+
+@interface RNCPicker : UIPickerView
+
+@property (nonatomic, copy) NSArray<NSDictionary *> *items;
+@property (nonatomic, assign) NSInteger selectedIndex;
+
+@property (nonatomic, strong) UIColor *color;
+@property (nonatomic, strong) UIFont *font;
+@property (nonatomic, assign) NSTextAlignment textAlign;
+
+@property (nonatomic, copy) RCTBubblingEventBlock onChange;
 
 @end
-  
