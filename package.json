@@ -4,6 +4,7 @@
   "homepage": "https://github.com/react-native-community/react-native-picker#readme",
   "description": "React Native Picker for iOS & Android",
   "main": "js/index.js",
+  "types": "./typings/Picker.d.ts",
   "scripts": {
     "start": "react-native start",
     "test": "yarn validate:eslint && yarn validate:flow && yarn validate:typescript && yarn test:jest",
@@ -55,8 +56,8 @@
     "metro-react-native-babel-preset": "0.51.1",
     "prettier": "^1.17.0",
     "pretty-quick": "^1.10.0",
-    "react": "16.6.3",
-    "react-native": "0.58.4",
+    "react": "^16.11.0",
+    "react-native": "^0.61.2",
     "react-test-renderer": "16.6.3",
     "rimraf": "^2.6.3",
     "semantic-release": "15.13.3",
