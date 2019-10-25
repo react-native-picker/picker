@@ -23,9 +23,9 @@ jobs:
       - run:
           name: Flow
           command: yarn run validate:flow
-      # - run:
-      #     name: TypeScript
-      #     command: yarn run validate:typescript
+      - run:
+          name: TypeScript
+          command: yarn run validate:typescript
       - run:
           name: Jest
           command: yarn run test:jest

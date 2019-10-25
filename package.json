@@ -4,6 +4,7 @@
   "homepage": "https://github.com/react-native-community/react-native-picker#readme",
   "description": "React Native Picker for iOS & Android",
   "main": "js/index.js",
+  "types": "./typings/index.d.ts",
   "scripts": {
     "start": "react-native start",
     "test": "yarn validate:eslint && yarn validate:flow && yarn validate:typescript && yarn test:jest",
