@@ -7,7 +7,7 @@ export interface PickerItemProps {
 	label?: string;
 	value: ItemValue;
 	color?: string;
-	testId?: string;
+	testID?: string;
 }
 
 class PickerItem extends React.Component<PickerItemProps, {}> {}
