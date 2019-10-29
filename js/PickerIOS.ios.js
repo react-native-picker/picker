@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  *
- * This is a controlled component version of RCTPickerIOS
+ * This is a controlled component version of RNCPickerIOS
  *
  * @format
  * @flow
@@ -15,7 +15,7 @@
 
 import React from 'react';
 import {processColor, StyleSheet, View} from 'react-native';
-import RCTPickerNativeComponent from './RCTPickerNativeComponent';
+import RNCPickerNativeComponent from './RNCPickerNativeComponent';
 
 import type {SyntheticEvent} from 'CoreEventTypes';
 import type {ColorValue} from 'StyleSheetTypes';
@@ -31,16 +31,16 @@ type PickerIOSChangeEvent = SyntheticEvent<
   |}>,
 >;
 
-type RCTPickerIOSItemType = $ReadOnly<{|
+type RNCPickerIOSItemType = $ReadOnly<{|
   label: ?Label,
   value: ?(number | string),
   textColor: ?number,
 |}>;
 
-type RCTPickerIOSType = Class<
+type RNCPickerIOSType = Class<
   NativeComponent<
     $ReadOnly<{|
-      items: $ReadOnlyArray<RCTPickerIOSItemType>,
+      items: $ReadOnlyArray<RNCPickerIOSItemType>,
       onChange: (event: PickerIOSChangeEvent) => void,
       selectedIndex: number,
       style?: ?TextStyleProp,
@@ -62,7 +62,7 @@ type Props = $ReadOnly<{|
 
 type State = {|
   selectedIndex: number,
-  items: $ReadOnlyArray<RCTPickerIOSItemType>,
+  items: $ReadOnlyArray<RNCPickerIOSItemType>,
 |};
 
 type ItemProps = $ReadOnly<{|
@@ -76,7 +76,7 @@ const PickerIOSItem = (props: ItemProps) => {
 };
 
 class PickerIOS extends React.Component<Props, State> {
-  _picker: ?ElementRef<RCTPickerIOSType> = null;
+  _picker: ?ElementRef<RNCPickerIOSType> = null;
 
   state = {
     selectedIndex: 0,
@@ -104,7 +104,7 @@ class PickerIOS extends React.Component<Props, State> {
   render() {
     return (
       <View style={this.props.style}>
-        <RCTPickerNativeComponent
+        <RNCPickerNativeComponent
           ref={picker => {
             this._picker = picker;
           }}

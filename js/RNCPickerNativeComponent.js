@@ -22,7 +22,7 @@ type PickerIOSChangeEvent = SyntheticEvent<
   |}>,
 >;
 
-type RCTPickerIOSItemType = $ReadOnly<{|
+type RNCPickerIOSTypeItemType = $ReadOnly<{|
   label: ?Label,
   value: ?(number | string),
   textColor: ?number,
@@ -30,10 +30,10 @@ type RCTPickerIOSItemType = $ReadOnly<{|
 
 type Label = Stringish | number;
 
-type RCTPickerIOSType = Class<
+type RNCPickerIOSType = Class<
   NativeComponent<
     $ReadOnly<{|
-      items: $ReadOnlyArray<RCTPickerIOSItemType>,
+      items: $ReadOnlyArray<RNCPickerIOSTypeItemType>,
       onChange: (event: PickerIOSChangeEvent) => void,
       selectedIndex: number,
       style?: ?TextStyleProp,
@@ -42,4 +42,4 @@ type RCTPickerIOSType = Class<
   >,
 >;
 
-module.exports = ((requireNativeComponent('RCTPicker'): any): RCTPickerIOSType);
+module.exports = ((requireNativeComponent('RNCPicker'): any): RNCPickerIOSType);
