@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  *
- * This is a controlled component version of RCTPickerIOS
+ * This is a controlled component version of RNCPickerIOS
  *
  * @format
  * @flow
@@ -64,7 +64,7 @@ type Props = $ReadOnly<{|
 
 type State = {|
   selectedIndex: number,
-  items: $ReadOnlyArray<RCTPickerIOSItemType>,
+  items: $ReadOnlyArray<RNCPickerIOSItemType>,
 |};
 
 type ItemProps = $ReadOnly<{|
@@ -78,7 +78,7 @@ const PickerIOSItem = (props: ItemProps) => {
 };
 
 class PickerIOS extends React.Component<Props, State> {
-  _picker: ?ElementRef<RCTPickerIOSType> = null;
+  _picker: ?ElementRef<RNCPickerIOSType> = null;
 
   state = {
     selectedIndex: 0,
