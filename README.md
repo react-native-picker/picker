@@ -15,7 +15,7 @@
 
 `$ react-native link @react-native-community/picker`
 
-Note: If you are using react-native version 0.60 or higher you don't need to link [@react-native-community/picker](https://github.com/react-native-community/react-native-picker).
+> _Note: If you're using react-native@0.60.0 or above. It will link automatically._
 
 ### Manual installation
 
