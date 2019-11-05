@@ -11,11 +11,26 @@
 
 `$ npm install @react-native-community/picker --save`
 
-### Mostly automatic installation
+### For react-native@0.60.0 or above
+
+As [react-native@0.60.0](https://facebook.github.io/react-native/blog/2019/07/03/version-60) or above supports autolinking, so there is no need to run linking process. 
+Read more about autolinking [here](https://github.com/react-native-community/cli/blob/master/docs/autolinking.md).
+
+#### iOS
+CocoaPods on iOS needs this extra step
+
+```
+cd ios && pod install && cd .. 
+```
+
+#### Android
+No additional step is required.
+
+### Mostly automatic installation (react-native < 0.60)
 
 `$ react-native link @react-native-community/picker`
 
-### Manual installation
+### Manual installation (react-native < 0.60)
 
 
 #### iOS
