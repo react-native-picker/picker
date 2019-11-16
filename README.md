@@ -11,6 +11,10 @@
 
 `$ npm install @react-native-community/picker --save`
 
+or
+
+`$ yarn add @react-native-community/picker`
+
 ### For react-native@0.60.0 or above
 
 As [react-native@0.60.0](https://facebook.github.io/react-native/blog/2019/07/03/version-60) or above supports autolinking, so there is no need to run linking process. 
