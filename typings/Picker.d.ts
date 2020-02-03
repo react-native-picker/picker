@@ -10,8 +10,6 @@ export interface PickerItemProps {
 	testID?: string;
 }
 
-class PickerItem extends React.Component<PickerItemProps, {}> {}
-
 export interface PickerProps extends ViewProps {
 	style?: StyleProp<TextStyle>;
 	/**
@@ -56,7 +54,7 @@ export interface PickerProps extends ViewProps {
 }
 
 declare class Picker extends React.Component<PickerProps, {}> {
-   static Item: PickerItem
+   static Item: React.Component<PickerItemProps>;
 }
 
 export const Picker;
