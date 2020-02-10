@@ -54,7 +54,16 @@ export interface PickerProps extends ViewProps {
 }
 
 declare class Picker extends React.Component<PickerProps, {}> {
-   static Item: React.Component<PickerItemProps>;
+   /**
+     * On Android, display the options in a dialog.
+     */
+    static MODE_DIALOG: string;
+    /**
+     * On Android, display the options in a dropdown (this is the default).
+     */
+    static MODE_DROPDOWN: string;
+    
+   static Item: React.ComponentType<PickerItemProps>;
 }
 
 export const Picker;
