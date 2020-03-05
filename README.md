@@ -17,7 +17,7 @@ or
 
 ### For react-native@0.60.0 or above
 
-As [react-native@0.60.0](https://facebook.github.io/react-native/blog/2019/07/03/version-60) or above supports autolinking, so there is no need to run linking process. 
+As [react-native@0.60.0](https://reactnative.dev/blog/2019/07/03/version-60) or above supports autolinking, so there is no need to run linking process. 
 Read more about autolinking [here](https://github.com/react-native-community/cli/blob/master/docs/autolinking.md).
 
 #### iOS
@@ -96,7 +96,7 @@ Add `Picker` like this:
 
 ### Props
 
-* [Inherited `View` props...](https://facebook.github.io/react-native/docs/view#props)
+* [Inherited `View` props...](https://reactnative.dev/docs/view#props)
 
 - [`onValueChange`](#onvaluechange)
 - [`selectedValue`](#selectedvalue)
@@ -193,12 +193,12 @@ Style to apply to each of the item labels.
 
 | Type                               | Required | Platform |
 | ---------------------------------- | -------- | -------- |
-| [text styles](https://facebook.github.io/react-native/docs/text-style-props) | No       | iOS      |
+| [text styles](https://reactnative.dev/docs/text-style-props) | No       | iOS      |
 
 ### PickerIOS
 ### Props
 
-* [Inherited `View` props...](https://facebook.github.io/react-native/docs/view#props)
+* [Inherited `View` props...](https://reactnative.dev/docs/view#props)
 
 - [`itemStyle`](#itemstyle)
 - [`onValueChange`](#onvaluechange)
@@ -214,7 +214,7 @@ Style to apply to each of the item labels.
 
 | Type                               | Required |
 | ---------------------------------- | -------- |
-| [text styles](https://facebook.github.io/react-native/docs/text-style-props) | No       |
+| [text styles](https://reactnative.dev/docs/text-style-props) | No       |
 
 ---
 
