@@ -3,9 +3,17 @@
 
 [![CircleCI Status](https://img.shields.io/circleci/project/github/react-native-community/react-native-picker/master.svg)](https://circleci.com/gh/react-native-community/workflows/react-native-picker/tree/master) ![Supports Android and iOS](https://img.shields.io/badge/platforms-android%20|%20ios-lightgrey.svg) ![MIT License](https://img.shields.io/npm/l/@react-native-community/picker.svg) [![Lean Core Extracted](https://img.shields.io/badge/Lean%20Core-Extracted-brightgreen.svg)](https://github.com/facebook/react-native/issues/23313)
 
-<img src="./screenshots/picker-android.png" width="150">
-<img src="./screenshots/picker-ios.png" width="150">
-<img src="./screenshots/pickerios-ios.png" width="150">
+| Android | iOS | PickerIOS |
+| --- | --- | --- |
+| <img src="./screenshots/picker-android.png" width="150"> | <img src="./screenshots/picker-ios.png" width="150"> | <img src="./screenshots/pickerios-ios.png" width="150"> |
+
+## Supported Versions
+
+| @react-native-community/picker | react-native |
+| --- | --- |
+| >= 1.2.0 | 0.60+ or 0.59+ with Jetifier |
+| >= 1.0.0 | 0.57 |
+
 
 ## Getting started
 
