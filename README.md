@@ -11,7 +11,7 @@
 
 | @react-native-community/picker | react-native |
 | --- | --- |
-| >= 1.2.0 | 0.60+ or 0.59+ with Jetifier |
+| >= 1.2.0 | 0.60+ or 0.59+ with [Jetifier](https://www.npmjs.com/package/jetifier) |
 | >= 1.0.0 | 0.57 |
 
 
