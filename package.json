@@ -7,6 +7,7 @@
   "types": "./typings/index.d.ts",
   "scripts": {
     "start": "react-native start",
+    "start:windows": "react-native start --projectRoot ./ --use-react-native-windows",
     "test": "yarn validate:eslint && yarn validate:flow && yarn validate:typescript && yarn test:jest",
     "validate:eslint": "eslint 'js/**/*.js' 'example/**/*.js'",
     "validate:flow": "flow check",
@@ -37,7 +38,8 @@
   "license": "MIT",
   "peerDependencies": {
     "react": "^16.0",
-    "react-native": ">=0.57"
+    "react-native": ">=0.57",
+    "react-native-windows": "^0.61.0-beta.45"
   },
   "private": false,
   "devDependencies": {
@@ -56,12 +58,12 @@
     "metro-react-native-babel-preset": "0.51.1",
     "prettier": "^1.17.0",
     "pretty-quick": "^1.10.0",
-    "react": "16.6.3",
-    "react-native": "0.58.4",
-    "react-test-renderer": "16.6.3",
+    "react": "^16.9.0",
+    "react-native": "^0.61.5",
     "rimraf": "^2.6.3",
     "semantic-release": "15.13.3",
-    "typescript": "^3.4.1"
+    "typescript": "^3.4.1",
+    "react-native-windows": "^0.61.0-beta.45"
   },
   "detox": {
     "test-runner": "jest",

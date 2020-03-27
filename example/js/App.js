@@ -10,7 +10,10 @@ import React, {Component} from 'react';
 import {Platform, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import PickerExamples from './PickerExample';
-import PickerIOSExamples from './PickerIOSExample';
+
+if (Platform.OS == 'ios') {
+  PickerIOSExamples = require('./PickerIOSExample');
+}
 
 type Props = {};
 export default class App extends Component<Props> {

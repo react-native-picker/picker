@@ -15,6 +15,7 @@ import {Platform} from 'react-native';
 
 import PickerAndroid from './PickerAndroid';
 import PickerIOS from './PickerIOS';
+import PickerWindows from './PickerWindows';
 
 import type {TextStyleProp} from 'StyleSheet';
 import type {ColorValue} from 'StyleSheetTypes';
@@ -145,6 +146,12 @@ class Picker extends React.Component<PickerProps> {
         /* $FlowFixMe(>=0.81.0 site=react_native_android_fb) This suppression
          * was added when renaming suppression sites. */
         <PickerAndroid {...this.props}>{this.props.children}</PickerAndroid>
+      );
+    } else if (Platform.OS === 'windows') {
+      return (
+        /* $FlowFixMe(>=0.81.0 site=react_native_android_fb) This suppression
+         * was added when renaming suppression sites. */
+        <PickerWindows {...this.props}>{this.props.children}</PickerWindows>
       );
     } else {
       return null;
