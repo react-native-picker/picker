@@ -91,13 +91,13 @@ namespace winrt::ReactNativePicker::implementation {
                 RepopulateItems(propertyValue.AsArray());
             }
             else if (propertyName == "backgroundColor") {
-                auto const color = propertyValue.As<winrt::Brush>();
+                auto const color = propertyValue.To<winrt::Brush>();
                 auto res = this->Resources();
                 res.Insert(box_value(L"ComboBoxBackground"), color);
                 res.Insert(box_value(L"ComboBoxBackgroundPointerOver"), color);
             }
             else if (propertyName == "color") {
-                m_comboBoxColor = propertyValue.As<winrt::Brush>();
+                m_comboBoxColor = propertyValue.To<winrt::Brush>();
                 this->Foreground(m_comboBoxColor);
                 UpdateComboBoxItemForegroundResource(*this, m_comboBoxColor);
             }
@@ -126,7 +126,7 @@ namespace winrt::ReactNativePicker::implementation {
 
                 const auto& textColorObject = item.GetObjectProperty("textColor");
                 if (!textColorObject.IsNull()) {
-                    UpdateComboBoxItemForegroundResource(comboBoxItem, textColorObject.As<winrt::Brush>());
+                    UpdateComboBoxItemForegroundResource(comboBoxItem, textColorObject.To<winrt::Brush>());
                 }
                 else if(m_comboBoxColor) {
                     UpdateComboBoxItemForegroundResource(comboBoxItem, m_comboBoxColor);

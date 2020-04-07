@@ -38,8 +38,7 @@
   "license": "MIT",
   "peerDependencies": {
     "react": "^16.0",
-    "react-native": ">=0.57",
-    "react-native-windows": "^0.61.0-beta.45"
+    "react-native": ">=0.57"
   },
   "private": false,
   "devDependencies": {
@@ -58,12 +57,13 @@
     "metro-react-native-babel-preset": "0.51.1",
     "prettier": "^1.17.0",
     "pretty-quick": "^1.10.0",
-    "react": "^16.9.0",
-    "react-native": "^0.61.5",
+    "react": "16.9.0",
+    "react-native": "0.61.5",
+    "react-native-windows": "0.61.0",
+    "react-test-renderer": "16.9.0",
     "rimraf": "^2.6.3",
     "semantic-release": "15.13.3",
-    "typescript": "^3.4.1",
-    "react-native-windows": "^0.61.0-beta.45"
+    "typescript": "^3.4.1"
   },
   "detox": {
     "test-runner": "jest",
