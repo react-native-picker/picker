@@ -2,6 +2,7 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  * @format
+ * @flow strict-local
  */
 
 'use strict';
@@ -24,7 +25,6 @@ const RCTPicker = requireNativeComponent('RCTPicker');
 type PickerWindowsChangeEvent = SyntheticEvent<
   $ReadOnly<{|
     nativeEvent: {
-      // tslint:disable-next-line:no-any
       value: any,
       itemIndex: number,
       text: string,

@@ -149,8 +149,6 @@ class Picker extends React.Component<PickerProps> {
       );
     } else if (Platform.OS === 'windows') {
       return (
-        /* $FlowFixMe(>=0.81.0 site=react_native_android_fb) This suppression
-         * was added when renaming suppression sites. */
         <PickerWindows {...this.props}>{this.props.children}</PickerWindows>
       );
     } else {
