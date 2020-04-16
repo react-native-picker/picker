@@ -9,7 +9,7 @@ export interface PickerIOSItemProps {
 	testID?: string;
 }
 
-class PickerIOSItem extends React.Component<PickerIOSItemProps, {}> {}
+declare class PickerIOSItem extends React.Component<PickerIOSItemProps, {}> {}
 
 export interface PickerIOSProps extends ViewProps {
 	itemStyle?: StyleProp<TextStyle>;
@@ -23,5 +23,3 @@ export interface PickerIOSProps extends ViewProps {
 declare class PickerIOS extends React.Component<PickerIOSProps, {}> {
 	static Item: PickerIOSItem
 }
-
-export const PickerIOS;

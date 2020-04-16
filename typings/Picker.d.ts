@@ -65,5 +65,3 @@ declare class Picker extends React.Component<PickerProps, {}> {
     
    static Item: React.ComponentType<PickerItemProps>;
 }
-
-export const Picker;
