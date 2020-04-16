@@ -20,7 +20,7 @@ const REF_PICKER = 'picker';
 import type {SyntheticEvent} from 'CoreEventTypes';
 import type {TextStyleProp} from 'StyleSheet';
 
-const RCTPicker = requireNativeComponent('RCTPicker');
+const RNCPicker = requireNativeComponent('RNCPicker');
 
 type PickerWindowsChangeEvent = SyntheticEvent<
   $ReadOnly<{|
@@ -35,13 +35,11 @@ type PickerWindowsChangeEvent = SyntheticEvent<
 type PickerWindowsProps = $ReadOnly<{|
   children?: React.Node,
   style?: ?TextStyleProp,
-  // tslint:disable-next-line:no-any
   selectedValue?: any,
   enabled?: boolean,
   prompt?: string,
   testID?: string,
   onChange?: (event: IPickerChangeEvent) => void,
-  // tslint:disable-next-line:no-any
   onValueChange?: (value: any, itemIndex: number, text: string) => void,
   // Editable support
   editable?: boolean,
@@ -50,7 +48,6 @@ type PickerWindowsProps = $ReadOnly<{|
 
 type Item = $ReadOnly<{|
   label: string,
-  // tslint:disable-next-line:no-any
   value?: any,
   color?: string,
   testID?: string,
@@ -103,7 +100,7 @@ class PickerWindows extends React.Component<
     };
 
     return (
-      <RCTPicker
+      <RNCPicker
         ref={this._setRef}
         {...nativeProps}
         onStartShouldSetResponder={() => true}
@@ -113,12 +110,12 @@ class PickerWindows extends React.Component<
   }
 
   _setRef = (comboBox: PickerWindows) => {
-    this._rctPicker = comboBox;
+    this._picker = comboBox;
   };
 
   _onChange = (event: PickerWindowsChangeEvent) => {
-    if (this._rctPicker) {
-      this._rctPicker.setNativeProps({
+    if (this._picker) {
+      this._picker.setNativeProps({
         selectedIndex: this.state.selectedIndex,
         text: this.props.text,
       });

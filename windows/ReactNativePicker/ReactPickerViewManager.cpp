@@ -18,7 +18,7 @@ namespace winrt::ReactNativePicker::implementation {
 
     // IViewManager
     winrt::hstring ReactPickerViewManager::Name() noexcept {
-        return L"RCTPicker";
+        return L"RNCPicker";
     }
 
     winrt::FrameworkElement ReactPickerViewManager::CreateView() noexcept {
