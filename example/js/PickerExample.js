@@ -32,7 +32,7 @@ class BasicPickerExample extends React.Component<{}, State> {
         testID="basic-picker"
         style={styles.picker}
         selectedValue={this.state.value}
-        onValueChange={v => this.setState({value: v})}>
+        onValueChange={(v) => this.setState({value: v})}>
         <Item label="hello" value="key0" />
         <Item label="world" value="key1" />
       </Picker>
@@ -68,7 +68,7 @@ class DropdownPickerExample extends React.Component<{}, State> {
       <Picker
         style={styles.picker}
         selectedValue={this.state.value}
-        onValueChange={v => this.setState({value: v})}
+        onValueChange={(v) => this.setState({value: v})}
         mode="dropdown">
         <Item label="hello" value="key0" />
         <Item label="world" value="key1" />
@@ -87,7 +87,7 @@ class PromptPickerExample extends React.Component<{}, State> {
       <Picker
         style={styles.picker}
         selectedValue={this.state.value}
-        onValueChange={v => this.setState({value: v})}
+        onValueChange={(v) => this.setState({value: v})}
         prompt="Pick one, just one">
         <Item label="hello" value="key0" />
         <Item label="world" value="key1" />
@@ -128,7 +128,7 @@ class ColorPickerExample extends React.Component<{}, ColorState> {
         <Picker
           style={[styles.picker, {color: 'white', backgroundColor: '#333'}]}
           selectedValue={this.state.color}
-          onValueChange={v => this.setState({color: v})}
+          onValueChange={(v) => this.setState({color: v})}
           mode="dropdown">
           <Item label="red" color="red" value="red" />
           <Item label="green" color="green" value="green" />
@@ -137,7 +137,7 @@ class ColorPickerExample extends React.Component<{}, ColorState> {
         <Picker
           style={styles.picker}
           selectedValue={this.state.color}
-          onValueChange={v => this.setState({color: v})}
+          onValueChange={(v) => this.setState({color: v})}
           mode="dialog">
           <Item label="red" color="red" value="red" />
           <Item label="green" color="green" value="green" />
@@ -158,37 +158,37 @@ exports.description =
 exports.examples = [
   {
     title: 'Basic Picker',
-    render: function(): React.Element<typeof BasicPickerExample> {
+    render: function (): React.Element<typeof BasicPickerExample> {
       return <BasicPickerExample />;
     },
   },
   {
     title: 'Disabled Picker',
-    render: function(): React.Element<typeof DisabledPickerExample> {
+    render: function (): React.Element<typeof DisabledPickerExample> {
       return <DisabledPickerExample />;
     },
   },
   {
     title: 'Dropdown Picker',
-    render: function(): React.Element<typeof DropdownPickerExample> {
+    render: function (): React.Element<typeof DropdownPickerExample> {
       return <DropdownPickerExample />;
     },
   },
   {
     title: 'Picker with prompt message',
-    render: function(): React.Element<typeof PromptPickerExample> {
+    render: function (): React.Element<typeof PromptPickerExample> {
       return <PromptPickerExample />;
     },
   },
   {
     title: 'Picker with no listener',
-    render: function(): React.Element<typeof NoListenerPickerExample> {
+    render: function (): React.Element<typeof NoListenerPickerExample> {
       return <NoListenerPickerExample />;
     },
   },
   {
     title: 'Colorful pickers',
-    render: function(): React.Element<typeof ColorPickerExample> {
+    render: function (): React.Element<typeof ColorPickerExample> {
       return <ColorPickerExample />;
     },
   },
