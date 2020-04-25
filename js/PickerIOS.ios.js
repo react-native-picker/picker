@@ -17,12 +17,12 @@ import React from 'react';
 import {processColor, StyleSheet, View} from 'react-native';
 import RNCPickerNativeComponent from './RNCPickerNativeComponent';
 
-import type {SyntheticEvent} from 'CoreEventTypes';
-import type {ColorValue} from 'StyleSheetTypes';
-import type {ViewProps} from 'ViewPropTypes';
-import type {TextStyleProp} from 'StyleSheet';
+import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
+import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
+import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
+import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {Element, ElementRef, ChildrenArray} from 'react';
-import type {NativeComponent} from 'ReactNative';
+import type {NativeComponent} from 'react-native/Libraries/Renderer/shims/ReactNative';
 
 type PickerIOSChangeEvent = SyntheticEvent<
   $ReadOnly<{|

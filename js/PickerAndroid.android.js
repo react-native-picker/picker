@@ -11,12 +11,7 @@
 'use strict';
 
 import React from 'react';
-import {
-  processColor,
-  requireNativeComponent,
-  NativeModules,
-  StyleSheet,
-} from 'react-native';
+import {processColor, requireNativeComponent, StyleSheet} from 'react-native';
 
 const AndroidDropdownPickerNativeComponent = requireNativeComponent(
   'AndroidDropdownPicker',
