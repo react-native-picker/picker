@@ -10,9 +10,8 @@
 
 'use strict';
 
-const React = require('react');
-const ReactNative = require('react-native');
-const {Text, View} = ReactNative;
+import * as React from 'react';
+import {Text, View} from 'react-native';
 
 import {PickerIOS} from '../../js';
 

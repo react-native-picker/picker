@@ -55,3 +55,7 @@ example/android-bundle.js
 example/ios-bundle.js
 index.android.bundle
 index.ios.bundle
+
+# CocoaPods
+/ios/Pods/
+example/ios/Pods/
