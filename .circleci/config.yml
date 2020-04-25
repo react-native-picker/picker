@@ -5,14 +5,18 @@ orbs:
 
 jobs:
   checkout_code:
-    executor: rn/linux_js
+    executor:
+      name: rn/linux_js
+      node_version: '10'
     steps:
       - checkout
       - persist_to_workspace:
           root: .
           paths: .
   analyze:
-    executor: rn/linux_js
+    executor:
+      name: rn/linux_js
+      node_version: '10'
     steps:
       - attach_workspace:
           at: .
@@ -37,6 +41,8 @@ jobs:
           command: yarn run test:detox:ios:bundle:release
   publish:
     executor: rn/linux_js
+      name: rn/linux_js
+      node_version: '10'
     steps:
       - attach_workspace:
           at: .
