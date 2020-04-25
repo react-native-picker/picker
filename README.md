@@ -33,7 +33,7 @@ Read more about autolinking [here](https://github.com/react-native-community/cli
 CocoaPods on iOS needs this extra step
 
 ```
-cd ios && pod install && cd .. 
+npx pod-install
 ```
 
 #### Android
