@@ -40,7 +40,7 @@ jobs:
           name: iOS JavaScript Bundle
           command: yarn run test:detox:ios:bundle:release
   publish:
-    executor: rn/linux_js
+    executor:
       name: rn/linux_js
       node_version: '10'
     steps:
