@@ -1,13 +1,12 @@
 version: 2.1
 
 orbs:
-  rn: react-native-community/react-native@2.0.1
+  rn: react-native-community/react-native@4.2.2
 
 jobs:
   checkout_code:
     executor:
       name: rn/linux_js
-      node_version: '10'
     steps:
       - checkout
       - persist_to_workspace:
@@ -16,7 +15,6 @@ jobs:
   analyze:
     executor:
       name: rn/linux_js
-      node_version: '10'
     steps:
       - attach_workspace:
           at: .
@@ -42,7 +40,6 @@ jobs:
   publish:
     executor:
       name: rn/linux_js
-      node_version: '10'
     steps:
       - attach_workspace:
           at: .

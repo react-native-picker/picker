@@ -58,3 +58,9 @@ index.ios.bundle
 # CocoaPods
 /ios/Pods/
 example/ios/Pods/
+
+# Android generated code
+.project
+.settings
+.classpath
+
