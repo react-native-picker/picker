@@ -20,18 +20,18 @@ buildscript {
 }
 
 allprojects {
-    task downloadDependencies() {	
-        description 'Download all dependencies to the Gradle cache'	
-        doLast {	
-            configurations.findAll().each { config ->	
-                if (config.name.contains("minReactNative") && config.canBeResolved) {	
-                    print config.name	
-                    print '\n'	
-                    config.files	
-                }	
-            }	
-        }	
-    }    
+    task downloadDependencies() {
+        description 'Download all dependencies to the Gradle cache'
+        doLast {
+            configurations.findAll().each { config ->
+                if (config.name.contains("minReactNative") && config.canBeResolved) {
+                    print config.name
+                    print '\n'
+                    config.files
+                }
+            }
+        }
+    }
     repositories {
         mavenLocal()
         maven {
@@ -48,3 +48,4 @@ allprojects {
         maven { url 'https://jitpack.io' }
     }
 }
+

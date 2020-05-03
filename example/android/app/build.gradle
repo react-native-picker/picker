@@ -79,6 +79,7 @@ import com.android.build.OutputFile
 project.ext.react = [
     entryFile: "example/index.js",
     enableHermes: false,  // clean and rebuild if changing
+    root: "../../../"
 ]
 
 apply from: "../../../node_modules/react-native/react.gradle"
@@ -166,7 +167,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
