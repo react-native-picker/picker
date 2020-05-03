@@ -1,3 +1,4 @@
+
 apply plugin: "com.android.application"
 
 import com.android.build.OutputFile
@@ -148,6 +149,14 @@ android {
             storePassword 'android'
             keyAlias 'androiddebugkey'
             keyPassword 'android'
+        }
+        release {	
+            if (project.hasProperty('EXAMPLE_APP_STORE_FILE')) {	
+                storeFile file(EXAMPLE_APP_STORE_FILE)	
+                storePassword EXAMPLE_APP_STORE_PASSWORD	
+                keyAlias EXAMPLE_APP_KEY_ALIAS	
+                keyPassword EXAMPLE_APP_KEY_PASSWORD	
+            }	
         }
     }
     buildTypes {
