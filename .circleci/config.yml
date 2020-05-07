@@ -1,18 +1,20 @@
 version: 2.1
 
 orbs:
-  rn: react-native-community/react-native@1.2.1
+  rn: react-native-community/react-native@4.2.2
 
 jobs:
   checkout_code:
-    executor: rn/linux_js
+    executor:
+      name: rn/linux_js
     steps:
       - checkout
       - persist_to_workspace:
           root: .
           paths: .
   analyze:
-    executor: rn/linux_js
+    executor:
+      name: rn/linux_js
     steps:
       - attach_workspace:
           at: .
@@ -36,7 +38,8 @@ jobs:
           name: iOS JavaScript Bundle
           command: yarn run test:detox:ios:bundle:release
   publish:
-    executor: rn/linux_js
+    executor:
+      name: rn/linux_js
     steps:
       - attach_workspace:
           at: .

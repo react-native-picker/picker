@@ -10,11 +10,11 @@
 
 'use strict';
 
-const requireNativeComponent = require('requireNativeComponent');
+import {requireNativeComponent} from 'react-native';
 
-import type {SyntheticEvent} from 'CoreEventTypes';
-import type {TextStyleProp} from 'StyleSheet';
-import type {NativeComponent} from 'ReactNative';
+import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
+import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import type {NativeComponent} from 'react-native/Libraries/Renderer/shims/ReactNative';
 
 type PickerAndroidChangeEvent = SyntheticEvent<
   $ReadOnly<{|
