@@ -12,7 +12,7 @@
 
 import * as React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
-
+import type {Element} from 'react';
 import {Picker} from '../../js';
 
 const Item = Picker.Item;
@@ -158,37 +158,37 @@ exports.description =
 exports.examples = [
   {
     title: 'Basic Picker',
-    render: function (): React.Element<typeof BasicPickerExample> {
+    render: function (): Element<typeof BasicPickerExample> {
       return <BasicPickerExample />;
     },
   },
   {
     title: 'Disabled Picker',
-    render: function (): React.Element<typeof DisabledPickerExample> {
+    render: function (): Element<typeof DisabledPickerExample> {
       return <DisabledPickerExample />;
     },
   },
   {
     title: 'Dropdown Picker',
-    render: function (): React.Element<typeof DropdownPickerExample> {
+    render: function (): Element<typeof DropdownPickerExample> {
       return <DropdownPickerExample />;
     },
   },
   {
     title: 'Picker with prompt message',
-    render: function (): React.Element<typeof PromptPickerExample> {
+    render: function (): Element<typeof PromptPickerExample> {
       return <PromptPickerExample />;
     },
   },
   {
     title: 'Picker with no listener',
-    render: function (): React.Element<typeof NoListenerPickerExample> {
+    render: function (): Element<typeof NoListenerPickerExample> {
       return <NoListenerPickerExample />;
     },
   },
   {
     title: 'Colorful pickers',
-    render: function (): React.Element<typeof ColorPickerExample> {
+    render: function (): Element<typeof ColorPickerExample> {
       return <ColorPickerExample />;
     },
   },
