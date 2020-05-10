@@ -16,8 +16,8 @@ import {Platform} from 'react-native';
 import PickerAndroid from './PickerAndroid';
 import PickerIOS from './PickerIOS';
 
-import type {TextStyleProp} from 'StyleSheet';
-import type {ColorValue} from 'StyleSheetTypes';
+import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
 import type {Node} from 'react';
 
 const MODE_DIALOG = 'dialog';
