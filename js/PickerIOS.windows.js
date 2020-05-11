@@ -6,6 +6,14 @@
  *
  * @format
  */
+import React from 'react';
 import {UnimplementedView} from 'react-native';
 
-export default UnimplementedView;
+class PickerIOS extends React.Component {
+  static Item = UnimplementedView;
+  render() {
+    return <UnimplementedView />;
+  }
+}
+
+export default PickerIOS;
