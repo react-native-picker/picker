@@ -42,7 +42,6 @@ local.properties
 # BUCK
 buck-out/
 \.buckd/
-debug.keystore
 
 # Editor config
 .vscode
@@ -55,3 +54,13 @@ example/android-bundle.js
 example/ios-bundle.js
 index.android.bundle
 index.ios.bundle
+
+# CocoaPods
+/ios/Pods/
+example/ios/Pods/
+
+# Android generated code
+.project
+.settings
+.classpath
+

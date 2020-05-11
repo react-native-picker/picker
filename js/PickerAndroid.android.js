@@ -11,12 +11,7 @@
 'use strict';
 
 import React from 'react';
-import {
-  processColor,
-  requireNativeComponent,
-  NativeModules,
-  StyleSheet,
-} from 'react-native';
+import {processColor, requireNativeComponent, StyleSheet} from 'react-native';
 
 const AndroidDropdownPickerNativeComponent = requireNativeComponent(
   'AndroidDropdownPicker',
@@ -122,7 +117,7 @@ class PickerAndroid extends React.Component<
       const position = event.nativeEvent.position;
       if (position >= 0) {
         const children = React.Children.toArray(this.props.children).filter(
-          item => item != null,
+          (item) => item != null,
         );
         const value = children[position].props.value;
         /* $FlowFixMe(>=0.78.0 site=react_native_android_fb) This issue was

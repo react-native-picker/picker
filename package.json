@@ -1,6 +1,6 @@
 {
   "name": "@react-native-community/picker",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "homepage": "https://github.com/react-native-community/react-native-picker#readme",
   "description": "React Native Picker for iOS & Android",
   "main": "js/index.js",
@@ -8,6 +8,8 @@
   "scripts": {
     "start": "react-native start",
     "start:windows": "react-native start --projectRoot ./ --use-react-native-windows",
+    "ios": "cd example && react-native run-ios",
+    "android": "react-native run-android --root example",
     "test": "yarn validate:eslint && yarn validate:flow && yarn validate:typescript && yarn test:jest",
     "validate:eslint": "eslint 'js/**/*.js' 'example/**/*.js'",
     "validate:flow": "flow check",
@@ -42,21 +44,22 @@
   },
   "private": false,
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@react-native-community/eslint-config": "^0.0.5",
+    "@babel/core": "^7.6.2",
+    "@babel/runtime": "^7.6.2",
+    "@react-native-community/eslint-config": "^1.1.0",
     "@semantic-release/git": "7.0.8",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.7.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "detox": "^12.1.2",
-    "eslint": "^5.16.0",
+    "eslint": "^6.5.1",
     "eslint-plugin-prettier": "^3.0.1",
-    "flow-bin": "^0.86.0",
+    "flow-bin": "^0.105.0",
     "husky": "^2.2.0",
     "jest": "24.7.0",
-    "metro-react-native-babel-preset": "0.51.1",
-    "prettier": "^1.17.0",
-    "pretty-quick": "^1.10.0",
+    "metro-react-native-babel-preset": "^0.59.0",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-windows": "0.61.0",
@@ -97,7 +100,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged"
+      "pre-commit": "pretty-quick --staged --pattern '**/*.*(js|jsx)'"
     }
   },
   "jest": {
