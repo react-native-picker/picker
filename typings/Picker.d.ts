@@ -1,7 +1,7 @@
 import * as React from "react"
 import { TextStyle, StyleProp, ViewProps } from 'react-native'
 
-type ItemValue  = number | string
+export type ItemValue  = number | string
 
 export interface PickerItemProps {
 	label?: string;
@@ -62,8 +62,8 @@ declare class Picker extends React.Component<PickerProps, {}> {
      * On Android, display the options in a dropdown (this is the default).
      */
     static MODE_DROPDOWN: string;
-    
+
    static Item: React.ComponentType<PickerItemProps>;
 }
 
-export const Picker;
+export {Picker};
