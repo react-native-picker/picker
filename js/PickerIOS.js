@@ -14,6 +14,7 @@
 'use strict';
 
 import React from 'react';
+// $FlowFixMe UnimplementedView exists in react-native-web
 import {UnimplementedView} from 'react-native';
 
 export default UnimplementedView;

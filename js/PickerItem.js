@@ -3,7 +3,7 @@
  * @format
  */
 
-import type {ColorValue} from 'StyleSheetTypes';
+import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
 
 import * as React from 'react';
 
