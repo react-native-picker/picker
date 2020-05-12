@@ -12,7 +12,6 @@
 
 import * as React from 'react';
 import {Text, View} from 'react-native';
-
 import {PickerIOS} from '../../js';
 
 const PickerItemIOS = PickerIOS.Item;
