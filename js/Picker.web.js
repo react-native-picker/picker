@@ -4,15 +4,18 @@
  */
 
 import React from 'react';
-import type {ViewStyleProp, TextStyleProp} from 'StyleSheet';
-import type {ViewProps} from 'ViewPropTypes';
+import type {
+  ViewStyleProp,
+  TextStyleProp,
+} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
 import {StyleSheet} from 'react-native';
 import PickerItem from './PickerItem';
 import {forwardRef, useRef} from 'react';
 
 type PickerProps = {
   ...ViewProps,
-  children?: PickerItem | Array<typeof PickerItem>,
+  children?: typeof PickerItem | Array<typeof PickerItem>,
   enabled?: boolean,
   onValueChange?: (number | string, number) => void,
   selectedValue?: number | string,
@@ -46,6 +49,7 @@ const Picker = forwardRef<PickerProps, *>((props, forwardedRef) => {
   }
 
   return (
+    // $FlowFixMe
     <select
       disabled={enabled === false ? true : undefined}
       onChange={handleChange}
@@ -58,12 +62,12 @@ const Picker = forwardRef<PickerProps, *>((props, forwardedRef) => {
   );
 });
 
+// $FlowFixMe
 Picker.Item = PickerItem;
 
 const styles = StyleSheet.create({
   initial: {
     fontFamily: 'System',
-    fontSize: 'inherit',
     margin: 0,
   },
 });
