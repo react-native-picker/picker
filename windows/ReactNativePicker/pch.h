@@ -1,8 +1,6 @@
 ﻿#pragma once
 
 #define NOMINMAX
-#define XAML_NAMESPACE L"Windows.UI.Xaml"
-#define MAKE_XAML_TYPE(x) XAML_NAMESPACE ## "." ## #x
 
 #include <unknwn.h>
 #include <winrt/Windows.Foundation.h>
