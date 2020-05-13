@@ -4,9 +4,9 @@
 [![npm version](https://img.shields.io/npm/v/@react-native-community/picker.svg)](https://www.npmjs.com/package/@react-native-community/picker)
 [![CircleCI Status](https://img.shields.io/circleci/project/github/react-native-community/react-native-picker/master.svg)](https://circleci.com/gh/react-native-community/workflows/react-native-picker/tree/master) ![Supports Android and iOS](https://img.shields.io/badge/platforms-android%20|%20ios-lightgrey.svg) ![MIT License](https://img.shields.io/npm/l/@react-native-community/picker.svg) [![Lean Core Extracted](https://img.shields.io/badge/Lean%20Core-Extracted-brightgreen.svg)](https://github.com/facebook/react-native/issues/23313)
 
-| Android | iOS | PickerIOS |
-| --- | --- | --- |
-| <img src="./screenshots/picker-android.png" width="150"> | <img src="./screenshots/picker-ios.png" width="150"> | <img src="./screenshots/pickerios-ios.png" width="150"> |
+| Android | iOS | PickerIOS | Windows |
+| --- | --- | --- | --- |
+| <img src="./screenshots/picker-android.png" width="150"> | <img src="./screenshots/picker-ios.png" width="150"> | <img src="./screenshots/pickerios-ios.png" width="150"> | <img src="./screenshots/picker-windows.png" width="300">
 
 ## Supported Versions
 
@@ -38,6 +38,27 @@ npx pod-install
 
 #### Android
 No additional step is required.
+
+#### Windows
+##### Add the `ReactNativePicker` project to your solution.
+
+1. Open the solution in Visual Studio 2019
+2. Right-click Solution icon in Solution Explorer > Add > Existing Project
+   Select `D:\dev\RNTest\node_modules\@react-native-community\picker\windows\ReactNativePicker\ReactNativePicker.vcxproj`
+
+##### **windows/myapp.sln**
+Add a reference to `ReactNativePicker` to your main application project. From Visual Studio 2019:
+
+Right-click main application project > Add > Reference...
+  Check `ReactNativePicker` from Solution Projects.
+
+##### **pch.h**
+
+Add `#include "winrt/ReactNativePicker.h"`.
+
+##### **app.cpp**
+
+Add `PackageProviders().Append(winrt::ReactNativePicker::ReactPackageProvider());` before `InitializeComponent();`.
 
 ### Mostly automatic installation (react-native < 0.60)
 
@@ -169,7 +190,7 @@ If set to false, the picker will be disabled, i.e. the user will not be able to 
 
 | Type | Required | Platform |
 | ---- | -------- | -------- |
-| bool | No       | Android  |
+| bool | No       | Android, Windows  |
 
 ---
 
@@ -202,7 +223,7 @@ Style to apply to each of the item labels.
 
 | Type                               | Required | Platform |
 | ---------------------------------- | -------- | -------- |
-| [text styles](https://reactnative.dev/docs/text-style-props) | No       | iOS      |
+| [text styles](https://reactnative.dev/docs/text-style-props) | No       | iOS, Windows      |
 
 ### PickerIOS
 ### Props

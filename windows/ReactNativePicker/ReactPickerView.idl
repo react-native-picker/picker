@@ -1,0 +1,8 @@
+namespace ReactNativePicker{
+
+    [default_interface]
+    runtimeclass ReactPickerView : Windows.UI.Xaml.Controls.ComboBox {
+        ReactPickerView(Microsoft.ReactNative.IReactContext context);
+        void UpdateProperties(Microsoft.ReactNative.IJSValueReader reader);
+    };
+} // namespace ReactNativePicker
