@@ -20,7 +20,7 @@ namespace winrt {
 namespace winrt::ReactNativePicker::implementation {
 
     const bool ReactPickerView::s_isEditableComboboxSupported = winrt::ApiInformation::IsPropertyPresent(
-        MAKE_XAML_TYPE(Controls.ComboBox), L"IsEditableProperty");
+        L"Windows.UI.Xaml.Controls.ComboBox", L"IsEditableProperty");
 
     ReactPickerView::ReactPickerView(winrt::IReactContext const& reactContext) : m_reactContext(reactContext) {
         this->AllowFocusOnInteraction(true);
