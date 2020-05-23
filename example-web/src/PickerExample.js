@@ -17,10 +17,6 @@ import {Picker} from '@react-native-community/picker';
 
 const Item = Picker.Item;
 
-type State = {
-  value: string | number,
-};
-
 function BasicPickerExample() {
   const [value, setValue] = React.useState('key1');
   return (
