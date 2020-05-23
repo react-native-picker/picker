@@ -11,15 +11,11 @@
 'use strict';
 
 import * as React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View} from 'react-native';
 import type {Element} from 'react';
 import {Picker} from '../../js';
 
 const Item = Picker.Item;
-
-type State = {
-  value: string | number,
-};
 
 function BasicPickerExample() {
   const [value, setValue] = React.useState('key1');
@@ -86,10 +82,6 @@ function NoListenerPickerExample() {
     </View>
   );
 }
-
-type ColorState = {
-  color: string | number,
-};
 
 function ColorPickerExample() {
   const [value, setValue] = React.useState('red');
