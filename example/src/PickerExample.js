@@ -9,8 +9,7 @@
  */
 
 import * as React from 'react';
-import {Text, View} from 'react-native';
-import type {Element} from 'react';
+import {Text, View, StyleSheet} from 'react-native';
 import {Picker} from '../../js';
 
 const Item = Picker.Item;
@@ -87,7 +86,7 @@ function ColorPickerExample() {
   return (
     <>
       <Picker
-        style={{color: 'white', backgroundColor: '#333'}}
+        style={styles.container}
         selectedValue={value}
         onValueChange={(v) => setValue(v)}
         mode="dropdown">
@@ -107,6 +106,13 @@ function ColorPickerExample() {
     </>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    color: 'white',
+    backgroundColor: '#333',
+  },
+});
 
 export const title = '<Picker>';
 export const description =
