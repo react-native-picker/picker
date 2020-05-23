@@ -8,8 +8,6 @@
  * @flow strict-local
  */
 
-'use strict';
-
 import * as React from 'react';
 import {Text, View} from 'react-native';
 import type {Element} from 'react';
