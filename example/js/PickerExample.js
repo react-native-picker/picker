@@ -72,21 +72,19 @@ function PromptPickerExample() {
   );
 }
 
-class NoListenerPickerExample extends React.Component<{}, State> {
-  render() {
-    return (
-      <View>
-        <Picker style={styles.picker}>
-          <Item label="hello" value="key0" />
-          <Item label="world" value="key1" />
-        </Picker>
-        <Text>
-          Cannot change the value of this picker because it doesn't update
-          selectedValue.
-        </Text>
-      </View>
-    );
-  }
+function NoListenerPickerExample() {
+  return (
+    <View>
+      <Picker>
+        <Item label="hello" value="key0" />
+        <Item label="world" value="key1" />
+      </Picker>
+      <Text>
+        Cannot change the value of this picker because it doesn't update
+        selectedValue.
+      </Text>
+    </View>
+  );
 }
 
 type ColorState = {
