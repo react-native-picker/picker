@@ -5,14 +5,12 @@
  * @format
  * @flow
  */
-
-import React, {Component} from 'react';
+import * as React from 'react';
 import {Platform, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import * as PickerExamples from './PickerExample';
 import PickerIOSExamples from './PickerIOSExample';
 
-type Props = {};
 export default function App() {
   return (
     <ScrollView style={styles.container}>
@@ -24,7 +22,7 @@ export default function App() {
         </View>
       ))}
       {Platform.OS === 'ios' && (
-        <Text style={styles.heading}>{'PickerIOS Examples'}</Text>
+        <Text style={styles.heading}>PickerIOS Examples</Text>
       )}
       {Platform.OS === 'ios' &&
         PickerIOSExamples.examples.map((element) => (
