@@ -59,23 +59,17 @@ function DropdownPickerExample() {
   );
 }
 
-class PromptPickerExample extends React.Component<{}, State> {
-  state = {
-    value: 'key1',
-  };
-
-  render() {
-    return (
-      <Picker
-        style={styles.picker}
-        selectedValue={this.state.value}
-        onValueChange={(v) => this.setState({value: v})}
-        prompt="Pick one, just one">
-        <Item label="hello" value="key0" />
-        <Item label="world" value="key1" />
-      </Picker>
-    );
-  }
+function PromptPickerExample() {
+  const [value, setValue] = React.useState('key1');
+  return (
+    <Picker
+      selectedValue={value}
+      onValueChange={(v) => setValue(v)}
+      prompt="Pick one, just one">
+      <Item label="hello" value="key0" />
+      <Item label="world" value="key1" />
+    </Picker>
+  );
 }
 
 class NoListenerPickerExample extends React.Component<{}, State> {
