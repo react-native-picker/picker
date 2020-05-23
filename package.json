@@ -54,7 +54,6 @@
     "@types/react-native": "0.61.23",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^24.7.0",
-    "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "detox": "^12.1.2",
     "eslint": "6.6.0",
