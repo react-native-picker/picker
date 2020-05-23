@@ -180,14 +180,10 @@ export const description =
 export const examples = [
   {
     title: '<PickerIOS>',
-    render: function (): Element<any> {
-      return <PickerExample />;
-    },
+    render: PickerExample,
   },
   {
     title: '<PickerIOS> with custom styling',
-    render: function (): Element<any> {
-      return <PickerStyleExample />;
-    },
+    render: PickerStyleExample,
   },
 ];
