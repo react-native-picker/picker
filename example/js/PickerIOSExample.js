@@ -8,10 +8,7 @@
  * @flow
  */
 
-'use strict';
-
 import * as React from 'react';
-import type {Element} from 'react';
 import {Text, View} from 'react-native';
 import {PickerIOS} from '../../js';
 
