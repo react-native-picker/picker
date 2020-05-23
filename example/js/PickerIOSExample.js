@@ -9,7 +9,7 @@
  */
 
 import * as React from 'react';
-import {Text, View} from 'react-native';
+import {Text, StyleSheet, View} from 'react-native';
 import {PickerIOS} from '../../js';
 
 const PickerItemIOS = PickerIOS.Item;
@@ -142,12 +142,7 @@ function PickerStyleExample() {
 
   return (
     <PickerIOS
-      itemStyle={{
-        fontSize: 25,
-        color: 'red',
-        textAlign: 'left',
-        fontWeight: 'bold',
-      }}
+      itemStyle={styles.item}
       selectedValue={carMake}
       onValueChange={(value) => setCarMake(value)}>
       {Object.keys(CAR_MAKES_AND_MODELS).map((value) => (
@@ -174,3 +169,12 @@ export const examples = [
     render: PickerStyleExample,
   },
 ];
+
+const styles = StyleSheet.create({
+  item: {
+    fontSize: 25,
+    color: 'red',
+    textAlign: 'left',
+    fontWeight: 'bold',
+  },
+});
