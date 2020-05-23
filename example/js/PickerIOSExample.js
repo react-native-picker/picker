@@ -123,12 +123,10 @@ function PickerExample() {
       <PickerIOS
         selectedValue={modelIndex}
         key={carMake}
-        onValueChange={(value) => {
-          setModelIndex(value);
-        }}>
+        onValueChange={(value) => setModelIndex(value)}>
         {CAR_MAKES_AND_MODELS[carMake].models.map((modelName, value) => (
           <PickerItemIOS
-            key={carMake + '_' + value}
+            key={`${carMake}_${value}`}
             value={value}
             label={modelName}
           />
