@@ -1,3 +1,3 @@
 export default {
-  entryPoint: './example/App.js',
+  entryPoint: './example/App',
 };

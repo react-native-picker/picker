@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
 import * as React from 'react';
 import {Platform, ScrollView, StyleSheet, Text, View} from 'react-native';
 

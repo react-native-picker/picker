@@ -1,13 +1,3 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @format
- * @flow
- */
-
 import * as React from 'react';
 import {Text, StyleSheet, View} from 'react-native';
 import {PickerIOS} from '../../js';
@@ -95,7 +85,7 @@ const CAR_MAKES_AND_MODELS = {
 };
 
 function PickerExample() {
-  const [carMake, setCarMake] = React.useState('cadillac');
+  const [carMake, setCarMake] = React.useState<string>('cadillac');
   const [modelIndex, setModelIndex] = React.useState(3);
 
   const make = CAR_MAKES_AND_MODELS[carMake];
@@ -136,7 +126,7 @@ function PickerExample() {
 }
 
 function PickerStyleExample() {
-  const [carMake, setCarMake] = React.useState('cadillac');
+  const [carMake, setCarMake] = React.useState<string>('cadillac');
 
   return (
     <PickerIOS
