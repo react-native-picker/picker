@@ -11,7 +11,7 @@
 import * as React from 'react';
 import {Text, View} from 'react-native';
 import type {Element} from 'react';
-import {Picker} from '@react-native-community/picker';
+import {Picker} from '../../js';
 
 const Item = Picker.Item;
 

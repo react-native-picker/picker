@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 import {Text, StyleSheet, View} from 'react-native';
-import {PickerIOS} from '@react-native-community/picker';
+import {PickerIOS} from '../../js';
 
 const CAR_MAKES_AND_MODELS = {
   amc: {
