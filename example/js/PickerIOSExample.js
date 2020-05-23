@@ -144,33 +144,28 @@ class PickerExample extends React.Component<{}, $FlowFixMeState> {
   }
 }
 
-class PickerStyleExample extends React.Component<{}, $FlowFixMeState> {
-  state = {
-    carMake: 'cadillac',
-    modelIndex: 0,
-  };
+function PickerStyleExample() {
+  const [carMake, setCarMake] = React.useState('cadillac');
 
-  render() {
-    return (
-      <PickerIOS
-        itemStyle={{
-          fontSize: 25,
-          color: 'red',
-          textAlign: 'left',
-          fontWeight: 'bold',
-        }}
-        selectedValue={this.state.carMake}
-        onValueChange={(carMake) => this.setState({carMake, modelIndex: 0})}>
-        {Object.keys(CAR_MAKES_AND_MODELS).map((carMake) => (
-          <PickerItemIOS
-            key={carMake}
-            value={carMake}
-            label={CAR_MAKES_AND_MODELS[carMake].name}
-          />
-        ))}
-      </PickerIOS>
-    );
-  }
+  return (
+    <PickerIOS
+      itemStyle={{
+        fontSize: 25,
+        color: 'red',
+        textAlign: 'left',
+        fontWeight: 'bold',
+      }}
+      selectedValue={carMake}
+      onValueChange={(make) => setCarMake(make)}>
+      {Object.keys(CAR_MAKES_AND_MODELS).map((carMake) => (
+        <PickerItemIOS
+          key={carMake}
+          value={carMake}
+          label={CAR_MAKES_AND_MODELS[carMake].name}
+        />
+      ))}
+    </PickerIOS>
+  );
 }
 
 export const displayName = (undefined: ?string);
