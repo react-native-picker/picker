@@ -11,6 +11,7 @@
 'use strict';
 
 import * as React from 'react';
+import type {Element} from 'react';
 import {Text, View} from 'react-native';
 import {PickerIOS} from '../../js';
 
@@ -178,13 +179,13 @@ exports.description = 'Render lists of selectable options with UIPickerView.';
 exports.examples = [
   {
     title: '<PickerIOS>',
-    render: function (): React.Element<any> {
+    render: function (): Element<any> {
       return <PickerExample />;
     },
   },
   {
     title: '<PickerIOS> with custom styling',
-    render: function (): React.Element<any> {
+    render: function (): Element<any> {
       return <PickerStyleExample />;
     },
   },

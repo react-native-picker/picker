@@ -5,15 +5,15 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @format
- * @flow strict-local
+ *
  */
 
 'use strict';
 
 import * as React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
-import type {Element} from 'react';
-import {Picker} from '../../js';
+
+import {Picker} from '@react-native-community/picker';
 
 const Item = Picker.Item;
 
@@ -135,7 +135,7 @@ class ColorPickerExample extends React.Component<{}, ColorState> {
           <Item label="blue" color="blue" value="blue" />
         </Picker>
         <Picker
-          style={styles.picker}
+          style={[styles.picker, {color: this.state.color}]}
           selectedValue={this.state.color}
           onValueChange={(v) => this.setState({color: v})}
           mode="dialog">
@@ -152,43 +152,40 @@ const styles = StyleSheet.create({
   picker: {},
 });
 
-exports.title = '<Picker>';
-exports.description =
-  'Provides multiple options to choose from, using either a dropdown menu or a dialog.';
-exports.examples = [
+export const examples = [
   {
     title: 'Basic Picker',
-    render: function (): Element<typeof BasicPickerExample> {
+    render: function (): React.Element<typeof BasicPickerExample> {
       return <BasicPickerExample />;
     },
   },
   {
     title: 'Disabled Picker',
-    render: function (): Element<typeof DisabledPickerExample> {
+    render: function (): React.Element<typeof DisabledPickerExample> {
       return <DisabledPickerExample />;
     },
   },
   {
     title: 'Dropdown Picker',
-    render: function (): Element<typeof DropdownPickerExample> {
+    render: function (): React.Element<typeof DropdownPickerExample> {
       return <DropdownPickerExample />;
     },
   },
   {
     title: 'Picker with prompt message',
-    render: function (): Element<typeof PromptPickerExample> {
+    render: function (): React.Element<typeof PromptPickerExample> {
       return <PromptPickerExample />;
     },
   },
   {
     title: 'Picker with no listener',
-    render: function (): Element<typeof NoListenerPickerExample> {
+    render: function (): React.Element<typeof NoListenerPickerExample> {
       return <NoListenerPickerExample />;
     },
   },
   {
     title: 'Colorful pickers',
-    render: function (): Element<typeof ColorPickerExample> {
+    render: function (): React.Element<typeof ColorPickerExample> {
       return <ColorPickerExample />;
     },
   },

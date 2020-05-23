@@ -1,0 +1,18 @@
+{
+  "name": "example-web",
+  "version": "0.0.1",
+  "scripts": {
+    "web": "expo web"
+  },
+  "devDependencies": {
+    "expo": "^37.0.8",
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
+    "react-native": "^0.61.5",
+    "react-native-web": "^0.11.0",
+    "@babel/core": "^7.9.6",
+    "@babel/runtime": "^7.9.6",
+    "babel-preset-expo": "~8.1.0",
+    "expo-cli": "^3.17.18"
+  }
+}

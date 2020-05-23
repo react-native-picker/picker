@@ -64,3 +64,6 @@ example/ios/Pods/
 .settings
 .classpath
 
+# expo generated files
+.expo
+web-build

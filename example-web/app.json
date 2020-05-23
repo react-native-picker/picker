@@ -1,0 +1,7 @@
+{
+  "name": "picker-web-example",
+  "displayName": "<%= project.name %> Example",
+  "expo": {
+    "name": "picker-web-example"
+  }
+}
