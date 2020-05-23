@@ -99,49 +99,47 @@ const CAR_MAKES_AND_MODELS = {
   },
 };
 
-class PickerExample extends React.Component<{}, $FlowFixMeState> {
-  state = {
-    carMake: 'cadillac',
-    modelIndex: 3,
-  };
+function PickerExample() {
+  const [carMake, setCarMake] = React.useState('cadillac');
+  const [modelIndex, setModelIndex] = React.useState(3);
 
-  render() {
-    const make = CAR_MAKES_AND_MODELS[this.state.carMake];
-    const selectionString =
-      make.name + ' ' + make.models[this.state.modelIndex];
-    return (
-      <View>
-        <Text>Please choose a make for your car:</Text>
-        <PickerIOS
-          selectedValue={this.state.carMake}
-          onValueChange={(carMake) => this.setState({carMake, modelIndex: 0})}>
-          {Object.keys(CAR_MAKES_AND_MODELS).map((carMake) => (
-            <PickerItemIOS
-              key={carMake}
-              value={carMake}
-              label={CAR_MAKES_AND_MODELS[carMake].name}
-            />
-          ))}
-        </PickerIOS>
-        <Text>Please choose a model of {make.name}:</Text>
-        <PickerIOS
-          selectedValue={this.state.modelIndex}
-          key={this.state.carMake}
-          onValueChange={(modelIndex) => this.setState({modelIndex})}>
-          {CAR_MAKES_AND_MODELS[this.state.carMake].models.map(
-            (modelName, modelIndex) => (
-              <PickerItemIOS
-                key={this.state.carMake + '_' + modelIndex}
-                value={modelIndex}
-                label={modelName}
-              />
-            ),
-          )}
-        </PickerIOS>
-        <Text>You selected: {selectionString}</Text>
-      </View>
-    );
-  }
+  const make = CAR_MAKES_AND_MODELS[carMake];
+  const selectionString = make.name + ' ' + make.models[modelIndex];
+  return (
+    <View>
+      <Text>Please choose a make for your car:</Text>
+      <PickerIOS
+        selectedValue={carMake}
+        onValueChange={(value) => {
+          setCarMake(value);
+          setModelIndex(0);
+        }}>
+        {Object.keys(CAR_MAKES_AND_MODELS).map((value) => (
+          <PickerItemIOS
+            key={value}
+            value={value}
+            label={CAR_MAKES_AND_MODELS[value].name}
+          />
+        ))}
+      </PickerIOS>
+      <Text>Please choose a model of {make.name}:</Text>
+      <PickerIOS
+        selectedValue={modelIndex}
+        key={carMake}
+        onValueChange={(value) => {
+          setModelIndex(value);
+        }}>
+        {CAR_MAKES_AND_MODELS[carMake].models.map((modelName, value) => (
+          <PickerItemIOS
+            key={carMake + '_' + value}
+            value={value}
+            label={modelName}
+          />
+        ))}
+      </PickerIOS>
+      <Text>You selected: {selectionString}</Text>
+    </View>
+  );
 }
 
 function PickerStyleExample() {
