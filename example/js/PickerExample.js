@@ -21,23 +21,17 @@ type State = {
   value: string | number,
 };
 
-class BasicPickerExample extends React.Component<{}, State> {
-  state = {
-    value: 'key1',
-  };
-
-  render() {
-    return (
-      <Picker
-        testID="basic-picker"
-        style={styles.picker}
-        selectedValue={this.state.value}
-        onValueChange={(v) => this.setState({value: v})}>
-        <Item label="hello" value="key0" />
-        <Item label="world" value="key1" />
-      </Picker>
-    );
-  }
+function BasicPickerExample() {
+  const [value, setValue] = React.useState('key1');
+  return (
+    <Picker
+      testID="basic-picker"
+      selectedValue={value}
+      onValueChange={(v) => setValue(v)}>
+      <Item label="hello" value="key0" />
+      <Item label="world" value="key1" />
+    </Picker>
+  );
 }
 
 class DisabledPickerExample extends React.Component<{}, State> {
