@@ -2,7 +2,7 @@
   "name": "example-web",
   "version": "0.0.1",
   "scripts": {
-    "web": "expo start --web"
+    "web": "expo web"
   },
   "devDependencies": {
     "expo": "^37.0.8",
