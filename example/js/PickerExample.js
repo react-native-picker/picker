@@ -34,22 +34,15 @@ function BasicPickerExample() {
   );
 }
 
-class DisabledPickerExample extends React.Component<{}, State> {
-  state = {
-    value: 'key1',
-  };
+function DisabledPickerExample() {
+  const [value] = React.useState('key1');
 
-  render() {
-    return (
-      <Picker
-        style={styles.picker}
-        enabled={false}
-        selectedValue={this.state.value}>
-        <Item label="hello" value="key0" />
-        <Item label="world" value="key1" />
-      </Picker>
-    );
-  }
+  return (
+    <Picker enabled={false} selectedValue={value}>
+      <Item label="hello" value="key0" />
+      <Item label="world" value="key1" />
+    </Picker>
+  );
 }
 
 class DropdownPickerExample extends React.Component<{}, State> {
