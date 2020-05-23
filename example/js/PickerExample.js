@@ -91,35 +91,31 @@ type ColorState = {
   color: string | number,
 };
 
-class ColorPickerExample extends React.Component<{}, ColorState> {
-  state = {
-    color: 'red',
-  };
+function ColorPickerExample() {
+  const [value, setValue] = React.useState('red');
 
-  render() {
-    return (
-      <>
-        <Picker
-          style={[styles.picker, {color: 'white', backgroundColor: '#333'}]}
-          selectedValue={this.state.color}
-          onValueChange={(v) => this.setState({color: v})}
-          mode="dropdown">
-          <Item label="red" color="red" value="red" />
-          <Item label="green" color="green" value="green" />
-          <Item label="blue" color="blue" value="blue" />
-        </Picker>
-        <Picker
-          style={styles.picker}
-          selectedValue={this.state.color}
-          onValueChange={(v) => this.setState({color: v})}
-          mode="dialog">
-          <Item label="red" color="red" value="red" />
-          <Item label="green" color="green" value="green" />
-          <Item label="blue" color="blue" value="blue" />
-        </Picker>
-      </>
-    );
-  }
+  return (
+    <>
+      <Picker
+        style={{color: 'white', backgroundColor: '#333'}}
+        selectedValue={value}
+        onValueChange={(v) => setValue(v)}
+        mode="dropdown">
+        <Item label="red" color="red" value="red" />
+        <Item label="green" color="green" value="green" />
+        <Item label="blue" color="blue" value="blue" />
+      </Picker>
+      <Picker
+        style={{color: value}}
+        selectedValue={value}
+        onValueChange={(v) => setValue(v)}
+        mode="dialog">
+        <Item label="red" color="red" value="red" />
+        <Item label="green" color="green" value="green" />
+        <Item label="blue" color="blue" value="blue" />
+      </Picker>
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
