@@ -5,3 +5,4 @@ __tests__
 /.circleci
 /webpack.config.js
 /app.config.js
+/.expo
