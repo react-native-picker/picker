@@ -149,19 +149,18 @@ function PickerStyleExample() {
         fontWeight: 'bold',
       }}
       selectedValue={carMake}
-      onValueChange={(make) => setCarMake(make)}>
-      {Object.keys(CAR_MAKES_AND_MODELS).map((carMake) => (
+      onValueChange={(value) => setCarMake(value)}>
+      {Object.keys(CAR_MAKES_AND_MODELS).map((value) => (
         <PickerItemIOS
-          key={carMake}
-          value={carMake}
-          label={CAR_MAKES_AND_MODELS[carMake].name}
+          key={value}
+          value={value}
+          label={CAR_MAKES_AND_MODELS[value].name}
         />
       ))}
     </PickerIOS>
   );
 }
 
-export const displayName = (undefined: ?string);
 export const title = '<PickerIOS>';
 export const description =
   'Render lists of selectable options with UIPickerView.';
