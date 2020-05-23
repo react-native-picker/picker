@@ -118,10 +118,6 @@ function ColorPickerExample() {
   );
 }
 
-const styles = StyleSheet.create({
-  picker: {},
-});
-
 exports.title = '<Picker>';
 exports.description =
   'Provides multiple options to choose from, using either a dropdown menu or a dialog.';
