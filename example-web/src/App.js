@@ -5,27 +5,23 @@
  * @format
  * @flow
  */
-
-import React, {Component} from 'react';
+import React from 'react';
 import {Platform, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import * as PickerExamples from './PickerExample';
 
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <ScrollView style={styles.container}>
-        <Text style={styles.heading}>Picker Examples</Text>
-        {PickerExamples.examples.map((element) => (
-          <View style={styles.elementContainer} key={element.title}>
-            <Text style={styles.title}> {element.title} </Text>
-            {element.render()}
-          </View>
-        ))}
-      </ScrollView>
-    );
-  }
+export default function App() {
+  return (
+    <ScrollView style={styles.container}>
+      <Text style={styles.heading}>Picker Examples</Text>
+      {PickerExamples.examples.map((element) => (
+        <View style={styles.elementContainer} key={element.title}>
+          <Text style={styles.title}> {element.title} </Text>
+          {element.render()}
+        </View>
+      ))}
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
