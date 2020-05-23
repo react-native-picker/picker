@@ -11,7 +11,7 @@
 'use strict';
 
 import * as React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View} from 'react-native';
 
 import {Picker} from '@react-native-community/picker';
 
@@ -22,7 +22,6 @@ function BasicPickerExample() {
   return (
     <Picker
       testID="basic-picker"
-      style={styles.picker}
       selectedValue={value}
       onValueChange={(v) => setValue(v)}>
       <Item label="hello" value="key0" />
@@ -35,7 +34,7 @@ function DisabledPickerExample() {
   const [value, setValue] = React.useState('key1');
 
   return (
-    <Picker style={styles.picker} enabled={false} selectedValue={value}>
+    <Picker enabled={false} selectedValue={value}>
       <Item label="hello" value="key0" />
       <Item label="world" value="key1" />
     </Picker>
@@ -47,7 +46,6 @@ function DropdownPickerExample() {
 
   return (
     <Picker
-      style={styles.picker}
       selectedValue={value}
       onValueChange={(v) => setValue(v)}
       mode="dropdown">
@@ -61,7 +59,6 @@ function PromptPickerExample() {
   const [value, setValue] = React.useState('key1');
   return (
     <Picker
-      style={styles.picker}
       selectedValue={value}
       onValueChange={(v) => setValue(v)}
       prompt="Pick one, just one">
@@ -74,7 +71,7 @@ function PromptPickerExample() {
 function NoListenerPickerExample() {
   return (
     <View>
-      <Picker style={styles.picker}>
+      <Picker>
         <Item label="hello" value="key0" />
         <Item label="world" value="key1" />
       </Picker>
@@ -92,7 +89,7 @@ function ColorPickerExample() {
   return (
     <>
       <Picker
-        style={[styles.picker, {color: 'white', backgroundColor: '#333'}]}
+        style={{color: 'white', backgroundColor: '#333'}}
         selectedValue={value}
         onValueChange={(v) => setValue(v)}
         mode="dropdown">
@@ -101,7 +98,7 @@ function ColorPickerExample() {
         <Item label="blue" color="blue" value="blue" />
       </Picker>
       <Picker
-        style={[styles.picker, {color: value}]}
+        style={{color: value}}
         selectedValue={value}
         onValueChange={(v) => setValue(v)}
         mode="dialog">
@@ -112,10 +109,6 @@ function ColorPickerExample() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  picker: {},
-});
 
 export const examples = [
   {
