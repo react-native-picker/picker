@@ -45,23 +45,18 @@ function DisabledPickerExample() {
   );
 }
 
-class DropdownPickerExample extends React.Component<{}, State> {
-  state = {
-    value: 'key1',
-  };
+function DropdownPickerExample() {
+  const [value, setValue] = React.useState('key1');
 
-  render() {
-    return (
-      <Picker
-        style={styles.picker}
-        selectedValue={this.state.value}
-        onValueChange={(v) => this.setState({value: v})}
-        mode="dropdown">
-        <Item label="hello" value="key0" />
-        <Item label="world" value="key1" />
-      </Picker>
-    );
-  }
+  return (
+    <Picker
+      selectedValue={value}
+      onValueChange={(v) => setValue(v)}
+      mode="dropdown">
+      <Item label="hello" value="key0" />
+      <Item label="world" value="key1" />
+    </Picker>
+  );
 }
 
 class PromptPickerExample extends React.Component<{}, State> {
