@@ -1,4 +1,6 @@
 /**
+ * Copyright (c) Nicolas Gallagher.
+ *
  * @flow
  * @format
  */
