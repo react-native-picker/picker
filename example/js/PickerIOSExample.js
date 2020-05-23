@@ -173,10 +173,11 @@ class PickerStyleExample extends React.Component<{}, $FlowFixMeState> {
   }
 }
 
-exports.displayName = (undefined: ?string);
-exports.title = '<PickerIOS>';
-exports.description = 'Render lists of selectable options with UIPickerView.';
-exports.examples = [
+export const displayName = (undefined: ?string);
+export const title = '<PickerIOS>';
+export const description =
+  'Render lists of selectable options with UIPickerView.';
+export const examples = [
   {
     title: '<PickerIOS>',
     render: function (): Element<any> {
