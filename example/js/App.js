@@ -9,7 +9,7 @@ import * as React from 'react';
 import {Platform, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import * as PickerExamples from './PickerExample';
-import PickerIOSExamples from './PickerIOSExample';
+import * as PickerIOSExamples from './PickerIOSExample';
 
 export default function App() {
   return (
