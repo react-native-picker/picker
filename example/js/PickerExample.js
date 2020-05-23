@@ -116,38 +116,26 @@ export const description =
 export const examples = [
   {
     title: 'Basic Picker',
-    render: function (): Element<typeof BasicPickerExample> {
-      return <BasicPickerExample />;
-    },
+    render: BasicPickerExample,
   },
   {
     title: 'Disabled Picker',
-    render: function (): Element<typeof DisabledPickerExample> {
-      return <DisabledPickerExample />;
-    },
+    render: DisabledPickerExample,
   },
   {
     title: 'Dropdown Picker',
-    render: function (): Element<typeof DropdownPickerExample> {
-      return <DropdownPickerExample />;
-    },
+    render: DropdownPickerExample,
   },
   {
     title: 'Picker with prompt message',
-    render: function (): Element<typeof PromptPickerExample> {
-      return <PromptPickerExample />;
-    },
+    render: PromptPickerExample,
   },
   {
     title: 'Picker with no listener',
-    render: function (): Element<typeof NoListenerPickerExample> {
-      return <NoListenerPickerExample />;
-    },
+    render: NoListenerPickerExample,
   },
   {
     title: 'Colorful pickers',
-    render: function (): Element<typeof ColorPickerExample> {
-      return <ColorPickerExample />;
-    },
+    render: ColorPickerExample,
   },
 ];
