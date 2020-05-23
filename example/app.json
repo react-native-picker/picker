@@ -3,6 +3,6 @@
   "displayName": "PickerExample",
   "expo": {
     "name": "picker-web-example",
-    "entryPoint": "expo/AppEntry"
+    "entryPoint": "App.js"
   }
 }
