@@ -1,4 +1,8 @@
 {
   "name": "PickerExample",
-  "displayName": "PickerExample"
+  "displayName": "PickerExample",
+  "expo": {
+    "name": "picker-web-example",
+    "entryPoint": "expo/AppEntry"
+  }
 }
