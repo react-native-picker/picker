@@ -110,10 +110,10 @@ function ColorPickerExample() {
   );
 }
 
-exports.title = '<Picker>';
-exports.description =
+export const title = '<Picker>';
+export const description =
   'Provides multiple options to choose from, using either a dropdown menu or a dialog.';
-exports.examples = [
+export const examples = [
   {
     title: 'Basic Picker',
     render: function (): Element<typeof BasicPickerExample> {
