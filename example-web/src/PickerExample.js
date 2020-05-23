@@ -21,131 +21,100 @@ type State = {
   value: string | number,
 };
 
-class BasicPickerExample extends React.Component<{}, State> {
-  state = {
-    value: 'key1',
-  };
+function BasicPickerExample() {
+  const [value, setValue] = React.useState('key1');
+  return (
+    <Picker
+      testID="basic-picker"
+      style={styles.picker}
+      selectedValue={value}
+      onValueChange={(v) => setValue(v)}>
+      <Item label="hello" value="key0" />
+      <Item label="world" value="key1" />
+    </Picker>
+  );
+}
 
-  render() {
-    return (
-      <Picker
-        testID="basic-picker"
-        style={styles.picker}
-        selectedValue={this.state.value}
-        onValueChange={(v) => this.setState({value: v})}>
+function DisabledPickerExample() {
+  const [value, setValue] = React.useState('key1');
+
+  return (
+    <Picker style={styles.picker} enabled={false} selectedValue={value}>
+      <Item label="hello" value="key0" />
+      <Item label="world" value="key1" />
+    </Picker>
+  );
+}
+
+function DropdownPickerExample() {
+  const [value, setValue] = React.useState('key1');
+
+  return (
+    <Picker
+      style={styles.picker}
+      selectedValue={value}
+      onValueChange={(v) => setValue(v)}
+      mode="dropdown">
+      <Item label="hello" value="key0" />
+      <Item label="world" value="key1" />
+    </Picker>
+  );
+}
+
+function PromptPickerExample() {
+  const [value, setValue] = React.useState('key1');
+  return (
+    <Picker
+      style={styles.picker}
+      selectedValue={value}
+      onValueChange={(v) => setValue(v)}
+      prompt="Pick one, just one">
+      <Item label="hello" value="key0" />
+      <Item label="world" value="key1" />
+    </Picker>
+  );
+}
+
+function NoListenerPickerExample() {
+  return (
+    <View>
+      <Picker style={styles.picker}>
         <Item label="hello" value="key0" />
         <Item label="world" value="key1" />
       </Picker>
-    );
-  }
+      <Text>
+        Cannot change the value of this picker because it doesn't update
+        selectedValue.
+      </Text>
+    </View>
+  );
 }
 
-class DisabledPickerExample extends React.Component<{}, State> {
-  state = {
-    value: 'key1',
-  };
+function ColorPickerExample() {
+  const [value, setValue] = React.useState('red');
 
-  render() {
-    return (
+  return (
+    <>
       <Picker
-        style={styles.picker}
-        enabled={false}
-        selectedValue={this.state.value}>
-        <Item label="hello" value="key0" />
-        <Item label="world" value="key1" />
-      </Picker>
-    );
-  }
-}
-
-class DropdownPickerExample extends React.Component<{}, State> {
-  state = {
-    value: 'key1',
-  };
-
-  render() {
-    return (
-      <Picker
-        style={styles.picker}
-        selectedValue={this.state.value}
-        onValueChange={(v) => this.setState({value: v})}
+        style={[styles.picker, {color: 'white', backgroundColor: '#333'}]}
+        selectedValue={value}
+        onValueChange={(v) => setValue(v)}
         mode="dropdown">
-        <Item label="hello" value="key0" />
-        <Item label="world" value="key1" />
+        <Item label="red" color="red" value="red" />
+        <Item label="green" color="green" value="green" />
+        <Item label="blue" color="blue" value="blue" />
       </Picker>
-    );
-  }
-}
-
-class PromptPickerExample extends React.Component<{}, State> {
-  state = {
-    value: 'key1',
-  };
-
-  render() {
-    return (
       <Picker
-        style={styles.picker}
-        selectedValue={this.state.value}
-        onValueChange={(v) => this.setState({value: v})}
-        prompt="Pick one, just one">
-        <Item label="hello" value="key0" />
-        <Item label="world" value="key1" />
+        style={[styles.picker, {color: value}]}
+        selectedValue={value}
+        onValueChange={(v) => setValue(v)}
+        mode="dialog">
+        <Item label="red" color="red" value="red" />
+        <Item label="green" color="green" value="green" />
+        <Item label="blue" color="blue" value="blue" />
       </Picker>
-    );
-  }
-}
-
-class NoListenerPickerExample extends React.Component<{}, State> {
-  render() {
-    return (
-      <View>
-        <Picker style={styles.picker}>
-          <Item label="hello" value="key0" />
-          <Item label="world" value="key1" />
-        </Picker>
-        <Text>
-          Cannot change the value of this picker because it doesn't update
-          selectedValue.
-        </Text>
-      </View>
-    );
-  }
-}
-
-type ColorState = {
-  color: string | number,
-};
-
-class ColorPickerExample extends React.Component<{}, ColorState> {
-  state = {
-    color: 'red',
-  };
-
-  render() {
-    return (
-      <>
-        <Picker
-          style={[styles.picker, {color: 'white', backgroundColor: '#333'}]}
-          selectedValue={this.state.color}
-          onValueChange={(v) => this.setState({color: v})}
-          mode="dropdown">
-          <Item label="red" color="red" value="red" />
-          <Item label="green" color="green" value="green" />
-          <Item label="blue" color="blue" value="blue" />
-        </Picker>
-        <Picker
-          style={[styles.picker, {color: this.state.color}]}
-          selectedValue={this.state.color}
-          onValueChange={(v) => this.setState({color: v})}
-          mode="dialog">
-          <Item label="red" color="red" value="red" />
-          <Item label="green" color="green" value="green" />
-          <Item label="blue" color="blue" value="blue" />
-        </Picker>
-      </>
-    );
-  }
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
