@@ -8,14 +8,7 @@
 'use strict';
 
 import React from 'react';
-import {
-  processColor,
-  requireNativeComponent,
-  NativeModules,
-  StyleSheet,
-} from 'react-native';
-
-const REF_PICKER = 'picker';
+import {processColor, requireNativeComponent, StyleSheet} from 'react-native';
 
 import type {SyntheticEvent} from 'CoreEventTypes';
 import type {TextStyleProp} from 'StyleSheet';
