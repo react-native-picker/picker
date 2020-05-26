@@ -11,7 +11,8 @@ import type {
   TextStyleProp,
 } from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
-import {StyleSheet} from 'react-native';
+// $FlowFixMe
+import {createElement} from 'react-native';
 import PickerItem from './PickerItem';
 import {forwardRef, useRef} from 'react';
 
@@ -28,13 +29,13 @@ type PickerProps = {
   prompt?: string,
 };
 
+const Select = (props: any) => createElement('select', props);
+
 const Picker = forwardRef<PickerProps, *>((props, forwardedRef) => {
   const {
     enabled,
     onValueChange,
     selectedValue,
-    style,
-    testID,
     itemStyle,
     mode,
     prompt,
@@ -52,12 +53,10 @@ const Picker = forwardRef<PickerProps, *>((props, forwardedRef) => {
 
   return (
     // $FlowFixMe
-    <select
+    <Select
       disabled={enabled === false ? true : undefined}
       onChange={handleChange}
       ref={hostRef}
-      style={StyleSheet.flatten([styles.initial, style])}
-      testid={testID}
       value={selectedValue}
       {...other}
     />
@@ -66,12 +65,5 @@ const Picker = forwardRef<PickerProps, *>((props, forwardedRef) => {
 
 // $FlowFixMe
 Picker.Item = PickerItem;
-
-const styles = StyleSheet.create({
-  initial: {
-    fontFamily: 'System',
-    margin: 0,
-  },
-});
 
 export default Picker;
