@@ -44,12 +44,15 @@ const Picker = forwardRef<PickerProps, *>((props, forwardedRef) => {
 
   const hostRef = useRef(null);
 
-  function handleChange(e: Object) {
-    const {selectedIndex, value} = e.target;
-    if (onValueChange) {
-      onValueChange(value, selectedIndex);
-    }
-  }
+  const handleChange = React.useMemo<any>(
+    (e: Object) => {
+      const {selectedIndex, value} = e.target;
+      if (onValueChange) {
+        onValueChange(value, selectedIndex);
+      }
+    },
+    [onValueChange],
+  );
 
   return (
     // $FlowFixMe
