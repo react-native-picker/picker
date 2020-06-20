@@ -2,4 +2,7 @@ rootProject.name = 'PickerExample'
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 
+include ':@react-native-community_picker'
+project(':@react-native-community_picker').projectDir = new File(rootProject.projectDir, 	'../../android')
+
 include ':app'

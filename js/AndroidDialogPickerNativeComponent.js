@@ -43,5 +43,5 @@ type NativeProps = $ReadOnly<{|
 type DialogPickerNativeType = Class<NativeComponent<NativeProps>>;
 
 module.exports = ((requireNativeComponent(
-  'AndroidDialogPicker',
+  'RNCAndroidDialogPicker',
 ): any): DialogPickerNativeType);
