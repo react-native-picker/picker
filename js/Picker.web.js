@@ -44,7 +44,7 @@ const Picker = forwardRef<PickerProps, *>((props, forwardedRef) => {
 
   const hostRef = useRef(null);
 
-  const handleChange = React.useMemo<any>(
+  const handleChange = React.useCallback<any>(
     (e: Object) => {
       const {selectedIndex, value} = e.target;
       if (onValueChange) {
