@@ -14,10 +14,10 @@ import React from 'react';
 import {processColor, requireNativeComponent, StyleSheet} from 'react-native';
 
 const AndroidDropdownPickerNativeComponent = requireNativeComponent(
-  'AndroidDropdownPicker',
+  'RNCAndroidDropdownPicker',
 );
 const AndroidDialogPickerNativeComponent = requireNativeComponent(
-  'AndroidDialogPicker',
+  'RNCAndroidDialogPicker',
 );
 
 const REF_PICKER = 'picker';
