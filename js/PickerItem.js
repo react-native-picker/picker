@@ -18,9 +18,7 @@ type Props = {
   value?: number | string,
 };
 
-const Option = (props: any) => {
-  createElement('option', props);
-};
+const Option = (props: any) => createElement('option', props);
 
 export default function PickerItem({color, label, testID, value}: Props) {
   return <Option style={{color}} testID={testID} value={value} label={label} />;
