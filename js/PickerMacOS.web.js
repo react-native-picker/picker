@@ -7,4 +7,4 @@ function PickerMacOS() {
 
 PickerMacOS.Item = UnimplementedView;
 
-export default PickerIOS;
+export default PickerMacOS;
