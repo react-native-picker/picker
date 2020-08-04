@@ -55,6 +55,17 @@ function PromptPickerExample() {
   );
 }
 
+function CustomDropdownArrowColorPickerExample() {
+  return (
+    <View>
+      <Picker dropdownIconColor="#ffffff">
+        <Item label="hello" value="key0" />
+        <Item label="world" value="key1" />
+      </Picker>
+    </View>
+  );
+};
+
 function NoListenerPickerExample() {
   return (
     <View>
@@ -131,5 +142,9 @@ export const examples = [
   {
     title: 'Colorful pickers',
     render: ColorPickerExample,
+  },
+  {
+    title: 'Picker with changed color of arrow',
+    render: CustomDropdownArrowColorPickerExample,
   },
 ];
