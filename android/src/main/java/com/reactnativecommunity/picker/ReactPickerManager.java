@@ -75,7 +75,7 @@ public abstract class ReactPickerManager extends SimpleViewManager<ReactPicker> 
 
   @ReactProp(name = "dropdownIconColor") 
   public void setDropdownIconColor(ReactPicker view, @Nullable String color) {
-    view.getBackground().setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP);
+    view.getBackground().setColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_ATOP);
   }
 
   @Override
