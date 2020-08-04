@@ -41,7 +41,7 @@ type PickerAndroidProps = $ReadOnly<{|
   onValueChange?: ?(itemValue: ?(string | number), itemIndex: number) => mixed,
   prompt?: ?string,
   testID?: string,
-  dropdownIconColor?: string;
+  dropdownIconColor?: string,
 |}>;
 
 type Item = $ReadOnly<{|
