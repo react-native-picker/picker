@@ -6,8 +6,9 @@
  */
 
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
+
 // $FlowFixMe
-import {createElement} from 'react-native';
+import {createElement, unstable_createElement} from 'react-native';
 
 import * as React from 'react';
 
@@ -18,7 +19,9 @@ type Props = {
   value?: number | string,
 };
 
-const Option = (props: any) => createElement('option', props);
+const myCreateElement = createElement || unstable_createElement;
+
+const Option = (props: any) => myCreateElement('option', props);
 
 export default function PickerItem({color, label, testID, value}: Props) {
   return <Option style={{color}} testID={testID} value={value} label={label} />;
