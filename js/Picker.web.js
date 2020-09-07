@@ -12,7 +12,7 @@ import type {
 } from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
 // $FlowFixMe
-import {createElement} from 'react-native';
+import {createElement, unstable_createElement} from 'react-native';
 import PickerItem from './PickerItem';
 import {forwardRef, useRef} from 'react';
 
@@ -29,7 +29,9 @@ type PickerProps = {
   prompt?: string,
 };
 
-const Select = (props: any) => createElement('select', props);
+const myCreateElement = createElement || unstable_createElement;
+
+const Select = (props: any) => myCreateElement('select', props);
 
 const Picker = forwardRef<PickerProps, *>((props, forwardedRef) => {
   const {
