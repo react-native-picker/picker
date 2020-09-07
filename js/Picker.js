@@ -16,6 +16,7 @@ import {Platform} from 'react-native';
 import PickerAndroid from './PickerAndroid';
 import PickerIOS from './PickerIOS';
 import PickerWindows from './PickerWindows';
+import PickerMacOS from './PickerMacOS';
 
 import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
@@ -141,6 +142,10 @@ class Picker extends React.Component<PickerProps> {
       /* $FlowFixMe(>=0.81.0 site=react_native_ios_fb) This suppression was
        * added when renaming suppression sites. */
       return <PickerIOS {...this.props}>{this.props.children}</PickerIOS>;
+    } else if (Platform.OS === 'macos') {
+      /* $FlowFixMe(>=0.81.0 site=react_native_ios_fb) This suppression was
+       * added when renaming suppression sites. */
+      return <PickerMacOS {...this.props}>{this.props.children}</PickerMacOS>;
     } else if (Platform.OS === 'android') {
       return (
         /* $FlowFixMe(>=0.81.0 site=react_native_android_fb) This suppression

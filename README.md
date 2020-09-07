@@ -4,9 +4,9 @@
 [![npm version](https://img.shields.io/npm/v/@react-native-community/picker.svg)](https://www.npmjs.com/package/@react-native-community/picker)
 [![CircleCI Status](https://img.shields.io/circleci/project/github/react-native-community/react-native-picker/master.svg)](https://circleci.com/gh/react-native-community/workflows/react-native-picker/tree/master) ![Supports Android and iOS](https://img.shields.io/badge/platforms-android%20|%20ios-lightgrey.svg) ![MIT License](https://img.shields.io/npm/l/@react-native-community/picker.svg) [![Lean Core Extracted](https://img.shields.io/badge/Lean%20Core-Extracted-brightgreen.svg)](https://github.com/facebook/react-native/issues/23313)
 
-| Android | iOS | PickerIOS | Windows |
-| --- | --- | --- | --- |
-| <img src="./screenshots/picker-android.png" width="150"> | <img src="./screenshots/picker-ios.png" width="150"> | <img src="./screenshots/pickerios-ios.png" width="150"> | <img src="./screenshots/picker-windows.png" width="300">
+| Android | iOS | PickerIOS | Windows | MacOS |
+| --- | --- | --- | --- | --- |
+| <img src="./screenshots/picker-android.png" width="150"> | <img src="./screenshots/picker-ios.png" width="150"> | <img src="./screenshots/pickerios-ios.png" width="150"> | <img src="./screenshots/picker-windows.png" width="300"> | <img src="./screenshots/picker-macos.png" width="300">
 
 ## Supported Versions
 
@@ -63,6 +63,14 @@ Add `#include "winrt/ReactNativePicker.h"`.
 
 Add `PackageProviders().Append(winrt::ReactNativePicker::ReactPackageProvider());` before `InitializeComponent();`.
 
+#### MacOS
+CocoaPods on MacOS needs this extra step (called from the MacOS directory)
+
+```
+pod install
+```
+
+
 ### Mostly automatic installation (react-native < 0.60)
 
 `$ react-native link @react-native-community/picker`
@@ -91,7 +99,12 @@ Add `PackageProviders().Append(winrt::ReactNativePicker::ReactPackageProvider())
   	```
       compile project(': @react-native-community/picker')
   	```
+#### MacOS
 
+1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
+2. Go to `node_modules` ➜ ` @react-native-community/picker` and add `RNCPicker.xcodeproj`
+3. In XCode, in the project navigator, select your project. Add `libRNCPicker.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
+4. Run your project (`Cmd+R`)<
 
 ## Usage
 ### Picker
