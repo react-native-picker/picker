@@ -8,7 +8,7 @@
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
 
 // $FlowFixMe
-import {createElement, unstable_createElement} from 'react-native';
+import {unstable_createElement} from 'react-native';
 
 import * as React from 'react';
 
@@ -19,7 +19,7 @@ type Props = {
   value?: number | string,
 };
 
-const myCreateElement = createElement || unstable_createElement;
+const myCreateElement = unstable_createElement;
 
 const Option = (props: any) => myCreateElement('option', props);
 
