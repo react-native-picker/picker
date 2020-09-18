@@ -17,5 +17,5 @@ Pod::Spec.new do |s|
   s.osx.source_files  = "macos/**/*.{h,m}"
 
   
-  s.dependency 'React'
+  s.dependency 'React-Core'
 end
