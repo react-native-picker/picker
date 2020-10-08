@@ -7,6 +7,8 @@
 
 #import <AppKit/AppKit.h>
 
+#import <React/RCTComponent.h>
+
 
 @interface RNCPicker : NSPopUpButton
 
