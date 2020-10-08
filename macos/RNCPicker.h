@@ -9,7 +9,6 @@
 
 #import <React/RCTComponent.h>
 
-
 @interface RNCPicker : NSPopUpButton
 
 @property (nonatomic, copy) NSArray<NSDictionary *> *items;
