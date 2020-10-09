@@ -97,7 +97,7 @@ pod install
   	```
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
   	```
-      compile project(': @react-native-community/picker')
+      implementation project(path: ':@react-native-community_picker')
   	```
 #### MacOS
 
