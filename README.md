@@ -1,10 +1,10 @@
 
-#  `@react-native-community/picker`
+#  `@react-native-picker/picker`
 
 
 
-[![npm version](https://img.shields.io/npm/v/@react-native-community/picker.svg)](https://www.npmjs.com/package/@react-native-community/picker)
-[![Build](https://github.com/react-native-picker/picker/workflows/Build/badge.svg)](https://github.com/react-native-picker/picker/actions) ![Supports Android, iOS, MacOS, and Windows](https://img.shields.io/badge/platforms-android%20|%20ios|%20macos|%20windows-lightgrey.svg) ![MIT License](https://img.shields.io/npm/l/@react-native-community/picker.svg) [![Lean Core Extracted](https://img.shields.io/badge/Lean%20Core-Extracted-brightgreen.svg)](https://github.com/facebook/react-native/issues/23313)
+[![npm version](https://img.shields.io/npm/v/@react-native-picker/picker.svg)](https://www.npmjs.com/package/@react-native-picker/picker)
+[![Build](https://github.com/react-native-picker/picker/workflows/Build/badge.svg)](https://github.com/react-native-picker/picker/actions) ![Supports Android, iOS, MacOS, and Windows](https://img.shields.io/badge/platforms-android%20|%20ios|%20macos|%20windows-lightgrey.svg) ![MIT License](https://img.shields.io/npm/l/@react-native-picker/picker.svg) [![Lean Core Extracted](https://img.shields.io/badge/Lean%20Core-Extracted-brightgreen.svg)](https://github.com/facebook/react-native/issues/23313)
 
 | Android | iOS | PickerIOS | Windows | MacOS |
 | --- | --- | --- | --- | --- |
@@ -12,27 +12,27 @@
 
 ## Supported Versions
 
-| @react-native-community/picker | react-native |
+| @react-native-picker/picker | react-native |
 | --- | --- |
 | >= 1.2.0 | 0.60+ or 0.59+ with [Jetifier](https://www.npmjs.com/package/jetifier) |
 | >= 1.0.0 | 0.57 |
 
 ## For Managed Workflow users using Expo 37
 This component is not supported in the managed workflow for expo sdk 37. Please import the `Picker` from `react-native`.
-See more info [here](https://github.com/react-native-community/react-native-picker/issues/45#issuecomment-633163973)
+See more info [here](https://github.com/react-native-picker/picker/issues/45#issuecomment-633163973)
    
 ## Getting started
 
-`$ npm install @react-native-community/picker --save`
+`$ npm install @react-native-picker/picker --save`
 
 or
 
-`$ yarn add @react-native-community/picker`
+`$ yarn add @react-native-picker/picker`
 
 ### For react-native@0.60.0 or above
 
 As [react-native@0.60.0](https://reactnative.dev/blog/2019/07/03/version-60) or above supports autolinking, so there is no need to run linking process. 
-Read more about autolinking [here](https://github.com/react-native-community/cli/blob/master/docs/autolinking.md).
+Read more about autolinking [here](https://github.com/react-native-picker/cli/blob/master/docs/autolinking.md).
 
 #### iOS
 CocoaPods on iOS needs this extra step
@@ -49,7 +49,7 @@ No additional step is required.
 
 1. Open the solution in Visual Studio 2019
 2. Right-click Solution icon in Solution Explorer > Add > Existing Project
-   Select `D:\dev\RNTest\node_modules\@react-native-community\picker\windows\ReactNativePicker\ReactNativePicker.vcxproj`
+   Select `D:\dev\RNTest\node_modules\@react-native-picker\picker\windows\ReactNativePicker\ReactNativePicker.vcxproj`
 
 ##### **windows/myapp.sln**
 Add a reference to `ReactNativePicker` to your main application project. From Visual Studio 2019:
@@ -75,7 +75,7 @@ pod install
 
 ### Mostly automatic installation (react-native < 0.60)
 
-`$ react-native link @react-native-community/picker`
+`$ react-native link @react-native-picker/picker`
 
 ### Manual installation (react-native < 0.60)
 
@@ -83,7 +83,7 @@ pod install
 #### iOS
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ ` @react-native-community/picker` and add `RNCPicker.xcodeproj`
+2. Go to `node_modules` ➜ ` @react-native-picker/picker` and add `RNCPicker.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libRNCPicker.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)<
 
@@ -94,17 +94,17 @@ pod install
   - Add `new RNCPickerPackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
-  	include ': @react-native-community/picker'
-  	project(': @react-native-community/picker').projectDir = new File(rootProject.projectDir, 	'../node_modules/@react-native-community/picker/android')
+  	include ': @react-native-picker/picker'
+  	project(': @react-native-picker/picker').projectDir = new File(rootProject.projectDir, 	'../node_modules/@react-native-picker/picker/android')
   	```
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
   	```
-      implementation project(path: ':@react-native-community_picker')
+      implementation project(path: ':@react-native-picker_picker')
   	```
 #### MacOS
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ ` @react-native-community/picker` and add `RNCPicker.xcodeproj`
+2. Go to `node_modules` ➜ ` @react-native-picker/picker` and add `RNCPicker.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libRNCPicker.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)<
 
@@ -115,10 +115,10 @@ Renders the native picker component on iOS and Android. Example:
 
 #### Usage
 
-Import Picker from `@react-native-community/picker`
+Import Picker from `@react-native-picker/picker`
 
 ```javascript
-import {Picker} from '@react-native-community/picker';
+import {Picker} from '@react-native-picker/picker';
 ```
 
 Create state which will be used by the `Picker`
