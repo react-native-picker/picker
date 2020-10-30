@@ -94,8 +94,8 @@ pod install
   - Add `new RNCPickerPackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
-  	include ': @react-native-picker/picker'
-  	project(': @react-native-picker/picker').projectDir = new File(rootProject.projectDir, 	'../node_modules/@react-native-picker/picker/android')
+  	include ':@react-native-picker_picker'
+  	project(':@react-native-picker_picker').projectDir = new File(rootProject.projectDir, 	'../node_modules/@react-native-picker/picker/android')
   	```
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
   	```
