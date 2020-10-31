@@ -225,6 +225,16 @@ On Android, specifies how to display the selection items when the user taps on t
 
 ---
 
+### `dropdownIconColor`
+
+On Android, specifies color of dropdown triangle. Input value should be hexadecimal string
+
+| Type   | Required | Platform |
+| ------ | -------- | -------- |
+| string | No       | Android  |
+
+---
+
 ### `prompt`
 
 Prompt string for this picker, used on Android in dialog mode as the title of the dialog.

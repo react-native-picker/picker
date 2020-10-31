@@ -41,6 +41,7 @@ type PickerAndroidProps = $ReadOnly<{|
   onValueChange?: ?(itemValue: ?(string | number), itemIndex: number) => mixed,
   prompt?: ?string,
   testID?: string,
+  dropdownIconColor?: string,
 |}>;
 
 type Item = $ReadOnly<{|
@@ -103,6 +104,7 @@ class PickerAndroid extends React.Component<
       prompt: this.props.prompt,
       selected: this.state.selectedIndex,
       testID: this.props.testID,
+      dropdownIconColor: this.props.dropdownIconColor,
       style: [styles.pickerAndroid, this.props.style],
       /* $FlowFixMe(>=0.78.0 site=react_native_android_fb) This issue was found
        * when making Flow check .android.js files. */

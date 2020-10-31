@@ -51,6 +51,10 @@ export interface PickerProps extends ViewProps {
    * Used to locate this view in end-to-end tests.
    */
   testID?: string;
+   /**
+    * Color of arrow for spinner dropdown in hexadecimal format
+    */
+   dropdownIconColor?: string;
 }
 
 declare class Picker extends React.Component<PickerProps, {}> {
