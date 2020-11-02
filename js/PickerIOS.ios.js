@@ -69,6 +69,7 @@ type ItemProps = $ReadOnly<{|
   label: ?Label,
   value?: ?(number | string),
   color?: ?ColorValue,
+  testID?: ?string,
 |}>;
 
 const PickerIOSItem = (props: ItemProps) => {
