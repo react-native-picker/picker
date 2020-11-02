@@ -48,7 +48,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/runtime": "^7.6.2",
-    "@expo/webpack-config": "^0.11.19",
+    "@expo/webpack-config": "^0.12.40",
     "@react-native-community/eslint-config": "^1.1.0",
     "@semantic-release/git": "7.0.8",
     "@types/react": "16.9.0",
@@ -57,7 +57,7 @@
     "babel-jest": "^24.7.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "detox": "^17.10.6",
-    "eslint": "6.6.0",
+    "eslint": "^7.12.1",
     "eslint-plugin-prettier": "^3.0.1",
     "expo": "^37.0.8",
     "flow-bin": "^0.105.0",
