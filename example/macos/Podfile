@@ -34,7 +34,7 @@ abstract_target 'Shared' do
   pod 'glog', :podspec => '../../node_modules/react-native-macos/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../../node_modules/react-native-macos/third-party-podspecs/Folly.podspec'
 
-  pod 'RNCPicker', :podspec => '../../RNCPicker.podspec'
+  pod 'RNCPicker', :path => '../../RNCPicker.podspec'
   
   target 'PickerExample-macOS' do
     platform :macos, '10.14'
