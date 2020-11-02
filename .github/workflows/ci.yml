@@ -109,3 +109,26 @@ jobs:
         run: cd example && npx pod-install
       - name: Build example app
         run: yarn ios
+  macos:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        node-version: [12]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      - name: Install Dependencies
+        run: yarn
+      - name: Install Podfiles
+        run: cd example/macos && npx pod-install
+      - name: Build example app
+        run: yarn macos        

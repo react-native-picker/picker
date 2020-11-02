@@ -217,8 +217,8 @@ PODS:
     - React-cxxreact (= 0.61.63)
     - React-jsi (= 0.61.63)
     - ReactCommon/jscallinvoker (= 0.61.63)
-  - RNCPicker (1.6.5):
-    - React
+  - RNCPicker (1.9.2):
+    - React-Core
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -305,7 +305,7 @@ EXTERNAL SOURCES:
   ReactCommon:
     :path: "../../node_modules/react-native-macos/ReactCommon"
   RNCPicker:
-    :podspec: "../../RNCPicker.podspec"
+    :path: "../../RNCPicker.podspec"
   Yoga:
     :path: "../../node_modules/react-native-macos/ReactCommon/yoga"
 
@@ -335,9 +335,9 @@ SPEC CHECKSUMS:
   React-RCTText: 4c51e380779c79f3b0bcdd83cd9b915ec0ba3f94
   React-RCTVibration: db9842431f70b968a9cb3d7ea8fd60af8c4f347c
   ReactCommon: edcccd3854d8ecc774bd22e2080641559248c94e
-  RNCPicker: c04b173fab799922b656c5d99a2ccda232f91b3b
+  RNCPicker: 4850f485a2b6a51788c7582d90d4b7d0e1644036
   Yoga: b0830b39d03c70aeba986214a9736d2fbf220f2b
 
-PODFILE CHECKSUM: 1c2c942124008ac043cc01a155a78155f5e44ed2
+PODFILE CHECKSUM: 6fb4006525cc33d2c52a72a47eea83e4e857bed7
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3
