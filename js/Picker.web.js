@@ -23,6 +23,11 @@ type PickerProps = {
   onValueChange?: (number | string, number) => void,
   selectedValue?: number | string,
   style?: ViewStyleProp,
+  /**
+   * dropdownIconColor
+   * Not used for Web.
+   */
+  dropdownIconColor?: string,
   /* compat */
   itemStyle?: TextStyleProp,
   mode?: string,
@@ -31,7 +36,9 @@ type PickerProps = {
 
 const myCreateElement = createElement || unstable_createElement;
 
-const Select = (props: any) => myCreateElement('select', props);
+const Select = forwardRef((props: any, forwardedRef) =>
+  myCreateElement('select', props),
+);
 
 const Picker = forwardRef<PickerProps, *>((props, forwardedRef) => {
   const {
@@ -41,6 +48,7 @@ const Picker = forwardRef<PickerProps, *>((props, forwardedRef) => {
     itemStyle,
     mode,
     prompt,
+    dropdownIconColor,
     ...other
   } = props;
 
