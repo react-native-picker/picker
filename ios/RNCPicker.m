@@ -91,6 +91,9 @@ numberOfRowsInComponent:(__unused NSInteger)component
 
   label.font = _font;
 
+  pickerView.subviews[1].backgroundColor = [UIColor darkGrayColor];
+  pickerView.subviews[2].backgroundColor = [UIColor darkGrayColor];
+
   label.textColor = [RCTConvert UIColor:_items[row][@"textColor"]] ?: _color;
 
   label.textAlignment = _textAlign;
