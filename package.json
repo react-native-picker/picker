@@ -1,7 +1,7 @@
 {
-  "name": "@react-native-picker/picker",
+  "name": "@react-native-demigod/picker",
   "version": "1.9.2",
-  "homepage": "https://github.com/react-native-picker/picker#readme",
+  "homepage": "https://github.com/BitStone333/picker#readme",
   "description": "React Native Picker for iOS & Android",
   "main": "./js/index.js",
   "types": "./typings/index.d.ts",
@@ -120,7 +120,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/react-native-picker/picker.git"
+    "url": "https://github.com/demigod-picker/picker.git"
   },
   "publishConfig": {
     "access": "public"
