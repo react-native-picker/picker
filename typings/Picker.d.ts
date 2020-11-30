@@ -4,8 +4,8 @@ import { TextStyle, StyleProp, ViewProps } from 'react-native'
 export type ItemValue  = number | string
 
 export interface PickerItemProps {
-	label?: string;
-	value: ItemValue;
+	label: string;
+	value?: ItemValue;
 	color?: string;
 	testID?: string;
 }
