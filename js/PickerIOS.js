@@ -1,10 +1,13 @@
 import * as React from 'react';
 import UnimplementedView from 'react-native-web/dist/modules/UnimplementedView';
 
-function PickerMacOS() {
+function PickerIOS() {
   return <UnimplementedView />;
 }
 
-PickerMacOS.Item = UnimplementedView;
+/**
+ * Fallback for non-iOS platforms
+ */
+PickerIOS.Item = UnimplementedView;
 
-export default PickerMacOS;
+export default PickerIOS;

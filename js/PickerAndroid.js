@@ -9,4 +9,7 @@
 
 import {UnimplementedView} from 'react-native';
 
+/**
+ * Fallback for non-android platforms
+ */
 export default UnimplementedView;
