@@ -25,7 +25,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
       - name: Install Dependencies
         run: yarn
-      - name: ESLint Checks
+      - name: Publish Package
         run: yarn ci:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
