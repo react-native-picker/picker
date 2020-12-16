@@ -20,11 +20,11 @@
 {
     if ((self = [super initWithFrame:frame pullsDown:false])) {
         _color = [NSColor blackColor];
-        _font  = [NSFont systemFontOfSize:21];
+        _customFont  = [NSFont systemFontOfSize:14];
         _selectedIndex = NSNotFound;
         _textAlign     = NSTextAlignmentCenter;
         [self selectItemAtIndex:0];
-        [[self menu] setFont:_font];
+        [[self menu] setFont:_customFont];
         self.pullsDown = false;
         [self setAction:@selector(mySelector:)];
         [self setTarget:self];
@@ -47,7 +47,7 @@
         NSColor *color = [RCTConvert NSColor:item[@"textColor"]] ?: _color;
         NSMenuItem * row = [self itemArray][index];
         NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    color, NSForegroundColorAttributeName, _font, NSFontAttributeName, paragraphStyle, NSParagraphStyleAttributeName ,nil];
+                                    color, NSForegroundColorAttributeName, _customFont, NSFontAttributeName, paragraphStyle, NSParagraphStyleAttributeName ,nil];
         NSAttributedString *as = [[NSAttributedString alloc]
                     initWithString:[row title]
                     attributes:attributes];
