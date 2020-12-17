@@ -1,6 +1,6 @@
 {
   "name": "@react-native-picker/picker",
-  "version": "1.9.3",
+  "version": "1.9.4",
   "homepage": "https://github.com/react-native-picker/picker#readme",
   "description": "React Native Picker for iOS & Android",
   "main": "./js/index.js",
@@ -50,7 +50,7 @@
     "@babel/runtime": "^7.6.2",
     "@expo/webpack-config": "^0.12.40",
     "@react-native-community/eslint-config": "^2.0.0",
-    "@semantic-release/git": "7.0.8",
+    "@semantic-release/git": "^9.0.0",
     "@types/react": "16.9.0",
     "@types/react-native": "0.61.23",
     "babel-core": "^7.0.0-bridge.0",
@@ -74,7 +74,7 @@
     "react-native-macos": "0.61.63",
     "react-test-renderer": "16.9.0",
     "rimraf": "^2.6.3",
-    "semantic-release": "17.2.3",
+    "semantic-release": "^17.3.0",
     "typescript": "^3.4.1"
   },
   "detox": {

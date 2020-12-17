@@ -6,6 +6,17 @@
  *
  * @format
  */
-import {UnimplementedView} from 'react-native';
 
-export default UnimplementedView;
+import React from 'react';
+import {UnimplementedView} from 'react-native';
+class PickerMacOS extends React.Component {
+  static Item = UnimplementedView;
+  render() {
+    return <UnimplementedView />;
+  }
+}
+
+/**
+ * Fallback for non-MacOS platforms
+ */
+export default PickerMacOS;
