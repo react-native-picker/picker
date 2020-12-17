@@ -26,6 +26,7 @@ type RNCPickerIOSTypeItemType = $ReadOnly<{|
   label: ?Label,
   value: ?(number | string),
   textColor: ?number,
+  testID: ?string,
 |}>;
 
 type Label = Stringish | number;

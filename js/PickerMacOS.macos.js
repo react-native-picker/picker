@@ -35,6 +35,7 @@ type RNCPickerMacOSItemType = $ReadOnly<{|
   label: ?Label,
   value: ?(number | string),
   textColor: ?number,
+  testID: ?string,
 |}>;
 
 type RNCPickerMacOSType = Class<
@@ -69,6 +70,7 @@ type ItemProps = $ReadOnly<{|
   label: ?Label,
   value?: ?(number | string),
   color?: ?ColorValue,
+  testID: ?string,
 |}>;
 
 const PickerMacOSItem = (props: ItemProps) => {
@@ -96,6 +98,7 @@ class PickerMacOS extends React.Component<Props, State> {
         value: child.props.value,
         label: child.props.label,
         textColor: processColor(child.props.color),
+        testID: child.props.testID,
       });
     });
     return {selectedIndex, items};
