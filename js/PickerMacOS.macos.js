@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     // The picker will conform to whatever width is given, but we do
     // have to set the component's height explicitly on the
     // surrounding view to ensure it gets rendered.
-    height: 216,
+    height: 20,
   },
 });
 
