@@ -1,5 +1,5 @@
 import * as React from 'react';
-import UnimplementedView from 'react-native-web/dist/modules/UnimplementedView';
+import {UnimplementedView} from 'react-native';
 
 function PickerIOS() {
   return <UnimplementedView />;
