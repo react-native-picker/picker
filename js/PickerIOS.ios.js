@@ -35,6 +35,7 @@ type RNCPickerIOSItemType = $ReadOnly<{|
   label: ?Label,
   value: ?(number | string),
   textColor: ?number,
+  testID: ?string,
 |}>;
 
 type RNCPickerIOSType = Class<
@@ -97,6 +98,7 @@ class PickerIOS extends React.Component<Props, State> {
         value: child.props.value,
         label: child.props.label,
         textColor: processColor(child.props.color),
+        testID: child.props.testID,
       });
     });
     return {selectedIndex, items};
