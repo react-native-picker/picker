@@ -61,11 +61,11 @@ declare class Picker extends React.Component<PickerProps, {}> {
    /**
      * On Android, display the options in a dialog.
      */
-    static MODE_DIALOG: string;
+    static readonly MODE_DIALOG: 'dialog';
     /**
      * On Android, display the options in a dropdown (this is the default).
      */
-    static MODE_DROPDOWN: string;
+    static readonly MODE_DROPDOWN: 'dropdown';
 
    static Item: React.ComponentType<PickerItemProps>;
 }
