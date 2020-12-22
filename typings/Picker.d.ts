@@ -55,6 +55,13 @@ export interface PickerProps extends ViewProps {
     * Color of arrow for spinner dropdown in hexadecimal format
     */
    dropdownIconColor?: string;
+
+  /**
+  * On Android, used to truncate the text with an ellipsis after computing the text layout, including line wrapping,
+  * such that the total number of lines does not exceed this number. Default is '1'
+  * @platform android
+  */
+	numberOfLines?: boolean;
 }
 
 declare class Picker extends React.Component<PickerProps, {}> {

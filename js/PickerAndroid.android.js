@@ -42,6 +42,7 @@ type PickerAndroidProps = $ReadOnly<{|
   prompt?: ?string,
   testID?: string,
   dropdownIconColor?: string,
+  numberOfLines?: ?number,
 |}>;
 
 type Item = $ReadOnly<{|
@@ -102,7 +103,8 @@ class PickerAndroid extends React.Component<
       selected: this.state.selectedIndex,
       testID: this.props.testID,
       dropdownIconColor: this.props.dropdownIconColor,
-      style: [styles.pickerAndroid, this.props.style],
+      style: this.props.style,
+      numberOfLines: this.props.numberOfLines,
       /* $FlowFixMe(>=0.78.0 site=react_native_android_fb) This issue was found
        * when making Flow check .android.js files. */
       accessibilityLabel: this.props.accessibilityLabel,
@@ -143,16 +145,5 @@ class PickerAndroid extends React.Component<
     }
   };
 }
-
-const styles = StyleSheet.create({
-  pickerAndroid: {
-    // The picker will conform to whatever width is given, but we do
-    // have to set the component's height explicitly on the
-    // surrounding view to ensure it gets rendered.
-    // TODO would be better to export a native constant for this,
-    // like in iOS the RCTDatePickerManager.m
-    height: 50,
-  },
-});
 
 export default PickerAndroid;

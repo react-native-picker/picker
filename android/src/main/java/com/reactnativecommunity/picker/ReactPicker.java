@@ -8,13 +8,17 @@
 package com.reactnativecommunity.picker;
 
 import android.content.Context;
-import androidx.appcompat.widget.AppCompatSpinner;
+import android.content.ContextWrapper;
+import android.content.res.Resources;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
-
+import androidx.appcompat.widget.AppCompatSpinner;
+import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.common.annotations.VisibleForTesting;
+import com.facebook.react.uimanager.UIManagerModule;
 
 import javax.annotation.Nullable;
 
@@ -24,6 +28,7 @@ public class ReactPicker extends AppCompatSpinner {
   private @Nullable Integer mPrimaryColor;
   private @Nullable OnSelectListener mOnSelectListener;
   private @Nullable Integer mStagedSelection;
+  private int mOldElementSize = Integer.MIN_VALUE;
 
   private final OnItemSelectedListener mItemSelectedListener = new OnItemSelectedListener() {
     @Override
@@ -103,6 +108,37 @@ public class ReactPicker extends AppCompatSpinner {
       setOnItemSelectedListener(mItemSelectedListener);
   }
 
+  @Override
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+    int selectedPosition = getSelectedItemPosition();
+    int elementSize;
+    if (selectedPosition < 0 || getAdapter() == null || selectedPosition >= getAdapter().getCount()) {
+      elementSize = (int) TypedValue.applyDimension(
+              TypedValue.COMPLEX_UNIT_DIP,
+              50,
+              Resources.getSystem().getDisplayMetrics()
+      );
+    } else {
+      View view = getAdapter().getView(selectedPosition, null, this);
+      measureChild(
+              view,
+              View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), View.MeasureSpec.EXACTLY),
+              View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+      );
+      elementSize = view.getMeasuredHeight();
+    }
+
+    if (elementSize != mOldElementSize) {
+      UIManagerModule uiManager = getReactContext().getNativeModule(UIManagerModule.class);
+      if (uiManager != null) {
+        uiManager.setViewLocalData(getId(), new ReactPickerLocalData(elementSize));
+      }
+      mOldElementSize = elementSize;
+    }
+  }
+
   public void setOnSelectListener(@Nullable OnSelectListener onSelectListener) {
     mOnSelectListener = onSelectListener;
   }
@@ -151,5 +187,13 @@ public class ReactPicker extends AppCompatSpinner {
   @VisibleForTesting
   public int getMode() {
     return mMode;
+  }
+
+  private ReactContext getReactContext() {
+    Context context = getContext();
+    if (!(context instanceof ReactContext) && context instanceof ContextWrapper) {
+      context = ((ContextWrapper) context).getBaseContext();
+    }
+    return (ReactContext) context;
   }
 }
