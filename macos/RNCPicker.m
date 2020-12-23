@@ -20,15 +20,15 @@
 {
     if ((self = [super initWithFrame:frame pullsDown:false])) {
         _color = [NSColor blackColor];
-        _customFont  = [NSFont systemFontOfSize:14];
+        _customFont = [NSFont systemFontOfSize:14];
         _selectedIndex = NSNotFound;
-        _textAlign     = NSTextAlignmentCenter;
+        _textAlign = NSTextAlignmentCenter;
+
         [self selectItemAtIndex:0];
         [[self menu] setFont:_customFont];
         self.pullsDown = false;
         [self setAction:@selector(mySelector:)];
         [self setTarget:self];
-
     }
     return self;
 }
@@ -54,8 +54,8 @@
         [row setAttributedTitle:as];
         index++;
     }
-    [self setNeedsLayout:true];
 
+    [self setNeedsLayout:true];
 }
 
 
@@ -64,7 +64,7 @@
   if (_selectedIndex != selectedIndex) {
     _selectedIndex = selectedIndex;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self setSelectedIndex:selectedIndex];
+        [self selectItemAtIndex:selectedIndex];
     });
   }
 }
