@@ -13,7 +13,7 @@
 
 'use strict';
 
-import React from 'react';
+import * as React from 'react';
 import {processColor, StyleSheet, View} from 'react-native';
 import RNCPickerNativeComponent from './RNCPickerNativeComponent';
 
@@ -73,19 +73,19 @@ type ItemProps = $ReadOnly<{|
   testID?: ?string,
 |}>;
 
-const PickerIOSItem = (props: ItemProps) => {
+const PickerIOSItem = (props: ItemProps): null => {
   return null;
 };
 
 class PickerIOS extends React.Component<Props, State> {
   _picker: ?ElementRef<RNCPickerIOSType> = null;
 
-  state = {
+  state: State = {
     selectedIndex: 0,
     items: [],
   };
 
-  static Item = PickerIOSItem;
+  static Item: typeof PickerIOSItem = PickerIOSItem;
 
   static getDerivedStateFromProps(props: Props): State {
     let selectedIndex = 0;
@@ -104,7 +104,7 @@ class PickerIOS extends React.Component<Props, State> {
     return {selectedIndex, items};
   }
 
-  render() {
+  render(): React.Node {
     return (
       <View style={this.props.style}>
         <RNCPickerNativeComponent

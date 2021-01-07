@@ -40,7 +40,10 @@ const Select = forwardRef((props: any, forwardedRef) =>
   myCreateElement('select', props),
 );
 
-const Picker = forwardRef<PickerProps, *>((props, forwardedRef) => {
+const Picker: React$AbstractComponent<PickerProps, empty> = forwardRef<
+  PickerProps,
+  *,
+>((props, forwardedRef) => {
   const {
     enabled,
     onValueChange,

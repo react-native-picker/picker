@@ -10,7 +10,7 @@
 
 'use strict';
 
-import React from 'react';
+import * as React from 'react';
 import {Platform} from 'react-native';
 
 import PickerAndroid from './PickerAndroid';
@@ -124,20 +124,20 @@ class Picker extends React.Component<PickerProps> {
   /**
    * On Android, display the options in a dialog.
    */
-  static MODE_DIALOG = MODE_DIALOG;
+  static MODE_DIALOG: typeof MODE_DIALOG = MODE_DIALOG;
 
   /**
    * On Android, display the options in a dropdown (this is the default).
    */
-  static MODE_DROPDOWN = MODE_DROPDOWN;
+  static MODE_DROPDOWN: typeof MODE_DROPDOWN = MODE_DROPDOWN;
 
-  static Item = PickerItem;
+  static Item: typeof PickerItem = PickerItem;
 
-  static defaultProps = {
+  static defaultProps: PickerProps = {
     mode: MODE_DIALOG,
   };
 
-  render() {
+  render(): React.Node {
     if (Platform.OS === 'ios') {
       /* $FlowFixMe(>=0.81.0 site=react_native_ios_fb) This suppression was
        * added when renaming suppression sites. */
