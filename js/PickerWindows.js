@@ -1,11 +1,12 @@
 /**
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
- * @format
+ *
+ * @flow
  */
 
 'use strict';
 
-import {UnimplementedView} from 'react-native';
+import UnimplementedView from 'react-native/Libraries/Components/UnimplementedViews/UnimplementedView';
 
 export default UnimplementedView;
