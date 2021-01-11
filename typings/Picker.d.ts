@@ -61,7 +61,7 @@ export interface PickerProps extends ViewProps {
   * such that the total number of lines does not exceed this number. Default is '1'
   * @platform android
   */
-	numberOfLines?: boolean;
+	numberOfLines?: number;
 }
 
 declare class Picker extends React.Component<PickerProps, {}> {
