@@ -2,7 +2,7 @@
  * Copyright (c) Nicolas Gallagher.
  *
  * @flow
- * @format
+ *
  */
 
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
