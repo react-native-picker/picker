@@ -48,6 +48,7 @@ type Item = $ReadOnly<{|
   label: string,
   value: ?(number | string),
   color?: ?number,
+  fontFamily: ?string,
 |}>;
 
 type PickerAndroidState = {|
@@ -75,6 +76,9 @@ class PickerAndroid extends React.Component<
         value: child.props.value,
         label: child.props.label,
       };
+      if (child.props.fontFamily) {
+        childProps.fontFamily = child.props.fontFamily;
+      }
       if (child.props.color) {
         /* $FlowFixMe(>=0.78.0 site=react_native_android_fb) This issue was
          * found when making Flow check .android.js files. */
