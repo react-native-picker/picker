@@ -7,6 +7,7 @@ export interface PickerItemProps {
 	label: string;
 	value?: ItemValue;
 	color?: string;
+   fontFamily?: string,
 	testID?: string;
 }
 
