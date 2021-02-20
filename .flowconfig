@@ -37,6 +37,7 @@ esproposal.nullish_coalescing=enable
 module.file_ext=.js
 module.file_ext=.json
 module.file_ext=.ios.js
+module.file_ext=.web.js
 
 munge_underscores=true
 
@@ -49,11 +50,9 @@ suppress_type=$FlowFixMe
 suppress_type=$FlowFixMeProps
 suppress_type=$FlowFixMeState
 
-suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(<VERSION>\\)? *\\(site=[a-z,_]*react_native\\(_ios\\)?_\\(oss\\|fb\\)[a-z,_]*\\)?)\\)
-suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(<VERSION>\\)? *\\(site=[a-z,_]*react_native\\(_ios\\)?_\\(oss\\|fb\\)[a-z,_]*\\)?)\\)?:? #[0-9]+
-suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
-
 server.max_workers=2
+
+sharedmemory.heap_size=4000000000
 
 [lints]
 sketchy-null-number=warn
@@ -63,7 +62,6 @@ untyped-type-import=warn
 nonstrict-import=warn
 deprecated-type=warn
 unsafe-getters-setters=warn
-inexact-spread=warn
 unnecessary-invariant=warn
 signature-verification-failure=warn
 deprecated-utility=error
@@ -78,4 +76,4 @@ untyped-import
 untyped-type-import
 
 [version]
-^0.105.0
+^0.140.0

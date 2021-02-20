@@ -13,7 +13,7 @@
 
 'use strict';
 
-import React from 'react';
+import * as React from 'react';
 import {processColor, StyleSheet, View} from 'react-native';
 import RNCPickerNativeComponent from './RNCPickerNativeComponent';
 
@@ -73,19 +73,19 @@ type ItemProps = $ReadOnly<{|
   testID: ?string,
 |}>;
 
-const PickerMacOSItem = (props: ItemProps) => {
+const PickerMacOSItem = (props: ItemProps): null => {
   return null;
 };
 
 class PickerMacOS extends React.Component<Props, State> {
   _picker: ?ElementRef<RNCPickerMacOSType> = null;
 
-  state = {
+  state: State = {
     selectedIndex: 0,
     items: [],
   };
 
-  static Item = PickerMacOSItem;
+  static Item: typeof PickerMacOSItem = PickerMacOSItem;
 
   static getDerivedStateFromProps(props: Props): State {
     let selectedIndex = 0;
@@ -104,7 +104,7 @@ class PickerMacOS extends React.Component<Props, State> {
     return {selectedIndex, items};
   }
 
-  render() {
+  render(): React.Node {
     return (
       <View style={this.props.style}>
         <RNCPickerNativeComponent
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     // The picker will conform to whatever width is given, but we do
     // have to set the component's height explicitly on the
     // surrounding view to ensure it gets rendered.
-    height: 20,
+    height: 24,
   },
 });
 

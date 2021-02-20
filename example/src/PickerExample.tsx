@@ -89,7 +89,7 @@ function PromptMultilinePickerExample() {
 function CustomDropdownArrowColorPickerExample() {
   return (
     <View>
-      <Picker dropdownIconColor="#ffffff">
+      <Picker dropdownIconColor="red">
         <Item label="hello" value="key0" />
         <Item label="world" value="key1" />
       </Picker>
@@ -121,7 +121,8 @@ function ColorPickerExample() {
         style={styles.container}
         selectedValue={value}
         onValueChange={(v) => setValue(v)}
-        mode="dropdown">
+        mode="dropdown"
+        >
         <Item label="red" color="red" value="red" />
         <Item label="green" color="green" value="green" />
         <Item label="blue" color="blue" value="blue" />

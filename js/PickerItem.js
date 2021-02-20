@@ -2,7 +2,7 @@
  * Copyright (c) Nicolas Gallagher.
  *
  * @flow
- * @format
+ *
  */
 
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
@@ -23,7 +23,12 @@ const myCreateElement = createElement || unstable_createElement;
 
 const Option = (props: any) => myCreateElement('option', props);
 
-export default function PickerItem({color, label, testID, value}: Props) {
+export default function PickerItem({
+  color,
+  label,
+  testID,
+  value,
+}: Props): React.Node {
   return (
     <Option style={{color}} testID={testID} value={value} label={label}>
       {label}

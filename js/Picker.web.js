@@ -2,19 +2,17 @@
  * Copyright (c) Nicolas Gallagher.
  *
  * @flow
- * @format
+ *
  */
 
-import React from 'react';
-import type {
-  ViewStyleProp,
-  TextStyleProp,
-} from 'react-native/Libraries/StyleSheet/StyleSheet';
-import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
-// $FlowFixMe
+import * as React from 'react';
+import {forwardRef, useRef} from 'react';
+import type {ViewProps} from 'react-native-web/src/exports/View/types';
+import type {GenericStyleProp} from 'react-native-web/src/types';
+import type {TextStyle} from 'react-native-web/src/exports/Text/types';
+// $FlowFixMe fallback for older react-native-web versions
 import {createElement, unstable_createElement} from 'react-native';
 import PickerItem from './PickerItem';
-import {forwardRef, useRef} from 'react';
 
 type PickerProps = {
   ...ViewProps,
@@ -22,14 +20,13 @@ type PickerProps = {
   enabled?: boolean,
   onValueChange?: (number | string, number) => void,
   selectedValue?: number | string,
-  style?: ViewStyleProp,
   /**
    * dropdownIconColor
    * Not used for Web.
    */
   dropdownIconColor?: string,
   /* compat */
-  itemStyle?: TextStyleProp,
+  itemStyle?: GenericStyleProp<TextStyle>,
   mode?: string,
   prompt?: string,
 };
@@ -40,7 +37,10 @@ const Select = forwardRef((props: any, forwardedRef) =>
   myCreateElement('select', props),
 );
 
-const Picker = forwardRef<PickerProps, *>((props, forwardedRef) => {
+const Picker: React$AbstractComponent<PickerProps, empty> = forwardRef<
+  PickerProps,
+  *,
+>((props, forwardedRef) => {
   const {
     enabled,
     onValueChange,
