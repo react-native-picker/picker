@@ -29,13 +29,13 @@ or
 
 `$ yarn add @react-native-picker/picker`
 
-### For react-native@0.60.0 or above
+### For React Native v0.60 and above (Autolinking)
 
-As [react-native@0.60.0](https://reactnative.dev/blog/2019/07/03/version-60) or above supports autolinking, so there is no need to run linking process. 
+As [react-native@0.60](https://reactnative.dev/blog/2019/07/03/version-60) and above supports autolinking there is no need to run the linking process. 
 Read more about autolinking [here](https://github.com/react-native-picker/cli/blob/master/docs/autolinking.md).
 
 #### iOS
-CocoaPods on iOS needs this extra step
+CocoaPods on iOS needs this extra step:
 
 ```
 npx pod-install
@@ -44,7 +44,12 @@ npx pod-install
 #### Android
 No additional step is required.
 
+<details>
+<summary>Windows (expand for details)</summary>
+
 #### Windows
+Usage in Windows requires the following extra steps:
+
 ##### Add the `ReactNativePicker` project to your solution.
 
 1. Open the solution in Visual Studio 2019
@@ -64,6 +69,7 @@ Add `#include "winrt/ReactNativePicker.h"`.
 ##### **app.cpp**
 
 Add `PackageProviders().Append(winrt::ReactNativePicker::ReactPackageProvider());` before `InitializeComponent();`.
+</details>
 
 #### MacOS
 CocoaPods on MacOS needs this extra step (called from the MacOS directory)
@@ -73,11 +79,15 @@ pod install
 ```
 
 
-### Mostly automatic installation (react-native < 0.60)
+<details>
+   <summary>React Native below 0.60 (Link and Manual Installation)</summary>
+
+The following steps are only necessary if you are working with a version of React Native lower than 0.60
+### Mostly automatic installation
 
 `$ react-native link @react-native-picker/picker`
 
-### Manual installation (react-native < 0.60)
+### Manual installation
 
 
 #### iOS
@@ -107,35 +117,29 @@ pod install
 2. Go to `node_modules` ➜ ` @react-native-picker/picker` and add `RNCPicker.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libRNCPicker.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)<
+</details>
 
 ## Usage
-### Picker
 
-Renders the native picker component on iOS and Android. Example:
-
-#### Usage
-
-Import Picker from `@react-native-picker/picker`
+Import Picker from `@react-native-picker/picker`:
 
 ```javascript
 import {Picker} from '@react-native-picker/picker';
 ```
 
-Create state which will be used by the `Picker`
+Create state which will be used by the `Picker`:
 
 ```javascript
-state = {
-  language: 'java',
-};
+const [selectedLanguage, setSelectedLanguage] = useState();
 ```
 
 Add `Picker` like this:
+
 ```javascript
 <Picker
-  selectedValue={this.state.language}
-  style={{height: 50, width: 100}}
+  selectedValue={selectedLanguage}
   onValueChange={(itemValue, itemIndex) =>
-    this.setState({language: itemValue})
+    setSelectedLanguage(itemValue)
   }>
   <Picker.Item label="Java" value="java" />
   <Picker.Item label="JavaScript" value="js" />
@@ -227,7 +231,7 @@ On Android, specifies how to display the selection items when the user taps on t
 
 ### `dropdownIconColor`
 
-On Android, specifies color of dropdown triangle. Input value should be hexadecimal string
+On Android, specifies color of dropdown triangle. Input value should be hexadecimal string.
 
 | Type   | Required | Platform |
 | ------ | -------- | -------- |
@@ -256,8 +260,7 @@ Style to apply to each of the item labels.
 ### PickerIOS
 ### Props
 
-* [Inherited `View` props...](https://reactnative.dev/docs/view#props)
-
+- [Inherited `View` props...](https://reactnative.dev/docs/view#props)
 - [`itemStyle`](#itemstyle)
 - [`onValueChange`](#onvaluechange)
 - [`selectedValue`](#selectedvalue)
