@@ -68,7 +68,7 @@ declare class Picker<T> extends React.Component<PickerProps<T>, {}> {
      */
     static readonly MODE_DROPDOWN: 'dropdown';
 
-     static Item: React.ComponentType<PickerItemProps<T>>;
+     static Item: React.ComponentType<PickerItemProps<ItemValue>>;
 }
 
 export {Picker};
