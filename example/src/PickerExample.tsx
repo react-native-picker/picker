@@ -10,7 +10,9 @@ function BasicPickerExample() {
     <Picker
       testID="basic-picker"
       selectedValue={value}
-      onValueChange={(v) => setValue(v)}>
+      onValueChange={(v) => setValue(v)}
+      accessibilityLabel="Basic Picker Accessibility Label"
+    >
       <Item label="hello" value="key0" />
       <Item label="world" value="key1" />
     </Picker>
