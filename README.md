@@ -257,6 +257,15 @@ Style to apply to each of the item labels.
 | ---------------------------------- | -------- | -------- |
 | [text styles](https://reactnative.dev/docs/text-style-props) | No       | iOS, Windows      |
 
+### `numberOfLines`
+
+On Android, used to truncate the text with an ellipsis after computing the text layout, including line wrapping,
+such that the total number of lines does not exceed this number. Default is '1'
+
+| Type    | Required | Platform |
+| ------- | -------- | -------- |
+| number  | No       | Android  |
+
 ### PickerIOS
 ### Props
 
