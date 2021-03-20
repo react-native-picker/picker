@@ -3,25 +3,26 @@ import { TextStyle, StyleProp, ViewProps } from 'react-native'
 
 export type ItemValue  = number | string
 
-export interface PickerItemProps {
-	label: string;
-	value?: ItemValue;
+export interface PickerItemProps<T = ItemValue> {
+	label?: string;
+	value?: T;
 	color?: string;
+   fontFamily?: string,
 	testID?: string;
 }
 
-export interface PickerProps extends ViewProps {
+export interface PickerProps<T = ItemValue> extends ViewProps {
 	style?: StyleProp<TextStyle>;
 	/**
    * Value matching value of one of the items. Can be a string or an integer.
    */
-	selectedValue?: ItemValue;
+	selectedValue?: T;
 	/**
    * Callback for when an item is selected. This is called with the following parameters:
    *   - `itemValue`: the `value` prop of the item that was selected
    *   - `itemIndex`: the index of the selected item in this picker
    */
-	onValueChange?: (itemValue: ItemValue, itemIndex: number) => void;
+	onValueChange?: (itemValue: T, itemIndex: number) => void;
 	/**
    * If set to false, the picker will be disabled, i.e. the user will not be able to make a
    * selection.
@@ -57,14 +58,21 @@ export interface PickerProps extends ViewProps {
     */
   dropdownIconColor?: string;
 
-    /**
+  /**
+  * On Android, used to truncate the text with an ellipsis after computing the text layout, including line wrapping,
+  * such that the total number of lines does not exceed this number. Default is '1'
+  * @platform android
+  */
+  numberOfLines?: number;
+  
+  /**
    * The string used for the accessibility label. Will be read once focused on the picker but not on change.
    */
-  accessibilityLabel?: ?string,
+  accessibilityLabel?: string;
 
 }
 
-declare class Picker extends React.Component<PickerProps, {}> {
+declare class Picker<T> extends React.Component<PickerProps<T>, {}> {
    /**
      * On Android, display the options in a dialog (this is the default).
      */
@@ -74,7 +82,7 @@ declare class Picker extends React.Component<PickerProps, {}> {
      */
     static readonly MODE_DROPDOWN: 'dropdown';
 
-   static Item: React.ComponentType<PickerItemProps>;
+     static Item: React.ComponentType<PickerItemProps<ItemValue>>;
 }
 
 export {Picker};

@@ -44,15 +44,46 @@ function DropdownPickerExample() {
   );
 }
 
+function DropdownMultilinePickerExample() {
+  const [value, setValue] = React.useState('key1');
+
+  return (
+    <Picker
+      numberOfLines={5}
+      selectedValue={value}
+      onValueChange={(v) => setValue(v)}
+      mode="dropdown">
+      <Item label="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" value="key0" />
+      <Item label="quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." value="key1" />
+    </Picker>
+  );
+}
+
 function PromptPickerExample() {
   const [value, setValue] = React.useState('key1');
   return (
     <Picker
+      mode="dialog"
       selectedValue={value}
       onValueChange={(v) => setValue(v)}
       prompt="Pick one, just one">
       <Item label="hello" value="key0" />
       <Item label="world" value="key1" />
+    </Picker>
+  );
+}
+
+function PromptMultilinePickerExample() {
+  const [value, setValue] = React.useState('key1');
+  return (
+    <Picker
+      mode="dialog"
+      numberOfLines={5}
+      selectedValue={value}
+      onValueChange={(v) => setValue(v)}
+      prompt="Pick one, just one">
+      <Item label="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" value="key0" />
+      <Item label="quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." value="key1" />
     </Picker>
   );
 }
@@ -135,8 +166,16 @@ export const examples = [
     render: DropdownPickerExample,
   },
   {
+    title: 'Multiline Dropdown Picker',
+    render: DropdownMultilinePickerExample,
+  },
+  {
     title: 'Picker with prompt message',
     render: PromptPickerExample,
+  },
+  {
+    title: 'Multiline Picker with prompt message',
+    render: PromptMultilinePickerExample,
   },
   {
     title: 'Picker with no listener',

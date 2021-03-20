@@ -110,6 +110,13 @@ type PickerProps = $ReadOnly<{|
   testID?: ?string,
 
   /**
+   * On Android, used to truncate the text with an ellipsis after computing the text layout, including line wrapping,
+   * such that the total number of lines does not exceed this number. Default is '1'
+   * @platform android
+   */
+  numberOfLines?: ?number,
+
+  /**
    * The string used for the accessibility label. Will be read once focused on the picker but not on change.
    */
   accessibilityLabel?: ?string,

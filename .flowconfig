@@ -3,15 +3,14 @@
 .*/*[.]android.js
 .*/*[.]windows.js
 
+; Ignore templates for 'react-native init'
+<PROJECT_ROOT>/template/.*
+
+; Ignore the Dangerfile
+<PROJECT_ROOT>/bots/dangerfile.js
+
 ; Ignore "BUCK" generated dirs
 <PROJECT_ROOT>/\.buckd/
-
-; Ignore polyfills
-node_modules/react-native/Libraries/polyfills/.*
-
-; These should not be required directly
-; require from fbjs/lib instead: require('fbjs/lib/warning')
-node_modules/warning/.*
 
 ; Flow doesn't support platforms
 .*/Libraries/Utilities/LoadingView.js
@@ -19,10 +18,14 @@ node_modules/warning/.*
 ; Ignore traveling-fastlane-darwin
 .*/node_modules/@expo/traveling-fastlane-darwin/.*
 
+
 [untyped]
 .*/node_modules/@react-native-community/cli/.*/.*
 
 [include]
+
+[declarations]
+.*/node_modules/.*
 
 [libs]
 node_modules/react-native/Libraries/react-native/react-native-interface.js
@@ -31,8 +34,7 @@ node_modules/react-native/flow/
 [options]
 emoji=true
 
-esproposal.optional_chaining=enable
-esproposal.nullish_coalescing=enable
+exact_by_default=true
 
 module.file_ext=.js
 module.file_ext=.json
@@ -41,18 +43,22 @@ module.file_ext=.web.js
 
 munge_underscores=true
 
-module.name_mapper='^react-native$' -> '<PROJECT_ROOT>/node_modules/react-native/Libraries/react-native/react-native-implementation'
-module.name_mapper='^react-native/\(.*\)$' -> '<PROJECT_ROOT>/node_modules/react-native/\1'
-module.name_mapper='^[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> '<PROJECT_ROOT>/node_modules/react-native/Libraries/Image/RelativeImageStub'
+module.name_mapper='^react-native$' -> '<PROJECT_ROOT>/index.js'
+module.name_mapper='^react-native/\(.*\)$' -> '<PROJECT_ROOT>/\1'
+module.name_mapper='^@?[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> '<PROJECT_ROOT>/node_modules/react-native/Libraries/Image/RelativeImageStub'
 
 suppress_type=$FlowIssue
 suppress_type=$FlowFixMe
 suppress_type=$FlowFixMeProps
 suppress_type=$FlowFixMeState
+suppress_type=$FlowFixMeEmpty
 
 server.max_workers=2
 
 sharedmemory.heap_size=4000000000
+
+experimental.abstract_locations=true
+experimental.new_signatures=true
 
 [lints]
 sketchy-null-number=warn
@@ -64,7 +70,6 @@ deprecated-type=warn
 unsafe-getters-setters=warn
 unnecessary-invariant=warn
 signature-verification-failure=warn
-deprecated-utility=error
 
 [strict]
 deprecated-type
@@ -76,4 +81,4 @@ untyped-import
 untyped-type-import
 
 [version]
-^0.140.0
+^0.141.0

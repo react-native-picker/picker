@@ -8,6 +8,9 @@
 package com.reactnativecommunity.picker;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,17 +18,14 @@ import android.widget.BaseAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import com.facebook.infer.annotation.Assertions;
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
-import com.facebook.react.uimanager.SimpleViewManager;
-import com.facebook.react.uimanager.ThemedReactContext;
-import com.facebook.react.uimanager.UIManagerModule;
-import com.facebook.react.uimanager.ViewProps;
+import com.facebook.react.uimanager.*;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.EventDispatcher;
+
 import javax.annotation.Nullable;
-import android.graphics.PorterDuff;
-import android.graphics.Color;
 
 /**
  * {@link ViewManager} for the {@link ReactPicker} view. This is abstract because the
@@ -34,7 +34,8 @@ import android.graphics.Color;
  * {@link ReactDialogPickerManager} components. These are merged back on the JS side into one
  * React component.
  */
-public abstract class ReactPickerManager extends SimpleViewManager<ReactPicker> {
+public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, ReactPickerShadowNode> {
+  private static final ReadableArray EMPTY_ARRAY = Arguments.createArray();
 
   @ReactProp(name = "items")
   public void setItems(ReactPicker view, @Nullable ReadableArray items) {
@@ -73,9 +74,22 @@ public abstract class ReactPickerManager extends SimpleViewManager<ReactPicker> 
     view.setStagedSelection(selected);
   }
 
-  @ReactProp(name = "dropdownIconColor") 
+  @ReactProp(name = "dropdownIconColor")
   public void setDropdownIconColor(ReactPicker view, @Nullable String color) {
     view.getBackground().setColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_ATOP);
+  }
+
+  @ReactProp(name = ViewProps.NUMBER_OF_LINES, defaultInt = 1)
+  public void setNumberOfLines(ReactPicker view, int numberOfLines) {
+    ReactPickerAdapter adapter = (ReactPickerAdapter) view.getAdapter();
+    if (adapter == null) {
+      adapter = new ReactPickerAdapter(view.getContext(), EMPTY_ARRAY);
+      adapter.setPrimaryTextColor(view.getPrimaryColor());
+      adapter.setNumberOfLines(numberOfLines);
+      view.setAdapter(adapter);
+    } else {
+      adapter.setNumberOfLines(numberOfLines);
+    }
   }
 
   @Override
@@ -94,8 +108,23 @@ public abstract class ReactPickerManager extends SimpleViewManager<ReactPicker> 
                     reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher()));
   }
 
+  @Override
+  public ReactPickerShadowNode createShadowNodeInstance() {
+    return new ReactPickerShadowNode();
+  }
+
+  @Override
+  public Class<? extends ReactPickerShadowNode> getShadowNodeClass() {
+    return ReactPickerShadowNode.class;
+  }
+
+  @Override
+  public void updateExtraData(ReactPicker root, Object extraData) {
+  }
+
   private static class ReactPickerAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
+    private int mNumberOfLines = 1;
     private @Nullable Integer mPrimaryTextColor;
     private @Nullable ReadableArray mItems;
 
@@ -144,17 +173,25 @@ public abstract class ReactPickerManager extends SimpleViewManager<ReactPicker> 
 
       if (convertView == null) {
         int layoutResId = isDropdown
-            ? android.R.layout.simple_spinner_dropdown_item
-            : android.R.layout.simple_spinner_item;
+              ? R.layout.simple_spinner_dropdown_item
+              : R.layout.simple_spinner_item;
         convertView = mInflater.inflate(layoutResId, parent, false);
       }
 
-      TextView textView = (TextView) convertView;
+      final TextView textView = (TextView) convertView;
       textView.setText(item.getString("label"));
+      textView.setMaxLines(mNumberOfLines);
+
       if (!isDropdown && mPrimaryTextColor != null) {
         textView.setTextColor(mPrimaryTextColor);
       } else if (item.hasKey("color") && !item.isNull("color")) {
         textView.setTextColor(item.getInt("color"));
+      }
+
+      if (item.hasKey("fontFamily") && !item.isNull("fontFamily")) {
+        Typeface face = Typeface.create(item.getString("fontFamily"), Typeface.NORMAL);
+        // Typeface face = Typeface.create("MuseoSans-500", Typeface.NORMAL);
+        textView.setTypeface(face);
       }
 
       return convertView;
@@ -162,6 +199,11 @@ public abstract class ReactPickerManager extends SimpleViewManager<ReactPicker> 
 
     public void setPrimaryTextColor(@Nullable Integer primaryTextColor) {
       mPrimaryTextColor = primaryTextColor;
+      notifyDataSetChanged();
+    }
+
+    public void setNumberOfLines(int numberOfLines) {
+      mNumberOfLines = numberOfLines;
       notifyDataSetChanged();
     }
   }
