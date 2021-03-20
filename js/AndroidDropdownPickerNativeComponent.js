@@ -42,8 +42,8 @@ type NativeProps = $ReadOnly<{|
   numberOfLines?: ?number,
 |}>;
 
-type DialogPickerNativeType = Class<NativeComponent<NativeProps>>;
+type DropdownPickerNativeType = Class<NativeComponent<NativeProps>>;
 
 export default ((requireNativeComponent(
-  'RNCAndroidDialogPicker',
-): any): DialogPickerNativeType);
+  'RNCAndroidDropdownPicker',
+): any): DropdownPickerNativeType);
