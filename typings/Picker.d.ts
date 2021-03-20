@@ -53,8 +53,15 @@ export interface PickerProps extends ViewProps {
   testID?: string;
    /**
     * Color of arrow for spinner dropdown in hexadecimal format
+    * @platform android
     */
-   dropdownIconColor?: string;
+  dropdownIconColor?: string;
+
+    /**
+   * The string used for the accessibility label. Will be read once focused on the picker but not on change.
+   */
+  accessibilityLabel?: ?string,
+
 }
 
 declare class Picker extends React.Component<PickerProps, {}> {
