@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import {Picker} from '../../js';
 
-const Item = Picker.Item as any;
+const Item: any = Picker.Item;
 
 function BasicPickerExample() {
   const [value, setValue] = React.useState('key1');
@@ -11,10 +11,37 @@ function BasicPickerExample() {
       testID="basic-picker"
       selectedValue={value}
       onValueChange={(v) => setValue(v)}
-      accessibilityLabel="Basic Picker Accessibility Label"
-    >
+      accessibilityLabel="Basic Picker Accessibility Label">
       <Item label="hello" value="key0" />
       <Item label="world" value="key1" />
+    </Picker>
+  );
+}
+
+function StyledPickerExample() {
+  const [value, setValue] = React.useState('key1');
+  return (
+    <Picker
+      testID="styled-picker"
+      selectedValue={value}
+      onValueChange={(v) => setValue(v)}
+      accessibilityLabel="Styled Picker Accessibility Label">
+      <Item
+        label="Sin"
+        value="key0"
+        style={{backgroundColor: 'cyan', color: 'red'}}
+      />
+      <Item
+        label="Cos"
+        value="key1"
+        color="green"
+        style={{backgroundColor: 'cyan', fontSize: 36}}
+      />
+      <Item
+        label="Tan"
+        value="key2"
+        style={{backgroundColor: 'blue', fontFamily: 'serif', color: 'white'}}
+      />
     </Picker>
   );
 }
@@ -53,8 +80,14 @@ function DropdownMultilinePickerExample() {
       selectedValue={value}
       onValueChange={(v) => setValue(v)}
       mode="dropdown">
-      <Item label="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" value="key0" />
-      <Item label="quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." value="key1" />
+      <Item
+        label="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+        value="key0"
+      />
+      <Item
+        label="quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+        value="key1"
+      />
     </Picker>
   );
 }
@@ -82,8 +115,14 @@ function PromptMultilinePickerExample() {
       selectedValue={value}
       onValueChange={(v) => setValue(v)}
       prompt="Pick one, just one">
-      <Item label="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam" value="key0" />
-      <Item label="quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." value="key1" />
+      <Item
+        label="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+        value="key0"
+      />
+      <Item
+        label="quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+        value="key1"
+      />
     </Picker>
   );
 }
@@ -97,7 +136,7 @@ function CustomDropdownArrowColorPickerExample() {
       </Picker>
     </View>
   );
-};
+}
 
 function NoListenerPickerExample() {
   return (
@@ -123,8 +162,7 @@ function ColorPickerExample() {
         style={styles.container}
         selectedValue={value}
         onValueChange={(v) => setValue(v)}
-        mode="dropdown"
-        >
+        mode="dropdown">
         <Item label="red" color="red" value="red" />
         <Item label="green" color="green" value="green" />
         <Item label="blue" color="blue" value="blue" />
@@ -156,6 +194,10 @@ export const examples = [
   {
     title: 'Basic Picker',
     render: BasicPickerExample,
+  },
+  {
+    title: 'Styled Picker',
+    render: StyledPickerExample,
   },
   {
     title: 'Disabled Picker',

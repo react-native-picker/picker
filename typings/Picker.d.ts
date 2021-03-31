@@ -8,7 +8,18 @@ export interface PickerItemProps<T = ItemValue> {
 	value?: T;
 	color?: string;
    fontFamily?: string,
-	testID?: string;
+  testID?: string;
+  /**
+   * Style to apply to individual item labels.
+   * Only following values take effect:
+   *   - 'color'
+   *   - 'backgroundColor'
+   *   - 'fontSize'
+   *   - 'fontFamily'
+   * 
+   * @platform android
+   */
+  style? : StyleProp<TextStyle>
 }
 
 export interface PickerProps<T = ItemValue> extends ViewProps {

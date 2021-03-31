@@ -170,6 +170,11 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
 
     private View getView(int position, View convertView, ViewGroup parent, boolean isDropdown) {
       ReadableMap item = getItem(position);
+      @Nullable ReadableMap style = null;
+
+      if (item.hasKey("style")) {
+        style = item.getMap("style");
+      }
 
       if (convertView == null) {
         int layoutResId = isDropdown
@@ -181,6 +186,25 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
       final TextView textView = (TextView) convertView;
       textView.setText(item.getString("label"));
       textView.setMaxLines(mNumberOfLines);
+
+      if (style != null) {
+        if (style.hasKey("backgroundColor") && !style.isNull("backgroundColor")) {
+          convertView.setBackgroundColor(style.getInt("backgroundColor"));
+        }
+        
+        if (style.hasKey("color") && !style.isNull("color")) {
+          textView.setTextColor(style.getInt("color"));
+        }
+
+        if (style.hasKey("fontSize") && !style.isNull("fontSize")) {
+          textView.setTextSize((float)style.getDouble("fontSize"));
+        }
+        
+        if (style.hasKey("fontFamily") && !style.isNull("fontFamily")) {
+          Typeface face = Typeface.create(style.getString("fontFamily"), Typeface.NORMAL);
+          textView.setTypeface(face);
+        }
+      }
 
       if (!isDropdown && mPrimaryTextColor != null) {
         textView.setTextColor(mPrimaryTextColor);
