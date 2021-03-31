@@ -120,7 +120,7 @@ function PickerAndroid(props: PickerAndroidProps): React.Node {
     selected,
     style: props.style,
     backgroundColor: props.backgroundColor,
-    dropdownIconColor: props.dropdownIconColor,
+    dropdownIconColor: processColor(props.dropdownIconColor),
     testID: props.testID,
     numberOfLines: props.numberOfLines,
   };
