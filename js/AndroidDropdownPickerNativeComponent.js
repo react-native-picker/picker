@@ -13,7 +13,10 @@
 import {requireNativeComponent} from 'react-native';
 
 import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
-import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import type {
+  TextStyleProp,
+  ViewStyleProp,
+} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {NativeComponent} from 'react-native/Libraries/Renderer/shims/ReactNative';
 
 type PickerAndroidChangeEvent = SyntheticEvent<
@@ -27,6 +30,17 @@ type Item = $ReadOnly<{|
   value: ?(number | string),
   color?: ?number,
   fontFamily: ?string,
+  /**
+   * Style to apply to individual item labels.
+   * Only following values take effect:
+   *   - 'color'
+   *   - 'backgroundColor'
+   *   - 'fontSize'
+   *   - 'fontFamily'
+   *
+   * @platform android
+   */
+  style?: ?ViewStyleProp,
 |}>;
 
 type NativeProps = $ReadOnly<{|
