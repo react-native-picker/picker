@@ -171,6 +171,7 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
     private View getView(int position, View convertView, ViewGroup parent, boolean isDropdown) {
       ReadableMap item = getItem(position);
       @Nullable ReadableMap style = null;
+      boolean enabled = true;
 
       if (item.hasKey("style")) {
         style = item.getMap("style");
@@ -183,6 +184,14 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
         convertView = mInflater.inflate(layoutResId, parent, false);
       }
 
+      if (item.hasKey("enabled")) {
+        enabled = item.getBoolean("enabled");
+      }
+
+      convertView.setEnabled(enabled);
+      // Seems counter intuitive, but this makes the specific item not clickable when enable={false}
+      convertView.setClickable(!enabled);
+      
       final TextView textView = (TextView) convertView;
       textView.setText(item.getString("label"));
       textView.setMaxLines(mNumberOfLines);

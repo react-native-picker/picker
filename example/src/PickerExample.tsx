@@ -57,6 +57,18 @@ function DisabledPickerExample() {
   );
 }
 
+function DisabledSpecificPickerExample() {
+  const [value] = React.useState('key1');
+
+  return (
+    <Picker selectedValue={value}>
+      <Item label="hello" value="key0" enabled={true} />
+      <Item label="world" value="key1" />
+      <Item label="disabled" value="key2" enabled={false} />
+    </Picker>
+  );
+}
+
 function DropdownPickerExample() {
   const [value, setValue] = React.useState('key1');
 
@@ -202,6 +214,10 @@ export const examples = [
   {
     title: 'Disabled Picker',
     render: DisabledPickerExample,
+  },
+  {
+    title: 'Disabled Specific Picker',
+    render: DisabledSpecificPickerExample,
   },
   {
     title: 'Dropdown Picker',

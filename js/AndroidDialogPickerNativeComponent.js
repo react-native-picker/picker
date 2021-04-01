@@ -12,40 +12,13 @@
 
 import {requireNativeComponent} from 'react-native';
 
-import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
-import type {
-  TextStyleProp,
-  ViewStyleProp,
-} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {NativeComponent} from 'react-native/Libraries/Renderer/shims/ReactNative';
-
-type PickerAndroidChangeEvent = SyntheticEvent<
-  $ReadOnly<{|
-    position: number,
-  |}>,
->;
-
-type Item = $ReadOnly<{|
-  label: string,
-  value: ?(number | string),
-  color?: ?number,
-  fontFamily: ?string,
-  /**
-   * Style to apply to individual item labels.
-   * Only following values take effect:
-   *   - 'color'
-   *   - 'backgroundColor'
-   *   - 'fontSize'
-   *   - 'fontFamily'
-   *
-   * @platform android
-   */
-  style?: ?ViewStyleProp,
-|}>;
+import type {PickerAndroidChangeEvent, PickerItem} from './types';
 
 type NativeProps = $ReadOnly<{|
   enabled?: ?boolean,
-  items: $ReadOnlyArray<Item>,
+  items: $ReadOnlyArray<PickerItem>,
   mode?: ?('dialog' | 'dropdown'),
   onSelect?: (event: PickerAndroidChangeEvent) => void,
   selected: number,

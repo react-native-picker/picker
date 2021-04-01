@@ -266,6 +266,65 @@ such that the total number of lines does not exceed this number. Default is '1'
 | ------- | -------- | -------- |
 | number  | No       | Android  |
 
+## PickerItemProps
+
+Props that can be applied to individual `Picker.Item`
+
+### `label`
+
+Displayed value on the Picker Item
+
+| Type    | Required | 
+| ------- | -------- | 
+| string  | yes       | 
+
+
+### `value`
+
+Actual value on the Picker Item
+
+| Type    | Required |
+| ------- | -------- |
+| number,string | yes     |
+
+### `color`
+
+Displayed color on the Picker Item
+
+| Type    | Required | 
+| ------- | -------- | 
+| string  | no       | 
+
+
+### `fontFamily`
+
+Displayed fontFamily on the Picker Item
+
+| Type    | Required |
+| ------- | -------- |
+| string  | no      | 
+
+
+### `style`
+
+Style to apply to individual item labels.
+
+| Type    | Required | Platform |
+| ------- | -------- | -------- |
+| ViewStyleProp  | no       | Android  |
+
+
+### `enabled`
+
+If set to false, the specific item will be disabled, i.e. the user will not be able to make a selection
+
+@defailt: true
+
+| Type    | Required | Platform |
+| ------- | -------- | -------- |
+| boolean  | no       | Android  |
+
+
 ### PickerIOS
 ### Props
 
