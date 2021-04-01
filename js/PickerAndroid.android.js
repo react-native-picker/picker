@@ -50,6 +50,9 @@ function PickerAndroid(props: PickerAndroidProps): React.Node {
       if (child.props.value === props.selectedValue) {
         selected = index;
       }
+
+      const {enabled = true} = child.props;
+
       const {color, label, style = {}} = child.props;
 
       const processedColor = processColor(color);
@@ -57,6 +60,7 @@ function PickerAndroid(props: PickerAndroidProps): React.Node {
       return {
         color: color == null ? null : processedColor,
         label,
+        enabled,
         style: {
           ...style,
           color: style.color ? processColor(style.color) : null,

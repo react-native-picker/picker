@@ -19,7 +19,14 @@ export interface PickerItemProps<T = ItemValue> {
    * 
    * @platform android
    */
-  style? : StyleProp<TextStyle>
+  style?: StyleProp<TextStyle>
+  /**
+   * If set to false, the specific item will be disabled, i.e. the user will not be able to make a
+   * selection.
+   * @default true
+   * @platform android
+   */
+  enabled?:boolean
 }
 
 export interface PickerProps<T = ItemValue> extends ViewProps {
