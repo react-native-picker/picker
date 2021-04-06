@@ -318,7 +318,7 @@ Style to apply to individual item labels.
 
 If set to false, the specific item will be disabled, i.e. the user will not be able to make a selection
 
-@defailt: true
+@default: true
 
 | Type    | Required | Platform |
 | ------- | -------- | -------- |
