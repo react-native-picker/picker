@@ -6,15 +6,31 @@ import {
   Text,
   View,
   SafeAreaView,
+  I18nManager,
+  Switch,
 } from 'react-native';
 
 import * as PickerExamples from './PickerExample';
 import * as PickerIOSExamples from './PickerIOSExample';
 
 export default function App() {
+  const [isRTL, setIsRTL] = React.useState(I18nManager.isRTL);
+  React.useEffect(() => {
+    I18nManager.allowRTL(true);
+  }, []);
   return (
     <SafeAreaView style={styles.main}>
       <ScrollView>
+        <View style={styles.rtlSwitchContainer}>
+          <Switch
+            value={isRTL}
+            onValueChange={(newValue) => {
+              setIsRTL(newValue);
+              I18nManager.forceRTL(newValue);
+            }}
+          />
+          <Text>{I18nManager.isRTL ? 'RTL' : 'LTR'}</Text>
+        </View>
         <View style={styles.container}>
           <Text style={styles.heading}>Picker Examples</Text>
           {PickerExamples.examples.map((element) => (
@@ -56,5 +72,11 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 22,
     color: 'black',
+  },
+  rtlSwitchContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 40,
+    paddingTop: 20,
   },
 });

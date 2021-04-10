@@ -10,14 +10,17 @@ package com.reactnativecommunity.picker;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Resources;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+
 import androidx.appcompat.widget.AppCompatSpinner;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.common.annotations.VisibleForTesting;
+import com.facebook.react.modules.i18nmanager.I18nUtil;
 import com.facebook.react.uimanager.UIManagerModule;
 
 import javax.annotation.Nullable;
@@ -55,24 +58,42 @@ public class ReactPicker extends AppCompatSpinner {
 
   public ReactPicker(Context context) {
     super(context);
+    handleRTL(context);
   }
 
   public ReactPicker(Context context, int mode) {
     super(context, mode);
     mMode = mode;
+    handleRTL(context);
   }
 
   public ReactPicker(Context context, AttributeSet attrs) {
     super(context, attrs);
+    handleRTL(context);
   }
 
   public ReactPicker(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
+    handleRTL(context);
   }
 
   public ReactPicker(Context context, AttributeSet attrs, int defStyle, int mode) {
     super(context, attrs, defStyle, mode);
     mMode = mode;
+    handleRTL(context);
+  }
+
+  private void handleRTL(Context context) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+      boolean isRTL = I18nUtil.getInstance().isRTL(context);
+      if (isRTL) {
+        this.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        this.setTextDirection(View.TEXT_DIRECTION_RTL);
+      } else {
+        this.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        this.setTextDirection(View.TEXT_DIRECTION_LTR);
+      }
+    }
   }
 
   private final Runnable measureAndLayout = new Runnable() {

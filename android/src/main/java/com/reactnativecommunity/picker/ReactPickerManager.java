@@ -8,19 +8,21 @@
 package com.reactnativecommunity.picker;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.modules.i18nmanager.I18nUtil;
 import com.facebook.react.uimanager.*;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.EventDispatcher;
@@ -225,6 +227,17 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
         Typeface face = Typeface.create(item.getString("fontFamily"), Typeface.NORMAL);
         // Typeface face = Typeface.create("MuseoSans-500", Typeface.NORMAL);
         textView.setTypeface(face);
+      }
+
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+        boolean isRTL = I18nUtil.getInstance().isRTL(convertView.getContext());
+        if (isRTL) {
+          convertView.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+          convertView.setTextDirection(View.TEXT_DIRECTION_RTL);
+        } else {
+          convertView.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+          convertView.setTextDirection(View.TEXT_DIRECTION_LTR);
+        }
       }
 
       return convertView;
