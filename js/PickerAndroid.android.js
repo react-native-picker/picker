@@ -11,7 +11,12 @@
 'use strict';
 
 import * as React from 'react';
-import {processColor} from 'react-native';
+import {
+  findNodeHandle,
+  NativeSyntheticEvent,
+  processColor,
+  UIManager,
+} from 'react-native';
 import AndroidDialogPickerNativeComponent from './AndroidDialogPickerNativeComponent';
 import AndroidDropdownPickerNativeComponent from './AndroidDropdownPickerNativeComponent';
 
@@ -26,6 +31,8 @@ type PickerAndroidProps = $ReadOnly<{|
   selectedValue?: ?(number | string),
   enabled?: ?boolean,
   mode?: ?('dialog' | 'dropdown'),
+  onBlur?: (e: NativeSyntheticEvent<undefined>) => mixed,
+  onFocus?: (e: NativeSyntheticEvent<undefined>) => mixed,
   onValueChange?: ?(itemValue: ?(string | number), itemIndex: number) => mixed,
   prompt?: ?string,
   testID?: string,
@@ -33,11 +40,46 @@ type PickerAndroidProps = $ReadOnly<{|
   numberOfLines?: ?number,
 |}>;
 
+type PickerRef = React.ElementRef<
+  | typeof AndroidDialogPickerNativeComponent
+  | typeof AndroidDropdownPickerNativeComponent,
+>;
+
 /**
  * Not exposed as a public API - use <Picker> instead.
  */
-function PickerAndroid(props: PickerAndroidProps): React.Node {
+function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
   const pickerRef = React.useRef(null);
+
+  React.useImperativeHandle(ref, () => {
+    const viewManagerConfig = UIManager.getViewManagerConfig(
+      props.mode === MODE_DROPDOWN
+        ? 'RNCAndroidDialogPicker'
+        : 'RNCAndroidDropdownPicker',
+    );
+    return {
+      blur: () => {
+        if (!viewManagerConfig.Commands) {
+          return;
+        }
+        UIManager.dispatchViewManagerCommand(
+          findNodeHandle(pickerRef.current),
+          viewManagerConfig.Commands.blur,
+          [],
+        );
+      },
+      focus: () => {
+        if (!viewManagerConfig.Commands) {
+          return;
+        }
+        UIManager.dispatchViewManagerCommand(
+          findNodeHandle(pickerRef.current),
+          viewManagerConfig.Commands.focus,
+          [],
+        );
+      },
+    };
+  });
 
   const [items, selected] = React.useMemo(() => {
     // eslint-disable-next-line no-shadow
@@ -118,6 +160,8 @@ function PickerAndroid(props: PickerAndroidProps): React.Node {
     accessibilityLabel: props.accessibilityLabel,
     enabled: props.enabled,
     items,
+    onBlur: props.onBlur,
+    onFocus: props.onFocus,
     onSelect,
     prompt: props.prompt,
     ref: pickerRef,
@@ -132,4 +176,4 @@ function PickerAndroid(props: PickerAndroidProps): React.Node {
   return <Picker ref={REF_PICKER} {...rootProps} />;
 }
 
-export default PickerAndroid;
+export default React.forwardRef<PickerAndroidProps>(PickerAndroid);

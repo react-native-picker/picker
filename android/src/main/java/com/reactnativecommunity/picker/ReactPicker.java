@@ -30,8 +30,10 @@ public class ReactPicker extends AppCompatSpinner {
   private int mMode = Spinner.MODE_DIALOG;
   private @Nullable Integer mPrimaryColor;
   private @Nullable OnSelectListener mOnSelectListener;
+  private @Nullable OnFocusListener mOnFocusListener;
   private @Nullable Integer mStagedSelection;
   private int mOldElementSize = Integer.MIN_VALUE;
+  private boolean mIsOpen = false;
 
   private final OnItemSelectedListener mItemSelectedListener = new OnItemSelectedListener() {
     @Override
@@ -54,6 +56,11 @@ public class ReactPicker extends AppCompatSpinner {
    */
   public interface OnSelectListener {
     void onItemSelected(int position);
+  }
+
+  public interface OnFocusListener {
+    void onPickerBlur();
+    void onPickerFocus();
   }
 
   public ReactPicker(Context context) {
@@ -118,6 +125,28 @@ public class ReactPicker extends AppCompatSpinner {
   }
 
   @Override
+  public boolean performClick() {
+    // When picker is opened, emit focus event.
+    mIsOpen = true;
+    if (mOnFocusListener != null) {
+      mOnFocusListener.onPickerFocus();
+    }
+    return super.performClick();
+  }
+
+  @Override
+  public void onWindowFocusChanged(boolean hasWindowFocus) {
+    // When view that holds picker gains focus and picker was opened,
+    // then picker lost focus, so emit blur event.
+    if (mIsOpen && hasWindowFocus) {
+      mIsOpen = false;
+      if (mOnFocusListener != null) {
+        mOnFocusListener.onPickerBlur();
+      }
+    }
+  }
+
+  @Override
   protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
     super.onLayout(changed, left, top, right, bottom);
 
@@ -164,9 +193,15 @@ public class ReactPicker extends AppCompatSpinner {
     mOnSelectListener = onSelectListener;
   }
 
+  public void setOnFocusListener(@Nullable OnFocusListener onFocusListener) {
+    mOnFocusListener = onFocusListener;
+  }
+
   @Nullable public OnSelectListener getOnSelectListener() {
     return mOnSelectListener;
   }
+
+  @Nullable public OnFocusListener getOnFocusListener() { return mOnFocusListener; }
 
   /**
    * Will cache "selection" value locally and set it only once {@link #updateStagedSelection} is

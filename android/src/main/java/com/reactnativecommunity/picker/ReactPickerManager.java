@@ -18,14 +18,19 @@ import android.widget.BaseAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.common.MapBuilder;
 import com.facebook.react.modules.i18nmanager.I18nUtil;
 import com.facebook.react.uimanager.*;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.EventDispatcher;
+
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -38,6 +43,36 @@ import javax.annotation.Nullable;
  */
 public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, ReactPickerShadowNode> {
   private static final ReadableArray EMPTY_ARRAY = Arguments.createArray();
+
+  private static final int FOCUS_PICKER = 1;
+  private static final int BLUR_PICKER = 2;
+
+  @Nullable
+  @Override
+  public Map<String, Object> getExportedCustomBubblingEventTypeConstants() {
+    return MapBuilder.<String, Object>builder()
+        .put(
+            "topSelect",
+            MapBuilder.of(
+                "phasedRegistrationNames",
+                MapBuilder.of("bubbled", "onSelect", "captured", "onSelectCapture")))
+        .put(
+            "topFocus",
+            MapBuilder.of(
+                "phasedRegistrationNames",
+                MapBuilder.of("bubbled", "onFocus", "captured", "onFocusCapture")))
+        .put(
+            "topBlur",
+            MapBuilder.of(
+                "phasedRegistrationNames",
+                MapBuilder.of("bubbled", "onBlur", "captured", "onBlurCapture")))
+        .build();
+  }
+
+  @Override
+  public @Nullable Map<String, Integer> getCommandsMap() {
+    return MapBuilder.of("focus", FOCUS_PICKER, "blur", BLUR_PICKER);
+  }
 
   @ReactProp(name = "items")
   public void setItems(ReactPicker view, @Nullable ReadableArray items) {
@@ -104,10 +139,35 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
   protected void addEventEmitters(
       final ThemedReactContext reactContext,
       final ReactPicker picker) {
-    picker.setOnSelectListener(
-            new PickerEventEmitter(
-                    picker,
-                    reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher()));
+    final PickerEventEmitter eventEmitter = new PickerEventEmitter(
+        picker,
+        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher());
+    picker.setOnSelectListener(eventEmitter);
+    picker.setOnFocusListener(eventEmitter);
+  }
+
+  @Override
+  public void receiveCommand(@NonNull ReactPicker root, int commandId, @androidx.annotation.Nullable ReadableArray args) {
+    switch (commandId) {
+      case FOCUS_PICKER:
+        root.performClick();
+        break;
+      case BLUR_PICKER:
+        root.clearFocus();
+        break;
+    }
+  }
+
+  @Override
+  public void receiveCommand(@NonNull ReactPicker root, String commandId, @androidx.annotation.Nullable ReadableArray args) {
+    switch (commandId) {
+      case "focus":
+        root.performClick();
+        break;
+      case "blur":
+        root.clearFocus();
+        break;
+    }
   }
 
   @Override
@@ -254,7 +314,7 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
     }
   }
 
-  private static class PickerEventEmitter implements ReactPicker.OnSelectListener {
+  private static class PickerEventEmitter implements ReactPicker.OnSelectListener, ReactPicker.OnFocusListener {
 
     private final ReactPicker mReactPicker;
     private final EventDispatcher mEventDispatcher;
@@ -268,6 +328,16 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
     public void onItemSelected(int position) {
       mEventDispatcher.dispatchEvent( new PickerItemSelectEvent(
               mReactPicker.getId(), position));
+    }
+
+    @Override
+    public void onPickerBlur() {
+      mEventDispatcher.dispatchEvent( new PickerBlurEvent(mReactPicker.getId()));
+    }
+
+    @Override
+    public void onPickerFocus() {
+      mEventDispatcher.dispatchEvent( new PickerFocusEvent(mReactPicker.getId()));
     }
   }
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, Button} from 'react-native';
 import {Picker} from '../../js';
 
 const Item: any = Picker.Item;
@@ -167,21 +167,45 @@ function NoListenerPickerExample() {
 
 function ColorPickerExample() {
   const [value, setValue] = React.useState('red');
+  const [isFocused, setIsFocused] = React.useState(false);
+  const [isSecondFocused, setIsSecondFocused] = React.useState(false);
+  const pickerRef = React.useRef(null);
 
   return (
     <>
+      <Button
+        onPress={() => {
+          pickerRef.current?.focus?.();
+        }}
+        title="Focus"
+      />
+      <Text>{`Is input opened: ${isFocused ? 'YES' : 'NO'}`}</Text>
       <Picker
+        ref={pickerRef}
         style={styles.container}
         selectedValue={value}
+        onBlur={() => {
+          setIsFocused(false);
+        }}
+        onFocus={() => {
+          setIsFocused(true);
+        }}
         onValueChange={(v) => setValue(v)}
         mode="dropdown">
         <Item label="red" color="red" value="red" />
         <Item label="green" color="green" value="green" />
         <Item label="blue" color="blue" value="blue" />
       </Picker>
+      <Text>{`Is input opened: ${isSecondFocused ? 'YES' : 'NO'}`}</Text>
       <Picker
         style={{color: value}}
         selectedValue={value}
+        onBlur={() => {
+          setIsSecondFocused(false);
+        }}
+        onFocus={() => {
+          setIsSecondFocused(true);
+        }}
         onValueChange={(v) => setValue(v)}
         mode="dialog">
         <Item label="red" color="red" value="red" />
