@@ -43,7 +43,7 @@ function PickerAndroid(props: PickerAndroidProps): React.Node {
     // eslint-disable-next-line no-shadow
     let selected = 0;
     // eslint-disable-next-line no-shadow
-    const items = React.Children.map(props.children, (child, index) => {
+    const items = React.Children.toArray(props.children).map((child, index) => {
       if (child === null) {
         return null;
       }
