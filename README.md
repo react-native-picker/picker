@@ -146,6 +146,30 @@ Add `Picker` like this:
 </Picker>
 ```
 
+If you want to open/close picker programmatically on android, pass ref to `Picker`:
+
+```javascript
+const pickerRef = useRef();
+
+function open() {
+  pickerRef.current.focus();
+}
+
+function close() {
+  pickerRef.current.blur();
+}
+
+return <Picker
+  ref={pickerRef}
+  selectedValue={selectedLanguage}
+  onValueChange={(itemValue, itemIndex) =>
+    setSelectedLanguage(itemValue)
+  }>
+  <Picker.Item label="Java" value="java" />
+  <Picker.Item label="JavaScript" value="js" />
+</Picker>
+```
+
 ### Props
 
 * [Inherited `View` props...](https://reactnative.dev/docs/view#props)
@@ -265,6 +289,28 @@ such that the total number of lines does not exceed this number. Default is '1'
 | Type    | Required | Platform |
 | ------- | -------- | -------- |
 | number  | No       | Android  |
+
+### `onBlur`
+
+| Type      | Required | Platform |
+| --------- | -------- | -------- |
+| function  | no       | Android  |
+
+### `onFocus`
+
+| Type      | Required | Platform |
+| --------- | -------- | -------- |
+| function  | no       | Android  |
+
+## Methods
+
+### `blur` (Android only)
+
+Programmatically closes picker
+
+### `focus` (Android only)
+
+Programmatically opens picker
 
 ## PickerItemProps
 
