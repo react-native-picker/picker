@@ -4,29 +4,29 @@ import { TextStyle, StyleProp, ViewProps } from 'react-native'
 export type ItemValue  = number | string
 
 export interface PickerItemProps<T = ItemValue> {
-	label?: string;
+   label?: string;
 	value?: T;
 	color?: string;
    fontFamily?: string,
-  testID?: string;
-  /**
-   * Style to apply to individual item labels.
-   * Only following values take effect:
-   *   - 'color'
-   *   - 'backgroundColor'
-   *   - 'fontSize'
-   *   - 'fontFamily'
-   * 
-   * @platform android
-   */
-  style?: StyleProp<TextStyle>
-  /**
-   * If set to false, the specific item will be disabled, i.e. the user will not be able to make a
-   * selection.
-   * @default true
-   * @platform android
-   */
-  enabled?:boolean
+   testID?: string;
+   /**
+    * Style to apply to individual item labels.
+    * Only following values take effect:
+    *   - 'color'
+    *   - 'backgroundColor'
+    *   - 'fontSize'
+    *   - 'fontFamily'
+    * 
+    * @platform android
+    */
+   style?: StyleProp<TextStyle>
+   /**
+    * If set to false, the specific item will be disabled, i.e. the user will not be able to make a
+    * selection.
+    * @default true
+    * @platform android
+    */
+   enabled?:boolean
 }
 
 export interface PickerProps<T = ItemValue> extends ViewProps {
@@ -69,38 +69,54 @@ export interface PickerProps<T = ItemValue> extends ViewProps {
 	/**
    * Used to locate this view in end-to-end tests.
    */
-  testID?: string;
+   testID?: string;
+    /**
+     * Color of arrow for spinner dropdown in hexadecimal format
+     * @platform android
+     */
+   dropdownIconColor?: string;
    /**
-    * Color of arrow for spinner dropdown in hexadecimal format
+   * On Android, used to truncate the text with an ellipsis after computing the text layout, including line wrapping,
+   * such that the total number of lines does not exceed this number. Default is '1'
+   * @platform android
+   */
+   numberOfLines?: number;
+   /**
+    * The string used for the accessibility label. Will be read once focused on the picker but not on change.
+    */
+   accessibilityLabel?: string;
+   /**
+    * Called when picker is focused
     * @platform android
     */
-  dropdownIconColor?: string;
-
-  /**
-  * On Android, used to truncate the text with an ellipsis after computing the text layout, including line wrapping,
-  * such that the total number of lines does not exceed this number. Default is '1'
-  * @platform android
-  */
-  numberOfLines?: number;
-  
-  /**
-   * The string used for the accessibility label. Will be read once focused on the picker but not on change.
-   */
-  accessibilityLabel?: string;
-
+   onFocus?: (e: NativeSyntheticEvent<TargetedEvent>) => void
+   /**
+    * Called when picker is blurred
+    * @platform android
+    */
+   onBlur?: (e: NativeSyntheticEvent<TargetedEvent>) => void
 }
 
 declare class Picker<T> extends React.Component<PickerProps<T>, {}> {
    /**
      * On Android, display the options in a dialog (this is the default).
      */
-    static readonly MODE_DIALOG: 'dialog';
-    /**
-     * On Android, display the options in a dropdown.
-     */
-    static readonly MODE_DROPDOWN: 'dropdown';
+   static readonly MODE_DIALOG: 'dialog';
+   /**
+    * On Android, display the options in a dropdown.
+    */
+   static readonly MODE_DROPDOWN: 'dropdown';
 
-     static Item: React.ComponentType<PickerItemProps<ItemValue>>;
+   static Item: React.ComponentType<PickerItemProps<ItemValue>>;
+
+   /**
+    * @platform android
+    */
+   focus: () => void
+   /**
+    * @platform android
+    */
+   blur: () => void
 }
 
-export {Picker};
+export { Picker };
