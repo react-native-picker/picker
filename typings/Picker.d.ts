@@ -1,12 +1,13 @@
 import * as React from "react"
-import { TextStyle, StyleProp, ViewProps } from 'react-native'
+import type { TextStyle, StyleProp, ViewProps } from 'react-native'
+import { processColor } from 'react-native';
 
-export type ItemValue  = number | string
+export type ItemValue = number | string
 
 export interface PickerItemProps<T = ItemValue> {
    label?: string;
 	value?: T;
-	color?: string;
+	color?: ReturnType<typeof processColor>;
    fontFamily?: string,
    testID?: string;
    /**
@@ -26,7 +27,7 @@ export interface PickerItemProps<T = ItemValue> {
     * @default true
     * @platform android
     */
-   enabled?:boolean
+   enabled?: boolean
 }
 
 export interface PickerProps<T = ItemValue> extends ViewProps {
@@ -70,11 +71,16 @@ export interface PickerProps<T = ItemValue> extends ViewProps {
    * Used to locate this view in end-to-end tests.
    */
    testID?: string;
-    /**
-     * Color of arrow for spinner dropdown in hexadecimal format
-     * @platform android
-     */
-   dropdownIconColor?: string;
+   /**
+    * Color of spinner's arrow
+    * @platform android
+    */
+   dropdownIconColor?: ReturnType<typeof processColor>;
+   /**
+    * Ripple color of spinner's arrow
+    * @platform android
+    */
+   dropdownIconRippleColor?: ReturnType<typeof processColor>;
    /**
    * On Android, used to truncate the text with an ellipsis after computing the text layout, including line wrapping,
    * such that the total number of lines does not exceed this number. Default is '1'

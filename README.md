@@ -256,11 +256,21 @@ On Android, specifies how to display the selection items when the user taps on t
 
 ### `dropdownIconColor`
 
-On Android, specifies color of dropdown triangle. Input value should be hexadecimal string.
+On Android, specifies color of dropdown triangle. Input value should be value that is accepted by react-native `processColor` function.
 
-| Type   | Required | Platform |
-| ------ | -------- | -------- |
-| string | No       | Android  |
+| Type       | Required | Platform |
+| ---------- | -------- | -------- |
+| ColorValue | No       | Android  |
+
+---
+
+### `dropdownIconRippleColor`
+
+On Android, specifies ripple color of dropdown triangle. Input value should be value that is accepted by react-native `processColor` function.
+
+| Type       | Required | Platform |
+| ---------- | -------- | -------- |
+| ColorValue | No       | Android  |
 
 ---
 
@@ -338,9 +348,9 @@ Actual value on the Picker Item
 
 Displayed color on the Picker Item
 
-| Type    | Required | 
-| ------- | -------- | 
-| string  | no       | 
+| Type        | Required | 
+| ----------- | -------- | 
+| ColorValue  | no       | 
 
 
 ### `fontFamily`

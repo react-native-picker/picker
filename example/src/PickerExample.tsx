@@ -142,7 +142,7 @@ function PromptMultilinePickerExample() {
 function CustomDropdownArrowColorPickerExample() {
   return (
     <View>
-      <Picker dropdownIconColor="red">
+      <Picker dropdownIconColor="red" dropdownIconRippleColor="purple">
         <Item label="hello" value="key0" />
         <Item label="world" value="key1" />
       </Picker>
@@ -192,13 +192,23 @@ function ColorPickerExample() {
         }}
         onValueChange={(v) => setValue(v)}
         mode="dropdown">
-        <Item label="red" color="red" value="red" />
-        <Item label="green" color="green" value="green" />
-        <Item label="blue" color="blue" value="blue" />
+        <Item label="red" color="red" style={{color: 'red'}} value="red" />
+        <Item
+          label="green"
+          color="green"
+          style={{color: 'green', backgroundColor: 'red'}}
+          value="green"
+        />
+        <Item
+          label="blue"
+          color="blue"
+          style={{color: 'blue', backgroundColor: 'green'}}
+          value="blue"
+        />
       </Picker>
       <Text>{`Is input opened: ${isSecondFocused ? 'YES' : 'NO'}`}</Text>
       <Picker
-        style={{color: value}}
+        style={{color: value, backgroundColor: 'gray'}}
         selectedValue={value}
         onBlur={() => {
           setIsSecondFocused(false);

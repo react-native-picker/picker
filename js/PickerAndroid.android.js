@@ -164,8 +164,8 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
     prompt: props.prompt,
     selected,
     style: props.style,
-    backgroundColor: props.backgroundColor,
     dropdownIconColor: processColor(props.dropdownIconColor),
+    dropdownIconRippleColor: processColor(props.dropdownIconRippleColor),
     testID: props.testID,
     numberOfLines: props.numberOfLines,
   };
