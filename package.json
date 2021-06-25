@@ -1,6 +1,6 @@
 {
   "name": "@react-native-picker/picker",
-  "version": "1.16.2",
+  "version": "1.16.3",
   "homepage": "https://github.com/react-native-picker/picker#readme",
   "description": "React Native Picker for iOS & Android",
   "main": "./js/index.js",
@@ -78,7 +78,7 @@
   },
   "resolutions": {
     "metro-react-native-babel-preset": "^0.66.0",
-    "metro":"0.64.0"
+    "metro": "0.64.0"
   },
   "detox": {
     "test-runner": "jest",
