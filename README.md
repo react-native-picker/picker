@@ -12,6 +12,8 @@
 
 ## Supported Versions
 
+**CAREFUL**: `@react-native-picker/picker` is currently not compatible with RN 0.64+ due to [this issue](https://github.com/react-native-picker/picker/issues/237). If you need to use it, please keep your RN version to 0.63+.
+
 | @react-native-picker/picker | react-native |
 | --- | --- |
 | >= 1.2.0 | 0.60+ or 0.59+ with [Jetifier](https://www.npmjs.com/package/jetifier) |
