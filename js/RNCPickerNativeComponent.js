@@ -13,7 +13,7 @@ import {requireNativeComponent} from 'react-native';
 
 import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
-import type {NativeComponent} from 'react-native/Libraries/Renderer/shims/ReactNative';
+import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
 
 type PickerIOSChangeEvent = SyntheticEvent<
   $ReadOnly<{|
@@ -31,16 +31,14 @@ type RNCPickerIOSTypeItemType = $ReadOnly<{|
 
 type Label = Stringish | number;
 
-type RNCPickerIOSType = Class<
-  NativeComponent<
-    $ReadOnly<{|
-      items: $ReadOnlyArray<RNCPickerIOSTypeItemType>,
-      onChange: (event: PickerIOSChangeEvent) => void,
-      selectedIndex: number,
-      style?: ?TextStyleProp,
-      testID?: ?string,
-    |}>,
-  >,
+type RNCPickerIOSType = HostComponent<
+  $ReadOnly<{|
+    items: $ReadOnlyArray<RNCPickerIOSTypeItemType>,
+    onChange: (event: PickerIOSChangeEvent) => void,
+    selectedIndex: number,
+    style?: ?TextStyleProp,
+    testID?: ?string,
+  |}>,
 >;
 
 module.exports = ((requireNativeComponent('RNCPicker'): any): RNCPickerIOSType);

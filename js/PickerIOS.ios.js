@@ -18,11 +18,11 @@ import {processColor, StyleSheet, View} from 'react-native';
 import RNCPickerNativeComponent from './RNCPickerNativeComponent';
 
 import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
-import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
+import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
 import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {Element, ElementRef, ChildrenArray} from 'react';
-import type {NativeComponent} from 'react-native/Libraries/Renderer/shims/ReactNative';
+import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
 
 type PickerIOSChangeEvent = SyntheticEvent<
   $ReadOnly<{|
@@ -38,16 +38,14 @@ type RNCPickerIOSItemType = $ReadOnly<{|
   testID: ?string,
 |}>;
 
-type RNCPickerIOSType = Class<
-  NativeComponent<
-    $ReadOnly<{|
-      items: $ReadOnlyArray<RNCPickerIOSItemType>,
-      onChange: (event: PickerIOSChangeEvent) => void,
-      selectedIndex: number,
-      style?: ?TextStyleProp,
-      testID?: ?string,
-    |}>,
-  >,
+type RNCPickerIOSType = HostComponent<
+  $ReadOnly<{|
+    items: $ReadOnlyArray<RNCPickerIOSItemType>,
+    onChange: (event: PickerIOSChangeEvent) => void,
+    selectedIndex: number,
+    style?: ?TextStyleProp,
+    testID?: ?string,
+  |}>,
 >;
 
 type Label = Stringish | number;

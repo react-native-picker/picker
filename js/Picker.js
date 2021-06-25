@@ -19,7 +19,7 @@ import PickerWindows from './PickerWindows';
 import PickerMacOS from './PickerMacOS';
 
 import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
-import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
+import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {Node} from 'react';
 
 const MODE_DIALOG = 'dialog';

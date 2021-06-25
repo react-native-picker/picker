@@ -5,7 +5,7 @@
  *
  */
 
-import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
+import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
 
 // $FlowFixMe
 import {createElement, unstable_createElement} from 'react-native';
