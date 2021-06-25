@@ -14,6 +14,7 @@
 
 | @react-native-picker/picker | react-native |
 | --- | --- |
+| >= 1.16.0 | 0.61+ |
 | >= 1.2.0 | 0.60+ or 0.59+ with [Jetifier](https://www.npmjs.com/package/jetifier) |
 | >= 1.0.0 | 0.57 |
 
@@ -146,7 +147,7 @@ Add `Picker` like this:
 </Picker>
 ```
 
-If you want to open/close picker programmatically on android, pass ref to `Picker`:
+If you want to open/close picker programmatically on android (available from version 1.16.0+), pass ref to `Picker`:
 
 ```javascript
 const pickerRef = useRef();
@@ -304,11 +305,11 @@ such that the total number of lines does not exceed this number. Default is '1'
 
 ## Methods
 
-### `blur` (Android only)
+### `blur` (Android only, lib version 1.16.0+)
 
 Programmatically closes picker
 
-### `focus` (Android only)
+### `focus` (Android only, lib version 1.16.0+)
 
 Programmatically opens picker
 

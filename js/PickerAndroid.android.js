@@ -20,7 +20,6 @@ import {
 import AndroidDialogPickerNativeComponent from './AndroidDialogPickerNativeComponent';
 import AndroidDropdownPickerNativeComponent from './AndroidDropdownPickerNativeComponent';
 
-const REF_PICKER = 'picker';
 const MODE_DROPDOWN = 'dropdown';
 
 import type {TextStyleProp} from 'StyleSheet';
@@ -133,7 +132,6 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
           onValueChange(null, position);
         }
       }
-      const {current} = pickerRef;
 
       // The picker is a controlled component. This means we expect the
       // on*Change handlers to be in charge of updating our
@@ -141,9 +139,9 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
       // disallow/undo/mutate the selection of certain values. In other
       // words, the embedder of this component should be the source of
       // truth, not the native component.
-      if (current[REF_PICKER] && selected !== position) {
+      if (pickerRef.current && selected !== position) {
         // TODO: using setNativeProps is deprecated and will be unsupported once Fabric lands. Use codegen to generate native commands
-        current[REF_PICKER].setNativeProps({
+        pickerRef.current.setNativeProps({
           selected,
         });
       }
@@ -164,7 +162,6 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
     onFocus: props.onFocus,
     onSelect,
     prompt: props.prompt,
-    ref: pickerRef,
     selected,
     style: props.style,
     backgroundColor: props.backgroundColor,
@@ -173,7 +170,7 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
     numberOfLines: props.numberOfLines,
   };
 
-  return <Picker ref={REF_PICKER} {...rootProps} />;
+  return <Picker ref={pickerRef} {...rootProps} />;
 }
 
 export default React.forwardRef<PickerAndroidProps>(PickerAndroid);
