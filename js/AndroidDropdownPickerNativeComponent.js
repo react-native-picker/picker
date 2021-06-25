@@ -13,7 +13,7 @@
 import {requireNativeComponent} from 'react-native';
 
 import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
-import type {NativeComponent} from 'react-native/Libraries/Renderer/shims/ReactNative';
+import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
 import type {PickerAndroidChangeEvent, PickerItem} from './types';
 
 type NativeProps = $ReadOnly<{|
@@ -29,7 +29,7 @@ type NativeProps = $ReadOnly<{|
   numberOfLines?: ?number,
 |}>;
 
-type DropdownPickerNativeType = Class<NativeComponent<NativeProps>>;
+type DropdownPickerNativeType = HostComponent<NativeProps>;
 
 export default ((requireNativeComponent(
   'RNCAndroidDropdownPicker',

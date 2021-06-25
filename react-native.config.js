@@ -15,6 +15,14 @@
  */
 'use strict';
 
+module.exports = {
+  project: {
+    android: {
+      sourceDir: './example/android',
+    },
+  },
+};
+
 const windowsSwitch = '--use-react-native-windows';
 
 if (process.argv.includes(windowsSwitch)) {
