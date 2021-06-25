@@ -316,7 +316,7 @@ PODS:
     - React-cxxreact (= 0.64.2)
     - React-jsi (= 0.64.2)
     - React-perflogger (= 0.64.2)
-  - RNCPicker (1.15.0):
+  - RNCPicker (1.16.1):
     - React-Core
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -488,7 +488,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: 24600e3b1aaa77126989bc58b6747509a1ba14f3
   React-runtimeexecutor: a9904c6d0218fb9f8b19d6dd88607225927668f9
   ReactCommon: 149906e01aa51142707a10665185db879898e966
-  RNCPicker: 5256da29a92406cac439ac6605719e233714a86a
+  RNCPicker: 61c7a0645b9e4ac67960aa7f22a3effcecfdfb8d
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
