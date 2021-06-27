@@ -292,12 +292,12 @@ Style to apply to each of the item labels.
 
 ### `numberOfLines`
 
-On Android, used to truncate the text with an ellipsis after computing the text layout, including line wrapping,
+On Android & iOS, used to truncate the text with an ellipsis after computing the text layout, including line wrapping,
 such that the total number of lines does not exceed this number. Default is '1'
 
 | Type    | Required | Platform |
 | ------- | -------- | -------- |
-| number  | No       | Android  |
+| number  | No       | Android, iOS  |
 
 ### `onBlur`
 

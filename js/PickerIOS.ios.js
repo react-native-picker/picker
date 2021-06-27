@@ -45,6 +45,7 @@ type RNCPickerIOSType = HostComponent<
     selectedIndex: number,
     style?: ?TextStyleProp,
     testID?: ?string,
+    numberOfLines?: ?number,
   |}>,
 >;
 
@@ -57,6 +58,7 @@ type Props = $ReadOnly<{|
   onChange?: ?(event: PickerIOSChangeEvent) => mixed,
   onValueChange?: ?(itemValue: string | number, itemIndex: number) => mixed,
   selectedValue: ?(number | string),
+  numberOfLines: ?number,
 |}>;
 
 type State = {|
@@ -103,6 +105,10 @@ class PickerIOS extends React.Component<Props, State> {
   }
 
   render(): React.Node {
+    let numberOfLines = Math.round(this.props.numberOfLines ?? 1);
+    if (numberOfLines < 1) {
+      numberOfLines = 1;
+    }
     return (
       <View style={this.props.style}>
         <RNCPickerNativeComponent
@@ -114,6 +120,7 @@ class PickerIOS extends React.Component<Props, State> {
           items={this.state.items}
           selectedIndex={this.state.selectedIndex}
           onChange={this._onChange}
+          numberOfLines={numberOfLines}
         />
       </View>
     );
