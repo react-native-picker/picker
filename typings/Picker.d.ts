@@ -1,12 +1,12 @@
 import * as React from "react"
-import { TextStyle, StyleProp, ViewProps } from 'react-native'
+import { TextStyle, StyleProp, ViewProps, NativeSyntheticEvent, TargetedEvent } from 'react-native'
 
-export type ItemValue  = number | string
+export type ItemValue = number | string
 
 export interface PickerItemProps<T = ItemValue> {
    label?: string;
-	value?: T;
-	color?: string;
+   value?: T;
+   color?: string;
    fontFamily?: string,
    testID?: string;
    /**
@@ -16,7 +16,7 @@ export interface PickerItemProps<T = ItemValue> {
     *   - 'backgroundColor'
     *   - 'fontSize'
     *   - 'fontFamily'
-    * 
+    *
     * @platform android
     */
    style?: StyleProp<TextStyle>
@@ -26,28 +26,28 @@ export interface PickerItemProps<T = ItemValue> {
     * @default true
     * @platform android
     */
-   enabled?:boolean
+   enabled?: boolean
 }
 
 export interface PickerProps<T = ItemValue> extends ViewProps {
-	style?: StyleProp<TextStyle>;
-	/**
+   style?: StyleProp<TextStyle>;
+   /**
    * Value matching value of one of the items. Can be a string or an integer.
    */
-	selectedValue?: T;
-	/**
+   selectedValue?: T;
+   /**
    * Callback for when an item is selected. This is called with the following parameters:
    *   - `itemValue`: the `value` prop of the item that was selected
    *   - `itemIndex`: the index of the selected item in this picker
    */
-	onValueChange?: (itemValue: T, itemIndex: number) => void;
-	/**
+   onValueChange?: (itemValue: T, itemIndex: number) => void;
+   /**
    * If set to false, the picker will be disabled, i.e. the user will not be able to make a
    * selection.
    * @platform android
    */
-	enabled?: boolean;
-	/**
+   enabled?: boolean;
+   /**
    * On Android, specifies how to display the selection items when the user taps on the picker:
    *
    *   - 'dialog': Show a modal dialog. This is the default.
@@ -55,25 +55,25 @@ export interface PickerProps<T = ItemValue> extends ViewProps {
    *
    * @platform android
    */
-	mode?: 'dialog' | 'dropdown';
-	/**
+   mode?: 'dialog' | 'dropdown';
+   /**
    * Style to apply to each of the item labels.
    * @platform ios
    */
-	itemStyle?: StyleProp<TextStyle>;
-	/**
+   itemStyle?: StyleProp<TextStyle>;
+   /**
    * Prompt string for this picker, used on Android in dialog mode as the title of the dialog.
    * @platform android
    */
-	prompt?: string;
-	/**
+   prompt?: string;
+   /**
    * Used to locate this view in end-to-end tests.
    */
    testID?: string;
-    /**
-     * Color of arrow for spinner dropdown in hexadecimal format
-     * @platform android
-     */
+   /**
+    * Color of arrow for spinner dropdown in hexadecimal format
+    * @platform android
+    */
    dropdownIconColor?: string;
    /**
    * On Android, used to truncate the text with an ellipsis after computing the text layout, including line wrapping,
