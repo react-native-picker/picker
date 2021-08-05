@@ -1,6 +1,6 @@
 {
   "name": "@react-native-picker/picker",
-  "version": "1.16.4",
+  "version": "1.16.5",
   "homepage": "https://github.com/react-native-picker/picker#readme",
   "description": "React Native Picker for iOS & Android",
   "main": "./js/index.js",
