@@ -33,7 +33,7 @@ or
 ### For React Native v0.60 and above (Autolinking)
 
 As [react-native@0.60](https://reactnative.dev/blog/2019/07/03/version-60) and above supports autolinking there is no need to run the linking process. 
-Read more about autolinking [here](https://github.com/react-native-picker/cli/blob/master/docs/autolinking.md).
+Read more about autolinking [here](https://github.com/react-native-picker/cli/blob/master/docs/autolinking.md). This is supported by `react-native-windows@0.64` and above. 
 
 #### iOS
 CocoaPods on iOS needs this extra step:
@@ -49,7 +49,7 @@ No additional step is required.
 <summary>Windows (expand for details)</summary>
 
 #### Windows
-Usage in Windows requires the following extra steps:
+Usage in Windows without autolinking requires the following extra steps:
 
 ##### Add the `ReactNativePicker` project to your solution.
 
@@ -63,11 +63,8 @@ Add a reference to `ReactNativePicker` to your main application project. From Vi
 Right-click main application project > Add > Reference...
   Check `ReactNativePicker` from Solution Projects.
 
-##### **pch.h**
-
-Add `#include "winrt/ReactNativePicker.h"`.
-
 ##### **app.cpp**
+Add `#include "winrt/ReactNativePicker.h"` to the headers included at the top of the file.
 
 Add `PackageProviders().Append(winrt::ReactNativePicker::ReactPackageProvider());` before `InitializeComponent();`.
 </details>

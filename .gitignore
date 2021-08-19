@@ -67,3 +67,6 @@ example/ios/Pods/
 # expo generated files
 .expo
 web-build
+
+# MSBuild logs
+*.binlog
