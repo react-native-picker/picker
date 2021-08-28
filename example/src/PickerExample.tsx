@@ -4,7 +4,7 @@ import {Picker} from '../../js';
 
 const Item: any = Picker.Item;
 
-function BasicPickerExample() {
+export function BasicPickerExample() {
   const [value, setValue] = React.useState('key1');
   return (
     <Picker
