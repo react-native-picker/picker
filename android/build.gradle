@@ -27,7 +27,7 @@ android {
   defaultConfig {
     minSdkVersion getExtOrIntegerDefault('minSdkVersion')
     targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
-    vectorDrawables.useSupportLibrary getExtOrDefault('vector_drawable_use_support_library')
+    vectorDrawables.useSupportLibrary=getExtOrDefault('vector_drawable_use_support_library')
   }
 }
 
