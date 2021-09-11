@@ -142,7 +142,13 @@
     "dist",
     "!**/__tests__",
     "!**/__fixtures__",
-    "!**/__mocks__"
+    "!**/__mocks__",
+    "ios",
+    "macos",
+    "android",
+    "typings",
+    "windows",
+    "RNCPicker.podspec"
   ],
   "react-native-builder-bob": {
     "source": "js",
