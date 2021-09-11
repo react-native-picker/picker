@@ -8,7 +8,7 @@
  * @flow
  */
 
-import UnimplementedView from 'react-native/Libraries/Components/UnimplementedViews/UnimplementedView';
+import UnimplementedView from './UnimplementedView';
 
 /**
  * Fallback for non-android platforms

@@ -7,6 +7,6 @@
 
 'use strict';
 
-import UnimplementedView from 'react-native/Libraries/Components/UnimplementedViews/UnimplementedView';
+import UnimplementedView from './UnimplementedView';
 
 export default UnimplementedView;
