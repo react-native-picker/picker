@@ -1,7 +1,7 @@
 {
   "include": ["typings/**/*.d.ts"],
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "declaration": true,
     "importHelpers": true,
