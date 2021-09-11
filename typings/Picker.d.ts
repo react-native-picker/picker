@@ -32,7 +32,7 @@ export interface PickerItemProps<T = ItemValue> {
    * If set to false, the specific item will be disabled, i.e. the user will not be able to make a
    * selection.
    * @default true
-   * @platform android
+   * @platform android | web
    */
   enabled?: boolean;
 }

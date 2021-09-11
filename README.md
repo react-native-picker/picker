@@ -235,7 +235,7 @@ If set to false, the picker will be disabled, i.e. the user will not be able to 
 
 | Type | Required | Platform |
 | ---- | -------- | -------- |
-| bool | No       | Android, Windows  |
+| bool | No       | Android, Web,  Windows  |
 
 ---
 

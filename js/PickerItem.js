@@ -13,6 +13,7 @@ type Props = {
   color?: ColorValue,
   label: string,
   testID?: string,
+  enabled?: Boolean,
   value?: number | string,
 };
 
@@ -22,14 +23,24 @@ const createElement =
 
 const Option = (props: any) => createElement('option', props);
 
+/**
+ * PickerItem Component for React Native Web
+ * @returns
+ */
 export default function PickerItem({
   color,
   label,
   testID,
   value,
+  enabled = true,
 }: Props): React.Node {
   return (
-    <Option style={{color}} testID={testID} value={value} label={label}>
+    <Option
+      disabled={enabled === false ? true : undefined}
+      style={{color}}
+      testID={testID}
+      value={value}
+      label={label}>
       {label}
     </Option>
   );
