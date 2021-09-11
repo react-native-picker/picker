@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import UnimplementedView from 'react-native/Libraries/Components/UnimplementedViews/UnimplementedView';
+import UnimplementedView from './UnimplementedView';
 
 function PickerIOS(): React.Node {
   return <UnimplementedView />;

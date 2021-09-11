@@ -10,8 +10,6 @@ import {forwardRef, useRef} from 'react';
 import type {ViewProps} from 'react-native-web/src/exports/View/types';
 import type {GenericStyleProp} from 'react-native-web/src/types';
 import type {TextStyle} from 'react-native-web/src/exports/Text/types';
-// $FlowFixMe fallback for older react-native-web versions
-import {createElement, unstable_createElement} from 'react-native';
 import PickerItem from './PickerItem';
 
 type PickerProps = {
@@ -31,10 +29,12 @@ type PickerProps = {
   prompt?: string,
 };
 
-const myCreateElement = createElement || unstable_createElement;
+const createElement =
+  require('react-native-web').createElement ||
+  require('react-native-web').unstable_createElement;
 
 const Select = forwardRef((props: any, forwardedRef) =>
-  myCreateElement('select', props),
+  createElement('select', props),
 );
 
 const Picker: React$AbstractComponent<PickerProps, empty> = forwardRef<
