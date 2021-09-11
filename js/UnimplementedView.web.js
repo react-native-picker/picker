@@ -26,13 +26,14 @@ const UnimplementedView = (props: $FlowFixMeProps): React.Node => {
 };
 
 const styles = StyleSheet.create({
-  unimplementedView: __DEV__
-    ? {
-        alignSelf: 'flex-start',
-        borderColor: 'red',
-        borderWidth: 1,
-      }
-    : {},
+  unimplementedView:
+    process.env.NODE_ENV !== 'production'
+      ? {
+          alignSelf: 'flex-start',
+          borderColor: 'red',
+          borderWidth: 1,
+        }
+      : {},
 });
 
 export default UnimplementedView;
