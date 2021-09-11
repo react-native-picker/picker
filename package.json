@@ -3,9 +3,13 @@
   "version": "2.0.0",
   "homepage": "https://github.com/react-native-picker/picker#readme",
   "description": "React Native Picker for iOS, Android, macOS, and Windows",
-  "main": "./js/index.js",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/module/index.js",
   "types": "./typings/index.d.ts",
+  "react-native": "js/index.js",
   "scripts": {
+    "prepare": "bob build",
+    "build": "bob build",
     "start": "react-native start",
     "start:macos": "react-native start --projectRoot ./ --use-react-native-macos",
     "ios": "cd example && react-native run-ios",
@@ -69,6 +73,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.2",
+    "react-native-builder-bob": "^0.18.1",
     "react-native-macos": "0.61.63",
     "react-native-web": "^0.14.10",
     "react-native-windows": "^0.64.14",
@@ -120,6 +125,9 @@
     "preset": "react-native",
     "setupFilesAfterEnv": [
       "<rootDir>/jest.setup.js"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist/"
     ]
   },
   "repository": {
@@ -128,5 +136,29 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "files": [
+    "js",
+    "dist",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
+  ],
+  "react-native-builder-bob": {
+    "source": "js",
+    "output": "dist",
+    "targets": [
+      [
+        "commonjs",
+        {
+          "flow": true
+        }
+      ],
+      "module"
+    ]
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "dist/"
+  ]
 }
