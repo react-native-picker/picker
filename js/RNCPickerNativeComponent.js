@@ -38,6 +38,7 @@ type RNCPickerIOSType = HostComponent<
     selectedIndex: number,
     style?: ?TextStyleProp,
     testID?: ?string,
+    numberOfLines?: ?number,
   |}>,
 >;
 
