@@ -18,7 +18,7 @@ namespace winrt::ReactNativePicker::implementation {
 
         // IViewManager
         winrt::hstring Name() noexcept;
-        winrt::Windows::UI::Xaml::FrameworkElement CreateView() noexcept;
+        xaml::FrameworkElement CreateView() noexcept;
 
         // IViewManagerWithReactContext
         winrt::Microsoft::ReactNative::IReactContext ReactContext() noexcept;
@@ -30,7 +30,7 @@ namespace winrt::ReactNativePicker::implementation {
             NativeProps() noexcept;
 
         void UpdateProperties(
-            winrt::Windows::UI::Xaml::FrameworkElement const& view,
+            xaml::FrameworkElement const& view,
             winrt::Microsoft::ReactNative::IJSValueReader const& propertyMapReader) noexcept;
 
         // IViewManagerWithExportedEventTypeConstants

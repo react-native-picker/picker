@@ -14,7 +14,7 @@
 
 | @react-native-picker/picker | react-native | react-native-windows |
 | --- | --- | --- |
-| master | 0.61+ | 0.64+ |
+| >= 2.0.0 | 0.61+ | 0.64+ |
 | >= 1.16.0 | 0.61+ | 0.61+ |
 | >= 1.2.0 | 0.60+ or 0.59+ with [Jetifier](https://www.npmjs.com/package/jetifier) | N/A |
 | >= 1.0.0 | 0.57 | N/A |

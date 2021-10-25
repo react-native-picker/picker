@@ -9,7 +9,7 @@
 namespace winrt {
     using namespace Microsoft::ReactNative;
     using namespace Windows::Foundation::Collections;
-    using namespace Windows::UI::Xaml;
+    using namespace xaml;
 }
 
 namespace winrt::ReactNativePicker::implementation {
