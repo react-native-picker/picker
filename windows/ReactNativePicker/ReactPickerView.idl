@@ -1,7 +1,9 @@
+#include <NamespaceRedirect.h>
+
 namespace ReactNativePicker{
 
     [default_interface]
-    runtimeclass ReactPickerView : Windows.UI.Xaml.Controls.ComboBox {
+    runtimeclass ReactPickerView : XAML_NAMESPACE.Controls.ComboBox {
         ReactPickerView(Microsoft.ReactNative.IReactContext context);
         void UpdateProperties(Microsoft.ReactNative.IJSValueReader reader);
     };

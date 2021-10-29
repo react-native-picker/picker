@@ -22,15 +22,15 @@ namespace winrt::ReactNativePicker::implementation {
         // FUTURE: remove when we can require RS5+
         int32_t m_selectedIndex{ 0 };
         std::vector<winrt::hstring> m_itemValues;
-        winrt::Windows::UI::Xaml::Media::Brush m_comboBoxColor{ nullptr };
-        winrt::Windows::UI::Xaml::Controls::ComboBox::SelectionChanged_revoker m_selectionChangedRevoker{};
-        winrt::Windows::UI::Xaml::Controls::ComboBox::DropDownClosed_revoker m_dropDownClosedRevoker{};
+        xaml::Media::Brush m_comboBoxColor{ nullptr };
+        xaml::Controls::ComboBox::SelectionChanged_revoker m_selectionChangedRevoker{};
+        xaml::Controls::ComboBox::DropDownClosed_revoker m_dropDownClosedRevoker{};
 
         void RegisterEvents();
         void RepopulateItems(winrt::Microsoft::ReactNative::JSValueArray const& items);
         void SetSelectedIndex(int index);
-        void OnSelectionChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::UI::Xaml::Controls::SelectionChangedEventArgs const& args);
-        void UpdateComboBoxItemForegroundResource(winrt::Windows::UI::Xaml::FrameworkElement const& item, winrt::Windows::UI::Xaml::Media::Brush const& color);
+        void OnSelectionChanged(winrt::Windows::Foundation::IInspectable const& sender, xaml::Controls::SelectionChangedEventArgs const& args);
+        void UpdateComboBoxItemForegroundResource(xaml::FrameworkElement const& item, xaml::Media::Brush const& color);
     };
 } // namespace winrt::ReactNativePicker::implementation
 
