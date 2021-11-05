@@ -8,6 +8,7 @@
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
 
 import * as React from 'react';
+import * as ReactNativeWeb from 'react-native-web';
 
 type Props = {
   color?: ColorValue,
@@ -18,8 +19,7 @@ type Props = {
 };
 
 const createElement =
-  require('react-native-web').createElement ||
-  require('react-native-web').unstable_createElement;
+  ReactNativeWeb.createElement || ReactNativeWeb.unstable_createElement;
 
 const Option = (props: any) => createElement('option', props);
 
