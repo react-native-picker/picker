@@ -51,9 +51,12 @@ type RNCPickerIOSType = HostComponent<
 
 type Label = Stringish | number;
 
+type ThemeVariant = "light" | "dark";
+
 type Props = $ReadOnly<{|
   ...ViewProps,
   children: ChildrenArray<Element<typeof PickerIOSItem>>,
+  themeVariant: ?ThemeVariant,
   itemStyle?: ?TextStyleProp,
   onChange?: ?(event: PickerIOSChangeEvent) => mixed,
   onValueChange?: ?(itemValue: string | number, itemIndex: number) => mixed,
@@ -115,6 +118,7 @@ class PickerIOS extends React.Component<Props, State> {
           ref={(picker) => {
             this._picker = picker;
           }}
+          themeVariant={this.props.themeVariant}
           testID={this.props.testID}
           style={[styles.pickerIOS, this.props.itemStyle]}
           items={this.state.items}

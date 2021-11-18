@@ -387,6 +387,7 @@ If set to false, the specific item will be disabled, i.e. the user will not be a
 - [`itemStyle`](#itemstyle)
 - [`onValueChange`](#onvaluechange)
 - [`selectedValue`](#selectedvalue)
+- [`themeVariant`](#themeVariant)
 
 ---
 
@@ -416,4 +417,10 @@ If set to false, the specific item will be disabled, i.e. the user will not be a
 | ---- | -------- |
 | any  | No       |
 
-  
+---
+
+### `themeVariant`
+
+| Type | Required |
+| ---- | -------- |
+|  enum('light', 'dark')  | No       |
