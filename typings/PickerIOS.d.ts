@@ -19,6 +19,7 @@ export interface PickerIOSProps extends ViewProps {
 	selectedValue?: ItemValue;
 	testID?: string;
 	numberOfLines?: number;
+	themeVariant ?: string;
 }
 
 declare class PickerIOS extends React.Component<PickerIOSProps, {}> {

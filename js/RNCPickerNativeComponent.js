@@ -31,7 +31,7 @@ type RNCPickerIOSTypeItemType = $ReadOnly<{|
 
 type Label = Stringish | number;
 
-type RNCPickerIOSType = HostComponent<
+export type RNCPickerIOSType = HostComponent<
   $ReadOnly<{|
     items: $ReadOnlyArray<RNCPickerIOSTypeItemType>,
     onChange: (event: PickerIOSChangeEvent) => void,
@@ -39,6 +39,7 @@ type RNCPickerIOSType = HostComponent<
     style?: ?TextStyleProp,
     testID?: ?string,
     numberOfLines?: ?number,
+    themeVariant?: ?string,
   |}>,
 >;
 
