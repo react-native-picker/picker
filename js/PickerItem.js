@@ -18,10 +18,8 @@ type Props = {
   value?: number | string,
 };
 
-const createElement =
-  ReactNativeWeb.createElement || ReactNativeWeb.unstable_createElement;
-
-const Option = (props: any) => createElement('option', props);
+const Option = (props: any) =>
+  ReactNativeWeb.unstable_createElement('option', props);
 
 /**
  * PickerItem Component for React Native Web
