@@ -30,11 +30,8 @@ type PickerProps = {
   prompt?: string,
 };
 
-const createElement =
-  ReactNativeWeb.createElement || ReactNativeWeb.unstable_createElement;
-
 const Select = forwardRef((props: any, forwardedRef) =>
-  createElement('select', props),
+  ReactNativeWeb.unstable_createElement('select', props),
 );
 
 const Picker: React$AbstractComponent<PickerProps, empty> = forwardRef<
