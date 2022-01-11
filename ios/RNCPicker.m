@@ -86,7 +86,7 @@ numberOfRowsInComponent:(__unused NSInteger)component
 }
 
 - (CGFloat)pickerView:(__unused UIPickerView *)pickerView rowHeightForComponent:(__unused NSInteger) component {
-  return (_font.lineHeight) * _numberOfLines + 4;
+  return (_font.lineHeight) * _numberOfLines + 3;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView
