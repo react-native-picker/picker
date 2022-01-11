@@ -19,7 +19,7 @@
 {
   if ((self = [super initWithFrame:frame])) {
     _color = [UIColor blackColor];
-    _font = [UIFont systemFontOfSize:23]; // TODO: selected title default should be 23.5
+    _font = [UIFont systemFontOfSize:23.5]; // TODO: selected title default should be 23.5
     _selectedIndex = NSNotFound;
     _textAlign = NSTextAlignmentCenter;
     _numberOfLines = 1;
