@@ -19,7 +19,7 @@
 {
   if ((self = [super initWithFrame:frame])) {
     _color = [UIColor blackColor];
-    _font = [UIFont systemFontOfSize:24]; // TODO: selected title default should be 23.5
+    _font = [UIFont systemFontOfSize:23]; // TODO: selected title default should be 23.5
     _selectedIndex = NSNotFound;
     _textAlign = NSTextAlignmentCenter;
     _numberOfLines = 1;
@@ -86,7 +86,7 @@ numberOfRowsInComponent:(__unused NSInteger)component
 }
 
 - (CGFloat)pickerView:(__unused UIPickerView *)pickerView rowHeightForComponent:(__unused NSInteger) component {
-  return (_font.lineHeight);
+  return (_font.lineHeight) * _numberOfLines + 4;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView
