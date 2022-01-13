@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		65A65136236317E000467FDE /* RNCPickerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A65135236317E000467FDE /* RNCPickerManager.m */; };
+		83CE2A3626889B7700470183 /* RNCPickerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83CE2A3526889B7700470183 /* RNCPickerLabel.m */; };
 		B3E7B58A1CC2AC0600A0062D /* RNCPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNCPicker.m */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,8 @@
 		134814201AA4EA6300B7C361 /* libRNCPicker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNCPicker.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A65134236317E000467FDE /* RNCPickerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCPickerManager.h; sourceTree = "<group>"; };
 		65A65135236317E000467FDE /* RNCPickerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCPickerManager.m; sourceTree = "<group>"; };
+		83CE2A3426889B7700470183 /* RNCPickerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCPickerLabel.h; sourceTree = "<group>"; };
+		83CE2A3526889B7700470183 /* RNCPickerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCPickerLabel.m; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNCPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCPicker.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNCPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCPicker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,6 +56,8 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				83CE2A3426889B7700470183 /* RNCPickerLabel.h */,
+				83CE2A3526889B7700470183 /* RNCPickerLabel.m */,
 				65A65134236317E000467FDE /* RNCPickerManager.h */,
 				65A65135236317E000467FDE /* RNCPickerManager.m */,
 				B3E7B5881CC2AC0600A0062D /* RNCPicker.h */,
@@ -118,6 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83CE2A3626889B7700470183 /* RNCPickerLabel.m in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* RNCPicker.m in Sources */,
 				65A65136236317E000467FDE /* RNCPickerManager.m in Sources */,
 			);

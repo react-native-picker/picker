@@ -12,10 +12,12 @@
 
 ## Supported Versions
 
-| @react-native-picker/picker | react-native |
-| --- | --- |
-| >= 1.2.0 | 0.60+ or 0.59+ with [Jetifier](https://www.npmjs.com/package/jetifier) |
-| >= 1.0.0 | 0.57 |
+| @react-native-picker/picker | react-native | react-native-windows |
+| --- | --- | --- |
+| >= 2.0.0 | 0.61+ | 0.64+ |
+| >= 1.16.0 | 0.61+ | 0.61+ |
+| >= 1.2.0 | 0.60+ or 0.59+ with [Jetifier](https://www.npmjs.com/package/jetifier) | N/A |
+| >= 1.0.0 | 0.57 | N/A |
 
 ## For Managed Workflow users using Expo 37
 This component is not supported in the managed workflow for expo sdk 37. Please import the `Picker` from `react-native`.
@@ -32,7 +34,7 @@ or
 ### For React Native v0.60 and above (Autolinking)
 
 As [react-native@0.60](https://reactnative.dev/blog/2019/07/03/version-60) and above supports autolinking there is no need to run the linking process. 
-Read more about autolinking [here](https://github.com/react-native-picker/cli/blob/master/docs/autolinking.md).
+Read more about autolinking [here](https://github.com/react-native-picker/cli/blob/master/docs/autolinking.md). This is supported by `react-native-windows@0.64` and above. 
 
 #### iOS
 CocoaPods on iOS needs this extra step:
@@ -48,7 +50,7 @@ No additional step is required.
 <summary>Windows (expand for details)</summary>
 
 #### Windows
-Usage in Windows requires the following extra steps:
+Usage in Windows without autolinking requires the following extra steps:
 
 ##### Add the `ReactNativePicker` project to your solution.
 
@@ -62,11 +64,8 @@ Add a reference to `ReactNativePicker` to your main application project. From Vi
 Right-click main application project > Add > Reference...
   Check `ReactNativePicker` from Solution Projects.
 
-##### **pch.h**
-
-Add `#include "winrt/ReactNativePicker.h"`.
-
 ##### **app.cpp**
+Add `#include "winrt/ReactNativePicker.h"` to the headers included at the top of the file.
 
 Add `PackageProviders().Append(winrt::ReactNativePicker::ReactPackageProvider());` before `InitializeComponent();`.
 </details>
@@ -146,6 +145,30 @@ Add `Picker` like this:
 </Picker>
 ```
 
+If you want to open/close picker programmatically on android (available from version 1.16.0+), pass ref to `Picker`:
+
+```javascript
+const pickerRef = useRef();
+
+function open() {
+  pickerRef.current.focus();
+}
+
+function close() {
+  pickerRef.current.blur();
+}
+
+return <Picker
+  ref={pickerRef}
+  selectedValue={selectedLanguage}
+  onValueChange={(itemValue, itemIndex) =>
+    setSelectedLanguage(itemValue)
+  }>
+  <Picker.Item label="Java" value="java" />
+  <Picker.Item label="JavaScript" value="js" />
+</Picker>
+```
+
 ### Props
 
 * [Inherited `View` props...](https://reactnative.dev/docs/view#props)
@@ -212,7 +235,7 @@ If set to false, the picker will be disabled, i.e. the user will not be able to 
 
 | Type | Required | Platform |
 | ---- | -------- | -------- |
-| bool | No       | Android, Windows  |
+| bool | No       | Android, Web,  Windows  |
 
 ---
 
@@ -231,11 +254,21 @@ On Android, specifies how to display the selection items when the user taps on t
 
 ### `dropdownIconColor`
 
-On Android, specifies color of dropdown triangle. Input value should be hexadecimal string.
+On Android, specifies color of dropdown triangle. Input value should be value that is accepted by react-native `processColor` function.
 
-| Type   | Required | Platform |
-| ------ | -------- | -------- |
-| string | No       | Android  |
+| Type       | Required | Platform |
+| ---------- | -------- | -------- |
+| ColorValue | No       | Android  |
+
+---
+
+### `dropdownIconRippleColor`
+
+On Android, specifies ripple color of dropdown triangle. Input value should be value that is accepted by react-native `processColor` function.
+
+| Type       | Required | Platform |
+| ---------- | -------- | -------- |
+| ColorValue | No       | Android  |
 
 ---
 
@@ -259,12 +292,34 @@ Style to apply to each of the item labels.
 
 ### `numberOfLines`
 
-On Android, used to truncate the text with an ellipsis after computing the text layout, including line wrapping,
+On Android & iOS, used to truncate the text with an ellipsis after computing the text layout, including line wrapping,
 such that the total number of lines does not exceed this number. Default is '1'
 
 | Type    | Required | Platform |
 | ------- | -------- | -------- |
-| number  | No       | Android  |
+| number  | No       | Android, iOS  |
+
+### `onBlur`
+
+| Type      | Required | Platform |
+| --------- | -------- | -------- |
+| function  | no       | Android  |
+
+### `onFocus`
+
+| Type      | Required | Platform |
+| --------- | -------- | -------- |
+| function  | no       | Android  |
+
+## Methods
+
+### `blur` (Android only, lib version 1.16.0+)
+
+Programmatically closes picker
+
+### `focus` (Android only, lib version 1.16.0+)
+
+Programmatically opens picker
 
 ## PickerItemProps
 
@@ -291,9 +346,9 @@ Actual value on the Picker Item
 
 Displayed color on the Picker Item
 
-| Type    | Required | 
-| ------- | -------- | 
-| string  | no       | 
+| Type        | Required | 
+| ----------- | -------- | 
+| ColorValue  | no       | 
 
 
 ### `fontFamily`

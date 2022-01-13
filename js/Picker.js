@@ -19,7 +19,7 @@ import PickerWindows from './PickerWindows';
 import PickerMacOS from './PickerMacOS';
 
 import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
-import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
+import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {Node} from 'react';
 
 const MODE_DIALOG = 'dialog';
@@ -133,6 +133,7 @@ type PickerProps = $ReadOnly<{|
  *     </Picker>
  */
 class Picker extends React.Component<PickerProps> {
+  pickerRef: React.ElementRef<any> = React.createRef();
   /**
    * On Android, display the options in a dialog.
    */
@@ -149,6 +150,14 @@ class Picker extends React.Component<PickerProps> {
     mode: MODE_DIALOG,
   };
 
+  blur: () => void = () => {
+    this.pickerRef.current?.blur();
+  };
+
+  focus: () => void = () => {
+    this.pickerRef.current?.focus();
+  };
+
   render(): React.Node {
     if (Platform.OS === 'ios') {
       /* $FlowFixMe(>=0.81.0 site=react_native_ios_fb) This suppression was
@@ -162,7 +171,9 @@ class Picker extends React.Component<PickerProps> {
       return (
         /* $FlowFixMe(>=0.81.0 site=react_native_android_fb) This suppression
          * was added when renaming suppression sites. */
-        <PickerAndroid {...this.props}>{this.props.children}</PickerAndroid>
+        <PickerAndroid ref={this.pickerRef} {...this.props}>
+          {this.props.children}
+        </PickerAndroid>
       );
     } else if (Platform.OS === 'windows') {
       return (

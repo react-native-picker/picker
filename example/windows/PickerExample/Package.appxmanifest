@@ -6,16 +6,16 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   IgnorableNamespaces="uap mp">
 
- <Identity
-    Name="e99f71c4-2760-471e-b3e9-8ebcf72fa94a"
-    Publisher="CN=Microsoft Corporation"
+  <Identity
+    Name="e9f8781b-51fe-494a-826b-592298950dd3"
+    Publisher="CN=ReactNativePicker"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="e99f71c4-2760-471e-b3e9-8ebcf72fa94a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="e9f8781b-51fe-494a-826b-592298950dd3" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>PickerExample</DisplayName>
-    <PublisherDisplayName>kaigu</PublisherDisplayName>
+    <PublisherDisplayName>ReactNativePicker</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -28,7 +28,8 @@
   </Resources>
 
   <Applications>
-    <Application Id="App"
+    <Application
+      Id="App"
       Executable="$targetnametoken$.exe"
       EntryPoint="PickerExample.App">
       <uap:VisualElements

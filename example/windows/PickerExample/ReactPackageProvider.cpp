@@ -13,5 +13,3 @@ void ReactPackageProvider::CreatePackage(IReactPackageBuilder const &packageBuil
 }
 
 } // namespace winrt::PickerExample::implementation
-
-

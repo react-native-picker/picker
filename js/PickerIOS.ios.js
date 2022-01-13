@@ -18,11 +18,11 @@ import {processColor, StyleSheet, View} from 'react-native';
 import RNCPickerNativeComponent from './RNCPickerNativeComponent';
 
 import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
-import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
+import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
 import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {Element, ElementRef, ChildrenArray} from 'react';
-import type {NativeComponent} from 'react-native/Libraries/Renderer/shims/ReactNative';
+import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
 
 type PickerIOSChangeEvent = SyntheticEvent<
   $ReadOnly<{|
@@ -38,16 +38,15 @@ type RNCPickerIOSItemType = $ReadOnly<{|
   testID: ?string,
 |}>;
 
-type RNCPickerIOSType = Class<
-  NativeComponent<
-    $ReadOnly<{|
-      items: $ReadOnlyArray<RNCPickerIOSItemType>,
-      onChange: (event: PickerIOSChangeEvent) => void,
-      selectedIndex: number,
-      style?: ?TextStyleProp,
-      testID?: ?string,
-    |}>,
-  >,
+type RNCPickerIOSType = HostComponent<
+  $ReadOnly<{|
+    items: $ReadOnlyArray<RNCPickerIOSItemType>,
+    onChange: (event: PickerIOSChangeEvent) => void,
+    selectedIndex: number,
+    style?: ?TextStyleProp,
+    testID?: ?string,
+    numberOfLines?: ?number,
+  |}>,
 >;
 
 type Label = Stringish | number;
@@ -59,6 +58,7 @@ type Props = $ReadOnly<{|
   onChange?: ?(event: PickerIOSChangeEvent) => mixed,
   onValueChange?: ?(itemValue: string | number, itemIndex: number) => mixed,
   selectedValue: ?(number | string),
+  numberOfLines: ?number,
 |}>;
 
 type State = {|
@@ -105,6 +105,10 @@ class PickerIOS extends React.Component<Props, State> {
   }
 
   render(): React.Node {
+    let numberOfLines = Math.round(this.props.numberOfLines ?? 1);
+    if (numberOfLines < 1) {
+      numberOfLines = 1;
+    }
     return (
       <View style={this.props.style}>
         <RNCPickerNativeComponent
@@ -116,6 +120,7 @@ class PickerIOS extends React.Component<Props, State> {
           items={this.state.items}
           selectedIndex={this.state.selectedIndex}
           onChange={this._onChange}
+          numberOfLines={numberOfLines}
         />
       </View>
     );

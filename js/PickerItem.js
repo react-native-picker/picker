@@ -5,32 +5,40 @@
  *
  */
 
-import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
-
-// $FlowFixMe
-import {createElement, unstable_createElement} from 'react-native';
+import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
 
 import * as React from 'react';
+import * as ReactNativeWeb from 'react-native-web';
 
 type Props = {
   color?: ColorValue,
   label: string,
   testID?: string,
+  enabled?: Boolean,
   value?: number | string,
 };
 
-const myCreateElement = createElement || unstable_createElement;
+const Option = (props: any) =>
+  ReactNativeWeb.unstable_createElement('option', props);
 
-const Option = (props: any) => myCreateElement('option', props);
-
+/**
+ * PickerItem Component for React Native Web
+ * @returns
+ */
 export default function PickerItem({
   color,
   label,
   testID,
   value,
+  enabled = true,
 }: Props): React.Node {
   return (
-    <Option style={{color}} testID={testID} value={value} label={label}>
+    <Option
+      disabled={enabled === false ? true : undefined}
+      style={{color}}
+      testID={testID}
+      value={value}
+      label={label}>
       {label}
     </Option>
   );

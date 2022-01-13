@@ -8,9 +8,8 @@
 package com.reactnativecommunity.picker;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
+import android.graphics.Color;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +17,19 @@ import android.widget.BaseAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.common.MapBuilder;
 import com.facebook.react.modules.i18nmanager.I18nUtil;
 import com.facebook.react.uimanager.*;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.EventDispatcher;
+
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -38,6 +42,36 @@ import javax.annotation.Nullable;
  */
 public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, ReactPickerShadowNode> {
   private static final ReadableArray EMPTY_ARRAY = Arguments.createArray();
+
+  private static final int FOCUS_PICKER = 1;
+  private static final int BLUR_PICKER = 2;
+
+  @Nullable
+  @Override
+  public Map<String, Object> getExportedCustomBubblingEventTypeConstants() {
+    return MapBuilder.<String, Object>builder()
+        .put(
+            "topSelect",
+            MapBuilder.of(
+                "phasedRegistrationNames",
+                MapBuilder.of("bubbled", "onSelect", "captured", "onSelectCapture")))
+        .put(
+            "topFocus",
+            MapBuilder.of(
+                "phasedRegistrationNames",
+                MapBuilder.of("bubbled", "onFocus", "captured", "onFocusCapture")))
+        .put(
+            "topBlur",
+            MapBuilder.of(
+                "phasedRegistrationNames",
+                MapBuilder.of("bubbled", "onBlur", "captured", "onBlurCapture")))
+        .build();
+  }
+
+  @Override
+  public @Nullable Map<String, Integer> getCommandsMap() {
+    return MapBuilder.of("focus", FOCUS_PICKER, "blur", BLUR_PICKER);
+  }
 
   @ReactProp(name = "items")
   public void setItems(ReactPicker view, @Nullable ReadableArray items) {
@@ -76,9 +110,20 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
     view.setStagedSelection(selected);
   }
 
+  @ReactProp(name = ViewProps.BACKGROUND_COLOR)
+  @Override
+  public void setBackgroundColor(ReactPicker view, @Nullable int color) {
+    view.setBackgroundColor(color);
+  }
+
   @ReactProp(name = "dropdownIconColor")
   public void setDropdownIconColor(ReactPicker view, @Nullable int color) {
-    view.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+    view.setDropdownIconColor(color);
+  }
+
+  @ReactProp(name = "dropdownIconRippleColor")
+  public void setDropdownIconRippleColor(ReactPicker view, @Nullable int color) {
+    view.setDropdownIconRippleColor(color);
   }
 
   @ReactProp(name = ViewProps.NUMBER_OF_LINES, defaultInt = 1)
@@ -104,10 +149,35 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
   protected void addEventEmitters(
       final ThemedReactContext reactContext,
       final ReactPicker picker) {
-    picker.setOnSelectListener(
-            new PickerEventEmitter(
-                    picker,
-                    reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher()));
+    final PickerEventEmitter eventEmitter = new PickerEventEmitter(
+        picker,
+        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher());
+    picker.setOnSelectListener(eventEmitter);
+    picker.setOnFocusListener(eventEmitter);
+  }
+
+  @Override
+  public void receiveCommand(@NonNull ReactPicker root, int commandId, @androidx.annotation.Nullable ReadableArray args) {
+    switch (commandId) {
+      case FOCUS_PICKER:
+        root.performClick();
+        break;
+      case BLUR_PICKER:
+        root.clearFocus();
+        break;
+    }
+  }
+
+  @Override
+  public void receiveCommand(@NonNull ReactPicker root, String commandId, @androidx.annotation.Nullable ReadableArray args) {
+    switch (commandId) {
+      case "focus":
+        root.performClick();
+        break;
+      case "blur":
+        root.clearFocus();
+        break;
+    }
   }
 
   @Override
@@ -201,6 +271,8 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
       if (style != null) {
         if (style.hasKey("backgroundColor") && !style.isNull("backgroundColor")) {
           convertView.setBackgroundColor(style.getInt("backgroundColor"));
+        } else {
+          convertView.setBackgroundColor(Color.TRANSPARENT);
         }
         
         if (style.hasKey("color") && !style.isNull("color")) {
@@ -225,19 +297,16 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
 
       if (item.hasKey("fontFamily") && !item.isNull("fontFamily")) {
         Typeface face = Typeface.create(item.getString("fontFamily"), Typeface.NORMAL);
-        // Typeface face = Typeface.create("MuseoSans-500", Typeface.NORMAL);
         textView.setTypeface(face);
       }
 
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-        boolean isRTL = I18nUtil.getInstance().isRTL(convertView.getContext());
-        if (isRTL) {
-          convertView.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-          convertView.setTextDirection(View.TEXT_DIRECTION_RTL);
-        } else {
-          convertView.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
-          convertView.setTextDirection(View.TEXT_DIRECTION_LTR);
-        }
+      boolean isRTL = I18nUtil.getInstance().isRTL(convertView.getContext());
+      if (isRTL) {
+        convertView.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+        convertView.setTextDirection(View.TEXT_DIRECTION_RTL);
+      } else {
+        convertView.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        convertView.setTextDirection(View.TEXT_DIRECTION_LTR);
       }
 
       return convertView;
@@ -254,7 +323,7 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
     }
   }
 
-  private static class PickerEventEmitter implements ReactPicker.OnSelectListener {
+  private static class PickerEventEmitter implements ReactPicker.OnSelectListener, ReactPicker.OnFocusListener {
 
     private final ReactPicker mReactPicker;
     private final EventDispatcher mEventDispatcher;
@@ -268,6 +337,16 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
     public void onItemSelected(int position) {
       mEventDispatcher.dispatchEvent( new PickerItemSelectEvent(
               mReactPicker.getId(), position));
+    }
+
+    @Override
+    public void onPickerBlur() {
+      mEventDispatcher.dispatchEvent( new PickerBlurEvent(mReactPicker.getId()));
+    }
+
+    @Override
+    public void onPickerFocus() {
+      mEventDispatcher.dispatchEvent( new PickerFocusEvent(mReactPicker.getId()));
     }
   }
 }

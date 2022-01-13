@@ -6,21 +6,27 @@
 #include "ReactPickerView.h"
 #include "ReactPickerView.g.cpp"
 
+#include <winrt/Windows.Foundation.Metadata.h>
+#include <UI.Xaml.Input.h>
+
 namespace winrt {
     using namespace Microsoft::ReactNative;
     using namespace Windows::Foundation;
     using namespace Windows::Foundation::Metadata;
-    using namespace Windows::UI;
-    using namespace Windows::UI::Xaml;
-    using namespace Windows::UI::Xaml::Controls;
-    using namespace Windows::UI::Xaml::Input;
-    using namespace Windows::UI::Xaml::Media;
+    using namespace xaml;
+    using namespace xaml::Controls;
+    using namespace xaml::Input;
+    using namespace xaml::Media;
 } // namespace winrt
 
 namespace winrt::ReactNativePicker::implementation {
 
+#ifdef USE_WINUI3
+    const bool ReactPickerView::s_isEditableComboboxSupported = true;
+#else
     const bool ReactPickerView::s_isEditableComboboxSupported = winrt::ApiInformation::IsPropertyPresent(
-        L"Windows.UI.Xaml.Controls.ComboBox", L"IsEditableProperty");
+         L"Windows.UI.Xaml.Controls.ComboBox", L"IsEditableProperty");
+#endif
 
     ReactPickerView::ReactPickerView(winrt::IReactContext const& reactContext) : m_reactContext(reactContext) {
         this->AllowFocusOnInteraction(true);
@@ -61,9 +67,13 @@ namespace winrt::ReactNativePicker::implementation {
                         this->ClearValue(winrt::ComboBox::IsEditableProperty());
                     }
                     else {
-                        if (auto iComboBox6 = this->try_as<winrt::Controls::IComboBox6>()) {
-                            iComboBox6.IsEditable(propertyValue.AsBoolean());
-                        }
+#ifdef USE_WINUI3
+                         this->IsEditable(propertyValue.AsBoolean());
+#else
+                         if (auto iComboBox6 = this->try_as<winrt::Controls::IComboBox6>()) {
+                             iComboBox6.IsEditable(propertyValue.AsBoolean());
+                         }
+#endif
                     }
                 }
             }
@@ -188,7 +198,7 @@ namespace winrt::ReactNativePicker::implementation {
         }
     }
 
-    void ReactPickerView::UpdateComboBoxItemForegroundResource(winrt::FrameworkElement const& item, winrt::Windows::UI::Xaml::Media::Brush const& color) {
+    void ReactPickerView::UpdateComboBoxItemForegroundResource(winrt::FrameworkElement const& item, xaml::Media::Brush const& color) {
         if (auto comboBoxItem = item.try_as<winrt::ComboBoxItem>()) {
             comboBoxItem.Foreground(color);
         }
