@@ -165,6 +165,35 @@ function NoListenerPickerExample() {
   );
 }
 
+function ThemeVariantOverridePickerExample() {
+  const [themeVariantValue, setThemeVariantValue] = React.useState('dark');
+  const isDarkMode = themeVariantValue === 'dark';
+
+  const handleSelect = ({nativeEvent: {newValue}}) =>
+    setThemeVariantValue(newValue);
+
+  return (
+    <View style={{backgroundColor: isDarkMode ? 'black' : 'transparent'}}>
+      <Picker
+        selectedValue={themeVariantValue}
+        selectedColor={'white'}
+        themeVariant={themeVariantValue}
+        onChange={handleSelect}>
+        <Item
+          color={isDarkMode ? 'white' : 'black'}
+          label="Dark mode"
+          value="dark"
+        />
+        <Item
+          color={isDarkMode ? 'white' : 'black'}
+          label="Light mode"
+          value="light"
+        />
+      </Picker>
+    </View>
+  );
+}
+
 function ColorPickerExample() {
   const [value, setValue] = React.useState('red');
   const [isFocused, setIsFocused] = React.useState(false);
@@ -244,6 +273,10 @@ export const examples = [
   {
     title: 'Styled Picker',
     render: StyledPickerExample,
+  },
+  {
+    title: 'Picker with overrided theme variant',
+    render: ThemeVariantOverridePickerExample,
   },
   {
     title: 'Disabled Picker',

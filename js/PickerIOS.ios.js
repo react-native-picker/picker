@@ -16,6 +16,7 @@
 import * as React from 'react';
 import {processColor, StyleSheet, View} from 'react-native';
 import RNCPickerNativeComponent from './RNCPickerNativeComponent';
+import type {RNCPickerIOSType} from './RNCPickerNativeComponent';
 
 import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
@@ -38,17 +39,6 @@ type RNCPickerIOSItemType = $ReadOnly<{|
   testID: ?string,
 |}>;
 
-type RNCPickerIOSType = HostComponent<
-  $ReadOnly<{|
-    items: $ReadOnlyArray<RNCPickerIOSItemType>,
-    onChange: (event: PickerIOSChangeEvent) => void,
-    selectedIndex: number,
-    style?: ?TextStyleProp,
-    testID?: ?string,
-    numberOfLines?: ?number,
-  |}>,
->;
-
 type Label = Stringish | number;
 
 type Props = $ReadOnly<{|
@@ -59,6 +49,7 @@ type Props = $ReadOnly<{|
   onValueChange?: ?(itemValue: string | number, itemIndex: number) => mixed,
   selectedValue: ?(number | string),
   numberOfLines: ?number,
+  themeVariant: ?string,
 |}>;
 
 type State = {|
@@ -115,6 +106,7 @@ class PickerIOS extends React.Component<Props, State> {
           ref={(picker) => {
             this._picker = picker;
           }}
+          themeVariant={this.props.themeVariant}
           testID={this.props.testID}
           style={[styles.pickerIOS, this.props.itemStyle]}
           items={this.state.items}
