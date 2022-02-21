@@ -6,6 +6,7 @@
 #include "ReactPickerView.h"
 #include "ReactPickerView.g.cpp"
 
+#include <UI.Xaml.Media.h>
 #include <winrt/Windows.Foundation.Metadata.h>
 #include <UI.Xaml.Input.h>
 
@@ -50,6 +51,20 @@ namespace winrt::ReactNativePicker::implementation {
                     winrt::FocusManager::TryFocusAsync(comboBox, winrt::FocusState::Programmatic);
                 }
             });
+
+        // Workaround XAML bug with ComboBox and dark theme. Same as:
+        // https://github.com/microsoft/microsoft-ui-xaml/issues/2331    
+        m_dropDownOpenedRevoker = this->DropDownOpened(winrt::auto_revoke,
+            [](auto const& sender, auto const& /*args*/) {
+            auto comboBox = sender.as<xaml::Controls::ComboBox>();
+            if (comboBox.XamlRoot()) { // XamlRoot added in 19H1
+                auto comboBoxAsFrameworkElement = comboBox.XamlRoot().Content().try_as<xaml::FrameworkElement>();
+                auto popups = xaml::Media::VisualTreeHelper::GetOpenPopupsForXamlRoot(comboBox.XamlRoot());
+                for (auto const& popup : popups) {
+                    popup.Child().as<xaml::FrameworkElement>().RequestedTheme(comboBoxAsFrameworkElement.ActualTheme());
+                }
+            }
+        });
     }
 
     void ReactPickerView::UpdateProperties(winrt::IJSValueReader const& reader) {

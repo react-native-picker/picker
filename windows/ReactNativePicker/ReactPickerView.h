@@ -25,6 +25,7 @@ namespace winrt::ReactNativePicker::implementation {
         xaml::Media::Brush m_comboBoxColor{ nullptr };
         xaml::Controls::ComboBox::SelectionChanged_revoker m_selectionChangedRevoker{};
         xaml::Controls::ComboBox::DropDownClosed_revoker m_dropDownClosedRevoker{};
+        xaml::Controls::ComboBox::DropDownOpened_revoker m_dropDownOpenedRevoker{};
 
         void RegisterEvents();
         void RepopulateItems(winrt::Microsoft::ReactNative::JSValueArray const& items);
