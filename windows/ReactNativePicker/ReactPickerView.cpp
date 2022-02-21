@@ -6,9 +6,9 @@
 #include "ReactPickerView.h"
 #include "ReactPickerView.g.cpp"
 
-#include <UI.Xaml.Media.h>
 #include <winrt/Windows.Foundation.Metadata.h>
 #include <UI.Xaml.Input.h>
+#include <UI.Xaml.Media.h>
 
 namespace winrt {
     using namespace Microsoft::ReactNative;
