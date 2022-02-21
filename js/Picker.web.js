@@ -31,7 +31,10 @@ type PickerProps = {
 };
 
 const Select = forwardRef((props: any, forwardedRef) =>
-  ReactNativeWeb.unstable_createElement('select', {...props, ref: forwardedRef}),
+  ReactNativeWeb.unstable_createElement('select', {
+    ...props,
+    ref: forwardedRef,
+  }),
 );
 
 const Picker: React$AbstractComponent<PickerProps, empty> = forwardRef<
@@ -48,7 +51,7 @@ const Picker: React$AbstractComponent<PickerProps, empty> = forwardRef<
     dropdownIconColor,
     ...other
   } = props;
-  
+
   const handleChange = React.useCallback<any>(
     (e: Object) => {
       const {selectedIndex, value} = e.target;
