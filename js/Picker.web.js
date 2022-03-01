@@ -7,7 +7,7 @@
 
 import * as React from 'react';
 import * as ReactNativeWeb from 'react-native-web';
-import {forwardRef, useRef} from 'react';
+import {forwardRef} from 'react';
 import type {ViewProps} from 'react-native-web/src/exports/View/types';
 import type {GenericStyleProp} from 'react-native-web/src/types';
 import type {TextStyle} from 'react-native-web/src/exports/Text/types';
@@ -31,7 +31,10 @@ type PickerProps = {
 };
 
 const Select = forwardRef((props: any, forwardedRef) =>
-  ReactNativeWeb.unstable_createElement('select', props),
+  ReactNativeWeb.unstable_createElement('select', {
+    ...props,
+    ref: forwardedRef,
+  }),
 );
 
 const Picker: React$AbstractComponent<PickerProps, empty> = forwardRef<
@@ -49,8 +52,6 @@ const Picker: React$AbstractComponent<PickerProps, empty> = forwardRef<
     ...other
   } = props;
 
-  const hostRef = useRef(null);
-
   const handleChange = React.useCallback<any>(
     (e: Object) => {
       const {selectedIndex, value} = e.target;
@@ -66,7 +67,7 @@ const Picker: React$AbstractComponent<PickerProps, empty> = forwardRef<
     <Select
       disabled={enabled === false ? true : undefined}
       onChange={handleChange}
-      ref={hostRef}
+      ref={forwardedRef}
       value={selectedValue}
       {...other}
     />
