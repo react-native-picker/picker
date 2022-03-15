@@ -20,7 +20,7 @@ namespace winrt::ReactNativePicker::implementation {
         Microsoft::ReactNative::IReactContext m_reactContext{ nullptr };
         bool m_updating{ false };
         // FUTURE: remove when we can require RS5+
-        int32_t m_selectedIndex{ 0 };
+        int32_t m_selectedIndex{ -1 };
         std::vector<winrt::hstring> m_itemValues;
         xaml::Media::Brush m_comboBoxColor{ nullptr };
         xaml::Controls::ComboBox::SelectionChanged_revoker m_selectionChangedRevoker{};

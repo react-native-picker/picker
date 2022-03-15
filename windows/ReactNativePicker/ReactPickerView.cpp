@@ -100,6 +100,14 @@ namespace winrt::ReactNativePicker::implementation {
             else if (propertyName == "items") {
                 RepopulateItems(propertyValue.AsArray());
             }
+            else if (propertyName == "placeholder") {
+                if (propertyValue.IsNull()) {
+                    this->ClearValue(winrt::ComboBox::PlaceholderTextProperty());
+                }
+                else {
+                    this->PlaceholderText(to_hstring(propertyValue.AsString()));
+                }
+            }
             else if (propertyName == "backgroundColor") {
                 auto const color = propertyValue.To<winrt::Brush>();
                 auto res = this->Resources();

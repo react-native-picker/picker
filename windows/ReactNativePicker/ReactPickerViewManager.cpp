@@ -40,6 +40,7 @@ namespace winrt::ReactNativePicker::implementation {
         nativeProps.Insert(L"editable", ViewManagerPropertyType::Boolean);
         nativeProps.Insert(L"enabled", ViewManagerPropertyType::Boolean);
         nativeProps.Insert(L"items", ViewManagerPropertyType::Array);
+        nativeProps.Insert(L"placeholder", ViewManagerPropertyType::String);
         nativeProps.Insert(L"selectedIndex", ViewManagerPropertyType::Number);
         nativeProps.Insert(L"text", ViewManagerPropertyType::String);
         return nativeProps.GetView();

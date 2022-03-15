@@ -99,6 +99,11 @@ export interface PickerProps<T = ItemValue> extends ViewProps {
    */
   accessibilityLabel?: string;
   /**
+   * Placeholder string for this picker, used on Windows if no item has been selected.
+   * @platform windows
+   */
+  placeholder?: string;  
+  /**
    * Called when picker is focused
    * @platform android
    */

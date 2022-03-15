@@ -12,6 +12,7 @@ import {
 
 import * as PickerExamples from './PickerExample';
 import * as PickerIOSExamples from './PickerIOSExample';
+import * as PickerWindowsExamples from './PickerWindowsExamples';
 
 export default function App() {
   const [isRTL, setIsRTL] = React.useState(I18nManager.isRTL);
@@ -49,6 +50,16 @@ export default function App() {
                 {element.render()}
               </View>
             ))}
+          {Platform.OS === 'windows' && (
+            <Text style={styles.heading}>PickerWindows Examples</Text>
+          )}
+          {Platform.OS === 'windows' &&
+            PickerWindowsExamples.examples.map((element) => (
+              <View style={styles.elementContainer} key={element.title}>
+                <Text style={styles.title}> {element.title} </Text>
+                {element.render()}
+              </View>
+            ))}			
         </View>
       </ScrollView>
     </SafeAreaView>
