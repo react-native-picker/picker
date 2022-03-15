@@ -6,7 +6,7 @@
  */
 
 import * as React from 'react';
-import * as ReactNativeWeb from 'react-native-web';
+import {unstable_createElement} from 'react-native-web';
 import {forwardRef} from 'react';
 import type {ViewProps} from 'react-native-web/src/exports/View/types';
 import type {GenericStyleProp} from 'react-native-web/src/types';
@@ -31,7 +31,7 @@ type PickerProps = {
 };
 
 const Select = forwardRef((props: any, forwardedRef) =>
-  ReactNativeWeb.unstable_createElement('select', {
+  unstable_createElement('select', {
     ...props,
     ref: forwardedRef,
   }),
