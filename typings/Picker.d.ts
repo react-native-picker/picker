@@ -68,7 +68,7 @@ export interface PickerProps<T = ItemValue> extends ViewProps {
    * Style to apply to each of the item labels.
    * @platform ios
    */
-  itemStyle?: StyleProp<TextStyle>;
+  itemStyle?: StyleProp<TextStyle> | string;
   /**
    * Prompt string for this picker, used on Android in dialog mode as the title of the dialog.
    * @platform android
