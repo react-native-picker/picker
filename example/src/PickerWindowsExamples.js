@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, View, StyleSheet, Button} from 'react-native';
+import {View} from 'react-native';
 import {Picker} from '../../js';
 
 const Item: any = Picker.Item;
@@ -19,5 +19,5 @@ export const examples = [
   {
     title: 'Picker with placeholder',
     render: PlaceholderPickerExample,
-  },  
+  },
 ];
