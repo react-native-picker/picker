@@ -103,7 +103,7 @@ type PickerProps = $ReadOnly<{|
    * @platform android
    */
   prompt?: ?string,
-  
+
   /**
    * Placeholder string for this picker, used on Windows if no item has been selected.
    * @platform windows
