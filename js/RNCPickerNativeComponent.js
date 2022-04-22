@@ -12,6 +12,7 @@
 import {requireNativeComponent} from 'react-native';
 
 import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
+import type {ProcessedColorValue} from 'react-native/Libraries/StyleSheet/processColor';
 import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
 
@@ -25,7 +26,7 @@ type PickerIOSChangeEvent = SyntheticEvent<
 type RNCPickerIOSTypeItemType = $ReadOnly<{|
   label: ?Label,
   value: ?(number | string),
-  textColor: ?number,
+  textColor: ?ProcessedColorValue,
   testID: ?string,
 |}>;
 
