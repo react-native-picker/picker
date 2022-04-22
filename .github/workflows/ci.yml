@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        node-version: [12]
+        node-version: [16]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        node-version: [12]
+        node-version: [16]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        node-version: [12]
+        node-version: [16]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -69,9 +69,12 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-        node-version: [12]
+        node-version: [16]
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-java@v1
+        with:
+          java-version: '11'
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
@@ -90,7 +93,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        node-version: [12]
+        node-version: [16]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -113,7 +116,7 @@ jobs:
     runs-on: macos-latest
     strategy:
       matrix:
-        node-version: [12]
+        node-version: [16]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1

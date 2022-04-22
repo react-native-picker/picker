@@ -14,7 +14,7 @@ type Props = {
   color?: ColorValue,
   label: string,
   testID?: string,
-  enabled?: Boolean,
+  enabled?: boolean,
   value?: number | string,
 };
 

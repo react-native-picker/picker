@@ -19,6 +19,7 @@ import RNCPickerNativeComponent from './RNCPickerNativeComponent';
 
 import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import type {ProcessedColorValue} from 'react-native/Libraries/StyleSheet/processColor';
 import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
 import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {Element, ElementRef, ChildrenArray} from 'react';
@@ -34,7 +35,7 @@ type PickerMacOSChangeEvent = SyntheticEvent<
 type RNCPickerMacOSItemType = $ReadOnly<{|
   label: ?Label,
   value: ?(number | string),
-  textColor: ?number,
+  textColor: ?ProcessedColorValue,
   testID: ?string,
 |}>;
 
