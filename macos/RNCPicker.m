@@ -19,7 +19,7 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if ((self = [super initWithFrame:frame pullsDown:false])) {
-        _color = [NSColor blackColor];
+        _color = [NSColor textColor];
         _customFont = [NSFont systemFontOfSize:14];
         _selectedIndex = NSNotFound;
         _textAlign = NSTextAlignmentCenter;
