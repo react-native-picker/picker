@@ -1,6 +1,6 @@
 {
   "name": "@react-native-picker/picker",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "homepage": "https://github.com/react-native-picker/picker#readme",
   "description": "React Native Picker for iOS, Android, macOS, and Windows",
   "main": "dist/commonjs/index.js",
@@ -45,7 +45,7 @@
   "author": "",
   "license": "MIT",
   "peerDependencies": {
-    "react": "16 || 17",
+    "react": ">=16",
     "react-native": ">=0.57"
   },
   "private": false,
