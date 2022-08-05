@@ -35,6 +35,7 @@ type PickerWindowsProps = $ReadOnly<{|
   testID?: string,
   onChange?: (event: IPickerChangeEvent) => void,
   onValueChange?: (value: any, itemIndex: number, text: string) => void,
+  accessibilityLabel?: ?string,
   // Editable support
   editable?: boolean,
   text?: string,
@@ -92,6 +93,7 @@ class PickerWindows extends React.Component<
       selectedIndex: this.state.selectedIndex,
       testID: this.props.testID,
       style: [styles.pickerWindows, this.props.style, this.props.itemStyle],
+      accessibilityLabel: this.props.accessibilityLabel
     };
 
     return (
