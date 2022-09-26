@@ -93,7 +93,7 @@ class PickerWindows extends React.Component<
       selectedIndex: this.state.selectedIndex,
       testID: this.props.testID,
       style: [styles.pickerWindows, this.props.style, this.props.itemStyle],
-      accessibilityLabel: this.props.accessibilityLabel
+      accessibilityLabel: this.props.accessibilityLabel,
     };
 
     return (
