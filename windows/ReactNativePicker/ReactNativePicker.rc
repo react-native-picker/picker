@@ -72,7 +72,7 @@ BEGIN
             VALUE "FileVersion", "2.4.4.0"
             VALUE "InternalName", "ReactNativePicker.dll"
             VALUE "LegalCopyright", "Copyright (C) 2022"
-            VALUE "OriginalFilename", "ReactNat.dll"
+            VALUE "OriginalFilename", "ReactNativePicker.dll"
             VALUE "ProductName", "ReactNativePicker.dll"
             VALUE "ProductVersion", "2.4.4.0"
         END
