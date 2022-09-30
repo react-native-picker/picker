@@ -206,6 +206,10 @@ public class ReactPicker extends AppCompatSpinner {
     }
   }
 
+  public void clearFocus() {
+    super.onDetachedFromWindow();
+  }
+
   public void setOnSelectListener(@Nullable OnSelectListener onSelectListener) {
     mOnSelectListener = onSelectListener;
   }
