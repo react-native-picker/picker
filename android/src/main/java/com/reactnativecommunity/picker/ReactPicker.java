@@ -207,6 +207,8 @@ public class ReactPicker extends AppCompatSpinner {
   }
 
   public void clearFocus() {
+    super.setFocusableInTouchMode(true);
+    super.setFocusable(true);
     super.onDetachedFromWindow();
   }
 
