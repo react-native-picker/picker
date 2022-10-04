@@ -46,7 +46,8 @@
   "license": "MIT",
   "peerDependencies": {
     "react": ">=16",
-    "react-native": ">=0.57"
+    "react-native": ">=0.57",
+    "deprecated-react-native-prop-types": "^2.3.0"
   },
   "private": false,
   "devDependencies": {

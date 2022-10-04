@@ -20,7 +20,7 @@ import RNCPickerNativeComponent from './RNCPickerNativeComponent';
 import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {ProcessedColorValue} from 'react-native/Libraries/StyleSheet/processColor';
-import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
+import type {ViewProps} from 'deprecated-react-native-prop-types';
 import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {Element, ElementRef, ChildrenArray} from 'react';
 import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
