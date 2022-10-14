@@ -105,7 +105,7 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
         style: {
           ...style,
           color: style.color ? processColor(style.color) : null,
-          backgroundColor: style.color
+          backgroundColor: style.backgroundColor
             ? processColor(style.backgroundColor)
             : null,
         },
