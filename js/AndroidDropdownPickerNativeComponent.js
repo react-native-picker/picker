@@ -10,27 +10,55 @@
 
 'use strict';
 
-import {requireNativeComponent} from 'react-native';
-
+import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
 import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
-import type {PickerAndroidChangeEvent, PickerItem} from './types';
+import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
+import type {ViewStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 
-type NativeProps = $ReadOnly<{|
-  enabled?: ?boolean,
-  items: $ReadOnlyArray<PickerItem>,
-  mode?: ?('dialog' | 'dropdown'),
-  onSelect?: (event: PickerAndroidChangeEvent) => void,
-  selected: number,
-  prompt?: ?string,
-  testID?: string,
-  style?: ?TextStyleProp,
-  accessibilityLabel?: ?string,
-  numberOfLines?: ?number,
+export type PickerAndroidChangeEvent = $ReadOnly<{|
+  position: Int32,
 |}>;
 
-type DropdownPickerNativeType = HostComponent<NativeProps>;
+// export type PickerItem = $ReadOnly<{|
+//   label: string,
+//   value: ?string,
+//   color?: ?Int32,
+//   fontFamily: ?string,
+//   /**
+//    * Style to apply to individual item labels.
+//    * Only following values take effect:
+//    *   - 'color'
+//    *   - 'backgroundColor'
+//    *   - 'fontSize'
+//    *   - 'fontFamily'
+//    *
+//    * @platform android
+//    */
+//   style?: ?ViewStyleProp,
+//   /**
+//    * If set to false, the specific item will be disabled, i.e. the user will not be able to make a
+//    * selection.
+//    * @default true
+//    * @platform android
+//    */
+//   enabled?: ?boolean,
+// |}>;
 
-export default ((requireNativeComponent(
-  'RNCAndroidDropdownPicker',
-): any): DropdownPickerNativeType);
+type NativeProps = $ReadOnly<{|
+  ...ViewProps,
+  enabled?: ?boolean,
+  // items: $ReadOnlyArray<PickerItem>,
+  mode?: ?string,
+  onSelect?: BubblingEventHandler<PickerAndroidChangeEvent>,
+  selected: Int32,
+  prompt?: ?string,
+  testID?: string,
+  // style?: ?TextStyleProp,
+  accessibilityLabel?: ?string,
+  numberOfLines?: ?Int32,
+|}>;
+
+export default codegenNativeComponent<NativeProps>('RNCAndroidDropdownPicker', {
+  excludedPlatforms: ['iOS'],
+});

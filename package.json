@@ -166,5 +166,13 @@
   "eslintIgnore": [
     "node_modules/",
     "dist/"
-  ]
+  ],
+  "codegenConfig": {
+    "name": "rnpicker",
+    "type": "components",
+    "jsSrcsDir": "./js",
+    "android": {
+      "javaPackageName": "com.reactnativecommunity.picker"
+    }
+  }
 }

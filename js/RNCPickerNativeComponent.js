@@ -9,39 +9,36 @@
  */
 'use strict';
 
-import {requireNativeComponent} from 'react-native';
+import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
 
 import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {ProcessedColorValue} from 'react-native/Libraries/StyleSheet/processColor';
 import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
 
-type PickerIOSChangeEvent = SyntheticEvent<
-  $ReadOnly<{|
-    newValue: number | string,
-    newIndex: number,
-  |}>,
->;
-
-type RNCPickerIOSTypeItemType = $ReadOnly<{|
-  label: ?Label,
-  value: ?(number | string),
-  textColor: ?ProcessedColorValue,
-  testID: ?string,
+type PickerIOSChangeEvent = $ReadOnly<{|
+  newValue: string,
+  newIndex: Int32,
 |}>;
 
-type Label = Stringish | number;
+// type RNCPickerIOSTypeItemType = $ReadOnly<{|
+//   label: ?string,
+//   value: ?string,
+//   textColor: ?ProcessedColorValue,
+//   testID: ?string,
+// |}>;
 
-export type RNCPickerIOSType = HostComponent<
-  $ReadOnly<{|
-    items: $ReadOnlyArray<RNCPickerIOSTypeItemType>,
-    onChange: (event: PickerIOSChangeEvent) => void,
-    selectedIndex: number,
-    style?: ?TextStyleProp,
-    testID?: ?string,
-    numberOfLines?: ?number,
-    themeVariant?: ?string,
-  |}>,
->;
+export type NativeProps = $ReadOnly<{|
+  ...ViewProps,
+  // items: $ReadOnlyArray<RNCPickerIOSTypeItemType>,
+  onChange: BubblingEventHandler<PickerIOSChangeEvent>,
+  selectedIndex: Int32,
+  // style?: ?TextStyleProp,
+  testID?: ?string,
+  numberOfLines?: ?Int32,
+  themeVariant?: ?string,
+|}>;
 
-module.exports = ((requireNativeComponent('RNCPicker'): any): RNCPickerIOSType);
+export default codegenNativeComponent<NativeProps>('RNCPicker', {
+  excludedPlatforms: ['android'],
+});
