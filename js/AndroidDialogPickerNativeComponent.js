@@ -12,52 +12,30 @@
 
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
 
-import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
-import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
-import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
-import type {ViewStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
-
 export type PickerAndroidChangeEvent = $ReadOnly<{|
   position: Int32,
 |}>;
 
-// export type PickerItem = $ReadOnly<{|
-//   label: string,
-//   value: ?string,
-//   color?: ?Int32,
-//   fontFamily: ?string,
-//   /**
-//    * Style to apply to individual item labels.
-//    * Only following values take effect:
-//    *   - 'color'
-//    *   - 'backgroundColor'
-//    *   - 'fontSize'
-//    *   - 'fontFamily'
-//    *
-//    * @platform android
-//    */
-//   style?: ?ViewStyleProp,
-//   /**
-//    * If set to false, the specific item will be disabled, i.e. the user will not be able to make a
-//    * selection.
-//    * @default true
-//    * @platform android
-//    */
-//   enabled?: ?boolean,
-// |}>;
+export type PickerItem = $ReadOnly<{|
+  label: string,
+  value: ?string,
+  color?: ColorValue,
+  fontFamily: ?string,
+  enabled?: ?boolean,
+|}>;
 
 type NativeProps = $ReadOnly<{|
   ...ViewProps,
-  enabled?: ?boolean,
-  // items: $ReadOnlyArray<PickerItem>,
-  mode?: ?string,
-  onSelect?: BubblingEventHandler<PickerAndroidChangeEvent>,
-  selected: Int32,
+  items: $ReadOnlyArray<PickerItem>,
+  color?: ColorValue,
   prompt?: ?string,
-  testID?: string,
-  // style?: ?TextStyleProp,
-  accessibilityLabel?: ?string,
+  enabled?: ?boolean,
+  selected: Int32,
+  backgroundColor?: Int32,
+  dropdownIconColor?: Int32,
+  dropdownIconRippleColor?: Int32,
   numberOfLines?: ?Int32,
+  onSelect?: BubblingEventHandler<PickerAndroidChangeEvent>,
 |}>;
 
 export default codegenNativeComponent<NativeProps>('RNCAndroidDialogPicker', {

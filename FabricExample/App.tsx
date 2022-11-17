@@ -19,7 +19,6 @@ export default function App() {
     I18nManager.allowRTL(true);
   }, []);
 
-  console.log(Platform.constants);
   return (
     <SafeAreaView style={styles.main}>
       <ScrollView>

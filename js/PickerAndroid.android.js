@@ -100,7 +100,7 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
 
       return {
         color: color == null ? null : processedColor,
-        label,
+        label: String(label),
         enabled,
         style: {
           ...style,
