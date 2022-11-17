@@ -85,8 +85,8 @@ class PickerIOS extends React.Component<Props, State> {
         selectedIndex = index;
       }
       items.push({
-        value: child.props.value,
-        label: child.props.label,
+        value: String(child.props.value),
+        label: String(child.props.label),
         textColor: processColor(child.props.color),
         testID: child.props.testID,
       });

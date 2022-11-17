@@ -21,22 +21,32 @@ type PickerIOSChangeEvent = $ReadOnly<{|
   newIndex: Int32,
 |}>;
 
-// type RNCPickerIOSTypeItemType = $ReadOnly<{|
-//   label: ?string,
-//   value: ?string,
-//   textColor: ?ProcessedColorValue,
-//   testID: ?string,
-// |}>;
+type RNCPickerIOSTypeItemType = $ReadOnly<{|
+  label: ?string,
+  value: ?string,
+  textColor: ?ColorValue,
+  testID: ?string,
+|}>;
 
 export type NativeProps = $ReadOnly<{|
   ...ViewProps,
-  // items: $ReadOnlyArray<RNCPickerIOSTypeItemType>,
-  onChange: BubblingEventHandler<PickerIOSChangeEvent>,
+  items: $ReadOnlyArray<RNCPickerIOSTypeItemType>,
   selectedIndex: Int32,
-  // style?: ?TextStyleProp,
+  onChange: BubblingEventHandler<PickerIOSChangeEvent>,
+  color?: ColorValue,
+  textAlign?: string,
+  numberOfLines?: Int32,
+  fontSize?: Int32,
+  fontWeight?: string,
+  fontStyle?: string,
+  fontFamily?: string,
   testID?: ?string,
-  numberOfLines?: ?Int32,
   themeVariant?: ?string,
+
+  // TODO: for some reason codegen does not create `fromRawValue` inline functions for
+  // objects inside the `ReadOnlyArray` of items, so we need to explicitly define a prop
+  // with this object so those functions are generated
+  fakeProp?: RNCPickerIOSTypeItemType,
 |}>;
 
 export default codegenNativeComponent<NativeProps>('RNCPicker', {

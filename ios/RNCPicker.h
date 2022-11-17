@@ -11,7 +11,11 @@
 
 #import "RNCPickerLabel.h"
 
-@interface RNCPicker : UIPickerView
+#ifdef RN_FABRIC_ENABLED
+#import "RNCPickerComponentView.h"
+#endif
+
+@interface RNCPicker : UIPickerView <UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (nonatomic, copy) NSArray<NSDictionary *> *items;
 @property (nonatomic, assign) NSInteger selectedIndex;
@@ -23,5 +27,11 @@
 @property (nonatomic, assign) NSInteger numberOfLines;
 
 @property (nonatomic, copy) RCTBubblingEventBlock onChange;
+
+#ifdef RN_FABRIC_ENABLED
+- (void)pickerView:(__unused UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row inComponent:(__unused NSInteger)component
+  withEventEmitter:(facebook::react::SharedViewEventEmitter)eventEmitter;
+#endif
 
 @end
