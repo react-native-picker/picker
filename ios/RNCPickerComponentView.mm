@@ -62,8 +62,6 @@ using namespace facebook::react;
         picker.textAlign = NSTextAlignmentRight;
     } else if ([textAlign isEqualToString:@"justify"]){
         picker.textAlign = NSTextAlignmentJustified;
-    } else {
-        picker.textAlign = NSTextAlignmentNatural;
     }
     picker.numberOfLines = newProps.numberOfLines;
     [RCTFont updateFont:picker.font withFamily:RCTNSStringFromStringNilIfEmpty(newProps.fontFamily) size:@(newProps.fontSize) weight:RCTNSStringFromStringNilIfEmpty(newProps.fontWeight) style:RCTNSStringFromStringNilIfEmpty(newProps.fontStyle) variant:nil scaleMultiplier:1];
@@ -79,6 +77,19 @@ using namespace facebook::react;
             }
         }
     [super updateProps:props oldProps:oldProps];
+}
+
+// already added in case https://github.com/facebook/react-native/pull/35378 has been merged
+- (BOOL)shouldBeRecycled
+{
+    return NO;
+}
+
+- (void)prepareForRecycle
+{
+    picker = [[RNCPicker alloc] initWithFrame:self.bounds];
+    self.contentView = picker;
+    picker.delegate = self;
 }
 
 #pragma mark - UIPickerViewDataSource protocol

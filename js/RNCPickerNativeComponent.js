@@ -11,11 +11,6 @@
 
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
 
-import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
-import type {ProcessedColorValue} from 'react-native/Libraries/StyleSheet/processColor';
-import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
-import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
-
 type PickerIOSChangeEvent = $ReadOnly<{|
   newValue: string,
   newIndex: Int32,

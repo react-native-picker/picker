@@ -138,9 +138,8 @@ class PickerIOS extends React.Component<Props, State> {
       this._picker &&
       this.state.selectedIndex !== event.nativeEvent.newIndex
     ) {
-      this._picker.setNativeProps({
-        selectedIndex: this.state.selectedIndex,
-      });
+      // TODO: check if it is correct based on the comment above
+      this.setState({...this.state, selectedIndex: event.nativeEvent.newIndex});
     }
   };
 }
