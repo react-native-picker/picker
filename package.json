@@ -148,6 +148,7 @@
     "android",
     "typings",
     "windows",
+    "react-native.config.js",
     "RNCPicker.podspec"
   ],
   "react-native-builder-bob": {

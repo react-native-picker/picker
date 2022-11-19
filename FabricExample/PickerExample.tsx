@@ -9,9 +9,11 @@ export function BasicPickerExample() {
   return (
     <Picker
       testID="basic-picker"
+      style={{width: 200, height: 200, backgroundColor: 'red'}}
       selectedValue={value}
-      onValueChange={(v) => setValue(v)}
-      accessibilityLabel="Basic Picker Accessibility Label">
+      onValueChange={v => setValue(v)}
+      accessibilityLabel="Basic Picker Accessibility Label"
+    >
       <Item label="hello" value="key0" />
       <Item label="world" value="key1" />
     </Picker>
@@ -24,8 +26,9 @@ function StyledPickerExample() {
     <Picker
       testID="styled-picker"
       selectedValue={value}
-      onValueChange={(v) => setValue(v)}
-      accessibilityLabel="Styled Picker Accessibility Label">
+      onValueChange={v => setValue(v)}
+      accessibilityLabel="Styled Picker Accessibility Label"
+    >
       <Item
         label="Sin"
         value="key0"
@@ -75,8 +78,9 @@ function DropdownPickerExample() {
   return (
     <Picker
       selectedValue={value}
-      onValueChange={(v) => setValue(v)}
-      mode="dropdown">
+      onValueChange={v => setValue(v)}
+      mode="dropdown"
+    >
       <Item label="hello" value="key0" />
       <Item label="world" value="key1" />
     </Picker>
@@ -90,8 +94,9 @@ function DropdownMultilinePickerExample() {
     <Picker
       numberOfLines={5}
       selectedValue={value}
-      onValueChange={(v) => setValue(v)}
-      mode="dropdown">
+      onValueChange={v => setValue(v)}
+      mode="dropdown"
+    >
       <Item
         label="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
         value="key0"
@@ -110,8 +115,9 @@ function PromptPickerExample() {
     <Picker
       mode="dialog"
       selectedValue={value}
-      onValueChange={(v) => setValue(v)}
-      prompt="Pick one, just one">
+      onValueChange={v => setValue(v)}
+      prompt="Pick one, just one"
+    >
       <Item label="hello" value="key0" />
       <Item label="world" value="key1" />
     </Picker>
@@ -125,8 +131,9 @@ function PromptMultilinePickerExample() {
       mode="dialog"
       numberOfLines={5}
       selectedValue={value}
-      onValueChange={(v) => setValue(v)}
-      prompt="Pick one, just one">
+      onValueChange={v => setValue(v)}
+      prompt="Pick one, just one"
+    >
       <Item
         label="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
         value="key0"
@@ -178,7 +185,8 @@ function ThemeVariantOverridePickerExample() {
         selectedValue={themeVariantValue}
         selectedColor={'white'}
         themeVariant={themeVariantValue}
-        onChange={handleSelect}>
+        onChange={handleSelect}
+      >
         <Item
           color={isDarkMode ? 'white' : 'black'}
           label="Dark mode"
@@ -219,8 +227,9 @@ function ColorPickerExample() {
         onFocus={() => {
           setIsFocused(true);
         }}
-        onValueChange={(v) => setValue(v)}
-        mode="dropdown">
+        onValueChange={v => setValue(v)}
+        mode="dropdown"
+      >
         <Item label="red" color="red" style={{color: 'red'}} value="red" />
         <Item
           label="green"
@@ -245,8 +254,9 @@ function ColorPickerExample() {
         onFocus={() => {
           setIsSecondFocused(true);
         }}
-        onValueChange={(v) => setValue(v)}
-        mode="dialog">
+        onValueChange={v => setValue(v)}
+        mode="dialog"
+      >
         <Item label="red" color="red" value="red" />
         <Item label="green" color="green" value="green" />
         <Item label="blue" color="blue" value="blue" />
@@ -270,48 +280,48 @@ export const examples = [
     title: 'Basic Picker',
     render: BasicPickerExample,
   },
-  {
-    title: 'Styled Picker',
-    render: StyledPickerExample,
-  },
-  {
-    title: 'Picker with overrided theme variant',
-    render: ThemeVariantOverridePickerExample,
-  },
-  {
-    title: 'Disabled Picker',
-    render: DisabledPickerExample,
-  },
-  {
-    title: 'Disabled Specific Picker',
-    render: DisabledSpecificPickerExample,
-  },
-  {
-    title: 'Dropdown Picker',
-    render: DropdownPickerExample,
-  },
-  {
-    title: 'Multiline Dropdown Picker',
-    render: DropdownMultilinePickerExample,
-  },
-  {
-    title: 'Picker with prompt message',
-    render: PromptPickerExample,
-  },
-  {
-    title: 'Multiline Picker with prompt message',
-    render: PromptMultilinePickerExample,
-  },
-  {
-    title: 'Picker with no listener',
-    render: NoListenerPickerExample,
-  },
-  {
-    title: 'Colorful pickers',
-    render: ColorPickerExample,
-  },
-  {
-    title: 'Picker with changed color of arrow',
-    render: CustomDropdownArrowColorPickerExample,
-  },
+  // {
+  //   title: 'Styled Picker',
+  //   render: StyledPickerExample,
+  // },
+  // {
+  //   title: 'Picker with overrided theme variant',
+  //   render: ThemeVariantOverridePickerExample,
+  // },
+  // {
+  //   title: 'Disabled Picker',
+  //   render: DisabledPickerExample,
+  // },
+  // {
+  //   title: 'Disabled Specific Picker',
+  //   render: DisabledSpecificPickerExample,
+  // },
+  // {
+  //   title: 'Dropdown Picker',
+  //   render: DropdownPickerExample,
+  // },
+  // {
+  //   title: 'Multiline Dropdown Picker',
+  //   render: DropdownMultilinePickerExample,
+  // },
+  // {
+  //   title: 'Picker with prompt message',
+  //   render: PromptPickerExample,
+  // },
+  // {
+  //   title: 'Multiline Picker with prompt message',
+  //   render: PromptMultilinePickerExample,
+  // },
+  // {
+  //   title: 'Picker with no listener',
+  //   render: NoListenerPickerExample,
+  // },
+  // {
+  //   title: 'Colorful pickers',
+  //   render: ColorPickerExample,
+  // },
+  // {
+  //   title: 'Picker with changed color of arrow',
+  //   render: CustomDropdownArrowColorPickerExample,
+  // },
 ];

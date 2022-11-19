@@ -40,4 +40,5 @@ type NativeProps = $ReadOnly<{|
 
 export default codegenNativeComponent<NativeProps>('RNCAndroidDialogPicker', {
   excludedPlatforms: ['iOS'],
+  interfaceOnly: true,
 });

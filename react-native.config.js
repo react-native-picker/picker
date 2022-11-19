@@ -15,6 +15,16 @@
  */
 'use strict';
 
+let supportsCodegenConfig = true;
+// try {
+//   const rnCliAndroidVersion = require('@react-native-community/cli-platform-android/package.json')
+//     .version;
+//   const [major] = rnCliAndroidVersion.split('.');
+//   supportsCodegenConfig = major >= 9;
+// } catch (e) {
+//   // ignore
+// }
+
 module.exports = {
   project: {
     android: {
@@ -24,9 +34,19 @@ module.exports = {
       sourceDir: './example/windows',
       solutionFile: 'PickerExample.sln',
       project: {
-        projectFile: 'PickerExample/PickerExample.vcxproj'
-      }
-    }
+        projectFile: 'PickerExample/PickerExample.vcxproj',
+      },
+    },
+  },
+  dependency: {
+    platforms: {
+      android: supportsCodegenConfig
+        ? {
+            componentDescriptors: ['RNCAndroidDialogPickerComponentDescriptor'],
+            cmakeListsPath: '../android/src/main/jni/CMakeLists.txt',
+          }
+        : {},
+    },
   },
 };
 
