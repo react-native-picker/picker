@@ -20,7 +20,8 @@
     _selectedIndex = NSNotFound;
     _textAlign = NSTextAlignmentCenter;
     _numberOfLines = 1;
-#ifdef RN_FABRIC_ENABLED
+#ifdef RCT_NEW_ARCH_ENABLED
+  // nothing
 #else
     self.delegate = self;
 #endif
@@ -112,7 +113,7 @@ numberOfRowsInComponent:(__unused NSInteger)component
   label.font = _font;
 
     label.textColor =
-#ifdef RN_FABRIC_ENABLED
+#ifdef RCT_NEW_ARCH_ENABLED
     _items[row][@"textColor"]
 #else
      [RCTConvert UIColor:_items[row][@"textColor"]]
@@ -143,7 +144,7 @@ numberOfRowsInComponent:(__unused NSInteger)component
   }
 }
 
-#ifdef RN_FABRIC_ENABLED
+#ifdef RCT_NEW_ARCH_ENABLED
 - (void)pickerView:(__unused UIPickerView *)pickerView
       didSelectRow:(NSInteger)row inComponent:(__unused NSInteger)component
   withEventEmitter:(facebook::react::SharedViewEventEmitter)eventEmitter

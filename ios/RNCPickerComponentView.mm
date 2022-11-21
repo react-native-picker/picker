@@ -1,4 +1,4 @@
-#ifdef RN_FABRIC_ENABLED
+#ifdef RCT_NEW_ARCH_ENABLED
 
 #import "RNCPickerComponentView.h"
 #import "RNCPicker.h"

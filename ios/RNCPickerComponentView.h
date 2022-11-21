@@ -1,4 +1,4 @@
-#ifdef RN_FABRIC_ENABLED
+#ifdef RCT_NEW_ARCH_ENABLED
 #import <React/RCTViewComponentView.h>
 #import <react/renderer/components/rnpicker/EventEmitters.h>
 #import <React/RCTConversions.h>

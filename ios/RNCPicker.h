@@ -11,7 +11,7 @@
 
 #import "RNCPickerLabel.h"
 
-#ifdef RN_FABRIC_ENABLED
+#ifdef RCT_NEW_ARCH_ENABLED
 #import "RNCPickerComponentView.h"
 #endif
 
@@ -28,7 +28,7 @@
 
 @property (nonatomic, copy) RCTBubblingEventBlock onChange;
 
-#ifdef RN_FABRIC_ENABLED
+#ifdef RCT_NEW_ARCH_ENABLED
 - (void)pickerView:(__unused UIPickerView *)pickerView
       didSelectRow:(NSInteger)row inComponent:(__unused NSInteger)component
   withEventEmitter:(facebook::react::SharedViewEventEmitter)eventEmitter;
