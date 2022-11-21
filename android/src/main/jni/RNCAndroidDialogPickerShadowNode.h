@@ -5,6 +5,8 @@
 #include <react/renderer/components/rnpicker/Props.h>
 #include <react/renderer/components/view/ConcreteViewShadowNode.h>
 #include <jsi/jsi.h>
+#include <yoga/Yoga.h>
+#include <react/renderer/components/view/conversions.h>
 
 namespace facebook
 {
@@ -20,14 +22,8 @@ namespace facebook
                                                                   RNCAndroidDialogPickerState>
     {
     public:
+      void setMinHeight(float minHeight);
       using ConcreteViewShadowNode::ConcreteViewShadowNode;
-
-      static ShadowNodeTraits BaseTraits()
-      {
-        auto traits = ConcreteViewShadowNode::BaseTraits();
-        traits.set(ShadowNodeTraits::Trait::RootNodeKind);
-        return traits;
-      }
     };
 
   } // namespace react

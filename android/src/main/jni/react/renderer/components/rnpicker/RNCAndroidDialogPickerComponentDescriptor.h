@@ -3,6 +3,7 @@
 #include <react/debug/react_native_assert.h>
 #include "RNCAndroidDialogPickerShadowNode.h"
 #include <react/renderer/core/ConcreteComponentDescriptor.h>
+#include <react/renderer/components/rnpicker/Props.h>
 
 namespace facebook
 {
@@ -32,10 +33,9 @@ namespace facebook
                         shadowNode->getState());
                 auto stateData = state->getData();
 
-                if (stateData.frameSize.width != 0 && stateData.frameSize.height != 0)
+                if (stateData.minHeight != 0)
                 {
-                    layoutableShadowNode->setSize(
-                        Size{stateData.frameSize.width, stateData.frameSize.height});
+                    screenShadowNode->setMinHeight(stateData.minHeight);
                 }
 
                 ConcreteComponentDescriptor::adopt(shadowNode);

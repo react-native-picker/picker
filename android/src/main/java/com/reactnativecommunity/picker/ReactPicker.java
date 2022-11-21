@@ -30,7 +30,7 @@ import com.facebook.react.uimanager.UIManagerModule;
 
 import javax.annotation.Nullable;
 
-public class ReactPicker extends AppCompatSpinner {
+public class ReactPicker extends FabricEnabledPicker {
 
   private int mMode = Spinner.MODE_DIALOG;
   private @Nullable Integer mPrimaryColor;
@@ -202,6 +202,7 @@ public class ReactPicker extends AppCompatSpinner {
       if (uiManager != null) {
         uiManager.setViewLocalData(getId(), new ReactPickerLocalData(elementSize));
       }
+      this.setMinHeight(elementSize);
       mOldElementSize = elementSize;
     }
   }

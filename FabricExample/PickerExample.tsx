@@ -9,7 +9,6 @@ export function BasicPickerExample() {
   return (
     <Picker
       testID="basic-picker"
-      style={{width: 200, height: 200, backgroundColor: 'red'}}
       selectedValue={value}
       onValueChange={v => setValue(v)}
       accessibilityLabel="Basic Picker Accessibility Label"
@@ -280,48 +279,48 @@ export const examples = [
     title: 'Basic Picker',
     render: BasicPickerExample,
   },
-  // {
-  //   title: 'Styled Picker',
-  //   render: StyledPickerExample,
-  // },
-  // {
-  //   title: 'Picker with overrided theme variant',
-  //   render: ThemeVariantOverridePickerExample,
-  // },
-  // {
-  //   title: 'Disabled Picker',
-  //   render: DisabledPickerExample,
-  // },
-  // {
-  //   title: 'Disabled Specific Picker',
-  //   render: DisabledSpecificPickerExample,
-  // },
-  // {
-  //   title: 'Dropdown Picker',
-  //   render: DropdownPickerExample,
-  // },
-  // {
-  //   title: 'Multiline Dropdown Picker',
-  //   render: DropdownMultilinePickerExample,
-  // },
-  // {
-  //   title: 'Picker with prompt message',
-  //   render: PromptPickerExample,
-  // },
-  // {
-  //   title: 'Multiline Picker with prompt message',
-  //   render: PromptMultilinePickerExample,
-  // },
-  // {
-  //   title: 'Picker with no listener',
-  //   render: NoListenerPickerExample,
-  // },
-  // {
-  //   title: 'Colorful pickers',
-  //   render: ColorPickerExample,
-  // },
-  // {
-  //   title: 'Picker with changed color of arrow',
-  //   render: CustomDropdownArrowColorPickerExample,
-  // },
+  {
+    title: 'Styled Picker',
+    render: StyledPickerExample,
+  },
+  {
+    title: 'Picker with overrided theme variant',
+    render: ThemeVariantOverridePickerExample,
+  },
+  {
+    title: 'Disabled Picker',
+    render: DisabledPickerExample,
+  },
+  {
+    title: 'Disabled Specific Picker',
+    render: DisabledSpecificPickerExample,
+  },
+  {
+    title: 'Dropdown Picker',
+    render: DropdownPickerExample,
+  },
+  {
+    title: 'Multiline Dropdown Picker',
+    render: DropdownMultilinePickerExample,
+  },
+  {
+    title: 'Picker with prompt message',
+    render: PromptPickerExample,
+  },
+  {
+    title: 'Multiline Picker with prompt message',
+    render: PromptMultilinePickerExample,
+  },
+  {
+    title: 'Picker with no listener',
+    render: NoListenerPickerExample,
+  },
+  {
+    title: 'Colorful pickers',
+    render: ColorPickerExample,
+  },
+  {
+    title: 'Picker with changed color of arrow',
+    render: CustomDropdownArrowColorPickerExample,
+  },
 ];

@@ -180,6 +180,14 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
     }
   }
 
+  public void focus(ReactPicker root) {
+    root.performClick();
+  }
+
+  public void blur(ReactPicker root) {
+    root.clearFocus();
+  }
+
   @Override
   public ReactPickerShadowNode createShadowNodeInstance() {
     return new ReactPickerShadowNode();
@@ -188,6 +196,12 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
   @Override
   public Class<? extends ReactPickerShadowNode> getShadowNodeClass() {
     return ReactPickerShadowNode.class;
+  }
+
+  @Override
+  public Object updateState(ReactPicker view, ReactStylesDiffMap props, StateWrapper stateWrapper) {
+    view.getFabricViewStateManager().setStateWrapper(stateWrapper);
+    return null;
   }
 
   @Override

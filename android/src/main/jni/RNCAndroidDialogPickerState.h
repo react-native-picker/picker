@@ -20,19 +20,16 @@ namespace facebook
     public:
       using Shared = std::shared_ptr<const RNCAndroidDialogPickerState>;
 
-      RNCAndroidDialogPickerState(){};
-      RNCAndroidDialogPickerState(Size frameSize_) : frameSize(frameSize_){};
+      RNCAndroidDialogPickerState() : minHeight(0){};
+      RNCAndroidDialogPickerState(float minHeight_) : minHeight(minHeight_){};
 
 #ifdef ANDROID
       RNCAndroidDialogPickerState(
           RNCAndroidDialogPickerState const &previousState,
-          folly::dynamic data)
-          : frameSize(Size{
-                (Float)data["frameWidth"].getDouble(),
-                (Float)data["frameHeight"].getDouble()}){};
+          folly::dynamic data) : minHeight((Float)data["minHeight"].getDouble()){};
 #endif
 
-      const Size frameSize{};
+      const float minHeight;
 
 #ifdef ANDROID
       folly::dynamic getDynamic() const;
