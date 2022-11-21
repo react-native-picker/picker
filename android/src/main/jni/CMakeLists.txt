@@ -19,7 +19,6 @@ add_compile_options(
 )
 
 file(GLOB LIB_CUSTOM_SRCS CONFIGURE_DEPENDS *.cpp)
-# file(GLOB LIB_CUSTOM_SRCS CONFIGURE_DEPENDS *.cpp ${LIB_COMMON_DIR}/react/renderer/components/${LIB_LITERAL}/*.cpp)
 file(GLOB LIB_CODEGEN_SRCS CONFIGURE_DEPENDS ${LIB_ANDROID_GENERATED_COMPONENTS_DIR}/*.cpp)
 
 add_library(
@@ -33,7 +32,6 @@ target_include_directories(
   ${LIB_TARGET_NAME}
   PUBLIC
   .
-  # ${LIB_COMMON_DIR}
   ${LIB_ANDROID_GENERATED_JNI_DIR}
   ${LIB_ANDROID_GENERATED_COMPONENTS_DIR}
 )
