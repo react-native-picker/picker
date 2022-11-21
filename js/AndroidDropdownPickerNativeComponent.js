@@ -16,6 +16,7 @@ import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
 import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {ViewStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import type {BubblingEventHandler} from 'react-native/Libraries/Types/CodegenTypes';
 
 export type PickerAndroidChangeEvent = $ReadOnly<{|
   position: Int32,
@@ -40,7 +41,9 @@ type NativeProps = $ReadOnly<{|
   dropdownIconColor?: Int32,
   dropdownIconRippleColor?: Int32,
   numberOfLines?: ?Int32,
-  onSelect?: BubblingEventHandler<PickerAndroidChangeEvent>,
+  onSelect?: BubblingEventHandler<PickerAndroidChangeEvent, 'topSelect'>,
+  onFocus?: BubblingEventHandler<null, 'topFocus'>,
+  onBlur?: BubblingEventHandler<null, 'topBlur'>,
 |}>;
 
 interface NativeCommands {

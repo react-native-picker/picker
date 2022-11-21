@@ -12,6 +12,7 @@
 
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
 import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
+import type {BubblingEventHandler} from 'react-native/Libraries/Types/CodegenTypes';
 
 export type PickerAndroidChangeEvent = $ReadOnly<{|
   position: Int32,
@@ -36,7 +37,9 @@ type NativeProps = $ReadOnly<{|
   dropdownIconColor?: Int32,
   dropdownIconRippleColor?: Int32,
   numberOfLines?: ?Int32,
-  onSelect?: BubblingEventHandler<PickerAndroidChangeEvent>,
+  onSelect?: BubblingEventHandler<PickerAndroidChangeEvent, 'topSelect'>,
+  onFocus?: BubblingEventHandler<null, 'topFocus'>,
+  onBlur?: BubblingEventHandler<null, 'topBlur'>,
 |}>;
 
 interface NativeCommands {

@@ -149,9 +149,15 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
   protected void addEventEmitters(
       final ThemedReactContext reactContext,
       final ReactPicker picker) {
+    EventDispatcher eventDispatcher =
+            UIManagerHelper.getEventDispatcherForReactTag(reactContext, picker.getId());
+    if (eventDispatcher == null) {
+      return;
+    }
+
     final PickerEventEmitter eventEmitter = new PickerEventEmitter(
         picker,
-        reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher());
+        eventDispatcher);
     picker.setOnSelectListener(eventEmitter);
     picker.setOnFocusListener(eventEmitter);
   }
