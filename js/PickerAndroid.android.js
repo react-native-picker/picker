@@ -161,10 +161,23 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
       // words, the embedder of this component should be the source of
       // truth, not the native component.
       if (pickerRef.current && selected !== position) {
-        // TODO: using setNativeProps is deprecated and will be unsupported once Fabric lands. Use codegen to generate native commands
-        pickerRef.current.setNativeProps({
-          selected,
-        });
+        if (FABRIC_ENABLED) {
+          if (props.mode === MODE_DROPDOWN) {
+            AndroidDropdownPickerCommands.setNativeSelected(
+              pickerRef.current,
+              selected,
+            );
+          } else {
+            AndroidDialogPickerCommands.setNativeSelected(
+              pickerRef.current,
+              selected,
+            );
+          }
+        } else {
+          pickerRef.current.setNativeProps({
+            selected,
+          });
+        }
       }
     },
     [props.children, props.onValueChange, props.selectedValue, selected],

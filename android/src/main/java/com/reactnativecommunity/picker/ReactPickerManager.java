@@ -194,6 +194,10 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
     root.clearFocus();
   }
 
+  public void setNativeSelected(ReactPicker picker, int selected) {
+    picker.setStagedSelection(selected);
+  }
+
   @Override
   public ReactPickerShadowNode createShadowNodeInstance() {
     return new ReactPickerShadowNode();

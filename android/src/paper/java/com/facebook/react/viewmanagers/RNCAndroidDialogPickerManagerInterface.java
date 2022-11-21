@@ -25,4 +25,5 @@ public interface RNCAndroidDialogPickerManagerInterface<T extends View> {
   void setNumberOfLines(T view, int value);
   void focus(T view);
   void blur(T view);
+  void setNativeSelected(T view, int selected);
 }

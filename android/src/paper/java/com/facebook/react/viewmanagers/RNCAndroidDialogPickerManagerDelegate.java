@@ -64,6 +64,9 @@ public class RNCAndroidDialogPickerManagerDelegate<T extends View, U extends Bas
       case "blur":
         mViewManager.blur(view);
         break;
+      case "setNativeSelected":
+        mViewManager.setNativeSelected(view, args.getInt(0));
+        break;
     }
   }
 }

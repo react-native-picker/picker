@@ -16,7 +16,10 @@ import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
 import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {ViewStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
-import type {BubblingEventHandler} from 'react-native/Libraries/Types/CodegenTypes';
+import type {
+  BubblingEventHandler,
+  Int32,
+} from 'react-native/Libraries/Types/CodegenTypes';
 
 export type PickerAndroidChangeEvent = $ReadOnly<{|
   position: Int32,
@@ -49,10 +52,14 @@ type NativeProps = $ReadOnly<{|
 interface NativeCommands {
   +focus: (viewRef: React.ElementRef<ComponentType>) => void;
   +blur: (viewRef: React.ElementRef<ComponentType>) => void;
+  +setNativeSelected: (
+    viewRef: React.ElementRef<ComponentType>,
+    selected: Int32,
+  ) => void;
 }
 
 export const Commands: NativeCommands = codegenNativeCommands<NativeCommands>({
-  supportedCommands: ['focus', 'blur'],
+  supportedCommands: ['focus', 'blur', 'setNativeSelected'],
 });
 
 export default codegenNativeComponent<NativeProps>('RNCAndroidDropdownPicker', {

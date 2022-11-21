@@ -12,7 +12,10 @@
 
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
 import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
-import type {BubblingEventHandler} from 'react-native/Libraries/Types/CodegenTypes';
+import type {
+  BubblingEventHandler,
+  Int32,
+} from 'react-native/Libraries/Types/CodegenTypes';
 
 export type PickerAndroidChangeEvent = $ReadOnly<{|
   position: Int32,
@@ -45,10 +48,14 @@ type NativeProps = $ReadOnly<{|
 interface NativeCommands {
   +focus: (viewRef: React.ElementRef<ComponentType>) => void;
   +blur: (viewRef: React.ElementRef<ComponentType>) => void;
+  +setNativeSelected: (
+    viewRef: React.ElementRef<ComponentType>,
+    selected: Int32,
+  ) => void;
 }
 
 export const Commands: NativeCommands = codegenNativeCommands<NativeCommands>({
-  supportedCommands: ['focus', 'blur'],
+  supportedCommands: ['focus', 'blur', 'setNativeSelected'],
 });
 
 export default codegenNativeComponent<NativeProps>('RNCAndroidDialogPicker', {
