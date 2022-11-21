@@ -53,6 +53,7 @@ type PickerRef = React.ElementRef<
  */
 function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
   const pickerRef = React.useRef(null);
+  const FABRIC_ENABLED = !!global?.nativeFabricUIManager;
 
   React.useImperativeHandle(ref, () => {
     const viewManagerConfig = UIManager.getViewManagerConfig(
@@ -65,31 +66,37 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
         if (!viewManagerConfig.Commands) {
           return;
         }
-        if (props.mode === MODE_DROPDOWN) {
-          AndroidDropdownPickerCommands.blur(pickerRef.current);
+        if (FABRIC_ENABLED) {
+          if (props.mode === MODE_DROPDOWN) {
+            AndroidDropdownPickerCommands.blur(pickerRef.current);
+          } else {
+            AndroidDialogPickerCommands.blur(pickerRef.current);
+          }
         } else {
-          AndroidDialogPickerCommands.blur(pickerRef.current);
+          UIManager.dispatchViewManagerCommand(
+            findNodeHandle(pickerRef.current),
+            viewManagerConfig.Commands.blur,
+            [],
+          );
         }
-        // UIManager.dispatchViewManagerCommand(
-        //   findNodeHandle(pickerRef.current),
-        //   viewManagerConfig.Commands.blur,
-        //   [],
-        // );
       },
       focus: () => {
         if (!viewManagerConfig.Commands) {
           return;
         }
-        if (props.mode === MODE_DROPDOWN) {
-          AndroidDropdownPickerCommands.focus(pickerRef.current);
+        if (FABRIC_ENABLED) {
+          if (props.mode === MODE_DROPDOWN) {
+            AndroidDropdownPickerCommands.focus(pickerRef.current);
+          } else {
+            AndroidDialogPickerCommands.focus(pickerRef.current);
+          }
         } else {
-          AndroidDialogPickerCommands.focus(pickerRef.current);
+          UIManager.dispatchViewManagerCommand(
+            findNodeHandle(pickerRef.current),
+            viewManagerConfig.Commands.focus,
+            [],
+          );
         }
-        // UIManager.dispatchViewManagerCommand(
-        //   findNodeHandle(pickerRef.current),
-        //   viewManagerConfig.Commands.focus,
-        //   [],
-        // );
       },
     };
   });

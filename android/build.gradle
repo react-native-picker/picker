@@ -44,6 +44,20 @@ android {
         vectorDrawables.useSupportLibrary=getExtOrDefault('vector_drawable_use_support_library')
         buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString())
     }
+
+    sourceSets.main {
+        java {
+            if (isNewArchitectureEnabled()) {
+                srcDirs += [
+                    "src/fabric/java",
+                ]
+            } else {
+                srcDirs += [
+                    "src/paper/java",
+                ]
+            }
+        }
+    }
 }
 
 repositories {

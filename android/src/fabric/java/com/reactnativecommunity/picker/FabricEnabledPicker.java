@@ -14,6 +14,7 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.uimanager.FabricViewStateManager;
 import com.facebook.react.uimanager.PixelUtil;
+import com.facebook.react.uimanager.StateWrapper;
 
 public abstract class FabricEnabledPicker extends AppCompatSpinner implements FabricViewStateManager.HasFabricViewStateManager {
     private FabricViewStateManager mFabricViewStateManager = new FabricViewStateManager();
@@ -21,6 +22,10 @@ public abstract class FabricEnabledPicker extends AppCompatSpinner implements Fa
     @Override
     public FabricViewStateManager getFabricViewStateManager() {
         return mFabricViewStateManager;
+    }
+
+    public void setStateWrapper(StateWrapper stateWrapper) {
+        mFabricViewStateManager.setStateWrapper(stateWrapper);
     }
 
     protected void setMinHeight(int height) {

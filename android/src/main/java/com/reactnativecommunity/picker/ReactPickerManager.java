@@ -200,7 +200,7 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
 
   @Override
   public Object updateState(ReactPicker view, ReactStylesDiffMap props, StateWrapper stateWrapper) {
-    view.getFabricViewStateManager().setStateWrapper(stateWrapper);
+    view.setStateWrapper(stateWrapper);
     return null;
   }
 
