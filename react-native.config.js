@@ -42,7 +42,10 @@ module.exports = {
     platforms: {
       android: supportsCodegenConfig
         ? {
-            componentDescriptors: ['RNCAndroidDialogPickerComponentDescriptor'],
+            componentDescriptors: [
+              'RNCAndroidDialogPickerComponentDescriptor',
+              'RNCAndroidDropdownPickerComponentDescriptor',
+            ],
             cmakeListsPath: '../android/src/main/jni/CMakeLists.txt',
           }
         : {},

@@ -17,6 +17,7 @@
  * See: https://github.com/software-mansion/react-native-screens/pull/1585
  */
 #include <react/renderer/components/rnpicker/RNCAndroidDialogPickerComponentDescriptor.h>
+#include <react/renderer/components/rnpicker/RNCAndroidDropdownPickerComponentDescriptor.h>
 
 namespace facebook
 {
