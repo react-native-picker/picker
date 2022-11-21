@@ -17,8 +17,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/react-native-picker/picker.git", :tag => "v#{s.version}" }
 
   if fabric_enabled
-    # folly_version must match the version used in React Native
-    # See folly_version in react-native/React/FBReactNativeSpec/FBReactNativeSpec.podspec
     folly_compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -Wno-comma -Wno-shorten-64-to-32'
 
     s.pod_target_xcconfig = {
@@ -38,8 +36,8 @@ Pod::Spec.new do |s|
     s.dependency "RCTTypeSafety"
     s.dependency "ReactCommon/turbomodule/core"
   else 
-  s.ios.source_files  = "ios/**/*.{h,m,mm}"
-  s.osx.source_files  = "macos/**/*.{h,m,mm}"
+    s.ios.source_files  = "ios/**/*.{h,m,mm}"
+    s.osx.source_files  = "macos/**/*.{h,m,mm}"
   end
   
   s.dependency 'React-Core'
