@@ -20,13 +20,8 @@ namespace facebook
             {
                 react_native_assert(
                     std::dynamic_pointer_cast<RNCAndroidDialogPickerShadowNode>(shadowNode));
-                auto screenShadowNode =
+                auto pickerShadowNode =
                     std::static_pointer_cast<RNCAndroidDialogPickerShadowNode>(shadowNode);
-
-                react_native_assert(
-                    std::dynamic_pointer_cast<YogaLayoutableShadowNode>(screenShadowNode));
-                auto layoutableShadowNode =
-                    std::static_pointer_cast<YogaLayoutableShadowNode>(screenShadowNode);
 
                 auto state =
                     std::static_pointer_cast<const RNCAndroidDialogPickerShadowNode::ConcreteState>(
@@ -35,7 +30,7 @@ namespace facebook
 
                 if (stateData.minHeight != 0)
                 {
-                    screenShadowNode->setMinHeight(stateData.minHeight);
+                    pickerShadowNode->setMinHeight(stateData.minHeight);
                 }
 
                 ConcreteComponentDescriptor::adopt(shadowNode);
