@@ -1,0 +1,13 @@
+diff --git a/node_modules/@react-native-community/cli-platform-android/native_modules.gradle b/node_modules/@react-native-community/cli-platform-android/native_modules.gradle
+index 4a63eaf..a6262ae 100644
+--- a/node_modules/@react-native-community/cli-platform-android/native_modules.gradle
++++ b/node_modules/@react-native-community/cli-platform-android/native_modules.gradle
+@@ -440,7 +440,7 @@ class ReactNativeModules {
+     String[] nodeCommand = ["node", "-e", cliResolveScript]
+     def cliPath = this.getCommandOutput(nodeCommand, this.root)
+ 
+-    String[] reactNativeConfigCommand = ["node", cliPath, "config"]
++    String[] reactNativeConfigCommand = ["node", cliPath, "config", "--enable-rnpicker-codegen"]
+     def reactNativeConfigOutput = this.getCommandOutput(reactNativeConfigCommand, this.root)
+ 
+     def json
