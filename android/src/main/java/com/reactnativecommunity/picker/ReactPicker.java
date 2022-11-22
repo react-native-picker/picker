@@ -30,6 +30,12 @@ import com.facebook.react.uimanager.UIManagerModule;
 
 import javax.annotation.Nullable;
 
+// Inherit after FabricEnabledPicker which is a subclass of AppCompatSpinner and
+// has different implementation on Paper and Fabric (thanks to gradle sourceSets).
+// This way we can avoid having to duplicate the code in both implementations.
+// Paper version of FabricEnabledPicker has necessary methods implemented as no-ops,
+// while Fabric version has the actual implementation which allows us to change the
+// shadow node state.
 public class ReactPicker extends FabricEnabledPicker {
 
   private int mMode = Spinner.MODE_DIALOG;

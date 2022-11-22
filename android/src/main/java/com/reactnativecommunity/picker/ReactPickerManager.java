@@ -186,14 +186,17 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
     }
   }
 
+  // native command, must match the signature in the codegen specs
   public void focus(ReactPicker root) {
     root.performClick();
   }
 
+  // native command, must match the signature in the codegen specs
   public void blur(ReactPicker root) {
     root.clearFocus();
   }
 
+  // native command, must match the signature in the codegen specs
   public void setNativeSelected(ReactPicker picker, int selected) {
     picker.setStagedSelection(selected);
   }
