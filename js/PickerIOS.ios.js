@@ -15,7 +15,9 @@
 
 import * as React from 'react';
 import {processColor, StyleSheet, View} from 'react-native';
-import RNCPickerNativeComponent from './RNCPickerNativeComponent';
+import RNCPickerNativeComponent, {
+  Commands as iOSPickerCommands,
+} from './RNCPickerNativeComponent';
 import type {RNCPickerIOSType} from './RNCPickerNativeComponent';
 import type {ProcessedColorValue} from 'react-native/Libraries/StyleSheet/processColor';
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
@@ -138,8 +140,16 @@ class PickerIOS extends React.Component<Props, State> {
       this._picker &&
       this.state.selectedIndex !== event.nativeEvent.newIndex
     ) {
-      // TODO: check if it is correct based on the comment above
-      this.setState({...this.state, selectedIndex: event.nativeEvent.newIndex});
+      if (!!global?.nativeFabricUIManager) {
+        iOSPickerCommands.setNativeSelectedIndex(
+          this._picker,
+          this.state.selectedIndex,
+        );
+      } else {
+        this._picker.setNativeProps({
+          selectedIndex: this.state.selectedIndex,
+        });
+      }
     }
   };
 }

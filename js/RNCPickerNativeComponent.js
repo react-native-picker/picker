@@ -10,6 +10,7 @@
 'use strict';
 
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
+import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
 
 type PickerIOSChangeEvent = $ReadOnly<{|
   newValue: string,
@@ -43,6 +44,17 @@ export type NativeProps = $ReadOnly<{|
   // with this object so those functions are generated
   fakeProp?: RNCPickerIOSTypeItemType,
 |}>;
+
+interface NativeCommands {
+  +setNativeSelectedIndex: (
+    viewRef: React.ElementRef<ComponentType>,
+    selectedIndex: Int32,
+  ) => void;
+}
+
+export const Commands: NativeCommands = codegenNativeCommands<NativeCommands>({
+  supportedCommands: ['setNativeSelectedIndex'],
+});
 
 export default codegenNativeComponent<NativeProps>('RNCPicker', {
   excludedPlatforms: ['android'],

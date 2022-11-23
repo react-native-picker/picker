@@ -6,11 +6,17 @@
 #import <React/RCTFabricComponentsPlugins.h>
 #import <react/renderer/components/rnpicker/ComponentDescriptors.h>
 #import <react/renderer/components/rnpicker/Props.h>
+#import <react/renderer/components/rnpicker/RCTComponentViewHelpers.h>
 #import <React/RCTFont.h>
 
 using namespace facebook::react;
 
-@interface RNCPickerComponentView() <UIPickerViewDelegate>
+@interface RNCPickerComponentView() <
+UIPickerViewDelegate
+#ifdef RCT_NEW_ARCH_ENABLED
+, RCTRNCPickerViewProtocol
+#endif
+>
 @end
 
 @implementation RNCPickerComponentView
@@ -90,6 +96,11 @@ using namespace facebook::react;
     picker = [[RNCPicker alloc] initWithFrame:self.bounds];
     self.contentView = picker;
     picker.delegate = self;
+}
+
+- (void)setNativeSelectedIndex:(NSInteger)selectedIndex
+{
+    picker.selectedIndex = selectedIndex;
 }
 
 #pragma mark - UIPickerViewDataSource protocol
