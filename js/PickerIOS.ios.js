@@ -53,11 +53,6 @@ type Props = $ReadOnly<{|
   themeVariant: ?string,
 |}>;
 
-type State = {|
-  selectedIndex: number,
-  items: $ReadOnlyArray<RNCPickerIOSItemType>,
-|};
-
 type ItemProps = $ReadOnly<{|
   label: ?Label,
   value?: ?(number | string),
@@ -65,94 +60,134 @@ type ItemProps = $ReadOnly<{|
   testID?: ?string,
 |}>;
 
+type CallbackRef<T> = (T) => mixed;
+type ObjectRef<T> = {current: T, ...};
+
+type Ref<T> = CallbackRef<T> | ObjectRef<T>;
+
+/**
+ * Constructs a new ref that forwards new values to each of the given refs. The
+ * given refs will always be invoked in the order that they are supplied.
+ *
+ * WARNING: A known problem of merging refs using this approach is that if any
+ * of the given refs change, the returned callback ref will also be changed. If
+ * the returned callback ref is supplied as a `ref` to a React element, this may
+ * lead to problems with the given refs being invoked more times than desired.
+ */
+function useMergeRefs<T>(...refs: $ReadOnlyArray<?Ref<T>>): CallbackRef<T> {
+  return React.useCallback(
+    (current: T) => {
+      for (const ref of refs) {
+        if (ref != null) {
+          if (typeof ref === 'function') {
+            ref(current);
+          } else {
+            ref.current = current;
+          }
+        }
+      }
+    },
+    [...refs], // eslint-disable-line react-hooks/exhaustive-deps
+  );
+}
+
 const PickerIOSItem = (props: ItemProps): null => {
   return null;
 };
 
-class PickerIOS extends React.Component<Props, State> {
-  _picker: ?ElementRef<RNCPickerIOSType> = null;
+const PickerIOSWithForwardedRef: React.AbstractComponent<
+  Props,
+  React.ElementRef<typeof RNCPickerNativeComponent>,
+> = React.forwardRef(function PickerIOS(props, forwardedRef): React.Node {
+  const {
+    children,
+    selectedValue,
+    themeVariant,
+    testID,
+    itemStyle,
+    numberOfLines,
+    onChange,
+    onValueChange,
+    style,
+  } = props;
 
-  state: State = {
-    selectedIndex: 0,
-    items: [],
-  };
+  const nativePickerRef = React.useRef<React.ElementRef<
+    typeof RNCPickerNativeComponent,
+  > | null>(null);
 
-  static Item: typeof PickerIOSItem = PickerIOSItem;
+  const ref = useMergeRefs(nativePickerRef, forwardedRef);
 
-  static getDerivedStateFromProps(props: Props): State {
-    let selectedIndex = 0;
-    const items = [];
-    React.Children.toArray(props.children).forEach(function (child, index) {
-      if (child.props.value === props.selectedValue) {
-        selectedIndex = index;
-      }
-      items.push({
-        value: String(child.props.value),
-        label: String(child.props.label),
-        textColor: processColor(child.props.color),
-        testID: child.props.testID,
-      });
+  const [nativeSelectedIndex, setNativeSelectedIndex] = React.useState({
+    value: null,
+  });
+
+  let selectedIndex = -1;
+  const items = [];
+  React.Children.toArray(children).forEach(function (child, index) {
+    if (child.props.value == selectedValue) {
+      selectedIndex = index;
+    }
+    items.push({
+      value: String(child.props.value),
+      label: String(child.props.label),
+      textColor: processColor(child.props.color),
+      testID: child.props.testID,
     });
-    return {selectedIndex, items};
-  }
+  });
 
-  render(): React.Node {
-    let numberOfLines = Math.round(this.props.numberOfLines ?? 1);
-    if (numberOfLines < 1) {
-      numberOfLines = 1;
-    }
-    return (
-      <View style={this.props.style}>
-        <RNCPickerNativeComponent
-          ref={(picker) => {
-            this._picker = picker;
-          }}
-          themeVariant={this.props.themeVariant}
-          testID={this.props.testID}
-          style={[styles.pickerIOS, this.props.itemStyle]}
-          items={this.state.items}
-          selectedIndex={this.state.selectedIndex}
-          onChange={this._onChange}
-          numberOfLines={numberOfLines}
-        />
-      </View>
-    );
-  }
-
-  _onChange = (event) => {
-    if (this.props.onChange) {
-      this.props.onChange(event);
-    }
-    if (this.props.onValueChange) {
-      this.props.onValueChange(
-        event.nativeEvent.newValue,
-        event.nativeEvent.newIndex,
-      );
-    }
-
-    // The picker is a controlled component. This means we expect the
-    // on*Change handlers to be in charge of updating our
-    // `selectedValue` prop. That way they can also
-    // disallow/undo/mutate the selection of certain values. In other
-    // words, the embedder of this component should be the source of
-    // truth, not the native component.
-    if (
-      this._picker &&
-      this.state.selectedIndex !== event.nativeEvent.newIndex
-    ) {
+  React.useLayoutEffect(() => {
+    let jsValue = 0;
+    React.Children.toArray(children).forEach(function (child, index) {
+      if (child.props.value == selectedValue) {
+        jsValue = index;
+      }
+    });
+    // This is necessary in case native updates the switch and JS decides
+    // that the update should be ignored and we should stick with the value
+    // that we have in JS.
+    const shouldUpdateNativePicker =
+      nativeSelectedIndex.value != null &&
+      nativeSelectedIndex.value !== jsValue;
+    if (shouldUpdateNativePicker && nativePickerRef.current) {
       if (!!global?.nativeFabricUIManager) {
         iOSPickerCommands.setNativeSelectedIndex(
-          this._picker,
-          this.state.selectedIndex,
+          nativePickerRef.current,
+          jsValue,
         );
       } else {
-        this._picker.setNativeProps({
-          selectedIndex: this.state.selectedIndex,
+        nativePickerRef.current.setNativeProps({
+          selectedIndex: jsValue,
         });
       }
     }
+  }, [selectedValue, nativeSelectedIndex, children]);
+
+  const _onChange = (event) => {
+    onChange?.(event);
+    onValueChange?.(event.nativeEvent.newValue, event.nativeEvent.newIndex);
+    setNativeSelectedIndex({value: event.nativeEvent.newIndex});
   };
-}
+
+  let parsedNumberOfLines = Math.round(numberOfLines ?? 1);
+  if (parsedNumberOfLines < 1) {
+    parsedNumberOfLines = 1;
+  }
+
+  return (
+    <View style={style}>
+      <RNCPickerNativeComponent
+        ref={ref}
+        themeVariant={themeVariant}
+        testID={testID}
+        style={[styles.pickerIOS, itemStyle]}
+        items={items}
+        onChange={_onChange}
+        numberOfLines={parsedNumberOfLines}
+        selectedIndex={selectedIndex}
+      />
+    </View>
+  );
+});
 
 const styles = StyleSheet.create({
   pickerIOS: {
@@ -163,4 +198,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PickerIOS;
+PickerIOSWithForwardedRef.Item = PickerIOSItem;
+
+export default PickerIOSWithForwardedRef;
