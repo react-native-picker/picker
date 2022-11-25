@@ -98,6 +98,11 @@ UIPickerViewDelegate
     picker.delegate = self;
 }
 
+- (void)handleCommand:(const NSString *)commandName args:(const NSArray *)args
+{
+    RCTRNCPickerHandleCommand(self, commandName, args);
+}
+
 - (void)setNativeSelectedIndex:(NSInteger)selectedIndex
 {
     picker.selectedIndex = selectedIndex;

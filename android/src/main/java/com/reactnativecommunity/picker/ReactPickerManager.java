@@ -45,6 +45,7 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
 
   private static final int FOCUS_PICKER = 1;
   private static final int BLUR_PICKER = 2;
+  private static final int SET_NATIVE_SELECTED = 3;
 
   @Nullable
   @Override
@@ -70,7 +71,7 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
 
   @Override
   public @Nullable Map<String, Integer> getCommandsMap() {
-    return MapBuilder.of("focus", FOCUS_PICKER, "blur", BLUR_PICKER);
+    return MapBuilder.of("focus", FOCUS_PICKER, "blur", BLUR_PICKER, "setNativeSelected", SET_NATIVE_SELECTED);
   }
 
   @ReactProp(name = "items")
@@ -171,32 +172,42 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
       case BLUR_PICKER:
         root.clearFocus();
         break;
+      case SET_NATIVE_SELECTED:
+        Assertions.assertNotNull(args);
+        assert args != null;
+        setNativeSelected(root, args.getInt(0));
+        break;
     }
   }
 
   @Override
   public void receiveCommand(@NonNull ReactPicker root, String commandId, @androidx.annotation.Nullable ReadableArray args) {
+    Assertions.assertNotNull(root);
     switch (commandId) {
       case "focus":
-        root.performClick();
+        focus(root);
         break;
       case "blur":
-        root.clearFocus();
+        blur(root);
+        break;
+      case "setNativeSelected":
+        Assertions.assertNotNull(args);
+        assert args != null;
+        setNativeSelected(root, args.getInt(0));
         break;
     }
   }
 
-  // native command, must match the signature in the codegen specs
+  // It seems funny, but these methods are called through delegate on Paper, but on Fabric we need to
+  // use `receiveCommand` method and call them there
   public void focus(ReactPicker root) {
     root.performClick();
   }
 
-  // native command, must match the signature in the codegen specs
   public void blur(ReactPicker root) {
     root.clearFocus();
   }
 
-  // native command, must match the signature in the codegen specs
   public void setNativeSelected(ReactPicker picker, int selected) {
     picker.setStagedSelection(selected);
   }
