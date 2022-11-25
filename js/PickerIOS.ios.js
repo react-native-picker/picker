@@ -121,19 +121,29 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
     value: null,
   });
 
-  let selectedIndex = -1;
-  const items = [];
-  React.Children.toArray(children).forEach(function (child, index) {
-    if (child.props.value == selectedValue) {
-      selectedIndex = index;
-    }
-    items.push({
-      value: String(child.props.value),
-      label: String(child.props.label),
-      textColor: processColor(child.props.color),
-      testID: child.props.testID,
+  const [items, selectedIndex] = React.useMemo(() => {
+    let selectedIndex = 0;
+    const items = React.Children.toArray(children).map((child, index) => {
+      if (child === null) {
+        return null;
+      }
+      if (child.props.value == selectedValue) {
+        selectedIndex = index;
+      }
+      return {
+        value: String(child.props.value),
+        label: String(child.props.label),
+        textColor: processColor(child.props.color),
+        testID: child.props.testID,
+      };
     });
-  });
+    return [items, selectedIndex];
+  }, [children, selectedValue]);
+
+  let parsedNumberOfLines = Math.round(numberOfLines ?? 1);
+  if (parsedNumberOfLines < 1) {
+    parsedNumberOfLines = 1;
+  }
 
   React.useLayoutEffect(() => {
     let jsValue = 0;
@@ -162,16 +172,14 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
     }
   }, [selectedValue, nativeSelectedIndex, children]);
 
-  const _onChange = (event) => {
-    onChange?.(event);
-    onValueChange?.(event.nativeEvent.newValue, event.nativeEvent.newIndex);
-    setNativeSelectedIndex({value: event.nativeEvent.newIndex});
-  };
-
-  let parsedNumberOfLines = Math.round(numberOfLines ?? 1);
-  if (parsedNumberOfLines < 1) {
-    parsedNumberOfLines = 1;
-  }
+  const _onChange = React.useCallback(
+    (event) => {
+      onChange?.(event);
+      onValueChange?.(event.nativeEvent.newValue, event.nativeEvent.newIndex);
+      setNativeSelectedIndex({value: event.nativeEvent.newIndex});
+    },
+    [onChange, onValueChange],
+  );
 
   return (
     <View style={style}>
