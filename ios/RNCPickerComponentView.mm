@@ -70,7 +70,7 @@ UIPickerViewDelegate
         picker.textAlign = NSTextAlignmentJustified;
     }
     picker.numberOfLines = newProps.numberOfLines;
-    [RCTFont updateFont:picker.font withFamily:RCTNSStringFromStringNilIfEmpty(newProps.fontFamily) size:@(newProps.fontSize) weight:RCTNSStringFromStringNilIfEmpty(newProps.fontWeight) style:RCTNSStringFromStringNilIfEmpty(newProps.fontStyle) variant:nil scaleMultiplier:1];
+    picker.font = [RCTFont updateFont:picker.font withFamily:RCTNSStringFromStringNilIfEmpty(newProps.fontFamily) size:@(newProps.fontSize) weight:RCTNSStringFromStringNilIfEmpty(newProps.fontWeight) style:RCTNSStringFromStringNilIfEmpty(newProps.fontStyle) variant:nil scaleMultiplier:1];
     if (@available(iOS 13.4, *)) {
         NSString *themeVariant = RCTNSStringFromStringNilIfEmpty(newProps.themeVariant);
             if (themeVariant) {

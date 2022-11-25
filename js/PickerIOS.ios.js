@@ -127,7 +127,7 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
       if (child === null) {
         return null;
       }
-      if (child.props.value == selectedValue) {
+      if (String(child.props.value) === String(selectedValue)) {
         selectedIndex = index;
       }
       return {
@@ -148,7 +148,7 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
   React.useLayoutEffect(() => {
     let jsValue = 0;
     React.Children.toArray(children).forEach(function (child, index) {
-      if (child.props.value == selectedValue) {
+      if (String(child.props.value) === String(selectedValue)) {
         jsValue = index;
       }
     });
