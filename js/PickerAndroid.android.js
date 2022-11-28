@@ -180,7 +180,14 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
         }
       }
     },
-    [props.children, props.onValueChange, props.selectedValue, selected, props.mode, FABRIC_ENABLED],
+    [
+      props.children,
+      props.onValueChange,
+      props.selectedValue,
+      selected,
+      props.mode,
+      FABRIC_ENABLED,
+    ],
   );
 
   const Picker =
