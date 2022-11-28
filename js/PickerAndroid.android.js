@@ -55,6 +55,10 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
   const pickerRef = React.useRef(null);
   const FABRIC_ENABLED = !!global?.nativeFabricUIManager;
 
+  const [nativeSelectedIndex, setNativeSelectedIndex] = React.useState({
+    value: null,
+  });
+
   React.useImperativeHandle(ref, () => {
     const viewManagerConfig = UIManager.getViewManagerConfig(
       props.mode === MODE_DROPDOWN
@@ -100,6 +104,51 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
       },
     };
   });
+
+  React.useLayoutEffect(() => {
+    // eslint-disable-next-line no-shadow
+    let jsValue = 0;
+    React.Children.toArray(props.children).map((child, index) => {
+      if (child === null) {
+        return null;
+      }
+      if (child.props.value === props.selectedValue) {
+        jsValue = index;
+      }
+    });
+
+    const shouldUpdateNativePicker =
+      nativeSelectedIndex.value != null &&
+      nativeSelectedIndex.value !== jsValue;
+
+    // This is necessary in case native updates the switch and JS decides
+    // that the update should be ignored and we should stick with the value
+    // that we have in JS.
+    if (shouldUpdateNativePicker && pickerRef.current) {
+      if (FABRIC_ENABLED) {
+        if (props.mode === MODE_DROPDOWN) {
+          AndroidDropdownPickerCommands.setNativeSelected(
+            pickerRef.current,
+            selected,
+          );
+        } else {
+          AndroidDialogPickerCommands.setNativeSelected(
+            pickerRef.current,
+            selected,
+          );
+        }
+      } else {
+        pickerRef.current.setNativeProps({
+          selected,
+        });
+      }
+    }
+  }, [
+    props.selectedValue,
+    nativeSelectedIndex,
+    props.children,
+    FABRIC_ENABLED,
+  ]);
 
   const [items, selected] = React.useMemo(() => {
     // eslint-disable-next-line no-shadow
@@ -153,41 +202,9 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
           onValueChange(null, position);
         }
       }
-
-      // The picker is a controlled component. This means we expect the
-      // on*Change handlers to be in charge of updating our
-      // `selectedValue` prop. That way they can also
-      // disallow/undo/mutate the selection of certain values. In other
-      // words, the embedder of this component should be the source of
-      // truth, not the native component.
-      if (pickerRef.current && selected !== position) {
-        if (FABRIC_ENABLED) {
-          if (props.mode === MODE_DROPDOWN) {
-            AndroidDropdownPickerCommands.setNativeSelected(
-              pickerRef.current,
-              selected,
-            );
-          } else {
-            AndroidDialogPickerCommands.setNativeSelected(
-              pickerRef.current,
-              selected,
-            );
-          }
-        } else {
-          pickerRef.current.setNativeProps({
-            selected,
-          });
-        }
-      }
+      setNativeSelectedIndex({value: position});
     },
-    [
-      props.children,
-      props.onValueChange,
-      props.selectedValue,
-      selected,
-      props.mode,
-      FABRIC_ENABLED,
-    ],
+    [props.children, props.onValueChange, props.selectedValue],
   );
 
   const Picker =
