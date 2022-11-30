@@ -95,6 +95,11 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
     ReadableArray items = props.getArray("items");
     ReactPickerAdapter adapter = new ReactPickerAdapter(context, items);
 
+    int numberOfLines = props.getInt("numberOfLines");
+    if (numberOfLines > 0) {
+      adapter.setNumberOfLines(numberOfLines);
+    }
+
     int selectedPosition = props.getInt("selected");
     int elementHeight;
     if (selectedPosition < 0 || selectedPosition >= adapter.getCount()) {
@@ -104,7 +109,9 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
               Resources.getSystem().getDisplayMetrics()
       );
     } else {
-      View view = adapter.getView(selectedPosition, null, picker);
+      View view = "dropdown".equals(props.getString("mode"))
+              ? adapter.getDropDownView(selectedPosition, null, picker)
+              : adapter.getView(selectedPosition, null, picker);
       picker.measureItem(
               view,
               View.MeasureSpec.makeMeasureSpec(picker.getMeasuredWidth(), View.MeasureSpec.EXACTLY),

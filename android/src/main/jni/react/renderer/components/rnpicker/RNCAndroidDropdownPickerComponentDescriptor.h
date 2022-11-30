@@ -2,6 +2,7 @@
 
 #include <react/debug/react_native_assert.h>
 #include "RNCAndroidDropdownPickerShadowNode.h"
+#include "RNCAndroidDropdownPickerMeasurementsManager.h"
 #include <react/renderer/core/ConcreteComponentDescriptor.h>
 #include <react/renderer/components/rnpicker/Props.h>
 
@@ -14,28 +15,31 @@ namespace facebook
             : public ConcreteComponentDescriptor<RNCAndroidDropdownPickerShadowNode>
         {
         public:
-            using ConcreteComponentDescriptor::ConcreteComponentDescriptor;
+            RNCAndroidDropdownPickerComponentDescriptor(
+                ComponentDescriptorParameters const &parameters)
+                : ConcreteComponentDescriptor(parameters),
+                  measurementsManager_(std::make_shared<RNCAndroidDropdownPickerMeasurementsManager>(
+                      contextContainer_)) {}
 
             void adopt(ShadowNode::Unshared const &shadowNode) const override
             {
-                react_native_assert(
-                    std::dynamic_pointer_cast<RNCAndroidDropdownPickerShadowNode>(shadowNode));
+                assert(std::dynamic_pointer_cast<RNCAndroidDropdownPickerShadowNode>(shadowNode));
                 auto pickerShadowNode =
                     std::static_pointer_cast<RNCAndroidDropdownPickerShadowNode>(shadowNode);
 
-                auto state =
-                    std::static_pointer_cast<const RNCAndroidDropdownPickerShadowNode::ConcreteState>(
-                        shadowNode->getState());
-                auto stateData = state->getData();
+                // `RNCAndroidDropdownPickerShadowNode` uses `RNCAndroidDropdownPickerMeasurementsManager` to
+                // provide measurements to Yoga.
+                pickerShadowNode->setDropdownPickerMeasurementsManager(measurementsManager_);
 
-                if (stateData.minHeight != 0)
-                {
-                    pickerShadowNode->setMinHeight(stateData.minHeight);
-                }
-
+                // All `RNCAndroidDropdownPickerShadowNode`s must have leaf Yoga nodes with properly
+                // setup measure function.
+                pickerShadowNode->enableMeasurement();
+                pickerShadowNode->dirtyLayout();
                 ConcreteComponentDescriptor::adopt(shadowNode);
             }
-        };
 
+        private:
+            const std::shared_ptr<RNCAndroidDropdownPickerMeasurementsManager> measurementsManager_;
+        };
     } // namespace react
 } // namespace facebook

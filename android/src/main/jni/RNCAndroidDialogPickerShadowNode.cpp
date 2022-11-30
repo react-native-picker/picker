@@ -1,5 +1,4 @@
 #include "RNCAndroidDialogPickerShadowNode.h"
-#include <android/log.h>
 
 namespace facebook
 {

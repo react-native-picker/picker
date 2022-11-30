@@ -45,7 +45,7 @@ namespace facebook
       local_ref<JString> componentName = make_jstring("RNCAndroidDialogPicker");
 
       // override selected index with selectedIndex from state if set
-      folly::dynamic serializedProps = toDynamic(props, selected);
+      folly::dynamic serializedProps = dialogToDynamic(props, selected);
 
       local_ref<ReadableNativeMap::javaobject> propsRNM =
           ReadableNativeMap::newObjectCxxArgs(serializedProps);

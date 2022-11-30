@@ -1,3 +1,5 @@
+#pragma once
+
 #include <react/renderer/components/rnpicker/Props.h>
 #include <react/renderer/core/conversions.h>
 #include <react/renderer/components/view/conversions.h>
@@ -7,7 +9,7 @@ namespace facebook
 {
     namespace react
     {
-        inline folly::dynamic styleToDynamic(const RNCAndroidDialogPickerItemsStyleStruct &style)
+        inline folly::dynamic dialogStyleToDynamic(const RNCAndroidDialogPickerItemsStyleStruct &style)
         {
             folly::dynamic values = folly::dynamic::object();
 
@@ -19,7 +21,7 @@ namespace facebook
             return values;
         }
 
-        inline folly::dynamic itemsToDynamic(const std::vector<RNCAndroidDialogPickerItemsStruct> &items)
+        inline folly::dynamic dialogItemsToDynamic(const std::vector<RNCAndroidDialogPickerItemsStruct> &items)
         {
             folly::dynamic values = folly::dynamic::array();
 
@@ -31,17 +33,17 @@ namespace facebook
                 itemValues["color"] = *item.color;
                 itemValues["fontFamily"] = item.fontFamily;
                 itemValues["enabled"] = item.enabled;
-                itemValues["style"] = styleToDynamic(item.style);
+                itemValues["style"] = dialogStyleToDynamic(item.style);
                 values.push_back(itemValues);
             }
 
             return values;
         }
 
-        inline folly::dynamic toDynamic(const RNCAndroidDialogPickerProps &props, int selected)
+        inline folly::dynamic dialogToDynamic(const RNCAndroidDialogPickerProps &props, int selected)
         {
             folly::dynamic values = folly::dynamic::object();
-            values["items"] = itemsToDynamic(props.items);
+            values["items"] = dialogItemsToDynamic(props.items);
             values["color"] = *props.color; // TODO: seems not to be used anywhere
             values["prompt"] = props.prompt;
             values["selected"] = selected;
@@ -49,6 +51,54 @@ namespace facebook
             values["dropdownIconColor"] = props.dropdownIconColor;
             values["dropdownIconRippleColor"] = props.dropdownIconRippleColor;
             values["numberOfLines"] = props.numberOfLines;
+            values["mode"] = "dialog";
+
+            return values;
+        }
+
+        inline folly::dynamic dropdownStyleToDynamic(const RNCAndroidDropdownPickerItemsStyleStruct &style)
+        {
+            folly::dynamic values = folly::dynamic::object();
+
+            values["color"] = *style.color;
+            values["backgroundColor"] = *style.backgroundColor;
+            values["fontFamily"] = style.fontFamily;
+            values["fontSize"] = style.fontSize;
+
+            return values;
+        }
+
+        inline folly::dynamic dropdownItemsToDynamic(const std::vector<RNCAndroidDropdownPickerItemsStruct> &items)
+        {
+            folly::dynamic values = folly::dynamic::array();
+
+            for (const auto &item : items)
+            {
+                folly::dynamic itemValues = folly::dynamic::object();
+                itemValues["label"] = item.label;
+                itemValues["value"] = item.value;
+                itemValues["color"] = *item.color;
+                itemValues["fontFamily"] = item.fontFamily;
+                itemValues["enabled"] = item.enabled;
+                itemValues["style"] = dropdownStyleToDynamic(item.style);
+                values.push_back(itemValues);
+            }
+
+            return values;
+        }
+
+        inline folly::dynamic dropdownToDynamic(const RNCAndroidDropdownPickerProps &props, int selected)
+        {
+            folly::dynamic values = folly::dynamic::object();
+            values["items"] = dropdownItemsToDynamic(props.items);
+            values["color"] = *props.color; // TODO: seems not to be used anywhere
+            values["prompt"] = props.prompt;
+            values["selected"] = selected;
+            values["backgroundColor"] = props.backgroundColor;
+            values["dropdownIconColor"] = props.dropdownIconColor;
+            values["dropdownIconRippleColor"] = props.dropdownIconRippleColor;
+            values["numberOfLines"] = props.numberOfLines;
+            values["mode"] = "dropdown";
 
             return values;
         }
