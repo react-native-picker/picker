@@ -1,4 +1,5 @@
 #include "RNCAndroidDialogPickerShadowNode.h"
+#include <android/log.h>
 
 namespace facebook
 {
@@ -7,14 +8,21 @@ namespace facebook
 
         extern const char RNCAndroidDialogPickerComponentName[] = "RNCAndroidDialogPicker";
 
-        void RNCAndroidDialogPickerShadowNode::setMinHeight(float minHeight)
+        void RNCAndroidDialogPickerShadowNode::setDialogPickerMeasurementsManager(
+            const std::shared_ptr<RNCAndroidDialogPickerMeasurementsManager>
+                &measurementsManager)
         {
-            // borrowed from react-native/ReactCommon/react/renderer/components/view/YogaLayoutableShadowNode.cpp ::setSize
             ensureUnsealed();
-            auto style = yogaNode_.getStyle();
-            style.minDimensions()[YGDimensionHeight] = yogaStyleValueFromFloat(minHeight);
-            yogaNode_.setStyle(style);
-            yogaNode_.setDirty(true);
+            measurementsManager_ = measurementsManager;
+        }
+
+#pragma mark - LayoutableShadowNode
+
+        Size RNCAndroidDialogPickerShadowNode::measureContent(
+            LayoutContext const &layoutContext,
+            LayoutConstraints const &layoutConstraints) const
+        {
+            return measurementsManager_->measure(getSurfaceId(), layoutConstraints, getConcreteProps(), getStateData());
         }
     } // namespace react
 } // namespace facebook

@@ -8,7 +8,7 @@ namespace facebook
 #ifdef ANDROID
     folly::dynamic RNCAndroidDialogPickerState::getDynamic() const
     {
-      return folly::dynamic::object("minHeight", minHeight);
+      return folly::dynamic::object("selectedIndex", selectedIndex);
     }
 #endif
 

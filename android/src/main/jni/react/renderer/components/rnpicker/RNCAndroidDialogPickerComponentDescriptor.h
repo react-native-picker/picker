@@ -2,6 +2,7 @@
 
 #include <react/debug/react_native_assert.h>
 #include "RNCAndroidDialogPickerShadowNode.h"
+#include "RNCAndroidDialogPickerMeasurementsManager.h"
 #include <react/renderer/core/ConcreteComponentDescriptor.h>
 #include <react/renderer/components/rnpicker/Props.h>
 
@@ -14,27 +15,31 @@ namespace facebook
             : public ConcreteComponentDescriptor<RNCAndroidDialogPickerShadowNode>
         {
         public:
-            using ConcreteComponentDescriptor::ConcreteComponentDescriptor;
+            RNCAndroidDialogPickerComponentDescriptor(
+                ComponentDescriptorParameters const &parameters)
+                : ConcreteComponentDescriptor(parameters),
+                  measurementsManager_(std::make_shared<RNCAndroidDialogPickerMeasurementsManager>(
+                      contextContainer_)) {}
 
             void adopt(ShadowNode::Unshared const &shadowNode) const override
             {
-                react_native_assert(
-                    std::dynamic_pointer_cast<RNCAndroidDialogPickerShadowNode>(shadowNode));
+                assert(std::dynamic_pointer_cast<RNCAndroidDialogPickerShadowNode>(shadowNode));
                 auto pickerShadowNode =
                     std::static_pointer_cast<RNCAndroidDialogPickerShadowNode>(shadowNode);
 
-                auto state =
-                    std::static_pointer_cast<const RNCAndroidDialogPickerShadowNode::ConcreteState>(
-                        shadowNode->getState());
-                auto stateData = state->getData();
+                // `RNCAndroidDialogPickerShadowNode` uses `RNCAndroidDialogPickerMeasurementsManager` to
+                // provide measurements to Yoga.
+                pickerShadowNode->setDialogPickerMeasurementsManager(measurementsManager_);
 
-                if (stateData.minHeight != 0)
-                {
-                    pickerShadowNode->setMinHeight(stateData.minHeight);
-                }
-
+                // All `RNCAndroidDialogPickerShadowNode`s must have leaf Yoga nodes with properly
+                // setup measure function.
+                pickerShadowNode->enableMeasurement();
+                pickerShadowNode->dirtyLayout();
                 ConcreteComponentDescriptor::adopt(shadowNode);
             }
+
+        private:
+            const std::shared_ptr<RNCAndroidDialogPickerMeasurementsManager> measurementsManager_;
         };
 
     } // namespace react

@@ -174,6 +174,10 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
         enabled,
         style: {
           ...style,
+          // there seems to be a problem with codegen, where it would assign to an item
+          // the last defined value of the font size if not set explicitly
+          // 0 is handled on the native side as "not set"
+          fontSize: style.fontSize ?? 0,
           color: style.color ? processColor(style.color) : null,
           backgroundColor: style.backgroundColor
             ? processColor(style.backgroundColor)

@@ -21,12 +21,20 @@ export type PickerAndroidChangeEvent = $ReadOnly<{|
   position: Int32,
 |}>;
 
+export type PickerItemStyle = $ReadOnly<{|
+  backgroundColor?: ?ColorValue,
+  color?: ?ColorValue,
+  fontSize?: ?Double,
+  fontFamily?: ?string,
+|}>;
+
 export type PickerItem = $ReadOnly<{|
   label: string,
   value: ?string,
   color?: ColorValue,
   fontFamily: ?string,
   enabled?: ?boolean,
+  style?: ?PickerItemStyle,
 |}>;
 
 type NativeProps = $ReadOnly<{|

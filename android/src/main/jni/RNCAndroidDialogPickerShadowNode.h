@@ -1,6 +1,7 @@
 #pragma once
 
 #include "RNCAndroidDialogPickerState.h"
+#include "RNCAndroidDialogPickerMeasurementsManager.h"
 #include <react/renderer/components/rnpicker/EventEmitters.h>
 #include <react/renderer/components/rnpicker/Props.h>
 #include <react/renderer/components/view/ConcreteViewShadowNode.h>
@@ -22,8 +23,20 @@ namespace facebook
                                                                   RNCAndroidDialogPickerState>
     {
     public:
-      void setMinHeight(float minHeight);
       using ConcreteViewShadowNode::ConcreteViewShadowNode;
+      // Associates a shared `RNCAndroidDialogPickerMeasurementsManager` with the node.
+      void setDialogPickerMeasurementsManager(
+          const std::shared_ptr<RNCAndroidDialogPickerMeasurementsManager>
+              &measurementsManager);
+
+#pragma mark - LayoutableShadowNode
+
+      Size measureContent(
+          LayoutContext const &layoutContext,
+          LayoutConstraints const &layoutConstraints) const override;
+
+    private:
+      std::shared_ptr<RNCAndroidDialogPickerMeasurementsManager> measurementsManager_;
     };
 
   } // namespace react

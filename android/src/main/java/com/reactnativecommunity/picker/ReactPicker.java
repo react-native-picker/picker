@@ -22,7 +22,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
-import androidx.appcompat.widget.AppCompatSpinner;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.common.annotations.VisibleForTesting;
 import com.facebook.react.modules.i18nmanager.I18nUtil;
@@ -52,6 +51,8 @@ public class ReactPicker extends FabricEnabledPicker {
       if (mOnSelectListener != null) {
         mOnSelectListener.onItemSelected(position);
       }
+
+      setSelectedIndex(position);
     }
 
     @Override
@@ -208,9 +209,13 @@ public class ReactPicker extends FabricEnabledPicker {
       if (uiManager != null) {
         uiManager.setViewLocalData(getId(), new ReactPickerLocalData(elementSize));
       }
-      this.setMinHeight(elementSize);
       mOldElementSize = elementSize;
     }
+    this.setSelectedIndex(selectedPosition);
+  }
+
+  public void measureItem(View view, int parentWidthMeasureSpec, int parentHeightMeasureSpec) {
+    measureChild(view, parentWidthMeasureSpec, parentHeightMeasureSpec);
   }
 
   public void clearFocus() {

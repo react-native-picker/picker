@@ -13,7 +13,6 @@ import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.uimanager.FabricViewStateManager;
-import com.facebook.react.uimanager.PixelUtil;
 import com.facebook.react.uimanager.StateWrapper;
 
 public abstract class FabricEnabledPicker extends AppCompatSpinner implements FabricViewStateManager.HasFabricViewStateManager {
@@ -28,20 +27,18 @@ public abstract class FabricEnabledPicker extends AppCompatSpinner implements Fa
         mFabricViewStateManager.setStateWrapper(stateWrapper);
     }
 
-    protected void setMinHeight(int height) {
-        updateState(height);
+    protected void setSelectedIndex(int index) {
+        updateState(index);
     }
 
     @UiThread
-    void updateState(int height) {
-        float realHeight = PixelUtil.toDIPFromPixel(height);
-
+    void updateState(int index) {
         // Check incoming state values. If they're already the correct value, return early to prevent
         // infinite UpdateState/SetState loop.
         ReadableMap currentState = mFabricViewStateManager.getStateData();
         if (currentState != null) {
-            float stateHeight = currentState.hasKey("minHeight") ? (float)currentState.getDouble("minHeight") : 0;
-            if (Math.abs(stateHeight - height) < 0.9) {
+            float stateIndex = currentState.hasKey("selectedIndex") ? currentState.getInt("selectedIndex") : 1;
+            if (stateIndex == index) {
                 return;
             }
         }
@@ -49,7 +46,7 @@ public abstract class FabricEnabledPicker extends AppCompatSpinner implements Fa
             @Override
             public WritableMap getStateUpdate() {
                 WritableMap map = new WritableNativeMap();
-                map.putDouble("minHeight", realHeight);
+                map.putInt("selectedIndex", index);
                 return map;
             }
         });
