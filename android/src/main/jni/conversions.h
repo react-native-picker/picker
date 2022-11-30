@@ -40,13 +40,13 @@ namespace facebook
             return values;
         }
 
-        inline folly::dynamic dialogToDynamic(const RNCAndroidDialogPickerProps &props, int selected)
+        inline folly::dynamic dialogToDynamic(const RNCAndroidDialogPickerProps &props)
         {
             folly::dynamic values = folly::dynamic::object();
             values["items"] = dialogItemsToDynamic(props.items);
             values["color"] = *props.color; // TODO: seems not to be used anywhere
             values["prompt"] = props.prompt;
-            values["selected"] = selected;
+            values["selected"] = props.selected;
             values["backgroundColor"] = props.backgroundColor;
             values["dropdownIconColor"] = props.dropdownIconColor;
             values["dropdownIconRippleColor"] = props.dropdownIconRippleColor;
@@ -87,13 +87,13 @@ namespace facebook
             return values;
         }
 
-        inline folly::dynamic dropdownToDynamic(const RNCAndroidDropdownPickerProps &props, int selected)
+        inline folly::dynamic dropdownToDynamic(const RNCAndroidDropdownPickerProps &props)
         {
             folly::dynamic values = folly::dynamic::object();
             values["items"] = dropdownItemsToDynamic(props.items);
             values["color"] = *props.color; // TODO: seems not to be used anywhere
             values["prompt"] = props.prompt;
-            values["selected"] = selected;
+            values["selected"] = props.selected;
             values["backgroundColor"] = props.backgroundColor;
             values["dropdownIconColor"] = props.dropdownIconColor;
             values["dropdownIconRippleColor"] = props.dropdownIconRippleColor;

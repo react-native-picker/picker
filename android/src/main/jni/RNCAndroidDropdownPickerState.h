@@ -20,16 +20,16 @@ namespace facebook
     public:
       using Shared = std::shared_ptr<const RNCAndroidDropdownPickerState>;
 
-      RNCAndroidDropdownPickerState() : selectedIndex(0){};
-      RNCAndroidDropdownPickerState(float selectedIndex_) : selectedIndex(selectedIndex_){};
+      RNCAndroidDropdownPickerState() : measuredHeight(0){};
+      RNCAndroidDropdownPickerState(float measuredHeight_) : measuredHeight(measuredHeight_){};
 
 #ifdef ANDROID
       RNCAndroidDropdownPickerState(
           RNCAndroidDropdownPickerState const &previousState,
-          folly::dynamic data) : selectedIndex((int)data["selectedIndex"].getInt()){};
+          folly::dynamic data) : measuredHeight((Float)data["measuredHeight"].getDouble()){};
 #endif
 
-      const int selectedIndex;
+      const float measuredHeight;
 
 #ifdef ANDROID
       folly::dynamic getDynamic() const;

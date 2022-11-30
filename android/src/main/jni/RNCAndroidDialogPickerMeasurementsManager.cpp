@@ -21,10 +21,13 @@ namespace facebook
         RNCAndroidDialogPickerProps props,
         RNCAndroidDialogPickerState state) const
     {
+      if (state.measuredHeight > 0)
+      {
+        return Size{0, state.measuredHeight};
+      }
+
       const jni::global_ref<jobject> &fabricUIManager =
           contextContainer_->at<jni::global_ref<jobject>>("FabricUIManager");
-
-      int selected = state.selectedIndex >= 0 ? state.selectedIndex : props.selected;
 
       static auto measure =
           jni::findClassStatic("com/facebook/react/fabric/FabricUIManager")
@@ -45,7 +48,7 @@ namespace facebook
       local_ref<JString> componentName = make_jstring("RNCAndroidDialogPicker");
 
       // override selected index with selectedIndex from state if set
-      folly::dynamic serializedProps = dialogToDynamic(props, selected);
+      folly::dynamic serializedProps = dialogToDynamic(props);
 
       local_ref<ReadableNativeMap::javaobject> propsRNM =
           ReadableNativeMap::newObjectCxxArgs(serializedProps);

@@ -14,6 +14,7 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.uimanager.FabricViewStateManager;
 import com.facebook.react.uimanager.StateWrapper;
+import com.facebook.react.uimanager.PixelUtil;
 
 public abstract class FabricEnabledPicker extends AppCompatSpinner implements FabricViewStateManager.HasFabricViewStateManager {
     private FabricViewStateManager mFabricViewStateManager = new FabricViewStateManager();
@@ -27,18 +28,20 @@ public abstract class FabricEnabledPicker extends AppCompatSpinner implements Fa
         mFabricViewStateManager.setStateWrapper(stateWrapper);
     }
 
-    protected void setSelectedIndex(int index) {
-        updateState(index);
+    protected void setMeasuredHeight(int height) {
+        updateState(height);
     }
 
     @UiThread
-    void updateState(int index) {
+    void updateState(int measuredHeight) {
+        float realHeight = PixelUtil.toDIPFromPixel(measuredHeight);
+
         // Check incoming state values. If they're already the correct value, return early to prevent
         // infinite UpdateState/SetState loop.
         ReadableMap currentState = mFabricViewStateManager.getStateData();
         if (currentState != null) {
-            float stateIndex = currentState.hasKey("selectedIndex") ? currentState.getInt("selectedIndex") : 1;
-            if (stateIndex == index) {
+            float stateHeight = currentState.hasKey("measuredHeight") ? currentState.getInt("measuredHeight") : 1;
+            if (Math.abs(stateHeight - realHeight) < 0.9) {
                 return;
             }
         }
@@ -46,7 +49,7 @@ public abstract class FabricEnabledPicker extends AppCompatSpinner implements Fa
             @Override
             public WritableMap getStateUpdate() {
                 WritableMap map = new WritableNativeMap();
-                map.putInt("selectedIndex", index);
+                map.putDouble("measuredHeight", realHeight);
                 return map;
             }
         });

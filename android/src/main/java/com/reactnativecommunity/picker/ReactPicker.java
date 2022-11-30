@@ -51,8 +51,6 @@ public class ReactPicker extends FabricEnabledPicker {
       if (mOnSelectListener != null) {
         mOnSelectListener.onItemSelected(position);
       }
-
-      setSelectedIndex(position);
     }
 
     @Override
@@ -210,8 +208,8 @@ public class ReactPicker extends FabricEnabledPicker {
         uiManager.setViewLocalData(getId(), new ReactPickerLocalData(elementSize));
       }
       mOldElementSize = elementSize;
+      this.setMeasuredHeight(elementSize);
     }
-    this.setSelectedIndex(selectedPosition);
   }
 
   public void measureItem(View view, int parentWidthMeasureSpec, int parentHeightMeasureSpec) {

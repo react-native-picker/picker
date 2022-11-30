@@ -81,6 +81,8 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
     return MapBuilder.of("focus", FOCUS_PICKER, "blur", BLUR_PICKER, "setNativeSelected", SET_NATIVE_SELECTED);
   }
 
+  // method responsible for measuring a picker during the first render on Fabric, every other render
+  // the `onMeasure` method of ReactPicker will update the state of the picker with the correct height
   public long measure(
           Context context,
           ReadableMap localData,

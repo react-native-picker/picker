@@ -15,7 +15,7 @@ public abstract class FabricEnabledPicker extends AppCompatSpinner {
         // NO-OP on paper
     }
 
-    protected void setSelectedIndex(int index) {
+    protected void setMeasuredHeight(int height) {
         // NO-OP on paper
     }
 
