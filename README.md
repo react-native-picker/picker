@@ -118,6 +118,15 @@ The following steps are only necessary if you are working with a version of Reac
 4. Run your project (`Cmd+R`)<
 </details>
 
+## RTL Support
+
+you need to add `android:supportsRtl="true"` to `AndroidManifest.xml`
+```xml
+   <application
+      ...
+      android:supportsRtl="true">
+```
+
 ## Usage
 
 Import Picker from `@react-native-picker/picker`:
