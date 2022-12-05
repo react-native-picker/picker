@@ -24,9 +24,9 @@ import AndroidDropdownPickerNativeComponent, {
   Commands as AndroidDropdownPickerCommands,
 } from './AndroidDropdownPickerNativeComponent';
 
-const MODE_DROPDOWN = 'dropdown';
-
 import type {TextStyleProp} from 'StyleSheet';
+
+const MODE_DROPDOWN = 'dropdown';
 
 type PickerAndroidProps = $ReadOnly<{|
   children?: React.Node,
@@ -106,7 +106,6 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
   });
 
   React.useLayoutEffect(() => {
-    // eslint-disable-next-line no-shadow
     let jsValue = 0;
     React.Children.toArray(props.children).map((child, index) => {
       if (child === null) {
@@ -148,6 +147,8 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
     nativeSelectedIndex,
     props.children,
     FABRIC_ENABLED,
+    props.mode,
+    selected,
   ]);
 
   const [items, selected] = React.useMemo(() => {

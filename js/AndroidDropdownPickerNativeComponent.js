@@ -10,16 +10,17 @@
 
 'use strict';
 
-import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
-import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
-import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import * as React from 'react';
+import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
 import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
-import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
-import type {ViewStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {
   BubblingEventHandler,
   Int32,
 } from 'react-native/Libraries/Types/CodegenTypes';
+
+import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
+import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
 
 export type PickerAndroidChangeEvent = $ReadOnly<{|
   position: Int32,
@@ -57,6 +58,8 @@ type NativeProps = $ReadOnly<{|
   onBlur?: BubblingEventHandler<null, 'topBlur'>,
 |}>;
 
+type ComponentType = HostComponent<NativeProps>;
+
 interface NativeCommands {
   +focus: (viewRef: React.ElementRef<ComponentType>) => void;
   +blur: (viewRef: React.ElementRef<ComponentType>) => void;
@@ -70,7 +73,10 @@ export const Commands: NativeCommands = codegenNativeCommands<NativeCommands>({
   supportedCommands: ['focus', 'blur', 'setNativeSelected'],
 });
 
-export default codegenNativeComponent<NativeProps>('RNCAndroidDropdownPicker', {
-  excludedPlatforms: ['iOS'],
-  interfaceOnly: true,
-});
+export default (codegenNativeComponent<NativeProps>(
+  'RNCAndroidDropdownPicker',
+  {
+    excludedPlatforms: ['iOS'],
+    interfaceOnly: true,
+  },
+): ComponentType);

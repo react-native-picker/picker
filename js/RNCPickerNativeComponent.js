@@ -9,6 +9,15 @@
  */
 'use strict';
 
+import * as React from 'react';
+import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
+import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
+import type {
+  BubblingEventHandler,
+  Int32,
+} from 'react-native/Libraries/Types/CodegenTypes';
+
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
 import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
 
@@ -45,6 +54,8 @@ export type NativeProps = $ReadOnly<{|
   fakeProp?: RNCPickerIOSTypeItemType,
 |}>;
 
+type ComponentType = HostComponent<NativeProps>;
+
 interface NativeCommands {
   +setNativeSelectedIndex: (
     viewRef: React.ElementRef<ComponentType>,
@@ -56,6 +67,6 @@ export const Commands: NativeCommands = codegenNativeCommands<NativeCommands>({
   supportedCommands: ['setNativeSelectedIndex'],
 });
 
-export default codegenNativeComponent<NativeProps>('RNCPicker', {
+export default (codegenNativeComponent<NativeProps>('RNCPicker', {
   excludedPlatforms: ['android'],
-});
+}): ComponentType);

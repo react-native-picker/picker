@@ -18,13 +18,13 @@ import {processColor, StyleSheet, View} from 'react-native';
 import RNCPickerNativeComponent, {
   Commands as iOSPickerCommands,
 } from './RNCPickerNativeComponent';
-import type {RNCPickerIOSType} from './RNCPickerNativeComponent';
-import type {ProcessedColorValue} from 'react-native/Libraries/StyleSheet/processColor';
-import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
-import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
-import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
-import type {Element, ElementRef, ChildrenArray} from 'react';
+import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
+import type {
+  ColorValue,
+  TextStyleProp,
+} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import type {Element, ChildrenArray} from 'react';
 
 type PickerIOSChangeEvent = SyntheticEvent<
   $ReadOnly<{|
@@ -36,7 +36,7 @@ type PickerIOSChangeEvent = SyntheticEvent<
 type RNCPickerIOSItemType = $ReadOnly<{|
   label: ?Label,
   value: ?(number | string),
-  textColor: ?ProcessedColorValue,
+  textColor: ?ColorValue,
   testID: ?string,
 |}>;
 
@@ -91,7 +91,7 @@ function useMergeRefs<T>(...refs: $ReadOnlyArray<?Ref<T>>): CallbackRef<T> {
   );
 }
 
-const PickerIOSItem = (props: ItemProps): null => {
+const PickerIOSItem: RNCPickerIOSItemType = (props: ItemProps): null => {
   return null;
 };
 
@@ -122,7 +122,9 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
   });
 
   const [items, selectedIndex] = React.useMemo(() => {
+    // eslint-disable-next-line no-shadow
     let selectedIndex = 0;
+    // eslint-disable-next-line no-shadow
     const items = React.Children.toArray(children).map((child, index) => {
       if (child === null) {
         return null;
@@ -159,7 +161,7 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
       nativeSelectedIndex.value != null &&
       nativeSelectedIndex.value !== jsValue;
     if (shouldUpdateNativePicker && nativePickerRef.current) {
-      if (!!global?.nativeFabricUIManager) {
+      if (global?.nativeFabricUIManager) {
         iOSPickerCommands.setNativeSelectedIndex(
           nativePickerRef.current,
           jsValue,
