@@ -35,11 +35,12 @@ type Label = Stringish | number;
 export type RNCPickerIOSType = HostComponent<
   $ReadOnly<{|
     items: $ReadOnlyArray<RNCPickerIOSTypeItemType>,
+    numberOfLines?: ?number,
     onChange: (event: PickerIOSChangeEvent) => void,
     selectedIndex: number,
+    selectionColor?: ?ProcessedColorValue,
     style?: ?TextStyleProp,
     testID?: ?string,
-    numberOfLines?: ?number,
     themeVariant?: ?string,
   |}>,
 >;

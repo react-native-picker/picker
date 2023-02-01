@@ -190,6 +190,7 @@ return <Picker
 - [`mode`](#mode)
 - [`prompt`](#prompt)
 - [`itemStyle`](#itemstyle)
+- [`selectionColor`](#selectionColor)
 
 ---
 
@@ -320,6 +321,12 @@ such that the total number of lines does not exceed this number. Default is '1'
 | --------- | -------- | -------- |
 | function  | no       | Android  |
 
+### `selectionColor`
+
+| Type      | Required | Platform |
+| ------- | -------- | -------- |
+| ColorValue  | no       | iOS  |
+
 ## Methods
 
 ### `blur` (Android only, lib version 1.16.0+)
@@ -396,6 +403,7 @@ If set to false, the specific item will be disabled, i.e. the user will not be a
 - [`itemStyle`](#itemstyle)
 - [`onValueChange`](#onvaluechange)
 - [`selectedValue`](#selectedvalue)
+- [`selectionColor`](#selectionColor)
 - [`themeVariant`](#themeVariant)
 
 ---
@@ -425,6 +433,14 @@ If set to false, the specific item will be disabled, i.e. the user will not be a
 | Type | Required |
 | ---- | -------- |
 | any  | No       |
+
+---
+
+### `selectionColor`
+
+| Type      | Required | Platform |
+| ------- | -------- | -------- |
+| ColorValue  | no       | iOS  |
 
 ---
 

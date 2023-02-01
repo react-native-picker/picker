@@ -44,10 +44,11 @@ type Props = $ReadOnly<{|
   ...ViewProps,
   children: ChildrenArray<Element<typeof PickerIOSItem>>,
   itemStyle?: ?TextStyleProp,
+  numberOfLines: ?number,
   onChange?: ?(event: PickerIOSChangeEvent) => mixed,
   onValueChange?: ?(itemValue: string | number, itemIndex: number) => mixed,
   selectedValue: ?(number | string),
-  numberOfLines: ?number,
+  selectionColor: ?string,
   themeVariant: ?string,
 |}>;
 
@@ -99,19 +100,21 @@ class PickerIOS extends React.Component<Props, State> {
     if (numberOfLines < 1) {
       numberOfLines = 1;
     }
+
     return (
       <View style={this.props.style}>
         <RNCPickerNativeComponent
           ref={(picker) => {
             this._picker = picker;
           }}
-          themeVariant={this.props.themeVariant}
-          testID={this.props.testID}
-          style={[styles.pickerIOS, this.props.itemStyle]}
           items={this.state.items}
-          selectedIndex={this.state.selectedIndex}
-          onChange={this._onChange}
           numberOfLines={numberOfLines}
+          onChange={this._onChange}
+          selectedIndex={this.state.selectedIndex}
+          selectionColor={processColor(this.props.selectionColor)}
+          style={[styles.pickerIOS, this.props.itemStyle]}
+          testID={this.props.testID}
+          themeVariant={this.props.themeVariant}
         />
       </View>
     );
