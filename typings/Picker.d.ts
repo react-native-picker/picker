@@ -70,6 +70,11 @@ export interface PickerProps<T = ItemValue> extends ViewProps {
    */
   itemStyle?: StyleProp<TextStyle>;
   /**
+  * Color to apply to the selection indicator.
+  * @platform ios
+  */
+  selectionColor?: ColorValue;
+  /**
    * Prompt string for this picker, used on Android in dialog mode as the title of the dialog.
    * @platform android
    */
