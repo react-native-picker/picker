@@ -39,4 +39,10 @@ export type PickerItem = $ReadOnly<{|
    * @platform android
    */
   enabled?: ?boolean,
+  /**
+   * If set to true, the specific item will be displayed with spaces preserved.
+   * default false
+   * @platform web
+   */
+  preserveSpacesInLabel?: ?boolean,
 |}>;

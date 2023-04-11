@@ -104,6 +104,25 @@ function DropdownMultilinePickerExample() {
   );
 }
 
+function DropdownPreserveWhiteSpacesPickerExample() {
+  const [value, setValue] = React.useState('key1');
+
+  return (
+    <Picker
+      numberOfLines={5}
+      selectedValue={value}
+      onValueChange={(v) => setValue(v)}
+      mode="dropdown"
+      preserveSpacesInLabel>
+      <Item label="Lorem    ipsum dolor sit amet" value="key0" />
+      <Item
+        label="quis nostrud exercitation ullamco   laboris nisi ut aliquip ex ea commodo consequat."
+        value="key1"
+      />
+    </Picker>
+  );
+}
+
 function PromptPickerExample() {
   const [value, setValue] = React.useState('key1');
   return (
@@ -293,6 +312,10 @@ export const examples = [
   {
     title: 'Multiline Dropdown Picker',
     render: DropdownMultilinePickerExample,
+  },
+  {
+    title: 'Preserve White Space Dropdown Picker',
+    render: DropdownPreserveWhiteSpacesPickerExample,
   },
   {
     title: 'Picker with prompt message',

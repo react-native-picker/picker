@@ -35,6 +35,12 @@ export interface PickerItemProps<T = ItemValue> {
    * @platform android | web
    */
   enabled?: boolean;
+  /**
+   * If set to true, the specific item will be displayed with spaces preserved.
+   * default false
+   * @platform web
+   */
+  preserveSpacesInLabel?: ?boolean,
 }
 
 export interface PickerProps<T = ItemValue> extends ViewProps {
@@ -118,7 +124,14 @@ export interface PickerProps<T = ItemValue> extends ViewProps {
    * @platform android
    */
   onBlur?: (e: NativeSyntheticEvent<TargetedEvent>) => void;
+  /**
+   * If set to true, the items label will be displayed with spaces preserved.
+   * default false
+   * @platform web
+   */
+  preserveSpacesInLabel?: ?boolean,
 }
+
 
 declare class Picker<T> extends React.Component<PickerProps<T>, {}> {
   /**
