@@ -8,6 +8,7 @@
 package com.reactnativecommunity.picker;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ import com.facebook.react.uimanager.*;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.EventDispatcher;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.annotation.Nullable;
@@ -285,8 +287,15 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
 
         if (style.hasKey("fontFamily") && !style.isNull("fontFamily")) {
           String fontPath = "fonts/" + style.getString("fontFamily") + ".ttf";
-          Typeface face = Typeface.createFromAsset(convertView.getContext().getAssets(), fontPath);
-          textView.setTypeface(face);
+          AssetManager assetManager = convertView.getContext().getAssets();
+          try {
+            assetManager.open(fontPath);
+            Typeface face = Typeface.createFromAsset(convertView.getContext().getAssets(), fontPath);
+            textView.setTypeface(face);
+          } catch (IOException e) {
+            Typeface face = Typeface.create(style.getString("fontFamily"), Typeface.NORMAL);
+            textView.setTypeface(face);
+          }
         }
       }
 
