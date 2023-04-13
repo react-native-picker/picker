@@ -282,9 +282,10 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
         if (style.hasKey("fontSize") && !style.isNull("fontSize")) {
           textView.setTextSize((float)style.getDouble("fontSize"));
         }
-        
+
         if (style.hasKey("fontFamily") && !style.isNull("fontFamily")) {
-          Typeface face = Typeface.create(style.getString("fontFamily"), Typeface.NORMAL);
+          String fontPath = "fonts/" + style.getString("fontFamily") + ".ttf";
+          Typeface face = Typeface.createFromAsset(convertView.getContext().getAssets(), fontPath);
           textView.setTypeface(face);
         }
       }
