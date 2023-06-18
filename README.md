@@ -396,6 +396,15 @@ If set to false, the specific item will be disabled, i.e. the user will not be a
 | boolean  | no       | Android  |
 
 
+### `contentDescription`
+
+Sets the content description to the Picker Item
+
+| Type   | Required | Platform |
+| ------ | -------- | -------- |
+| string | No       | Android  |
+
+
 ### PickerIOS
 ### Props
 
