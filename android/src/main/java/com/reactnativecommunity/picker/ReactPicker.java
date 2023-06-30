@@ -40,6 +40,26 @@ public class ReactPicker extends AppCompatSpinner {
   private int mOldElementSize = Integer.MIN_VALUE;
   private boolean mIsOpen = false;
 
+  @Override
+  public void setSelection(int position, boolean animate) {
+    boolean sameSelected = position == getSelectedItemPosition();
+    super.setSelection(position, animate);
+    if (sameSelected && mOnSelectListener != null) {
+      // Spinner does not call the OnItemSelectedListener if the same item is selected, so do it manually now
+      mOnSelectListener.onItemSelected(position);
+    }
+  }
+
+  @Override
+  public void setSelection(int position) {
+    boolean sameSelected = position == getSelectedItemPosition();
+    super.setSelection(position);
+    if (sameSelected && mOnSelectListener != null) {
+      // Spinner does not call the OnItemSelectedListener if the same item is selected, so do it manually now
+      mOnSelectListener.onItemSelected(position);
+    }
+  }
+
   private final OnItemSelectedListener mItemSelectedListener = new OnItemSelectedListener() {
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

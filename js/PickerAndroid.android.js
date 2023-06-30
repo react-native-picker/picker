@@ -22,6 +22,9 @@ import AndroidDropdownPickerNativeComponent from './AndroidDropdownPickerNativeC
 
 const MODE_DROPDOWN = 'dropdown';
 
+// On Android 8-10 the onBlur event can be triggered before the onValueChange event.
+const TIME_WINDOW_TO_INVOKE_ON_VALUE_CHANGE = 100;
+
 import type {TextStyleProp} from 'StyleSheet';
 
 type PickerAndroidProps = $ReadOnly<{|
@@ -49,6 +52,9 @@ type PickerRef = React.ElementRef<
  */
 function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
   const pickerRef = React.useRef(null);
+  
+  const isOpen = React.useRef(false);
+  const onBlurTimestamp = React.useRef(null);
 
   React.useImperativeHandle(ref, () => {
     const viewManagerConfig = UIManager.getViewManagerConfig(
@@ -120,15 +126,19 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
       const {position} = nativeEvent;
       const onValueChange = props.onValueChange;
 
-      if (onValueChange != null) {
+      const canInvokeOnValueChange = isOpen.current ||
+        (!isOpen.current && !!onBlurTimestamp.current && (Date.now() - onBlurTimestamp.current) <= TIME_WINDOW_TO_INVOKE_ON_VALUE_CHANGE);
+
+      if (onValueChange != null && canInvokeOnValueChange) {
+        isOpen.current = false;
+        onBlurTimestamp.current = null;
+        
         if (position >= 0) {
           const children = React.Children.toArray(props.children).filter(
             (item) => item != null,
           );
           const value = children[position].props.value;
-          if (props.selectedValue !== value) {
-            onValueChange(value, position);
-          }
+          onValueChange(value, position);
         } else {
           onValueChange(null, position);
         }
@@ -140,14 +150,36 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
       // disallow/undo/mutate the selection of certain values. In other
       // words, the embedder of this component should be the source of
       // truth, not the native component.
-      if (pickerRef.current && selected !== position) {
+      if (pickerRef.current) {
         // TODO: using setNativeProps is deprecated and will be unsupported once Fabric lands. Use codegen to generate native commands
         pickerRef.current.setNativeProps({
           selected,
         });
       }
     },
-    [props.children, props.onValueChange, props.selectedValue, selected],
+    [props.children, props.onValueChange, props.selectedValue, selected, isOpen, onBlurTimestamp],
+  );
+
+  const onBlur = React.useCallback(
+    (e: NativeSyntheticEvent<undefined>) => {
+      if (isOpen.current) {
+        onBlurTimestamp.current = Date.now();
+      } else {
+        onBlurTimestamp.current = null;
+      }
+      isOpen.current = false;
+      props.onBlur && props.onBlur(e);
+    },
+    [props.onBlur, onBlurTimestamp, isOpen],
+  );
+
+  const onFocus = React.useCallback(
+    (e: NativeSyntheticEvent<undefined>) => {
+      isOpen.current = true;
+      onBlurTimestamp.current = null;
+      props.onFocus && props.onFocus(e);
+    },
+    [props.onFocus],
   );
 
   const Picker =
@@ -159,8 +191,8 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
     accessibilityLabel: props.accessibilityLabel,
     enabled: props.enabled,
     items,
-    onBlur: props.onBlur,
-    onFocus: props.onFocus,
+    onBlur: onBlur,
+    onFocus: onFocus,
     onSelect,
     prompt: props.prompt,
     selected,
