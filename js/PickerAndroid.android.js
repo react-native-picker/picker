@@ -52,7 +52,7 @@ type PickerRef = React.ElementRef<
  */
 function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
   const pickerRef = React.useRef(null);
-  
+
   const isOpen = React.useRef(false);
   const onBlurTimestamp = React.useRef(null);
 
@@ -126,13 +126,17 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
       const {position} = nativeEvent;
       const onValueChange = props.onValueChange;
 
-      const canInvokeOnValueChange = isOpen.current ||
-        (!isOpen.current && !!onBlurTimestamp.current && (Date.now() - onBlurTimestamp.current) <= TIME_WINDOW_TO_INVOKE_ON_VALUE_CHANGE);
+      const canInvokeOnValueChange =
+        isOpen.current ||
+        (!isOpen.current &&
+          !!onBlurTimestamp.current &&
+          Date.now() - onBlurTimestamp.current <=
+            TIME_WINDOW_TO_INVOKE_ON_VALUE_CHANGE);
 
       if (onValueChange != null && canInvokeOnValueChange) {
         isOpen.current = false;
         onBlurTimestamp.current = null;
-        
+
         if (position >= 0) {
           const children = React.Children.toArray(props.children).filter(
             (item) => item != null,
@@ -157,10 +161,12 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
         });
       }
     },
-    [props.children, props.onValueChange, props.selectedValue, selected, isOpen, onBlurTimestamp],
+    [props.children, props.onValueChange, selected, isOpen, onBlurTimestamp],
   );
 
-  const onBlur = React.useCallback(
+  const {onBlur, onFocus} = props;
+
+  const onBlurEvent = React.useCallback(
     (e: NativeSyntheticEvent<undefined>) => {
       if (isOpen.current) {
         onBlurTimestamp.current = Date.now();
@@ -168,18 +174,18 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
         onBlurTimestamp.current = null;
       }
       isOpen.current = false;
-      props.onBlur && props.onBlur(e);
+      onBlur && onBlur(e);
     },
-    [props.onBlur, onBlurTimestamp, isOpen],
+    [onBlur, onBlurTimestamp, isOpen],
   );
 
-  const onFocus = React.useCallback(
+  const onFocusEvent = React.useCallback(
     (e: NativeSyntheticEvent<undefined>) => {
       isOpen.current = true;
       onBlurTimestamp.current = null;
-      props.onFocus && props.onFocus(e);
+      onFocus && onFocus(e);
     },
-    [props.onFocus],
+    [onFocus],
   );
 
   const Picker =
@@ -191,8 +197,8 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
     accessibilityLabel: props.accessibilityLabel,
     enabled: props.enabled,
     items,
-    onBlur: onBlur,
-    onFocus: onFocus,
+    onBlur: onBlurEvent,
+    onFocus: onFocusEvent,
     onSelect,
     prompt: props.prompt,
     selected,
