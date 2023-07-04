@@ -16,6 +16,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RippleDrawable;
+import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -39,6 +40,8 @@ public class ReactPicker extends AppCompatSpinner {
   private @Nullable Integer mStagedSelection;
   private int mOldElementSize = Integer.MIN_VALUE;
   private boolean mIsOpen = false;
+  private Handler mHandler = new Handler();
+  private static final int DELAY_ON_BLUR_TIME_MS = 100;
 
   @Override
   public void setSelection(int position, boolean animate) {
@@ -178,7 +181,14 @@ public class ReactPicker extends AppCompatSpinner {
     if (mIsOpen && hasWindowFocus) {
       mIsOpen = false;
       if (mOnFocusListener != null) {
-        mOnFocusListener.onPickerBlur();
+        // On Android 8-10 the onBlur event can be triggered before the onValueChange event,
+        // delaying the event fixes this issue.
+        mHandler.postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            mOnFocusListener.onPickerBlur();
+          }
+        }, DELAY_ON_BLUR_TIME_MS);
       }
     }
   }
