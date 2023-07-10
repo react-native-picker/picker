@@ -41,7 +41,7 @@ public class ReactPicker extends AppCompatSpinner {
   private int mOldElementSize = Integer.MIN_VALUE;
   private boolean mIsOpen = false;
   private Handler mHandler = new Handler();
-  private static final int DELAY_ON_BLUR_TIME_MS = 200;
+  private static final int DELAY_ON_BLUR_TIME_MS = 100;
 
   @Override
   public void setSelection(int position, boolean animate) {
