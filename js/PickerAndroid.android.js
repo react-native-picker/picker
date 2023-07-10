@@ -22,9 +22,6 @@ import AndroidDropdownPickerNativeComponent from './AndroidDropdownPickerNativeC
 
 const MODE_DROPDOWN = 'dropdown';
 
-// On Android 8-10 the onBlur event can be triggered before the onValueChange event.
-const TIME_WINDOW_TO_INVOKE_ON_VALUE_CHANGE = 100;
-
 import type {TextStyleProp} from 'StyleSheet';
 
 type PickerAndroidProps = $ReadOnly<{|
@@ -54,7 +51,6 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
   const pickerRef = React.useRef(null);
 
   const isOpen = React.useRef(false);
-  const onBlurTimestamp = React.useRef(null);
 
   React.useImperativeHandle(ref, () => {
     const viewManagerConfig = UIManager.getViewManagerConfig(
@@ -126,16 +122,8 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
       const {position} = nativeEvent;
       const onValueChange = props.onValueChange;
 
-      const canInvokeOnValueChange =
-        isOpen.current ||
-        (!isOpen.current &&
-          !!onBlurTimestamp.current &&
-          Date.now() - onBlurTimestamp.current <=
-            TIME_WINDOW_TO_INVOKE_ON_VALUE_CHANGE);
-
-      if (onValueChange != null && canInvokeOnValueChange) {
+      if (onValueChange != null && isOpen.current) {
         isOpen.current = false;
-        onBlurTimestamp.current = null;
 
         if (position >= 0) {
           const children = React.Children.toArray(props.children).filter(
@@ -161,28 +149,22 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
         });
       }
     },
-    [props.children, props.onValueChange, selected, isOpen, onBlurTimestamp],
+    [props.children, props.onValueChange, selected, isOpen],
   );
 
   const {onBlur, onFocus} = props;
 
   const onBlurEvent = React.useCallback(
     (e: NativeSyntheticEvent<undefined>) => {
-      if (isOpen.current) {
-        onBlurTimestamp.current = Date.now();
-      } else {
-        onBlurTimestamp.current = null;
-      }
       isOpen.current = false;
       onBlur && onBlur(e);
     },
-    [onBlur, onBlurTimestamp, isOpen],
+    [onBlur, isOpen],
   );
 
   const onFocusEvent = React.useCallback(
     (e: NativeSyntheticEvent<undefined>) => {
       isOpen.current = true;
-      onBlurTimestamp.current = null;
       onFocus && onFocus(e);
     },
     [onFocus],
