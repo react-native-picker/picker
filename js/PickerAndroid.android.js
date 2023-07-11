@@ -50,8 +50,6 @@ type PickerRef = React.ElementRef<
 function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
   const pickerRef = React.useRef(null);
 
-  const isOpen = React.useRef(false);
-
   React.useImperativeHandle(ref, () => {
     const viewManagerConfig = UIManager.getViewManagerConfig(
       props.mode === MODE_DROPDOWN
@@ -122,9 +120,7 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
       const {position} = nativeEvent;
       const onValueChange = props.onValueChange;
 
-      if (onValueChange != null && isOpen.current) {
-        isOpen.current = false;
-
+      if (onValueChange != null) {
         if (position >= 0) {
           const children = React.Children.toArray(props.children).filter(
             (item) => item != null,
@@ -149,25 +145,7 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
         });
       }
     },
-    [props.children, props.onValueChange, selected, isOpen],
-  );
-
-  const {onBlur, onFocus} = props;
-
-  const onBlurEvent = React.useCallback(
-    (e: NativeSyntheticEvent<undefined>) => {
-      isOpen.current = false;
-      onBlur && onBlur(e);
-    },
-    [onBlur, isOpen],
-  );
-
-  const onFocusEvent = React.useCallback(
-    (e: NativeSyntheticEvent<undefined>) => {
-      isOpen.current = true;
-      onFocus && onFocus(e);
-    },
-    [onFocus],
+    [props.children, props.onValueChange, selected],
   );
 
   const Picker =
@@ -179,8 +157,8 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
     accessibilityLabel: props.accessibilityLabel,
     enabled: props.enabled,
     items,
-    onBlur: onBlurEvent,
-    onFocus: onFocusEvent,
+    onBlur: props.onBlur,
+    onFocus: props.onFocus,
     onSelect,
     prompt: props.prompt,
     selected,

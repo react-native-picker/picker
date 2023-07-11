@@ -16,7 +16,6 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.RippleDrawable;
-import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -40,25 +39,20 @@ public class ReactPicker extends AppCompatSpinner {
   private @Nullable Integer mStagedSelection;
   private int mOldElementSize = Integer.MIN_VALUE;
   private boolean mIsOpen = false;
-  private Handler mHandler = new Handler();
-  private static final int DELAY_ON_BLUR_TIME_MS = 100;
 
   @Override
   public void setSelection(int position, boolean animate) {
-    boolean sameSelected = position == getSelectedItemPosition();
     super.setSelection(position, animate);
-    if (sameSelected && mOnSelectListener != null) {
-      // Spinner does not call the OnItemSelectedListener if the same item is selected, so do it manually now
-      mOnSelectListener.onItemSelected(position);
-    }
+    // Method is called when selected value is changed, even without user interaction
   }
 
   @Override
   public void setSelection(int position) {
-    boolean sameSelected = position == getSelectedItemPosition();
     super.setSelection(position);
-    if (sameSelected && mOnSelectListener != null) {
-      // Spinner does not call the OnItemSelectedListener if the same item is selected, so do it manually now
+    // Method is called after user interaction and before onWindowFocusChanged event
+    // on all Android versions. Additional guard makes sure that it's invoked only
+    // when spinner was opened
+    if (mIsOpen && mOnSelectListener != null) {
       mOnSelectListener.onItemSelected(position);
     }
   }
@@ -66,14 +60,13 @@ public class ReactPicker extends AppCompatSpinner {
   private final OnItemSelectedListener mItemSelectedListener = new OnItemSelectedListener() {
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-      if (mOnSelectListener != null) {
-        mOnSelectListener.onItemSelected(position);
-      }
+      // Use setSelection(int position) to call event after user selection
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-      if (mOnSelectListener != null) {
+      // It's not called at all
+      if (mOnSelectListener != null && mIsOpen) {
         mOnSelectListener.onItemSelected(-1);
       }
     }
@@ -181,14 +174,7 @@ public class ReactPicker extends AppCompatSpinner {
     if (mIsOpen && hasWindowFocus) {
       mIsOpen = false;
       if (mOnFocusListener != null) {
-        // On Android 8-10 the onBlur event can be triggered before the onValueChange event,
-        // delaying the event fixes this issue.
-        mHandler.postDelayed(new Runnable() {
-          @Override
-          public void run() {
-            mOnFocusListener.onPickerBlur();
-          }
-        }, DELAY_ON_BLUR_TIME_MS);
+        mOnFocusListener.onPickerBlur();
       }
     }
   }
