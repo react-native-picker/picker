@@ -21,6 +21,11 @@ def getExtOrIntegerDefault(name) {
 apply plugin: 'com.android.library'
 
 android {
+  def agpVersion = com.android.Version.ANDROID_GRADLE_PLUGIN_VERSION
+  if (agpVersion.tokenize('.')[0].toInteger() >= 7) {
+    namespace "com.reactnativecommunity.picker"
+  }
+
   compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
   buildToolsVersion getExtOrDefault('buildToolsVersion')
 
