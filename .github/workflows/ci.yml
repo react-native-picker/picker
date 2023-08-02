@@ -3,7 +3,7 @@ on: pull_request
 
 jobs:
   lint:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16]
@@ -24,7 +24,7 @@ jobs:
       - name: ESLint Checks
         run: yarn validate:eslint
   flow:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16]
@@ -45,7 +45,7 @@ jobs:
       - name: Flow Checks
         run: yarn validate:flow
   tsc:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16]
@@ -66,7 +66,7 @@ jobs:
       - name: TypeScript type check
         run: yarn validate:typescript
   android:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16]

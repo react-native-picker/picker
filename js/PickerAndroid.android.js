@@ -94,12 +94,13 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
 
       const {enabled = true} = child.props;
 
-      const {color, label, style = {}} = child.props;
+      const {color, contentDescription, label, style = {}} = child.props;
 
       const processedColor = processColor(color);
 
       return {
         color: color == null ? null : processedColor,
+        contentDescription,
         label,
         enabled,
         style: {
