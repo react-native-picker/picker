@@ -313,19 +313,19 @@ such that the total number of lines does not exceed this number. Default is '1'
 
 | Type      | Required | Platform |
 | --------- | -------- | -------- |
-| function  | no       | Android  |
+| function  | No       | Android  |
 
 ### `onFocus`
 
 | Type      | Required | Platform |
 | --------- | -------- | -------- |
-| function  | no       | Android  |
+| function  | No       | Android  |
 
 ### `selectionColor`
 
 | Type      | Required | Platform |
 | ------- | -------- | -------- |
-| ColorValue  | no       | iOS  |
+| ColorValue  | No       | iOS  |
 
 ## Methods
 
@@ -347,7 +347,7 @@ Displayed value on the Picker Item
 
 | Type    | Required | 
 | ------- | -------- | 
-| string  | yes       | 
+| string  | Yes      | 
 
 
 ### `value`
@@ -356,7 +356,7 @@ Actual value on the Picker Item
 
 | Type    | Required |
 | ------- | -------- |
-| number,string | yes     |
+| number,string | Yes     |
 
 ### `color`
 
@@ -364,7 +364,7 @@ Displayed color on the Picker Item
 
 | Type        | Required | 
 | ----------- | -------- | 
-| ColorValue  | no       | 
+| ColorValue  | No       | 
 
 
 ### `fontFamily`
@@ -373,7 +373,7 @@ Displayed fontFamily on the Picker Item
 
 | Type    | Required |
 | ------- | -------- |
-| string  | no      | 
+| string  | No      | 
 
 
 ### `style`
@@ -382,7 +382,7 @@ Style to apply to individual item labels.
 
 | Type    | Required | Platform |
 | ------- | -------- | -------- |
-| ViewStyleProp  | no       | Android  |
+| ViewStyleProp  | No       | Android  |
 
 
 ### `enabled`
@@ -393,7 +393,7 @@ If set to false, the specific item will be disabled, i.e. the user will not be a
 
 | Type    | Required | Platform |
 | ------- | -------- | -------- |
-| boolean  | no       | Android  |
+| boolean  | No       | Android  |
 
 
 ### `contentDescription`
@@ -449,7 +449,7 @@ Sets the content description to the Picker Item
 
 | Type      | Required | Platform |
 | ------- | -------- | -------- |
-| ColorValue  | no       | iOS  |
+| ColorValue  | No       | iOS  |
 
 ---
 
