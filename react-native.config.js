@@ -24,7 +24,6 @@ try {
 } catch (e) {
   // ignore
 }
-supportsCodegenConfig = true;
 
 module.exports = {
   project: {

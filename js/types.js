@@ -20,6 +20,7 @@ export type PickerItem = $ReadOnly<{|
   label: string,
   value: ?(number | string),
   color?: ?number,
+  contentDescription?: ?string,
   fontFamily: ?string,
   /**
    * Style to apply to individual item labels.

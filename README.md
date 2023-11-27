@@ -18,10 +18,6 @@
 | >= 1.16.0 | 0.61+ | 0.61+ |
 | >= 1.2.0 | 0.60+ or 0.59+ with [Jetifier](https://www.npmjs.com/package/jetifier) | N/A |
 | >= 1.0.0 | 0.57 | N/A |
-
-## For Managed Workflow users using Expo 37
-This component is not supported in the managed workflow for expo sdk 37. Please import the `Picker` from `react-native`.
-See more info [here](https://github.com/react-native-picker/picker/issues/45#issuecomment-633163973)
    
 ## Getting started
 
@@ -118,6 +114,15 @@ The following steps are only necessary if you are working with a version of Reac
 4. Run your project (`Cmd+R`)<
 </details>
 
+## RTL Support
+
+you need to add `android:supportsRtl="true"` to `AndroidManifest.xml`
+```xml
+   <application
+      ...
+      android:supportsRtl="true">
+```
+
 ## Usage
 
 Import Picker from `@react-native-picker/picker`:
@@ -181,6 +186,7 @@ return <Picker
 - [`mode`](#mode)
 - [`prompt`](#prompt)
 - [`itemStyle`](#itemstyle)
+- [`selectionColor`](#selectionColor)
 
 ---
 
@@ -303,13 +309,19 @@ such that the total number of lines does not exceed this number. Default is '1'
 
 | Type      | Required | Platform |
 | --------- | -------- | -------- |
-| function  | no       | Android  |
+| function  | No       | Android  |
 
 ### `onFocus`
 
 | Type      | Required | Platform |
 | --------- | -------- | -------- |
-| function  | no       | Android  |
+| function  | No       | Android  |
+
+### `selectionColor`
+
+| Type      | Required | Platform |
+| ------- | -------- | -------- |
+| ColorValue  | No       | iOS  |
 
 ## Methods
 
@@ -331,7 +343,7 @@ Displayed value on the Picker Item
 
 | Type    | Required | 
 | ------- | -------- | 
-| string  | yes       | 
+| string  | Yes      | 
 
 
 ### `value`
@@ -340,7 +352,7 @@ Actual value on the Picker Item
 
 | Type    | Required |
 | ------- | -------- |
-| number,string | yes     |
+| number,string | Yes     |
 
 ### `color`
 
@@ -348,7 +360,7 @@ Displayed color on the Picker Item
 
 | Type        | Required | 
 | ----------- | -------- | 
-| ColorValue  | no       | 
+| ColorValue  | No       | 
 
 
 ### `fontFamily`
@@ -357,7 +369,7 @@ Displayed fontFamily on the Picker Item
 
 | Type    | Required |
 | ------- | -------- |
-| string  | no      | 
+| string  | No      | 
 
 
 ### `style`
@@ -366,7 +378,7 @@ Style to apply to individual item labels.
 
 | Type    | Required | Platform |
 | ------- | -------- | -------- |
-| ViewStyleProp  | no       | Android  |
+| ViewStyleProp  | No       | Android  |
 
 
 ### `enabled`
@@ -377,7 +389,16 @@ If set to false, the specific item will be disabled, i.e. the user will not be a
 
 | Type    | Required | Platform |
 | ------- | -------- | -------- |
-| boolean  | no       | Android  |
+| boolean  | No       | Android  |
+
+
+### `contentDescription`
+
+Sets the content description to the Picker Item
+
+| Type   | Required | Platform |
+| ------ | -------- | -------- |
+| string | No       | Android  |
 
 
 ### PickerIOS
@@ -387,6 +408,7 @@ If set to false, the specific item will be disabled, i.e. the user will not be a
 - [`itemStyle`](#itemstyle)
 - [`onValueChange`](#onvaluechange)
 - [`selectedValue`](#selectedvalue)
+- [`selectionColor`](#selectionColor)
 - [`themeVariant`](#themeVariant)
 
 ---
@@ -416,6 +438,14 @@ If set to false, the specific item will be disabled, i.e. the user will not be a
 | Type | Required |
 | ---- | -------- |
 | any  | No       |
+
+---
+
+### `selectionColor`
+
+| Type      | Required | Platform |
+| ------- | -------- | -------- |
+| ColorValue  | No       | iOS  |
 
 ---
 

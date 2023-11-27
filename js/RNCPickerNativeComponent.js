@@ -37,6 +37,7 @@ export type NativeProps = $ReadOnly<{|
   ...ViewProps,
   items: $ReadOnlyArray<RNCPickerIOSTypeItemType>,
   selectedIndex: Int32,
+  selectionColor?: ?ProcessedColorValue,
   onChange: BubblingEventHandler<PickerIOSChangeEvent>,
   color?: ColorValue,
   textAlign?: string,

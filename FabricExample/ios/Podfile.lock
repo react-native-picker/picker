@@ -1152,6 +1152,25 @@ PODS:
     - React-jsi (= 0.73.0-rc.5)
     - React-logger (= 0.73.0-rc.5)
     - React-perflogger (= 0.73.0-rc.5)
+  - RNCPicker (2.5.1):
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2022.05.16.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Codegen
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - SocketRocket (0.6.1)
   - Yoga (1.14.0)
 
@@ -1231,6 +1250,7 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1351,6 +1371,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCPicker:
+    :path: "../node_modules/@react-native-picker/picker"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -1417,6 +1439,7 @@ SPEC CHECKSUMS:
   React-runtimescheduler: a80659eb4504ad696295b3e51b90805a97c34129
   React-utils: 2e199c0f64d49f8ca4175d878e365d2701ad41f7
   ReactCommon: 82a6500a0906815f2e6079d6a3f226bd2f58e61d
+  RNCPicker: bd78bee0824ab16414cb395e35995dec7c0736be
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 580401abccf998bc081186108e981602f90e67b2
 

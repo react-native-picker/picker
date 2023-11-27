@@ -132,6 +132,7 @@ function PickerStyleExample() {
     <PickerIOS
       itemStyle={styles.item}
       selectedValue={carMake}
+      selectionColor="rgba(0, 0, 0, 0.3)"
       onValueChange={(value) => setCarMake(value)}>
       {Object.keys(CAR_MAKES_AND_MODELS).map((value) => (
         <PickerIOS.Item

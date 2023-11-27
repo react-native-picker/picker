@@ -10,6 +10,9 @@
 #import <React/RCTConvert.h>
 #import <React/RCTUtils.h>
 
+@interface RNCPicker() <UIPickerViewDataSource, UIPickerViewDelegate>
+@end
+
 @implementation RNCPicker
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -112,7 +115,7 @@ numberOfRowsInComponent:(__unused NSInteger)component
   RNCPickerLabel* label = view.subviews[0];
   label.font = _font;
 
-    label.textColor =
+  label.textColor =
 #ifdef RCT_NEW_ARCH_ENABLED
     _items[row][@"textColor"]
 #else

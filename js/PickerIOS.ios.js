@@ -46,10 +46,11 @@ type Props = $ReadOnly<{|
   ...ViewProps,
   children: ChildrenArray<Element<typeof PickerIOSItem>>,
   itemStyle?: ?TextStyleProp,
+  numberOfLines: ?number,
   onChange?: ?(event: PickerIOSChangeEvent) => mixed,
   onValueChange?: ?(itemValue: string | number, itemIndex: number) => mixed,
   selectedValue: ?(number | string),
-  numberOfLines: ?number,
+  selectionColor: ?string,
   themeVariant: ?string,
 |}>;
 
@@ -102,6 +103,7 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
   const {
     children,
     selectedValue,
+    selectionColor,
     themeVariant,
     testID,
     itemStyle,
@@ -194,6 +196,7 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
         onChange={_onChange}
         numberOfLines={parsedNumberOfLines}
         selectedIndex={selectedIndex}
+        selectionColor={processColor(selectionColor)}
       />
     </View>
   );
