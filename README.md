@@ -18,10 +18,6 @@
 | >= 1.16.0 | 0.61+ | 0.61+ |
 | >= 1.2.0 | 0.60+ or 0.59+ with [Jetifier](https://www.npmjs.com/package/jetifier) | N/A |
 | >= 1.0.0 | 0.57 | N/A |
-
-## For Managed Workflow users using Expo 37
-This component is not supported in the managed workflow for expo sdk 37. Please import the `Picker` from `react-native`.
-See more info [here](https://github.com/react-native-picker/picker/issues/45#issuecomment-633163973)
    
 ## Getting started
 
