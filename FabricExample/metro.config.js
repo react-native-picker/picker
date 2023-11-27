@@ -1,4 +1,12 @@
-/* eslint-disable import/no-commonjs */
+/**
+ * Metro configuration for React Native
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ */
+
+const {getDefaultConfig} = require('@react-native/metro-config');
+const {mergeConfig} = require('metro-config');
 
 const path = require('path');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
@@ -7,9 +15,9 @@ const pack = require('../package.json');
 
 const root = path.resolve(__dirname, '..');
 
-const modules = [...Object.keys(pack.peerDependencies)];
+const modules = Object.keys(pack.peerDependencies);
 
-module.exports = {
+const config = {
   projectRoot: __dirname,
   watchFolders: [root],
 
@@ -37,3 +45,5 @@ module.exports = {
     }),
   },
 };
+
+module.exports = mergeConfig(getDefaultConfig(__dirname), config);

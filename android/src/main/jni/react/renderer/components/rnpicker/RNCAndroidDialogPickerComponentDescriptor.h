@@ -21,20 +21,20 @@ namespace facebook
                   measurementsManager_(std::make_shared<RNCAndroidDialogPickerMeasurementsManager>(
                       contextContainer_)) {}
 
-            void adopt(ShadowNode::Unshared const &shadowNode) const override
+            void adopt(ShadowNode& shadowNode) const override
             {
-                assert(std::dynamic_pointer_cast<RNCAndroidDialogPickerShadowNode>(shadowNode));
-                auto pickerShadowNode =
-                    std::static_pointer_cast<RNCAndroidDialogPickerShadowNode>(shadowNode);
+                assert(dynamic_cast<RNCAndroidDialogPickerShadowNode*>(&shadowNode));
+                auto& pickerShadowNode =
+                    static_cast<RNCAndroidDialogPickerShadowNode&>(shadowNode);
 
                 // `RNCAndroidDialogPickerShadowNode` uses `RNCAndroidDialogPickerMeasurementsManager` to
                 // provide measurements to Yoga.
-                pickerShadowNode->setDialogPickerMeasurementsManager(measurementsManager_);
+                pickerShadowNode.setDialogPickerMeasurementsManager(measurementsManager_);
 
                 // All `RNCAndroidDialogPickerShadowNode`s must have leaf Yoga nodes with properly
                 // setup measure function.
-                pickerShadowNode->enableMeasurement();
-                pickerShadowNode->dirtyLayout();
+                pickerShadowNode.enableMeasurement();
+                pickerShadowNode.dirtyLayout();
                 ConcreteComponentDescriptor::adopt(shadowNode);
             }
 
