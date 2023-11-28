@@ -16,6 +16,7 @@ import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTyp
 import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
 import type {
   BubblingEventHandler,
+  Double,
   Int32,
 } from 'react-native/Libraries/Types/CodegenTypes';
 
