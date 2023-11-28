@@ -148,6 +148,7 @@
     "android",
     "typings",
     "windows",
+    "react-native.config.js",
     "RNCPicker.podspec"
   ],
   "react-native-builder-bob": {
@@ -166,5 +167,13 @@
   "eslintIgnore": [
     "node_modules/",
     "dist/"
-  ]
+  ],
+  "codegenConfig": {
+    "name": "rnpicker",
+    "type": "components",
+    "jsSrcsDir": "./js",
+    "android": {
+      "javaPackageName": "com.reactnativecommunity.picker"
+    }
+  }
 }

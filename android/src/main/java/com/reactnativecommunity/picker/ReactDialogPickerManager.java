@@ -9,17 +9,32 @@ package com.reactnativecommunity.picker;
 
 import android.widget.Spinner;
 
+import androidx.annotation.Nullable;
+
 import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.uimanager.ThemedReactContext;
-
+import com.facebook.react.uimanager.ViewManagerDelegate;
+import com.facebook.react.viewmanagers.RNCAndroidDialogPickerManagerDelegate;
+import com.facebook.react.viewmanagers.RNCAndroidDialogPickerManagerInterface;
 
 /**
  * {@link ReactPickerManager} for {@link ReactPicker} with {@link Spinner#MODE_DIALOG}.
  */
 @ReactModule(name = ReactDialogPickerManager.REACT_CLASS)
-public class ReactDialogPickerManager extends ReactPickerManager {
+public class ReactDialogPickerManager extends ReactPickerManager implements RNCAndroidDialogPickerManagerInterface<ReactPicker> {
 
   public static final String REACT_CLASS = "RNCAndroidDialogPicker";
+  private final ViewManagerDelegate<ReactPicker> mDelegate;
+
+  @Nullable
+  @Override
+  protected ViewManagerDelegate<ReactPicker> getDelegate() {
+    return mDelegate;
+  }
+
+  public ReactDialogPickerManager() {
+    mDelegate = new RNCAndroidDialogPickerManagerDelegate<>(this);
+  }
 
   @Override
   public String getName() {

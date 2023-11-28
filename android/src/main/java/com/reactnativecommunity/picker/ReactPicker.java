@@ -22,7 +22,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
-import androidx.appcompat.widget.AppCompatSpinner;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.common.annotations.VisibleForTesting;
 import com.facebook.react.modules.i18nmanager.I18nUtil;
@@ -30,7 +29,13 @@ import com.facebook.react.uimanager.UIManagerModule;
 
 import javax.annotation.Nullable;
 
-public class ReactPicker extends AppCompatSpinner {
+// Inherit after FabricEnabledPicker which is a subclass of AppCompatSpinner and
+// has different implementation on Paper and Fabric (thanks to gradle sourceSets).
+// This way we can avoid having to duplicate the code in both implementations.
+// Paper version of FabricEnabledPicker has necessary methods implemented as no-ops,
+// while Fabric version has the actual implementation which allows us to change the
+// shadow node state.
+public class ReactPicker extends FabricEnabledPicker {
 
   private int mMode = Spinner.MODE_DIALOG;
   private @Nullable Integer mPrimaryColor;
@@ -203,7 +208,12 @@ public class ReactPicker extends AppCompatSpinner {
         uiManager.setViewLocalData(getId(), new ReactPickerLocalData(elementSize));
       }
       mOldElementSize = elementSize;
+      this.setMeasuredHeight(elementSize);
     }
+  }
+
+  public void measureItem(View view, int parentWidthMeasureSpec, int parentHeightMeasureSpec) {
+    measureChild(view, parentWidthMeasureSpec, parentHeightMeasureSpec);
   }
 
   public void clearFocus() {

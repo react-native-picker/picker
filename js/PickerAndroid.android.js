@@ -17,12 +17,16 @@ import {
   processColor,
   UIManager,
 } from 'react-native';
-import AndroidDialogPickerNativeComponent from './AndroidDialogPickerNativeComponent';
-import AndroidDropdownPickerNativeComponent from './AndroidDropdownPickerNativeComponent';
-
-const MODE_DROPDOWN = 'dropdown';
+import AndroidDialogPickerNativeComponent, {
+  Commands as AndroidDialogPickerCommands,
+} from './AndroidDialogPickerNativeComponent';
+import AndroidDropdownPickerNativeComponent, {
+  Commands as AndroidDropdownPickerCommands,
+} from './AndroidDropdownPickerNativeComponent';
 
 import type {TextStyleProp} from 'StyleSheet';
+
+const MODE_DROPDOWN = 'dropdown';
 
 type PickerAndroidProps = $ReadOnly<{|
   children?: React.Node,
@@ -49,6 +53,11 @@ type PickerRef = React.ElementRef<
  */
 function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
   const pickerRef = React.useRef(null);
+  const FABRIC_ENABLED = !!global?.nativeFabricUIManager;
+
+  const [nativeSelectedIndex, setNativeSelectedIndex] = React.useState({
+    value: null,
+  });
 
   React.useImperativeHandle(ref, () => {
     const viewManagerConfig = UIManager.getViewManagerConfig(
@@ -61,24 +70,86 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
         if (!viewManagerConfig.Commands) {
           return;
         }
-        UIManager.dispatchViewManagerCommand(
-          findNodeHandle(pickerRef.current),
-          viewManagerConfig.Commands.blur,
-          [],
-        );
+        if (FABRIC_ENABLED) {
+          if (props.mode === MODE_DROPDOWN) {
+            AndroidDropdownPickerCommands.blur(pickerRef.current);
+          } else {
+            AndroidDialogPickerCommands.blur(pickerRef.current);
+          }
+        } else {
+          UIManager.dispatchViewManagerCommand(
+            findNodeHandle(pickerRef.current),
+            viewManagerConfig.Commands.blur,
+            [],
+          );
+        }
       },
       focus: () => {
         if (!viewManagerConfig.Commands) {
           return;
         }
-        UIManager.dispatchViewManagerCommand(
-          findNodeHandle(pickerRef.current),
-          viewManagerConfig.Commands.focus,
-          [],
-        );
+        if (FABRIC_ENABLED) {
+          if (props.mode === MODE_DROPDOWN) {
+            AndroidDropdownPickerCommands.focus(pickerRef.current);
+          } else {
+            AndroidDialogPickerCommands.focus(pickerRef.current);
+          }
+        } else {
+          UIManager.dispatchViewManagerCommand(
+            findNodeHandle(pickerRef.current),
+            viewManagerConfig.Commands.focus,
+            [],
+          );
+        }
       },
     };
   });
+
+  React.useLayoutEffect(() => {
+    let jsValue = 0;
+    React.Children.toArray(props.children).map((child, index) => {
+      if (child === null) {
+        return null;
+      }
+      if (child.props.value === props.selectedValue) {
+        jsValue = index;
+      }
+    });
+
+    const shouldUpdateNativePicker =
+      nativeSelectedIndex.value != null &&
+      nativeSelectedIndex.value !== jsValue;
+
+    // This is necessary in case native updates the switch and JS decides
+    // that the update should be ignored and we should stick with the value
+    // that we have in JS.
+    if (shouldUpdateNativePicker && pickerRef.current) {
+      if (FABRIC_ENABLED) {
+        if (props.mode === MODE_DROPDOWN) {
+          AndroidDropdownPickerCommands.setNativeSelected(
+            pickerRef.current,
+            selected,
+          );
+        } else {
+          AndroidDialogPickerCommands.setNativeSelected(
+            pickerRef.current,
+            selected,
+          );
+        }
+      } else {
+        pickerRef.current.setNativeProps({
+          selected,
+        });
+      }
+    }
+  }, [
+    props.selectedValue,
+    nativeSelectedIndex,
+    props.children,
+    FABRIC_ENABLED,
+    props.mode,
+    selected,
+  ]);
 
   const [items, selected] = React.useMemo(() => {
     // eslint-disable-next-line no-shadow
@@ -101,10 +172,14 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
       return {
         color: color == null ? null : processedColor,
         contentDescription,
-        label,
+        label: String(label),
         enabled,
         style: {
           ...style,
+          // there seems to be a problem with codegen, where it would assign to an item
+          // the last defined value of the font size if not set explicitly
+          // 0 is handled on the native side as "not set"
+          fontSize: style.fontSize ?? 0,
           color: style.color ? processColor(style.color) : null,
           backgroundColor: style.backgroundColor
             ? processColor(style.backgroundColor)
@@ -133,21 +208,9 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
           onValueChange(null, position);
         }
       }
-
-      // The picker is a controlled component. This means we expect the
-      // on*Change handlers to be in charge of updating our
-      // `selectedValue` prop. That way they can also
-      // disallow/undo/mutate the selection of certain values. In other
-      // words, the embedder of this component should be the source of
-      // truth, not the native component.
-      if (pickerRef.current && selected !== position) {
-        // TODO: using setNativeProps is deprecated and will be unsupported once Fabric lands. Use codegen to generate native commands
-        pickerRef.current.setNativeProps({
-          selected,
-        });
-      }
+      setNativeSelectedIndex({value: position});
     },
-    [props.children, props.onValueChange, props.selectedValue, selected],
+    [props.children, props.onValueChange, props.selectedValue],
   );
 
   const Picker =
