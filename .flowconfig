@@ -60,8 +60,6 @@ suppress_type=$FlowFixMeState
 
 server.max_workers=2
 
-experimental.abstract_locations=true
-
 [lints]
 sketchy-null-number=warn
 sketchy-null-mixed=warn
@@ -71,7 +69,6 @@ nonstrict-import=warn
 deprecated-type=warn
 unsafe-getters-setters=warn
 unnecessary-invariant=warn
-signature-verification-failure=warn
 
 [strict]
 deprecated-type
@@ -83,4 +80,4 @@ untyped-import
 untyped-type-import
 
 [version]
-^0.170.0
+^0.222.0

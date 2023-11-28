@@ -44,6 +44,7 @@ type Label = Stringish | number;
 
 type Props = $ReadOnly<{|
   ...ViewProps,
+  // $FlowFixMe
   children: ChildrenArray<Element<typeof PickerIOSItem>>,
   itemStyle?: ?TextStyleProp,
   numberOfLines: ?number,
@@ -92,6 +93,7 @@ function useMergeRefs<T>(...refs: $ReadOnlyArray<?Ref<T>>): CallbackRef<T> {
   );
 }
 
+// $FlowFixMe
 const PickerIOSItem: RNCPickerIOSItemType = (props: ItemProps): null => {
   return null;
 };
@@ -117,6 +119,7 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
     typeof RNCPickerNativeComponent,
   > | null>(null);
 
+  // $FlowFixMe
   const ref = useMergeRefs(nativePickerRef, forwardedRef);
 
   const [nativeSelectedIndex, setNativeSelectedIndex] = React.useState({
@@ -127,20 +130,22 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
     // eslint-disable-next-line no-shadow
     let selectedIndex = 0;
     // eslint-disable-next-line no-shadow
-    const items = React.Children.toArray(children).map((child, index) => {
-      if (child === null) {
-        return null;
-      }
-      if (String(child.props.value) === String(selectedValue)) {
-        selectedIndex = index;
-      }
-      return {
-        value: String(child.props.value),
-        label: String(child.props.label),
-        textColor: processColor(child.props.color),
-        testID: child.props.testID,
-      };
-    });
+    const items = React.Children.toArray<$FlowFixMe>(children).map(
+      (child, index) => {
+        if (child === null) {
+          return null;
+        }
+        if (String(child.props.value) === String(selectedValue)) {
+          selectedIndex = index;
+        }
+        return {
+          value: String(child.props.value),
+          label: String(child.props.label),
+          textColor: processColor(child.props.color),
+          testID: child.props.testID,
+        };
+      },
+    );
     return [items, selectedIndex];
   }, [children, selectedValue]);
 
@@ -151,7 +156,10 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
 
   React.useLayoutEffect(() => {
     let jsValue = 0;
-    React.Children.toArray(children).forEach(function (child, index) {
+    React.Children.toArray<$FlowFixMe>(children).forEach(function (
+      child: $FlowFixMe,
+      index: number,
+    ) {
       if (String(child.props.value) === String(selectedValue)) {
         jsValue = index;
       }
@@ -177,7 +185,7 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
   }, [selectedValue, nativeSelectedIndex, children]);
 
   const _onChange = React.useCallback(
-    (event) => {
+    (event: $FlowFixMe) => {
       onChange?.(event);
       onValueChange?.(event.nativeEvent.newValue, event.nativeEvent.newIndex);
       setNativeSelectedIndex({value: event.nativeEvent.newIndex});
@@ -192,6 +200,7 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
         themeVariant={themeVariant}
         testID={testID}
         style={[styles.pickerIOS, itemStyle]}
+        // $FlowFixMe
         items={items}
         onChange={_onChange}
         numberOfLines={parsedNumberOfLines}
@@ -211,6 +220,7 @@ const styles = StyleSheet.create({
   },
 });
 
+// $FlowFixMe
 PickerIOSWithForwardedRef.Item = PickerIOSItem;
 
 export default PickerIOSWithForwardedRef;

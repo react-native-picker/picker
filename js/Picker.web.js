@@ -30,7 +30,7 @@ type PickerProps = {
   prompt?: string,
 };
 
-const Select = forwardRef((props: any, forwardedRef) =>
+const Select = forwardRef((props: $FlowFixMe, forwardedRef: $FlowFixMe) =>
   unstable_createElement('select', {
     ...props,
     ref: forwardedRef,
@@ -39,7 +39,7 @@ const Select = forwardRef((props: any, forwardedRef) =>
 
 const Picker: React$AbstractComponent<PickerProps, empty> = forwardRef<
   PickerProps,
-  *,
+  $FlowFixMe,
 >((props, forwardedRef) => {
   const {
     enabled,

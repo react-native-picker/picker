@@ -53,6 +53,7 @@ type Label = Stringish | number;
 
 type Props = $ReadOnly<{|
   ...ViewProps,
+  // $FlowFixMe
   children: ChildrenArray<Element<typeof PickerMacOSItem>>,
   itemStyle?: ?TextStyleProp,
   onChange?: ?(event: PickerMacOSChangeEvent) => mixed,
@@ -89,7 +90,10 @@ class PickerMacOS extends React.Component<Props, State> {
   static getDerivedStateFromProps(props: Props): State {
     let selectedIndex = 0;
     const items = [];
-    React.Children.toArray(props.children).forEach(function (child, index) {
+    React.Children.toArray<$FlowFixMe>(props.children).forEach(function (
+      child: $FlowFixMe,
+      index: number,
+    ) {
       if (child.props.value === props.selectedValue) {
         selectedIndex = index;
       }
@@ -112,6 +116,7 @@ class PickerMacOS extends React.Component<Props, State> {
           }}
           testID={this.props.testID}
           style={[styles.pickerMacOS, this.props.itemStyle]}
+          // $FlowFixMe
           items={this.state.items}
           selectedIndex={this.state.selectedIndex}
           onChange={this._onChange}
@@ -120,7 +125,7 @@ class PickerMacOS extends React.Component<Props, State> {
     );
   }
 
-  _onChange = (event) => {
+  _onChange = (event: $FlowFixMe) => {
     if (this.props.onChange) {
       this.props.onChange(event);
     }

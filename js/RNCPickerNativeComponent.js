@@ -17,6 +17,7 @@ import type {
   BubblingEventHandler,
   Int32,
 } from 'react-native/Libraries/Types/CodegenTypes';
+import type {ProcessedColorValue} from 'react-native/Libraries/StyleSheet/processColor';
 
 import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
 import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
