@@ -53,7 +53,7 @@ type PickerItemProps = $ReadOnly<{|
  * Individual selectable item in a Picker.
  */
 class PickerItem extends React.Component<PickerItemProps> {
-  render() {
+  render(): React.Node {
     // The items are not rendered directly
     throw null;
   }

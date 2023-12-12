@@ -20,11 +20,14 @@
   if ((self = [super initWithFrame:frame])) {
     _color = [UIColor blackColor];
     _font = [UIFont systemFontOfSize:21]; // TODO: selected title default should be 23.5
-    _numberOfLines = 1;
     _selectedIndex = NSNotFound;
-    _selectionColor = 0;
     _textAlign = NSTextAlignmentCenter;
+    _numberOfLines = 1;
+#ifdef RCT_NEW_ARCH_ENABLED
+  // nothing
+#else
     self.delegate = self;
+#endif
     self.dataSource = self;
     [self selectRow:0 inComponent:0 animated:YES]; // Workaround for missing selection indicator lines (see https://stackoverflow.com/questions/39564660/uipickerview-selection-indicator-not-visible-in-ios10)
   }
@@ -109,16 +112,16 @@ numberOfRowsInComponent:(__unused NSInteger)component
     [view insertSubview:label atIndex:0];
   }
 
-  if (@available(iOS 14.0, *)) {
-      if (_selectionColor) {
-          pickerView.subviews[1].backgroundColor = [RCTConvert UIColor:@(_selectionColor)];
-      }
-  }
-    
   RNCPickerLabel* label = view.subviews[0];
   label.font = _font;
 
-  label.textColor = [RCTConvert UIColor:_items[row][@"textColor"]] ?: _color;
+  label.textColor =
+#ifdef RCT_NEW_ARCH_ENABLED
+    _items[row][@"textColor"]
+#else
+     [RCTConvert UIColor:_items[row][@"textColor"]]
+#endif
+     ?: _color;
 
   label.textAlignment = _textAlign;
   label.text = [self pickerView:pickerView titleForRow:row forComponent:component];
@@ -143,5 +146,21 @@ numberOfRowsInComponent:(__unused NSInteger)component
     });
   }
 }
+
+#ifdef RCT_NEW_ARCH_ENABLED
+- (void)pickerView:(__unused UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row inComponent:(__unused NSInteger)component
+  withEventEmitter:(facebook::react::SharedViewEventEmitter)eventEmitter
+{
+    _selectedIndex = row;
+      if (eventEmitter != nullptr && _items.count > (NSUInteger)row) {
+          std::dynamic_pointer_cast<const facebook::react::RNCPickerEventEmitter>(eventEmitter)
+              ->onChange(facebook::react::RNCPickerEventEmitter::OnChange{
+                  .newIndex = (int)row,
+                  .newValue =  RCTStringFromNSString(RCTNullIfNil(_items[row][@"value"])),
+              });
+        }
+}
+#endif
 
 @end
