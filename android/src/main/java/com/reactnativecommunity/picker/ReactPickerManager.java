@@ -8,6 +8,7 @@
 package com.reactnativecommunity.picker;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -30,12 +31,12 @@ import com.facebook.react.modules.i18nmanager.I18nUtil;
 import com.facebook.react.uimanager.*;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.EventDispatcher;
-
 import com.facebook.yoga.YogaMeasureFunction;
 import com.facebook.yoga.YogaMeasureMode;
 import com.facebook.yoga.YogaMeasureOutput;
 import com.facebook.yoga.YogaNode;
 
+import java.io.IOException;
 import java.util.Map;
 
 import javax.annotation.Nullable;
@@ -373,10 +374,18 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
         if (style.hasKey("fontSize") && !style.isNull("fontSize") && style.getDouble("fontSize") > 0.1) {
           textView.setTextSize((float)style.getDouble("fontSize"));
         }
-        
+
         if (style.hasKey("fontFamily") && !style.isNull("fontFamily") && style.getString("fontFamily").length() > 0) {
-          Typeface face = Typeface.create(style.getString("fontFamily"), Typeface.NORMAL);
-          textView.setTypeface(face);
+          String fontPath = "fonts/" + style.getString("fontFamily") + ".ttf";
+          AssetManager assetManager = convertView.getContext().getAssets();
+          try {
+            assetManager.open(fontPath);
+            Typeface face = Typeface.createFromAsset(convertView.getContext().getAssets(), fontPath);
+            textView.setTypeface(face);
+          } catch (IOException e) {
+            Typeface face = Typeface.create(style.getString("fontFamily"), Typeface.NORMAL);
+            textView.setTypeface(face);
+          }
         }
       }
 
