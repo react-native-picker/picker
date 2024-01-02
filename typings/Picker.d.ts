@@ -96,6 +96,11 @@ export interface PickerProps<T = ItemValue> extends ViewProps {
    */
   dropdownIconRippleColor?: number | ColorValue;
   /**
+   * Visibility of spinner's arrow
+   * @platform android
+   */
+  dropdownIconVisible?: boolean;
+  /**
    * On Android & iOS, used to truncate the text with an ellipsis after computing the text layout, including line wrapping,
    * such that the total number of lines does not exceed this number. Default is '1'
    * @platform android & iOS

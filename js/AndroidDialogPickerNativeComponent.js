@@ -53,6 +53,7 @@ type NativeProps = $ReadOnly<{|
   backgroundColor?: Int32,
   dropdownIconColor?: Int32,
   dropdownIconRippleColor?: Int32,
+  dropdownIconVisible?: ?boolean,
   numberOfLines?: ?Int32,
   onSelect?: BubblingEventHandler<PickerAndroidChangeEvent, 'topSelect'>,
   onFocus?: BubblingEventHandler<null, 'topFocus'>,
