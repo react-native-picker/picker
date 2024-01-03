@@ -9,6 +9,7 @@
 #include <winrt/Windows.Foundation.Metadata.h>
 #include <UI.Xaml.Input.h>
 #include <UI.Xaml.Media.h>
+#include <winrt/Windows.UI.Xaml.Automation.h>
 
 namespace winrt {
     using namespace Microsoft::ReactNative;
@@ -154,8 +155,12 @@ namespace winrt::ReactNativePicker::implementation {
             auto& labelObject = item.GetObjectProperty("label");
             if (!labelObject.IsNull()) {
                 auto comboBoxItem = winrt::ComboBoxItem();
+                auto textBlock = winrt::TextBlock();
                 auto label = to_hstring(labelObject.AsString());
-                comboBoxItem.Content(winrt::box_value(label));
+                
+                textBlock.Text(label);
+                xaml::Automation::AutomationProperties::SetName(textBlock, label);
+                comboBoxItem.Content(textBlock);
 
                 const auto& textColorObject = item.GetObjectProperty("textColor");
                 if (!textColorObject.IsNull()) {
@@ -169,6 +174,14 @@ namespace winrt::ReactNativePicker::implementation {
                 if (!valueObject.IsNull()) {
                     m_itemValues.emplace_back(to_hstring(valueObject.AsString()));
                 }
+
+                const auto& testIdObject = item.GetObjectProperty("testID");
+                if (!testIdObject.IsNull()) {
+                    auto testId = to_hstring(testIdObject.AsString());
+                    auto boxedValue = winrt::Windows::Foundation::PropertyValue::CreateString(testId);
+                    comboBoxItem.SetValue(xaml::Automation::AutomationProperties::AutomationIdProperty(), boxedValue);
+                    xaml::Automation::AutomationProperties::SetAutomationId(textBlock, testId);
+               }
 
                 comboBoxItems.Append(comboBoxItem);
             }
