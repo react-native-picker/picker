@@ -289,7 +289,7 @@ public class ReactPicker extends FabricEnabledPicker {
     LayerDrawable drawable = (LayerDrawable) this.getBackground();
     RippleDrawable backgroundDrawable = (RippleDrawable) drawable.findDrawableByLayerId(R.id.dropdown_icon);
 
-    if (visible) {
+    if (Boolean.TRUE.equals(visible)) {
       backgroundDrawable.setAlpha(255);
     }
     else {
