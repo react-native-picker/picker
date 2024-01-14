@@ -76,7 +76,7 @@ class PickerWindows extends React.Component<
           value: child.props.value,
           label: child.props.label,
           textColor: processColor(child.props.color),
-          testID: child.props.testID
+          testID: child.props.testID,
         });
       },
     );

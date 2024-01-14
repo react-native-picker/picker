@@ -48,7 +48,6 @@
     "react": ">=16",
     "react-native": ">=0.57"
   },
-  "private": false,
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/runtime": "^7.6.2",
@@ -71,8 +70,8 @@
     "prettier": "^2.2.1",
     "pretty-quick": "^2.0.1",
     "react": "17.0.2",
-    "react-native": "0.68.1",
     "react-dom": "17.0.2",
+    "react-native": "0.68.1",
     "react-native-builder-bob": "^0.18.1",
     "react-native-macos": "0.61.63",
     "react-native-web": "^0.14.10",
