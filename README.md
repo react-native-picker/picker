@@ -18,10 +18,6 @@
 | >= 1.16.0 | 0.61+ | 0.61+ |
 | >= 1.2.0 | 0.60+ or 0.59+ with [Jetifier](https://www.npmjs.com/package/jetifier) | N/A |
 | >= 1.0.0 | 0.57 | N/A |
-
-## For Managed Workflow users using Expo 37
-This component is not supported in the managed workflow for expo sdk 37. Please import the `Picker` from `react-native`.
-See more info [here](https://github.com/react-native-picker/picker/issues/45#issuecomment-633163973)
    
 ## Getting started
 
@@ -313,19 +309,19 @@ such that the total number of lines does not exceed this number. Default is '1'
 
 | Type      | Required | Platform |
 | --------- | -------- | -------- |
-| function  | no       | Android  |
+| function  | No       | Android  |
 
 ### `onFocus`
 
 | Type      | Required | Platform |
 | --------- | -------- | -------- |
-| function  | no       | Android  |
+| function  | No       | Android  |
 
 ### `selectionColor`
 
 | Type      | Required | Platform |
 | ------- | -------- | -------- |
-| ColorValue  | no       | iOS  |
+| ColorValue  | No       | iOS  |
 
 ## Methods
 
@@ -347,7 +343,7 @@ Displayed value on the Picker Item
 
 | Type    | Required | 
 | ------- | -------- | 
-| string  | yes       | 
+| string  | Yes      | 
 
 
 ### `value`
@@ -356,7 +352,7 @@ Actual value on the Picker Item
 
 | Type    | Required |
 | ------- | -------- |
-| number,string | yes     |
+| number,string | Yes     |
 
 ### `color`
 
@@ -364,7 +360,7 @@ Displayed color on the Picker Item
 
 | Type        | Required | 
 | ----------- | -------- | 
-| ColorValue  | no       | 
+| ColorValue  | No       | 
 
 
 ### `fontFamily`
@@ -373,7 +369,7 @@ Displayed fontFamily on the Picker Item
 
 | Type    | Required |
 | ------- | -------- |
-| string  | no      | 
+| string  | No      | 
 
 
 ### `style`
@@ -382,7 +378,7 @@ Style to apply to individual item labels.
 
 | Type    | Required | Platform |
 | ------- | -------- | -------- |
-| ViewStyleProp  | no       | Android  |
+| ViewStyleProp  | No       | Android  |
 
 
 ### `enabled`
@@ -393,7 +389,7 @@ If set to false, the specific item will be disabled, i.e. the user will not be a
 
 | Type    | Required | Platform |
 | ------- | -------- | -------- |
-| boolean  | no       | Android  |
+| boolean  | No       | Android  |
 
 
 ### `contentDescription`
@@ -449,7 +445,7 @@ Sets the content description to the Picker Item
 
 | Type      | Required | Platform |
 | ------- | -------- | -------- |
-| ColorValue  | no       | iOS  |
+| ColorValue  | No       | iOS  |
 
 ---
 

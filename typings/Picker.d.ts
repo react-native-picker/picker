@@ -24,6 +24,8 @@ export interface PickerItemProps<T = ItemValue> {
    *   - 'backgroundColor'
    *   - 'fontSize'
    *   - 'fontFamily'
+   * 
+   * The 'fontFamily' value expects the font file (.ttf) to be present in the "assets/fonts" directory
    *
    * @platform android
    */

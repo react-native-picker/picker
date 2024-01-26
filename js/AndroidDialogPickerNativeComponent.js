@@ -10,27 +10,71 @@
 
 'use strict';
 
-import {requireNativeComponent} from 'react-native';
-
-import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import * as React from 'react';
+import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
 import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
-import type {PickerAndroidChangeEvent, PickerItem} from './types';
+import type {
+  BubblingEventHandler,
+  Int32,
+  Double,
+} from 'react-native/Libraries/Types/CodegenTypes';
 
-type NativeProps = $ReadOnly<{|
-  enabled?: ?boolean,
-  items: $ReadOnlyArray<PickerItem>,
-  mode?: ?('dialog' | 'dropdown'),
-  onSelect?: (event: PickerAndroidChangeEvent) => void,
-  selected: number,
-  prompt?: ?string,
-  testID?: string,
-  style?: ?TextStyleProp,
-  accessibilityLabel?: ?string,
-  numberOfLines?: ?number,
+import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
+import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
+
+export type PickerAndroidChangeEvent = $ReadOnly<{|
+  position: Int32,
 |}>;
 
-type DialogPickerNativeType = HostComponent<NativeProps>;
+export type PickerItemStyle = $ReadOnly<{|
+  backgroundColor?: ?ColorValue,
+  color?: ?ColorValue,
+  fontSize?: ?Double,
+  fontFamily?: ?string,
+|}>;
 
-export default ((requireNativeComponent(
-  'RNCAndroidDialogPicker',
-): any): DialogPickerNativeType);
+export type PickerItem = $ReadOnly<{|
+  label: string,
+  value: ?string,
+  color?: ColorValue,
+  fontFamily: ?string,
+  enabled?: ?boolean,
+  style?: ?PickerItemStyle,
+|}>;
+
+type NativeProps = $ReadOnly<{|
+  ...ViewProps,
+  items: $ReadOnlyArray<PickerItem>,
+  color?: ColorValue,
+  prompt?: ?string,
+  enabled?: ?boolean,
+  selected: Int32,
+  backgroundColor?: Int32,
+  dropdownIconColor?: Int32,
+  dropdownIconRippleColor?: Int32,
+  numberOfLines?: ?Int32,
+  onSelect?: BubblingEventHandler<PickerAndroidChangeEvent, 'topSelect'>,
+  onFocus?: BubblingEventHandler<null, 'topFocus'>,
+  onBlur?: BubblingEventHandler<null, 'topBlur'>,
+|}>;
+
+type ComponentType = HostComponent<NativeProps>;
+
+interface NativeCommands {
+  +focus: (viewRef: React.ElementRef<ComponentType>) => void;
+  +blur: (viewRef: React.ElementRef<ComponentType>) => void;
+  +setNativeSelected: (
+    viewRef: React.ElementRef<ComponentType>,
+    selected: Int32,
+  ) => void;
+}
+
+export const Commands: NativeCommands = codegenNativeCommands<NativeCommands>({
+  supportedCommands: ['focus', 'blur', 'setNativeSelected'],
+});
+
+export default (codegenNativeComponent<NativeProps>('RNCAndroidDialogPicker', {
+  excludedPlatforms: ['iOS'],
+  interfaceOnly: true,
+}): ComponentType);
