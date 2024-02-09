@@ -208,7 +208,7 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
       }
       setNativeSelectedIndex({value: position});
     },
-    [props.children, props.onValueChange, props.selectedValue],
+    [props.children, props.onValueChange],
   );
 
   const Picker =
