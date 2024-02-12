@@ -201,16 +201,14 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
             (item) => item != null,
           );
           const value = children[position].props.value;
-          if (props.selectedValue !== value) {
-            onValueChange(value, position);
-          }
+          onValueChange(value, position);
         } else {
           onValueChange(null, position);
         }
       }
       setNativeSelectedIndex({value: position});
     },
-    [props.children, props.onValueChange, props.selectedValue],
+    [props.children, props.onValueChange],
   );
 
   const Picker =

@@ -45,17 +45,33 @@ public class ReactPicker extends FabricEnabledPicker {
   private int mOldElementSize = Integer.MIN_VALUE;
   private boolean mIsOpen = false;
 
+  @Override
+  public void setSelection(int position, boolean animate) {
+    super.setSelection(position, animate);
+    // Method is called when selected value is changed, even without user interaction
+  }
+
+  @Override
+  public void setSelection(int position) {
+    super.setSelection(position);
+    // Method is called after user interaction and before onWindowFocusChanged event
+    // on all Android versions. Additional guard makes sure that it's invoked only
+    // when spinner was opened
+    if (mIsOpen && mOnSelectListener != null) {
+      mOnSelectListener.onItemSelected(position);
+    }
+  }
+
   private final OnItemSelectedListener mItemSelectedListener = new OnItemSelectedListener() {
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-      if (mOnSelectListener != null) {
-        mOnSelectListener.onItemSelected(position);
-      }
+      // Use setSelection(int position) to call event after user selection
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-      if (mOnSelectListener != null) {
+      // It's not called at all
+      if (mOnSelectListener != null && mIsOpen) {
         mOnSelectListener.onItemSelected(-1);
       }
     }
