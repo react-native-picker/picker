@@ -22,6 +22,7 @@ public interface RNCAndroidDropdownPickerManagerInterface<T extends View> {
   void setBackgroundColor(T view, int value);
   void setDropdownIconColor(T view, int value);
   void setDropdownIconRippleColor(T view, int value);
+  void setDropdownIconVisible(T view, boolean value);
   void setNumberOfLines(T view, int value);
   void focus(T view);
   void blur(T view);

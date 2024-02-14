@@ -301,6 +301,19 @@ public class ReactPicker extends FabricEnabledPicker {
     backgroundDrawable.setColor(ColorStateList.valueOf(color));
   }
 
+  public void setDropdownIconVisible(@Nullable boolean visible) {
+    LayerDrawable drawable = (LayerDrawable) this.getBackground();
+    RippleDrawable backgroundDrawable = (RippleDrawable) drawable.findDrawableByLayerId(R.id.dropdown_icon);
+
+    if (Boolean.TRUE.equals(visible)) {
+      backgroundDrawable.setAlpha(255);
+    }
+    else {
+      backgroundDrawable.setAlpha(0);
+    }
+
+  }
+
   public void setBackgroundColor(@Nullable int color) {
     LayerDrawable drawable = (LayerDrawable) this.getBackground();
     GradientDrawable backgroundDrawable = (GradientDrawable) drawable.findDrawableByLayerId(R.id.dropdown_background);

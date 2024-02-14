@@ -47,6 +47,9 @@ public class RNCAndroidDialogPickerManagerDelegate<T extends View, U extends Bas
       case "dropdownIconRippleColor":
         mViewManager.setDropdownIconRippleColor(view, value == null ? 0 : ((Double) value).intValue());
         break;
+      case "dropdownIconVisible":
+        mViewManager.setDropdownIconVisible(view, value == null ? true : (boolean) value);
+        break;
       case "numberOfLines":
         mViewManager.setNumberOfLines(view, value == null ? 0 : ((Double) value).intValue());
         break;

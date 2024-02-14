@@ -181,6 +181,11 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
     view.setDropdownIconRippleColor(color);
   }
 
+  @ReactProp(name = "dropdownIconVisible")
+  public void setDropdownIconVisible(ReactPicker view, @Nullable boolean visible) {
+    view.setDropdownIconVisible(visible);
+  }
+
   @ReactProp(name = ViewProps.NUMBER_OF_LINES, defaultInt = 1)
   public void setNumberOfLines(ReactPicker view, int numberOfLines) {
     ReactPickerAdapter adapter = (ReactPickerAdapter) view.getAdapter();

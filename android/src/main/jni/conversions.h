@@ -50,6 +50,7 @@ namespace facebook
             values["backgroundColor"] = props.backgroundColor;
             values["dropdownIconColor"] = props.dropdownIconColor;
             values["dropdownIconRippleColor"] = props.dropdownIconRippleColor;
+            values["dropdownIconVisible"] = props.dropdownIconVisible;
             values["numberOfLines"] = props.numberOfLines;
             values["mode"] = "dialog";
 
@@ -97,6 +98,7 @@ namespace facebook
             values["backgroundColor"] = props.backgroundColor;
             values["dropdownIconColor"] = props.dropdownIconColor;
             values["dropdownIconRippleColor"] = props.dropdownIconRippleColor;
+            values["dropdownIconVisible"] = props.dropdownIconVisible;
             values["numberOfLines"] = props.numberOfLines;
             values["mode"] = "dropdown";
 

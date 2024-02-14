@@ -40,6 +40,7 @@ type PickerAndroidProps = $ReadOnly<{|
   prompt?: ?string,
   testID?: string,
   dropdownIconColor?: string,
+  dropdownIconVisible?: ?boolean,
   numberOfLines?: ?number,
 |}>;
 
@@ -228,6 +229,7 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
     style: props.style,
     dropdownIconColor: processColor(props.dropdownIconColor),
     dropdownIconRippleColor: processColor(props.dropdownIconRippleColor),
+    dropdownIconVisible: props.dropdownIconVisible,
     testID: props.testID,
     numberOfLines: props.numberOfLines,
   };
