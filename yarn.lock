@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 7
+  version: 6
   cacheKey: 9
 
 "@ampproject/remapping@npm:^2.2.0":
@@ -4641,37 +4641,37 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@react-native-picker/picker@workspace:."
   dependencies:
-    "@babel/core": "npm:^7.6.2"
-    "@babel/runtime": "npm:^7.6.2"
-    "@expo/webpack-config": "npm:^0.12.40"
-    "@react-native-community/eslint-config": "npm:^2.0.0"
-    "@semantic-release/git": "npm:^9.0.0"
-    "@testing-library/react-native": "npm:^7.2.0"
-    "@types/react": "npm:16.9.0"
-    "@types/react-native": "npm:^0.64.10"
-    babel-jest: "npm:^26.6.3"
-    babel-plugin-module-resolver: "npm:^3.2.0"
-    detox: "npm:^17.10.6"
-    eslint: "npm:^7.32.0"
-    eslint-plugin-prettier: "npm:^3.0.1"
-    expo: "npm:^41.0.1"
-    flow-bin: "npm:0.222.0"
-    husky: "npm:^2.2.0"
-    jest: "npm:^26.6.3"
-    metro-react-native-babel-preset: "npm:^0.67.0"
-    prettier: "npm:^2.2.1"
-    pretty-quick: "npm:^2.0.1"
-    react: "npm:17.0.2"
-    react-dom: "npm:17.0.2"
-    react-native: "npm:0.68.1"
-    react-native-builder-bob: "npm:^0.18.1"
-    react-native-macos: "npm:0.61.63"
-    react-native-web: "npm:^0.14.10"
-    react-native-windows: "npm:^0.64.14"
-    react-test-renderer: "npm:17.0.2"
-    rimraf: "npm:^2.6.3"
-    semantic-release: "npm:^19.0.3"
-    typescript: "npm:^4.2.3"
+    "@babel/core": ^7.6.2
+    "@babel/runtime": ^7.6.2
+    "@expo/webpack-config": ^0.12.40
+    "@react-native-community/eslint-config": ^2.0.0
+    "@semantic-release/git": ^9.0.0
+    "@testing-library/react-native": ^7.2.0
+    "@types/react": 16.9.0
+    "@types/react-native": ^0.64.10
+    babel-jest: ^26.6.3
+    babel-plugin-module-resolver: ^3.2.0
+    detox: ^17.10.6
+    eslint: ^7.32.0
+    eslint-plugin-prettier: ^3.0.1
+    expo: ^41.0.1
+    flow-bin: 0.222.0
+    husky: ^2.2.0
+    jest: ^26.6.3
+    metro-react-native-babel-preset: ^0.67.0
+    prettier: ^2.2.1
+    pretty-quick: ^2.0.1
+    react: 17.0.2
+    react-dom: 17.0.2
+    react-native: 0.68.1
+    react-native-builder-bob: ^0.18.1
+    react-native-macos: 0.61.63
+    react-native-web: ^0.14.10
+    react-native-windows: ^0.64.14
+    react-test-renderer: 17.0.2
+    rimraf: ^2.6.3
+    semantic-release: ^19.0.3
+    typescript: ^4.2.3
   peerDependencies:
     react: ">=16"
     react-native: ">=0.57"
@@ -11136,9 +11136,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@patch:fsevents@npm%3A^1.2.7#optional!builtin<compat/fsevents>":
+"fsevents@patch:fsevents@npm%3A^1.2.7#~builtin<compat/fsevents>":
   version: 1.2.13
-  resolution: "fsevents@patch:fsevents@npm%3A1.2.13#optional!builtin<compat/fsevents>::version=1.2.13&hash=d11327"
+  resolution: "fsevents@patch:fsevents@npm%3A1.2.13#~builtin<compat/fsevents>::version=1.2.13&hash=d11327"
   dependencies:
     bindings: "npm:^1.5.0"
     nan: "npm:^2.12.1"
@@ -11146,18 +11146,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fsevents@patch:fsevents@npm%3A^2.1.2#optional!builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A^2.3.2#optional!builtin<compat/fsevents>":
+"fsevents@patch:fsevents@npm%3A^2.1.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@npm%3A^2.3.2#~builtin<compat/fsevents>":
   version: 2.3.3
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.3#optional!builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.3#~builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"
   dependencies:
     node-gyp: "npm:latest"
   conditions: os=darwin
   languageName: node
   linkType: hard
 
-"fsevents@patch:fsevents@npm%3A~2.1.2#optional!builtin<compat/fsevents>":
+"fsevents@patch:fsevents@npm%3A~2.1.2#~builtin<compat/fsevents>":
   version: 2.1.3
-  resolution: "fsevents@patch:fsevents@npm%3A2.1.3#optional!builtin<compat/fsevents>::version=2.1.3&hash=31d12a"
+  resolution: "fsevents@patch:fsevents@npm%3A2.1.3#~builtin<compat/fsevents>::version=2.1.3&hash=31d12a"
   dependencies:
     node-gyp: "npm:latest"
   conditions: os=darwin
@@ -12476,9 +12476,9 @@ __metadata:
   linkType: hard
 
 "ip@npm:^1.1.5":
-  version: 1.1.5
-  resolution: "ip@npm:1.1.5"
-  checksum: bf1e24b6571eda04959cb77e8c52f507c326a6282bf347d888c3121c80c8ca1b1b01f83b38ce413988fcd9bdac35208666db56f012e0314180a8f42ea49e591d
+  version: 1.1.9
+  resolution: "ip@npm:1.1.9"
+  checksum: 8/b6d91fd45a856e3bd6d4f601ea0619d90f3517638f6918ebd079f959a8a6308568d8db5ef4fdf037e0d9cfdcf264f46833dfeea81ca31309cf0a7eb4b1307b84
   languageName: node
   linkType: hard
 
@@ -15953,8 +15953,6 @@ __metadata:
     webpack-sources: "npm:^1.1.0"
   peerDependencies:
     webpack: ^4.4.0
-  bin:
-    mini-css-extract-plugin: ""
   checksum: 32c7bba563655c0780622da354d88bdfc6d6e9678f4f67ab102399ef6eae40f5a3b0a186b647e62863c2246f958428c6c0dbb7c3bd0dcfff441c0bbfbe64f1b6
   languageName: node
   linkType: hard
@@ -19779,26 +19777,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@npm%3A^1.1.6#optional!builtin<compat/resolve>":
+"resolve@patch:resolve@npm%3A^1.1.6#~builtin<compat/resolve>":
   version: 1.21.0
-  resolution: "resolve@patch:resolve@npm%3A1.21.0#optional!builtin<compat/resolve>::version=1.21.0&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.21.0#~builtin<compat/resolve>::version=1.21.0&hash=c3c19d"
   dependencies:
     is-core-module: "npm:^2.8.0"
     path-parse: "npm:^1.0.7"
     supports-preserve-symlinks-flag: "npm:^1.0.0"
   bin:
     resolve: bin/resolve
-  checksum: 0cfba9e33b729c9b8df9a95e3a4739490860ab7d815517231f90a6d1548e4550585cc6071e701d80ebf348a5b6fff35e987fea583e94d10c4406d5fdbaf6456f
+  checksum: 8/a0a4d1f7409e73190f31f901f8a619960bb3bd4ae38ba3a54c7ea7e1c87758d28a73256bb8d6a35996a903d1bf14f53883f0dcac6c571c063cb8162d813ad26e
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@npm%3A^1.10.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.12.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.14.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.17.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.18.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.3.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.4.0#optional!builtin<compat/resolve>":
+"resolve@patch:resolve@npm%3A^1.10.0#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.12.0#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.17.0#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.18.1#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.3.2#~builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.4.0#~builtin<compat/resolve>":
   version: 1.20.0
-  resolution: "resolve@patch:resolve@npm%3A1.20.0#optional!builtin<compat/resolve>::version=1.20.0&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.20.0#~builtin<compat/resolve>::version=1.20.0&hash=c3c19d"
   dependencies:
     is-core-module: "npm:^2.2.0"
     path-parse: "npm:^1.0.6"
-  checksum: 976d9e2ccefbecc754be43a1d1a6a5e689339ac8fb5c0b2ad0bcf7b78d7ec3da938645efb9d9986c66e760306394ea1a3cdae84aa5d7078714f88a020a5190f2
+  checksum: 8/a0dd7d16a8e47af23afa9386df2dff10e3e0debb2c7299a42e581d9d9b04d7ad5d2c53f24f1e043f7b3c250cbdc71150063e53d0b6559683d37f790b7c8c3cd5
   languageName: node
   linkType: hard
 
@@ -21985,13 +21983,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^4.2.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@^4.2.3#~builtin<compat/typescript>":
   version: 4.2.3
-  resolution: "typescript@patch:typescript@npm%3A4.2.3#optional!builtin<compat/typescript>::version=4.2.3&hash=334f98"
+  resolution: "typescript@patch:typescript@npm%3A4.2.3#~builtin<compat/typescript>::version=4.2.3&hash=334f98"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 0e585fffbc8ed72465b6b084d35f78e8fcc6180f3cb074b0ae07a221fd552c8bd6092242ace0bba1d1da6ca28f25f99eb84fc1e77aba5f352026e399c0468333
+  checksum: 8/f00e6e6e72c950865979d5beb66916c75d92eda09514eb2953828b95505cfd2ef3ae9ac776fdac9f841a9ce67744999b70d23779726e0072656a1841c8080860
   languageName: node
   linkType: hard
 
