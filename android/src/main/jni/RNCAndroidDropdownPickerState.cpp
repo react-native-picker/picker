@@ -1,9 +1,6 @@
 #include "RNCAndroidDropdownPickerState.h"
 
-namespace facebook
-{
-  namespace react
-  {
+namespace facebook::react {
 
 #ifdef ANDROID
     folly::dynamic RNCAndroidDropdownPickerState::getDynamic() const
@@ -12,5 +9,5 @@ namespace facebook
     }
 #endif
 
-  } // namespace react
-} // namespace facebook
+} // namespace facebook::react
+

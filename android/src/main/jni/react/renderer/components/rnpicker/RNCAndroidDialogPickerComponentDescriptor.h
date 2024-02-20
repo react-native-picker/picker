@@ -4,7 +4,6 @@
 #include "RNCAndroidDialogPickerShadowNode.h"
 #include "RNCAndroidDialogPickerMeasurementsManager.h"
 #include <react/renderer/core/ConcreteComponentDescriptor.h>
-#include <react/renderer/components/rnpicker/Props.h>
 
 namespace facebook
 {
@@ -23,7 +22,8 @@ namespace facebook
 
             void adopt(ShadowNode& shadowNode) const override
             {
-                assert(dynamic_cast<RNCAndroidDialogPickerShadowNode*>(&shadowNode));
+                ConcreteComponentDescriptor::adopt(shadowNode);
+
                 auto& pickerShadowNode =
                     static_cast<RNCAndroidDialogPickerShadowNode&>(shadowNode);
 
@@ -35,7 +35,6 @@ namespace facebook
                 // setup measure function.
                 pickerShadowNode.enableMeasurement();
                 pickerShadowNode.dirtyLayout();
-                ConcreteComponentDescriptor::adopt(shadowNode);
             }
 
         private:

@@ -5,14 +5,13 @@ set(LIB_LITERAL rnpicker)
 set(LIB_TARGET_NAME react_codegen_${LIB_LITERAL})
 
 set(LIB_ANDROID_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../..)
-set(LIB_COMMON_DIR ${LIB_ANDROID_DIR}/../common/cpp)
 set(LIB_ANDROID_GENERATED_JNI_DIR ${LIB_ANDROID_DIR}/build/generated/source/codegen/jni)
 set(LIB_ANDROID_GENERATED_COMPONENTS_DIR ${LIB_ANDROID_GENERATED_JNI_DIR}/react/renderer/components/${LIB_LITERAL})
 
 add_compile_options(
   -fexceptions
   -frtti
-  -std=c++17
+  -std=c++20
   -Wall
   -Wpedantic
   -Wno-gnu-zero-variadic-macro-arguments
@@ -60,7 +59,7 @@ target_compile_options(
   -DLOG_TAG=\"ReactNative\"
   -fexceptions
   -frtti
-  -std=c++17
+  -std=c++20
   -Wall
 )
 

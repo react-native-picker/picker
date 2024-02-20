@@ -4,7 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.CheckedTextView;
 
-public class CheckedTextViewImpl extends CheckedTextView {
+import androidx.appcompat.widget.AppCompatCheckedTextView;
+
+public class CheckedTextViewImpl extends AppCompatCheckedTextView {
     public CheckedTextViewImpl(Context context) {
         super(context);
     }
@@ -15,10 +17,6 @@ public class CheckedTextViewImpl extends CheckedTextView {
 
     public CheckedTextViewImpl(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    public CheckedTextViewImpl(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override

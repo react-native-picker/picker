@@ -4,7 +4,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-public class TextViewImpl extends TextView {
+import androidx.appcompat.widget.AppCompatTextView;
+
+public class TextViewImpl extends AppCompatTextView {
     public TextViewImpl(Context context) {
         super(context);
     }
@@ -15,10 +17,6 @@ public class TextViewImpl extends TextView {
 
     public TextViewImpl(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    public TextViewImpl(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     @Override

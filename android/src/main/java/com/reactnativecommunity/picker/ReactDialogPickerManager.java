@@ -9,6 +9,7 @@ package com.reactnativecommunity.picker;
 
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.facebook.react.module.annotations.ReactModule;
@@ -22,9 +23,8 @@ import com.facebook.react.viewmanagers.RNCAndroidDialogPickerManagerInterface;
  */
 @ReactModule(name = ReactDialogPickerManager.REACT_CLASS)
 public class ReactDialogPickerManager extends ReactPickerManager implements RNCAndroidDialogPickerManagerInterface<ReactPicker> {
-
   public static final String REACT_CLASS = "RNCAndroidDialogPicker";
-  private final ViewManagerDelegate<ReactPicker> mDelegate;
+  private final ViewManagerDelegate<ReactPicker> mDelegate = new RNCAndroidDialogPickerManagerDelegate<>(this);
 
   @Nullable
   @Override
@@ -33,16 +33,17 @@ public class ReactDialogPickerManager extends ReactPickerManager implements RNCA
   }
 
   public ReactDialogPickerManager() {
-    mDelegate = new RNCAndroidDialogPickerManagerDelegate<>(this);
   }
 
+  @NonNull
   @Override
   public String getName() {
     return REACT_CLASS;
   }
 
+  @NonNull
   @Override
-  protected ReactPicker createViewInstance(ThemedReactContext reactContext) {
+  protected ReactPicker createViewInstance(@NonNull ThemedReactContext reactContext) {
     return new ReactPicker(reactContext, Spinner.MODE_DIALOG);
   }
 }

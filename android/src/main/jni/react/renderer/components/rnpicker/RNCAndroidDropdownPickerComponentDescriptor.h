@@ -4,42 +4,37 @@
 #include "RNCAndroidDropdownPickerShadowNode.h"
 #include "RNCAndroidDropdownPickerMeasurementsManager.h"
 #include <react/renderer/core/ConcreteComponentDescriptor.h>
-#include <react/renderer/components/rnpicker/Props.h>
 
-namespace facebook
-{
-    namespace react
+namespace facebook::react {
+
+    class RNCAndroidDropdownPickerComponentDescriptor final
+        : public ConcreteComponentDescriptor<RNCAndroidDropdownPickerShadowNode>
     {
+    public:
+        RNCAndroidDropdownPickerComponentDescriptor(
+            ComponentDescriptorParameters const &parameters)
+            : ConcreteComponentDescriptor(parameters),
+                measurementsManager_(std::make_shared<RNCAndroidDropdownPickerMeasurementsManager>(
+                    contextContainer_)) {}
 
-        class RNCAndroidDropdownPickerComponentDescriptor final
-            : public ConcreteComponentDescriptor<RNCAndroidDropdownPickerShadowNode>
+        void adopt(ShadowNode& shadowNode) const override
         {
-        public:
-            RNCAndroidDropdownPickerComponentDescriptor(
-                ComponentDescriptorParameters const &parameters)
-                : ConcreteComponentDescriptor(parameters),
-                  measurementsManager_(std::make_shared<RNCAndroidDropdownPickerMeasurementsManager>(
-                      contextContainer_)) {}
+            ConcreteComponentDescriptor::adopt(shadowNode);
+            
+            auto& pickerShadowNode =
+                static_cast<RNCAndroidDropdownPickerShadowNode&>(shadowNode);
 
-            void adopt(ShadowNode& shadowNode) const override
-            {
-                assert(dynamic_cast<RNCAndroidDropdownPickerShadowNode*>(&shadowNode));
-                auto& pickerShadowNode =
-                    static_cast<RNCAndroidDropdownPickerShadowNode&>(shadowNode);
+            // `RNCAndroidDropdownPickerShadowNode` uses `RNCAndroidDropdownPickerMeasurementsManager` to
+            // provide measurements to Yoga.
+            pickerShadowNode.setDropdownPickerMeasurementsManager(measurementsManager_);
 
-                // `RNCAndroidDropdownPickerShadowNode` uses `RNCAndroidDropdownPickerMeasurementsManager` to
-                // provide measurements to Yoga.
-                pickerShadowNode.setDropdownPickerMeasurementsManager(measurementsManager_);
+            // All `RNCAndroidDropdownPickerShadowNode`s must have leaf Yoga nodes with properly
+            // setup measure function.
+            pickerShadowNode.enableMeasurement();
+            pickerShadowNode.dirtyLayout();
+        }
 
-                // All `RNCAndroidDropdownPickerShadowNode`s must have leaf Yoga nodes with properly
-                // setup measure function.
-                pickerShadowNode.enableMeasurement();
-                pickerShadowNode.dirtyLayout();
-                ConcreteComponentDescriptor::adopt(shadowNode);
-            }
-
-        private:
-            const std::shared_ptr<RNCAndroidDropdownPickerMeasurementsManager> measurementsManager_;
-        };
-    } // namespace react
-} // namespace facebook
+    private:
+        const std::shared_ptr<RNCAndroidDropdownPickerMeasurementsManager> measurementsManager_;
+    };
+} // namespace facebook::react

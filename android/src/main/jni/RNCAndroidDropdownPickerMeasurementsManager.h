@@ -7,23 +7,24 @@
 #include <react/renderer/core/LayoutConstraints.h>
 #include <react/utils/ContextContainer.h>
 
-namespace facebook
-{
-    namespace react
+namespace facebook::react {
+
+    class RNCAndroidDropdownPickerMeasurementsManager
     {
+    public:
+        RNCAndroidDropdownPickerMeasurementsManager(
+            const ContextContainer::Shared &contextContainer)
+            : contextContainer_(contextContainer) {}
 
-        class RNCAndroidDropdownPickerMeasurementsManager
-        {
-        public:
-            RNCAndroidDropdownPickerMeasurementsManager(
-                const ContextContainer::Shared &contextContainer)
-                : contextContainer_(contextContainer) {}
+        Size measure(
+            SurfaceId surfaceId, 
+            LayoutConstraints layoutConstraints, 
+            const RNCAndroidDropdownPickerProps& props, 
+            RNCAndroidDropdownPickerState state) const;
 
-            Size measure(SurfaceId surfaceId, LayoutConstraints layoutConstraints, RNCAndroidDropdownPickerProps props, RNCAndroidDropdownPickerState state) const;
+    private:
+        const ContextContainer::Shared contextContainer_;
+    };
 
-        private:
-            const ContextContainer::Shared contextContainer_;
-        };
+} // namespace facebook::react
 
-    } // namespace react
-} // namespace facebook
