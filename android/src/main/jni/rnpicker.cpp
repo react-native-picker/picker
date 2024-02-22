@@ -4,15 +4,12 @@
  */
 #include "rnpicker.h"
 
-namespace facebook
-{
-  namespace react
-  {
+namespace facebook::react {
 
-    std::shared_ptr<TurboModule> rnpicker_ModuleProvider(const std::string &moduleName, const JavaTurboModule::InitParams &params)
-    {
-      return nullptr;
-    }
+std::shared_ptr<TurboModule> rnpicker_ModuleProvider(
+    const std::string& moduleName,
+    const JavaTurboModule::InitParams& params) {
+  return nullptr;
+}
 
-  } // namespace react
-} // namespace facebook
+} // namespace facebook::react

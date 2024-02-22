@@ -44,6 +44,8 @@ target_link_libraries(
   react_codegen_rncore
   react_debug
   react_nativemodule_core
+  react_render_componentregistry
+  react_utils
   react_render_core
   react_render_debug
   react_render_graphics
