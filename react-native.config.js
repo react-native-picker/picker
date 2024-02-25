@@ -17,8 +17,8 @@
 
 let supportsCodegenConfig = false;
 try {
-  const rnCliAndroidVersion = require('@react-native-community/cli-platform-android/package.json')
-    .version;
+  const rnCliAndroidVersion =
+    require('@react-native-community/cli-platform-android/package.json').version;
   const [major] = rnCliAndroidVersion.split('.');
   supportsCodegenConfig = major >= 9;
 } catch (e) {
@@ -28,7 +28,7 @@ try {
 module.exports = {
   project: {
     android: {
-      sourceDir: './example/android',
+      sourceDir: './FabricExample/android',
     },
     windows: {
       sourceDir: './example/windows',
