@@ -25,7 +25,7 @@ export default function App() {
         <View style={styles.rtlSwitchContainer}>
           <Switch
             value={isRTL}
-            onValueChange={(newValue) => {
+            onValueChange={newValue => {
               setIsRTL(newValue);
               I18nManager.forceRTL(newValue);
             }}
@@ -34,7 +34,7 @@ export default function App() {
         </View>
         <View style={styles.container}>
           <Text style={styles.heading}>Picker Examples</Text>
-          {PickerExamples.examples.map((element) => (
+          {PickerExamples.examples.map(element => (
             <View style={styles.elementContainer} key={element.title}>
               <Text style={styles.title}> {element.title} </Text>
               {element.render()}
@@ -44,7 +44,7 @@ export default function App() {
             <Text style={styles.heading}>PickerIOS Examples</Text>
           )}
           {Platform.OS === 'ios' &&
-            PickerIOSExamples.examples.map((element) => (
+            PickerIOSExamples.examples.map(element => (
               <View style={styles.elementContainer} key={element.title}>
                 <Text style={styles.title}> {element.title} </Text>
                 {element.render()}
