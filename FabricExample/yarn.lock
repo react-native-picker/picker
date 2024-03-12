@@ -1700,7 +1700,7 @@
   dependencies:
     "@react-native/codegen" "0.74.2"
 
-"@react-native/babel-preset@0.74.2", "@react-native/babel-preset@0.74.3":
+"@react-native/babel-preset@0.74.2":
   version "0.74.2"
   resolved "https://registry.yarnpkg.com/@react-native/babel-preset/-/babel-preset-0.74.2.tgz#25c377ed4f747baea5adeaeba3be3110c6a43093"
   integrity sha512-xux1qblfc/XuJib0k5jV5Ro+XGkvwfNYrsvAD7FY+WKn8CBpovwxOvHuqk3HDYpjnIVw7zy5VgyIx+ArlBi6Wg==
@@ -1848,7 +1848,7 @@
     hermes-parser "0.19.1"
     nullthrows "^1.1.1"
 
-"@react-native/metro-config@0.74.3":
+"@react-native/metro-config@0.74.2":
   version "0.74.2"
   resolved "https://registry.yarnpkg.com/@react-native/metro-config/-/metro-config-0.74.2.tgz#234053da15de5da51f31a596970ab17ec34a4519"
   integrity sha512-Ix0Q3dakJl3TKpOrxIYshvEBpFjhY05zNyyNAsRMSm7TKy0aEECTgic5VOK0CdhgY0vmOlVuyFazWHiNj8imIw==
