@@ -1,16 +1,11 @@
 #include "RNCAndroidDropdownPickerState.h"
 
-namespace facebook
-{
-  namespace react
-  {
+namespace facebook::react {
 
 #ifdef ANDROID
-    folly::dynamic RNCAndroidDropdownPickerState::getDynamic() const
-    {
-      return folly::dynamic::object("measuredHeight", measuredHeight);
-    }
+folly::dynamic RNCAndroidDropdownPickerState::getDynamic() const {
+  return folly::dynamic::object("measuredHeight", measuredHeight);
+}
 #endif
 
-  } // namespace react
-} // namespace facebook
+} // namespace facebook::react

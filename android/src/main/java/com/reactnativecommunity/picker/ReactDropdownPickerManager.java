@@ -9,6 +9,7 @@ package com.reactnativecommunity.picker;
 
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.facebook.react.module.annotations.ReactModule;
@@ -24,7 +25,7 @@ import com.facebook.react.viewmanagers.RNCAndroidDropdownPickerManagerInterface;
 public class ReactDropdownPickerManager extends ReactPickerManager implements RNCAndroidDropdownPickerManagerInterface<ReactPicker> {
 
   public static final String REACT_CLASS = "RNCAndroidDropdownPicker";
-  private final ViewManagerDelegate<ReactPicker> mDelegate;
+  private final ViewManagerDelegate<ReactPicker> mDelegate = new RNCAndroidDropdownPickerManagerDelegate<>(this);
 
   @Nullable
   @Override
@@ -33,17 +34,17 @@ public class ReactDropdownPickerManager extends ReactPickerManager implements RN
   }
 
   public ReactDropdownPickerManager() {
-    mDelegate = new RNCAndroidDropdownPickerManagerDelegate<>(this);
   }
 
-
+  @NonNull
   @Override
   public String getName() {
     return REACT_CLASS;
   }
 
+  @NonNull
   @Override
-  protected ReactPicker createViewInstance(ThemedReactContext reactContext) {
+  protected ReactPicker createViewInstance(@NonNull ThemedReactContext reactContext) {
     return new ReactPicker(reactContext, Spinner.MODE_DROPDOWN);
   }
 }

@@ -12,20 +12,19 @@ import androidx.appcompat.widget.AppCompatSpinner;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
-import com.facebook.react.uimanager.FabricViewStateManager;
-import com.facebook.react.uimanager.StateWrapper;
 import com.facebook.react.uimanager.PixelUtil;
+import com.facebook.react.uimanager.StateWrapper;
 
-public abstract class FabricEnabledPicker extends AppCompatSpinner implements FabricViewStateManager.HasFabricViewStateManager {
-    private FabricViewStateManager mFabricViewStateManager = new FabricViewStateManager();
+public abstract class FabricEnabledPicker extends AppCompatSpinner {
+    private StateWrapper mStateWrapper = null;
 
-    @Override
-    public FabricViewStateManager getFabricViewStateManager() {
-        return mFabricViewStateManager;
+    @Nullable
+    public StateWrapper getStateWrapper() {
+        return mStateWrapper;
     }
 
     public void setStateWrapper(StateWrapper stateWrapper) {
-        mFabricViewStateManager.setStateWrapper(stateWrapper);
+        mStateWrapper = stateWrapper;
     }
 
     protected void setMeasuredHeight(int height) {
@@ -38,21 +37,16 @@ public abstract class FabricEnabledPicker extends AppCompatSpinner implements Fa
 
         // Check incoming state values. If they're already the correct value, return early to prevent
         // infinite UpdateState/SetState loop.
-        ReadableMap currentState = mFabricViewStateManager.getStateData();
+        ReadableMap currentState = mStateWrapper.getStateData();
         if (currentState != null) {
             float stateHeight = currentState.hasKey("measuredHeight") ? currentState.getInt("measuredHeight") : 1;
             if (Math.abs(stateHeight - realHeight) < 0.9) {
                 return;
             }
         }
-        mFabricViewStateManager.setState(new FabricViewStateManager.StateUpdateCallback() {
-            @Override
-            public WritableMap getStateUpdate() {
-                WritableMap map = new WritableNativeMap();
-                map.putDouble("measuredHeight", realHeight);
-                return map;
-            }
-        });
+        WritableMap map = new WritableNativeMap();
+        map.putDouble("measuredHeight", realHeight);
+        mStateWrapper.updateState(map);
     }
 
     public FabricEnabledPicker(@NonNull Context context) {
