@@ -1,6 +1,15 @@
 package com.reactnativecommunity.picker;
 
-public record ReactPickerLocalData(int height) {
+public class ReactPickerLocalData {
+    private final int height;
+
+    public ReactPickerLocalData(int height) {
+        this.height = height;
+    }
+
+    public int getHeight() {
+        return height;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -8,6 +17,11 @@ public record ReactPickerLocalData(int height) {
         if (o == null || getClass() != o.getClass()) return false;
         ReactPickerLocalData that = (ReactPickerLocalData) o;
         return height == that.height;
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 + height;
     }
 
     @Override

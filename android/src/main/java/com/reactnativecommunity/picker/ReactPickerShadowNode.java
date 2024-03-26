@@ -7,6 +7,6 @@ public class ReactPickerShadowNode extends LayoutShadowNode {
     @Override
     public void setLocalData(Object data) {
         Assertions.assertCondition(data instanceof ReactPickerLocalData);
-        setStyleMinHeight(((ReactPickerLocalData) data).height());
+        setStyleMinHeight(((ReactPickerLocalData) data).getHeight());
     }
 }
