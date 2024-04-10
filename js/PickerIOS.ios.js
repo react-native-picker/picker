@@ -22,7 +22,7 @@ import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
 import type {
   ColorValue,
-  TextStyleProp,
+  ViewStyleProp,
 } from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {Element, ChildrenArray} from 'react';
 
@@ -46,7 +46,7 @@ type Props = $ReadOnly<{|
   ...ViewProps,
   // $FlowFixMe
   children: ChildrenArray<Element<typeof PickerIOSItem>>,
-  itemStyle?: ?TextStyleProp,
+  itemStyle?: ?ViewStyleProp,
   numberOfLines: ?number,
   onChange?: ?(event: PickerIOSChangeEvent) => mixed,
   onValueChange?: ?(itemValue: string | number, itemIndex: number) => mixed,
