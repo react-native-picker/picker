@@ -35,7 +35,7 @@ def resolveReactNativeDirectory() {
         return reactNativeFromProjectNodeModules
     }
 
-    def reactNativeFromNodeModulesWithPicker = file("${projectDir}/../../react-native")
+    def reactNativeFromNodeModulesWithPicker = file("${projectDir}/../../../react-native")
     if (reactNativeFromNodeModulesWithPicker.exists()) {
         return reactNativeFromNodeModulesWithPicker
     }
