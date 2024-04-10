@@ -21,7 +21,10 @@ import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {ProcessedColorValue} from 'react-native/Libraries/StyleSheet/processColor';
 import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
-import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
+import type {
+  ViewStyleProp,
+  TextStyleProp,
+} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {Element, ElementRef, ChildrenArray} from 'react';
 import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
 
@@ -55,7 +58,7 @@ type Props = $ReadOnly<{|
   ...ViewProps,
   // $FlowFixMe
   children: ChildrenArray<Element<typeof PickerMacOSItem>>,
-  itemStyle?: ?TextStyleProp,
+  itemStyle?: ?ViewStyleProp,
   onChange?: ?(event: PickerMacOSChangeEvent) => mixed,
   onValueChange?: ?(itemValue: string | number, itemIndex: number) => mixed,
   selectedValue: ?(number | string),
