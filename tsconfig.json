@@ -28,6 +28,5 @@
   "exclude": [
     "node_modules",
     "**/*.spec.ts"
-  ],
-  "extends": "expo/tsconfig.base"
+  ]
 }

@@ -1,40 +1,13 @@
 {
-  "name": "@react-native-picker/picker",
-  "version": "2.7.5",
-  "homepage": "https://github.com/react-native-picker/picker#readme",
+  "author": "Jesse Katsumata <jesse.katsumata@gmail.com> (Naturalclar)",
   "description": "React Native Picker for iOS, Android, macOS, and Windows",
-  "main": "dist/commonjs/index.js",
-  "module": "dist/module/index.js",
-  "types": "./typings/index.d.ts",
-  "react-native": "js/index.js",
-  "scripts": {
-    "prepare": "bob build",
-    "build": "bob build",
-    "start": "react-native start",
-    "start:macos": "react-native start --projectRoot ./ --use-react-native-macos",
-    "ios": "cd example && react-native run-ios",
-    "web": "expo web",
-    "android": "react-native run-android",
-    "macos": "cd example && react-native run-macos",
-    "test": "yarn validate:eslint && yarn validate:flow && yarn validate:typescript && yarn test:jest",
-    "validate:eslint": "eslint 'js/**/*.js' 'example/**/*.js'",
-    "validate:flow": "flow check",
-    "validate:typescript": "tsc --project ./",
-    "test:jest": "jest js/",
-    "test:detox:android:test:debug": "detox test -c android.emu.debug",
-    "test:detox:android:test:release": "detox test -c android.emu.release",
-    "test:detox:android:build:debug": "detox build -c android.emu.debug",
-    "test:detox:android:build:release": "detox build -c android.emu.release",
-    "test:detox:android:bundle:release": "mkdir -p .tmp && react-native bundle --max-workers 4 --platform android --dev false --entry-file example/index.js --bundle-output .tmp/android-bundle.js",
-    "test:detox:ios:test:debug": "detox test -c ios.sim.debug",
-    "test:detox:ios:test:release": "detox test -c ios.sim.release",
-    "test:detox:ios:build:debug": "detox build -c ios.sim.debug",
-    "test:detox:ios:build:release": "detox build -c ios.sim.release",
-    "test:detox:ios:bundle:release": "mkdir -p .tmp && react-native bundle --max-workers 4 --platform ios --dev false --entry-file example/index.js --bundle-output .tmp/ios-bundle.js",
-    "test:detox:clean": "rimraf example/android/build && rimraf example/android/app/build && rimraf example/android/.gradle && rimraf example/ios/build",
-    "ci:publish": "yarn semantic-release",
-    "semantic-release": "semantic-release"
+  "devDependencies": {
+    "@react-native/eslint-config": "^0.72.2",
+    "eslint": "^8.4.1",
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.3"
   },
+  "homepage": "https://github.com/react-native-picker/picker#readme",
   "keywords": [
     "react-native",
     "react native",
@@ -42,136 +15,17 @@
     "dropdown",
     "select"
   ],
-  "author": "",
   "license": "MIT",
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.6.2",
-    "@babel/runtime": "^7.6.2",
-    "@expo/webpack-config": "^0.12.40",
-    "@react-native/eslint-config": "^0.72.2",
-    "@semantic-release/git": "^9.0.0",
-    "@testing-library/react-native": "^7.2.0",
-    "@types/react": "16.9.0",
-    "babel-jest": "^26.6.3",
-    "babel-plugin-module-resolver": "^3.2.0",
-    "detox": "^17.10.6",
-    "eslint": "^8.4.1",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "expo": "^41.0.1",
-    "flow-bin": "0.222.0",
-    "husky": "^2.2.0",
-    "jest": "^26.6.3",
-    "metro-react-native-babel-preset": "^0.67.0",
-    "prettier": "^2.2.1",
-    "pretty-quick": "^2.0.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-native": "0.73.4",
-    "react-native-builder-bob": "^0.20.0",
-    "react-native-macos": "0.61.63",
-    "react-native-web": "^0.14.10",
-    "react-native-windows": "^0.64.14",
-    "react-test-renderer": "18.2.0",
-    "rimraf": "^2.6.3",
-    "semantic-release": "^19.0.3",
-    "typescript": "^4.2.3"
-  },
-  "resolutions": {
-    "@types/react": "17.0.21"
-  },
-  "detox": {
-    "test-runner": "jest",
-    "runner-config": "example/e2e/config.json",
-    "configurations": {
-      "ios.sim.debug": {
-        "binaryPath": "example/ios/build/Build/Products/Debug-iphonesimulator/PickerExample.app",
-        "build": "export RCT_NO_LAUNCH_PACKAGER=true && xcodebuild -project example/ios/PickerExample.xcodeproj -destination 'platform=iOS Simulator,name=iPhone X' -scheme PickerExample -parallelizeTargets -configuration Debug -derivedDataPath example/ios/build  -UseModernBuildSystem=YES | xcpretty -k",
-        "type": "ios.simulator",
-        "name": "iPhone X"
-      },
-      "ios.sim.release": {
-        "binaryPath": "example/ios/build/Build/Products/Release-iphonesimulator/PickerExample.app",
-        "build": "export RCT_NO_LAUNCH_PACKAGER=true && xcodebuild -project example/ios/PickerExample.xcodeproj -destination 'platform=iOS Simulator,name=iPhone X' -scheme PickerExample -parallelizeTargets -configuration Release -derivedDataPath example/ios/build  -UseModernBuildSystem=YES | xcpretty -k",
-        "type": "ios.simulator",
-        "name": "iPhone X"
-      },
-      "android.emu.debug": {
-        "binaryPath": "example/android/app/build/outputs/apk/debug/app-debug.apk",
-        "build": "export RCT_NO_LAUNCH_PACKAGER=true && pushd example/android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && popd",
-        "type": "android.emulator",
-        "name": "TestingAVD"
-      },
-      "android.emu.release": {
-        "binaryPath": "example/android/app/build/outputs/apk/release/app-release.apk",
-        "build": "export RCT_NO_LAUNCH_PACKAGER=true && pushd example/android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release && popd",
-        "type": "android.emulator",
-        "name": "TestingAVD"
-      }
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged --pattern '**/*.*(js|jsx)'"
-    }
-  },
-  "jest": {
-    "preset": "react-native",
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest.setup.js"
-    ],
-    "modulePathIgnorePatterns": [
-      "<rootDir>/dist/"
-    ]
-  },
+  "name": "@react-native-picker/root",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/react-native-picker/picker.git"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "js",
-    "dist",
-    "!**/__tests__",
-    "!**/__fixtures__",
-    "!**/__mocks__",
-    "ios",
-    "macos",
-    "android",
-    "typings",
-    "windows",
-    "react-native.config.js",
-    "RNCPicker.podspec"
-  ],
-  "react-native-builder-bob": {
-    "source": "js",
-    "output": "dist",
-    "targets": [
-      [
-        "commonjs",
-        {
-          "flow": true
-        }
-      ],
-      "module"
+  "version": "2.7.5",
+  "workspaces": {
+    "packages": [
+      "packages/*"
     ]
-  },
-  "eslintIgnore": [
-    "node_modules/",
-    "dist/"
-  ],
-  "codegenConfig": {
-    "name": "rnpicker",
-    "type": "components",
-    "jsSrcsDir": "./js",
-    "android": {
-      "javaPackageName": "com.reactnativecommunity.picker"
-    }
   }
 }
