@@ -22,7 +22,7 @@ jobs:
       - name: Install Dependencies
         run: yarn
       - name: ESLint Checks
-        run: yarn validate:eslint
+        run: yarn lint
   flow:
     runs-on: ubuntu-latest
     strategy:
@@ -43,7 +43,7 @@ jobs:
       - name: Install Dependencies
         run: yarn
       - name: Flow Checks
-        run: yarn validate:flow
+        run: yarn flow
   tsc:
     runs-on: ubuntu-latest
     strategy:
@@ -64,7 +64,7 @@ jobs:
       - name: Install Dependencies
         run: yarn
       - name: TypeScript type check
-        run: yarn validate:typescript
+        run: yarn typecheck
   android:
     runs-on: ubuntu-latest
     strategy:

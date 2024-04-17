@@ -2,7 +2,9 @@
   "author": "Jesse Katsumata <jesse.katsumata@gmail.com> (Naturalclar)",
   "description": "React Native Picker for iOS, Android, macOS, and Windows",
   "scripts": {
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "flow": "turbo flow",
+    "typecheck":"turbo typecheck"
   },
   "devDependencies": {
     "@react-native/eslint-config": "^0.72.2",
