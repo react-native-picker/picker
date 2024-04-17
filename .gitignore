@@ -76,3 +76,6 @@ dist/
 
 # yarn files
 .yarn
+
+# turbo files
+.turbo
