@@ -218,23 +218,6 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
   }
 
   @Override
-  public void receiveCommand(@NonNull ReactPicker root, int commandId, @androidx.annotation.Nullable ReadableArray args) {
-    switch (commandId) {
-      case FOCUS_PICKER:
-        root.performClick();
-        break;
-      case BLUR_PICKER:
-        root.clearFocus();
-        break;
-      case SET_NATIVE_SELECTED:
-        Assertions.assertNotNull(args);
-        assert args != null;
-        setNativeSelected(root, args.getInt(0));
-        break;
-    }
-  }
-
-  @Override
   public void receiveCommand(@NonNull ReactPicker root, String commandId, @androidx.annotation.Nullable ReadableArray args) {
     Assertions.assertNotNull(root);
     switch (commandId) {
@@ -355,7 +338,7 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
       convertView.setEnabled(enabled);
       // Seems counter intuitive, but this makes the specific item not clickable when enable={false}
       convertView.setClickable(!enabled);
-      
+
       final TextView textView = (TextView) convertView;
       textView.setText(item.getString("label"));
       textView.setMaxLines(mNumberOfLines);
@@ -366,7 +349,7 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
         } else {
           convertView.setBackgroundColor(Color.TRANSPARENT);
         }
-        
+
         if (style.hasKey("color") && !style.isNull("color")) {
           textView.setTextColor(style.getInt("color"));
         }
