@@ -48,7 +48,7 @@ UIPickerViewDelegate
     for (RNCPickerItemsStruct item : newProps.items)
     {
         NSMutableDictionary *dictItem = [NSMutableDictionary new];
-        dictItem[@"value"] = RCTNSStringFromStringNilIfEmpty(item.value);
+        dictItem[@"value"] = RCTNSStringFromString(item.value);
         dictItem[@"label"] = RCTNSStringFromStringNilIfEmpty(item.label);
         dictItem[@"textColor"] = RCTUIColorFromSharedColor(item.textColor);
         dictItem[@"testID"] = RCTNSStringFromStringNilIfEmpty(item.testID);
