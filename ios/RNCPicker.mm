@@ -157,7 +157,7 @@ numberOfRowsInComponent:(__unused NSInteger)component
           std::dynamic_pointer_cast<const facebook::react::RNCPickerEventEmitter>(eventEmitter)
               ->onChange(facebook::react::RNCPickerEventEmitter::OnChange{
                   .newIndex = (int)row,
-                  .newValue =  RCTStringFromNSString(RCTNullIfNil(_items[row][@"value"])),
+                  .newValue =  RCTStringFromNSString(_items[row][@"value"]),
               });
         }
 }
