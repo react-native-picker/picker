@@ -216,14 +216,14 @@ public class ReactPicker extends FabricEnabledPicker {
     }
 
     if (elementSize != mOldElementSize) {
-      if (getReactContext().hasCatalystInstance()) {
+      if (!BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
         UIManagerModule uiManager = getReactContext().getNativeModule(UIManagerModule.class);
         if (uiManager != null) {
           uiManager.setViewLocalData(getId(), new ReactPickerLocalData(elementSize));
         }
-        mOldElementSize = elementSize;
-        this.setMeasuredHeight(elementSize);
       }
+      mOldElementSize = elementSize;
+      this.setMeasuredHeight(elementSize);
     }
   }
 
