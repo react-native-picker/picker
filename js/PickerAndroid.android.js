@@ -200,8 +200,10 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
           const children = React.Children.toArray(props.children).filter(
             (item) => item != null,
           );
-          const value = children[position].props.value;
-          onValueChange(value, position);
+          const value = children[position]?.props?.value;
+          if (value) {
+            onValueChange(value, position);
+          }
         } else {
           onValueChange(null, position);
         }
