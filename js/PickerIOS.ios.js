@@ -113,6 +113,8 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
     onChange,
     onValueChange,
     style,
+    accessibilityLabel,
+    accessibilityHint,
   } = props;
 
   const nativePickerRef = React.useRef<React.ElementRef<
@@ -199,6 +201,8 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
         ref={ref}
         themeVariant={themeVariant}
         testID={testID}
+        accessibilityLabel={accessibilityLabel}
+        accessibilityHint={accessibilityHint}
         style={[styles.pickerIOS, itemStyle]}
         // $FlowFixMe
         items={items}

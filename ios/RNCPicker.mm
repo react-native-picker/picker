@@ -10,7 +10,7 @@
 #import <React/RCTConvert.h>
 #import <React/RCTUtils.h>
 
-@interface RNCPicker() <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface RNCPicker() <UIPickerViewDataSource, UIPickerViewDelegate, UIPickerViewAccessibilityDelegate>
 @end
 
 @implementation RNCPicker
@@ -146,6 +146,19 @@ numberOfRowsInComponent:(__unused NSInteger)component
     });
   }
 }
+
+#pragma mark - UIPickerViewAccessibilityDelegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView accessibilityLabelForComponent:(NSInteger)component
+{
+    return self.accessibilityLabel;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView accessibilityHintForComponent:(NSInteger)component
+{
+    return self.accessibilityHint;
+}
+
 
 #ifdef RCT_NEW_ARCH_ENABLED
 - (void)pickerView:(__unused UIPickerView *)pickerView
