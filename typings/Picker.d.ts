@@ -9,7 +9,7 @@ import type {
 } from 'react-native';
 import { processColor } from 'react-native';
 
-export type ItemValue = number | string;
+export type ItemValue = number | string | object;
 
 export interface PickerItemProps<T = ItemValue> {
   label?: string;
