@@ -23,13 +23,13 @@ import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNati
 import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
 
 type PickerIOSChangeEvent = $ReadOnly<{|
-  newValue: string,
+  newValue: UnsafeMixed,
   newIndex: Int32,
 |}>;
 
 type RNCPickerIOSTypeItemType = $ReadOnly<{|
-  label: ?string,
-  value: ?string,
+  label: ?UnsafeMixed,
+  value: ?UnsafeMixed,
   textColor: ?ColorValue,
   testID: ?string,
 |}>;
