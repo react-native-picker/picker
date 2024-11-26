@@ -55,7 +55,7 @@
     "@react-native/eslint-config": "^0.72.2",
     "@semantic-release/git": "^9.0.0",
     "@testing-library/react-native": "^7.2.0",
-    "@types/react": "16.9.0",
+    "@types/react": "^18",
     "babel-jest": "^26.6.3",
     "babel-plugin-module-resolver": "^3.2.0",
     "detox": "^17.10.6",
@@ -69,20 +69,18 @@
     "metro-react-native-babel-preset": "^0.67.0",
     "prettier": "^2.2.1",
     "pretty-quick": "^2.0.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-native": "0.73.4",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-native": "0.76.3",
     "react-native-builder-bob": "^0.20.0",
-    "react-native-macos": "0.61.63",
+    "react-native-macos": "^0.75",
+    "react-native-test-app": "^4.0.4",
     "react-native-web": "^0.14.10",
-    "react-native-windows": "^0.64.14",
+    "react-native-windows": "^0.76",
     "react-test-renderer": "18.2.0",
     "rimraf": "^2.6.3",
     "semantic-release": "^19.0.3",
     "typescript": "^4.2.3"
-  },
-  "resolutions": {
-    "@types/react": "17.0.21"
   },
   "detox": {
     "test-runner": "jest",
@@ -173,5 +171,9 @@
     "android": {
       "javaPackageName": "com.reactnativecommunity.picker"
     }
-  }
+  },
+  "workspaces": [
+    "example"
+  ],
+  "packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca"
 }

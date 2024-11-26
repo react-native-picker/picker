@@ -59,7 +59,7 @@ export default function App() {
                 <Text style={styles.title}> {element.title} </Text>
                 {element.render()}
               </View>
-            ))}			
+            ))}
         </View>
       </ScrollView>
     </SafeAreaView>

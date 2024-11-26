@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Text, StyleSheet, View} from 'react-native';
-import {PickerIOS} from '../../js';
+import {PickerIOS} from '@react-native-picker/picker';
 
 const CAR_MAKES_AND_MODELS = {
   amc: {
@@ -98,7 +98,8 @@ function PickerExample() {
         onValueChange={(value) => {
           setCarMake(value);
           setModelIndex(0);
-        }}>
+        }}
+      >
         {Object.keys(CAR_MAKES_AND_MODELS).map((value) => (
           <PickerIOS.Item
             key={value}
@@ -111,7 +112,8 @@ function PickerExample() {
       <PickerIOS
         selectedValue={modelIndex}
         key={carMake}
-        onValueChange={(value) => setModelIndex(value)}>
+        onValueChange={(value) => setModelIndex(value)}
+      >
         {CAR_MAKES_AND_MODELS[carMake].models.map((modelName, value) => (
           <PickerIOS.Item
             key={`${carMake}_${value}`}
@@ -133,7 +135,8 @@ function PickerStyleExample() {
       itemStyle={styles.item}
       selectedValue={carMake}
       selectionColor="rgba(0, 0, 0, 0.3)"
-      onValueChange={(value) => setCarMake(value)}>
+      onValueChange={(value) => setCarMake(value)}
+    >
       {Object.keys(CAR_MAKES_AND_MODELS).map((value) => (
         <PickerIOS.Item
           key={value}
