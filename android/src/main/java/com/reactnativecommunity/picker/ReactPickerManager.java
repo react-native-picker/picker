@@ -218,6 +218,17 @@ public abstract class ReactPickerManager extends BaseViewManager<ReactPicker, Re
   }
 
   @Override
+  public void receiveCommand(@NonNull ReactPicker root, int commandId, @androidx.annotation.Nullable ReadableArray args) {
+    Map<String, Integer> commands = getCommandsMap();
+    if(commands == null) return;
+    for (Map.Entry<String, Integer> entry : commands.entrySet()) {
+      if (commandId == entry.getValue()) {
+        receiveCommand(root, entry.getKey(), args);
+      }
+    }
+  }
+
+  @Override
   public void receiveCommand(@NonNull ReactPicker root, String commandId, @androidx.annotation.Nullable ReadableArray args) {
     Assertions.assertNotNull(root);
     switch (commandId) {
