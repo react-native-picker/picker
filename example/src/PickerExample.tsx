@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {Text, View, StyleSheet, Button} from 'react-native';
-import {Picker} from '../../js';
+import {Picker} from '@react-native-picker/picker';
 
 const Item: any = Picker.Item;
 
@@ -11,7 +11,8 @@ export function BasicPickerExample() {
       testID="basic-picker"
       selectedValue={value}
       onValueChange={(v) => setValue(v)}
-      accessibilityLabel="Basic Picker Accessibility Label">
+      accessibilityLabel="Basic Picker Accessibility Label"
+    >
       <Item label="hello" value="key0" />
       <Item label="world" value="key1" />
     </Picker>
@@ -25,7 +26,8 @@ function StyledPickerExample() {
       testID="styled-picker"
       selectedValue={value}
       onValueChange={(v) => setValue(v)}
-      accessibilityLabel="Styled Picker Accessibility Label">
+      accessibilityLabel="Styled Picker Accessibility Label"
+    >
       <Item
         label="Sin"
         value="key0"
@@ -76,7 +78,8 @@ function DropdownPickerExample() {
     <Picker
       selectedValue={value}
       onValueChange={(v) => setValue(v)}
-      mode="dropdown">
+      mode="dropdown"
+    >
       <Item label="hello" value="key0" />
       <Item label="world" value="key1" />
     </Picker>
@@ -91,7 +94,8 @@ function DropdownMultilinePickerExample() {
       numberOfLines={5}
       selectedValue={value}
       onValueChange={(v) => setValue(v)}
-      mode="dropdown">
+      mode="dropdown"
+    >
       <Item
         label="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
         value="key0"
@@ -111,7 +115,8 @@ function PromptPickerExample() {
       mode="dialog"
       selectedValue={value}
       onValueChange={(v) => setValue(v)}
-      prompt="Pick one, just one">
+      prompt="Pick one, just one"
+    >
       <Item label="hello" value="key0" />
       <Item label="world" value="key1" />
     </Picker>
@@ -126,7 +131,8 @@ function PromptMultilinePickerExample() {
       numberOfLines={5}
       selectedValue={value}
       onValueChange={(v) => setValue(v)}
-      prompt="Pick one, just one">
+      prompt="Pick one, just one"
+    >
       <Item
         label="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
         value="key0"
@@ -178,7 +184,8 @@ function ThemeVariantOverridePickerExample() {
         selectedValue={themeVariantValue}
         selectedColor={'white'}
         themeVariant={themeVariantValue}
-        onChange={handleSelect}>
+        onChange={handleSelect}
+      >
         <Item
           color={isDarkMode ? 'white' : 'black'}
           label="Dark mode"
@@ -220,7 +227,8 @@ function ColorPickerExample() {
           setIsFocused(true);
         }}
         onValueChange={(v) => setValue(v)}
-        mode="dropdown">
+        mode="dropdown"
+      >
         <Item label="red" color="red" style={{color: 'red'}} value="red" />
         <Item
           label="green"
@@ -246,7 +254,8 @@ function ColorPickerExample() {
           setIsSecondFocused(true);
         }}
         onValueChange={(v) => setValue(v)}
-        mode="dialog">
+        mode="dialog"
+      >
         <Item label="red" color="red" value="red" />
         <Item label="green" color="green" value="green" />
         <Item label="blue" color="blue" value="blue" />

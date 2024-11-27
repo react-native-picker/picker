@@ -10,6 +10,7 @@ npm-debug.log
 yarn-error.log
 
 
+
 # Xcode
 #
 build/
@@ -76,3 +77,4 @@ dist/
 
 # yarn files
 .yarn
+!.yarn/releases
