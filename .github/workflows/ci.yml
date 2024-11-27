@@ -75,6 +75,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
+          distribution: temurin
           java-version: 17
       - uses: actions/setup-node@v3
         with:
