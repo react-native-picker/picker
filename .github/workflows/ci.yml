@@ -72,9 +72,10 @@ jobs:
         node-version: [18, 20]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-java@v1
+      - name: Set up JDK
+        uses: actions/setup-java@v4
         with:
-          java-version: '11'
+          java-version: 17
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
@@ -111,7 +112,7 @@ jobs:
       - name: Install Podfiles
         run: cd example && npx pod-install
       - name: Build example app
-        run: yarn ios
+        run: yarn ios --no-packager
   macos:
     runs-on: macos-latest
     strategy:
@@ -134,4 +135,4 @@ jobs:
       - name: Install Podfiles
         run: cd example/macos && npx pod-install
       - name: Build example app
-        run: yarn macos        
+        run: yarn macos --no-packager 
