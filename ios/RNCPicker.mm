@@ -6,6 +6,9 @@
  */
 
 #import "RNCPicker.h"
+#ifdef RCT_NEW_ARCH_ENABLED
+#import "RNCPickerFabricConversions.h"
+#endif
 
 #import <React/RCTConvert.h>
 #import <React/RCTUtils.h>
@@ -170,7 +173,7 @@ numberOfRowsInComponent:(__unused NSInteger)component
           std::dynamic_pointer_cast<const facebook::react::RNCPickerEventEmitter>(eventEmitter)
               ->onChange(facebook::react::RNCPickerEventEmitter::OnChange{
                   .newIndex = (int)row,
-                  .newValue =  RCTStringFromNSString(_items[row][@"value"]),
+                  .newValue =  RNCPickerRNCPickerConvertIdToFollyDynamic(_items[row][@"value"]),
               });
         }
 }

@@ -137,12 +137,12 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
         if (child === null) {
           return null;
         }
-        if (String(child.props.value) === String(selectedValue)) {
+        if (child.props.value === selectedValue) {
           selectedIndex = index;
         }
         return {
-          value: String(child.props.value),
-          label: String(child.props.label),
+          value: child.props.value,
+          label: child.props.label,
           textColor: processColor(child.props.color),
           testID: child.props.testID,
         };
@@ -162,7 +162,7 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
       child: $FlowFixMe,
       index: number,
     ) {
-      if (String(child.props.value) === String(selectedValue)) {
+      if (child.props.value === selectedValue) {
         jsValue = index;
       }
     });

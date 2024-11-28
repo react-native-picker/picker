@@ -2,6 +2,7 @@
 
 #import "RNCPickerComponentView.h"
 #import "RNCPicker.h"
+#import "RNCPickerFabricConversions.h"
 
 #import <React/RCTFabricComponentsPlugins.h>
 #import <react/renderer/components/rnpicker/ComponentDescriptors.h>
@@ -54,8 +55,8 @@ UIPickerViewDelegate
     for (RNCPickerItemsStruct item : newProps.items)
     {
         NSMutableDictionary *dictItem = [NSMutableDictionary new];
-        dictItem[@"value"] = RCTNSStringFromString(item.value);
-        dictItem[@"label"] = RCTNSStringFromStringNilIfEmpty(item.label);
+        dictItem[@"value"] = RNCPickerConvertFollyDynamicToId(item.value);
+        dictItem[@"label"] = RNCPickerConvertFollyDynamicToId(item.label);
         dictItem[@"textColor"] = RCTUIColorFromSharedColor(item.textColor);
         dictItem[@"testID"] = RCTNSStringFromStringNilIfEmpty(item.testID);
         [items addObject:dictItem];
