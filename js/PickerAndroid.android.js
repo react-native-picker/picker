@@ -111,7 +111,7 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
       if (child === null) {
         return null;
       }
-      if (child.props.value === props.selectedValue) {
+      if (child?.props?.value === props.selectedValue) {
         jsValue = index;
       }
     });
@@ -159,13 +159,13 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
       if (child === null) {
         return null;
       }
-      if (child.props.value === props.selectedValue) {
+      if (child?.props?.value === props.selectedValue) {
         selected = index;
       }
 
-      const {enabled = true} = child.props;
+      const {enabled = true} = child.props || {};
 
-      const {color, contentDescription, label, style = {}} = child.props;
+      const {color, contentDescription, label, style = {}} = child.props || {};
 
       const processedColor = processColor(color);
 
