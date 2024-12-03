@@ -201,7 +201,7 @@ function PickerAndroid(props: PickerAndroidProps, ref: PickerRef): React.Node {
             (item) => item != null,
           );
           const value = children[position]?.props?.value;
-          if (value) {
+          if (value !== undefined) {
             onValueChange(value, position);
           }
         } else {
