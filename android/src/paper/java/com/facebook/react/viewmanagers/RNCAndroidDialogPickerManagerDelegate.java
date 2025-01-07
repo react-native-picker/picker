@@ -15,6 +15,7 @@ import com.facebook.react.bridge.ColorPropConverter;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.uimanager.BaseViewManager;
 import com.facebook.react.uimanager.LayoutShadowNode;
+import com.facebook.react.uimanager.BaseViewManagerDelegate;
 
 public class RNCAndroidDialogPickerManagerDelegate<T extends View, U extends BaseViewManager<T, ? extends LayoutShadowNode> & RNCAndroidDialogPickerManagerInterface<T>> extends BaseViewManagerDelegate<T, U> {
   public RNCAndroidDialogPickerManagerDelegate(U viewManager) {
