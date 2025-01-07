@@ -13,6 +13,7 @@ import * as React from 'react';
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
 import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
+import type {UnsafeMixed} from 'react-native/Libraries/Types/CodegenTypes';
 import type {
   BubblingEventHandler,
   Int32,
