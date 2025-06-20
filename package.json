@@ -170,6 +170,11 @@
     "jsSrcsDir": "./js",
     "android": {
       "javaPackageName": "com.reactnativecommunity.picker"
+    },
+    "ios": {
+      "componentProvider": {
+        "RNCPicker": "RNCPickerComponentView"
+      }
     }
   },
   "workspaces": [
