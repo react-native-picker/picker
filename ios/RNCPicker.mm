@@ -27,7 +27,7 @@
     _textAlign = NSTextAlignmentCenter;
     _numberOfLines = 1;
 #ifdef RCT_NEW_ARCH_ENABLED
-  // nothing
+  self.delegate = self;
 #else
     self.delegate = self;
 #endif
