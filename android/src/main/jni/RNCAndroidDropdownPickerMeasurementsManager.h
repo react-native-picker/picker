@@ -12,7 +12,7 @@ namespace facebook::react {
 class RNCAndroidDropdownPickerMeasurementsManager {
  public:
   RNCAndroidDropdownPickerMeasurementsManager(
-      const ContextContainer::Shared& contextContainer)
+      const std::shared_ptr<const ContextContainer> &contextContainer)
       : contextContainer_(contextContainer) {}
 
   Size measure(
@@ -22,7 +22,7 @@ class RNCAndroidDropdownPickerMeasurementsManager {
       RNCAndroidDropdownPickerState state) const;
 
  private:
-  const ContextContainer::Shared contextContainer_;
+  const std::shared_ptr<const ContextContainer> contextContainer_;
 };
 
 } // namespace facebook::react
