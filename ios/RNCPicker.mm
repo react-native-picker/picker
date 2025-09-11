@@ -20,20 +20,20 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
-  if ((self = [super initWithFrame:frame])) {
-    _color = [UIColor blackColor];
-    _font = [UIFont systemFontOfSize:21]; // TODO: selected title default should be 23.5
-    _selectedIndex = NSNotFound;
-    _textAlign = NSTextAlignmentCenter;
-    _numberOfLines = 1;
-#ifdef RCT_NEW_ARCH_ENABLED
-  // nothing
-#else
-    self.delegate = self;
-#endif
-    self.dataSource = self;
-    [self selectRow:0 inComponent:0 animated:YES]; // Workaround for missing selection indicator lines (see https://stackoverflow.com/questions/39564660/uipickerview-selection-indicator-not-visible-in-ios10)
-  }
+  self = [super initWithFrame:frame];
+  if (!self) return nil;
+  
+  _color = [UIColor blackColor];
+  _font = [UIFont systemFontOfSize:21]; // TODO: selected title default should be 23.5
+  _selectedIndex = NSNotFound;
+  _textAlign = NSTextAlignmentCenter;
+  _numberOfLines = 1;
+  
+  self.delegate = self;
+  self.dataSource = self;
+  
+  [self selectRow:0 inComponent:0 animated:YES]; // Workaround for missing selection indicator lines (see https://stackoverflow.com/questions/39564660/uipickerview-selection-indicator-not-visible-in-ios10)
+  
   return self;
 }
 
@@ -118,13 +118,7 @@ numberOfRowsInComponent:(__unused NSInteger)component
   RNCPickerLabel* label = view.subviews[0];
   label.font = _font;
 
-  label.textColor =
-#ifdef RCT_NEW_ARCH_ENABLED
-    _items[row][@"textColor"]
-#else
-     [RCTConvert UIColor:_items[row][@"textColor"]]
-#endif
-     ?: _color;
+  label.textColor = [RCTConvert UIColor:_items[row][@"textColor"]] ?: _color;
 
   label.textAlignment = _textAlign;
   label.text = [self pickerView:pickerView titleForRow:row forComponent:component];
