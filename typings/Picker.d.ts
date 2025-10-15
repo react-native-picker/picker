@@ -70,7 +70,7 @@ export interface PickerProps<T = ItemValue> extends ViewProps {
    * Style to apply to each of the item labels.
    * @platform ios
    */
-  itemStyle?: StyleProp<TextStyle>;
+  itemStyle?: StyleProp<TextStyle> | string;
   /**
   * Color to apply to the selection indicator.
   * @platform ios
