@@ -75,6 +75,6 @@ export const Commands: NativeCommands = codegenNativeCommands<NativeCommands>({
 });
 
 export default (codegenNativeComponent<NativeProps>('RNCAndroidDialogPicker', {
-  excludedPlatforms: ['iOS'],
+  excludedPlatforms: ['iOS', 'windows'],
   interfaceOnly: true,
 }): ComponentType);

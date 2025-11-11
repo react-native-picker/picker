@@ -54,7 +54,7 @@ export type NativeProps = $ReadOnly<{|
   // TODO: for some reason codegen does not create `fromRawValue` inline functions for
   // objects inside the `ReadOnlyArray` of items, so we need to explicitly define a prop
   // with this object so those functions are generated
-  fakeProp?: RNCPickerIOSTypeItemType,
+  // fakeProp?: RNCPickerIOSTypeItemType,
 |}>;
 
 type ComponentType = HostComponent<NativeProps>;
