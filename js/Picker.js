@@ -15,7 +15,6 @@ import {Platform} from 'react-native';
 
 import PickerAndroid from './PickerAndroid';
 import PickerIOS from './PickerIOS';
-import PickerWindows from './PickerWindows';
 import PickerMacOS from './PickerMacOS';
 
 import type {TextStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
@@ -182,9 +181,9 @@ class Picker extends React.Component<PickerProps> {
         </PickerAndroid>
       );
     } else if (Platform.OS === 'windows') {
-      return (
-        <PickerWindows {...this.props}>{this.props.children}</PickerWindows>
-      );
+      // Windows uses the new Fabric component from src/
+      // Import and use it directly in Windows-specific example apps
+      return null;
     } else {
       return null;
     }

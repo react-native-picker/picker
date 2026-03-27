@@ -37,6 +37,21 @@ module.exports = {
         ],
         cmakeListsPath: '../android/src/main/jni/CMakeLists.txt',
       },
+      windows: {
+        sourceDir: 'windows',
+        solutionFile: 'Picker.sln',
+        projects: [
+          {
+            projectFile: 'Picker\\Picker.vcxproj',
+            projectName: 'Picker',
+            projectLang: 'cpp',
+            projectGuid: '{170F439F-1AC2-40F6-94D2-FB6511EDF052}',
+            directDependency: true,
+            cppHeaders: ['winrt/Picker.h'],
+            cppPackageProviders: ['Picker::ReactPackageProvider'],
+          },
+        ],
+      },
     },
   },
 };
