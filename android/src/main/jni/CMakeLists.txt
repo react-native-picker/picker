@@ -20,12 +20,21 @@ add_compile_options(
 file(GLOB LIB_CUSTOM_SRCS CONFIGURE_DEPENDS *.cpp)
 file(GLOB LIB_CODEGEN_SRCS CONFIGURE_DEPENDS ${LIB_ANDROID_GENERATED_COMPONENTS_DIR}/*.cpp)
 
-add_library(
-  ${LIB_TARGET_NAME}
-  SHARED
-  ${LIB_CUSTOM_SRCS}
-  ${LIB_CODEGEN_SRCS}
-)
+if (REACTNATIVE_MERGED_SO)
+  add_library(
+    ${LIB_TARGET_NAME}
+    OBJECT
+    ${LIB_CUSTOM_SRCS}
+    ${LIB_CODEGEN_SRCS}
+  )
+else()
+  add_library(
+    ${LIB_TARGET_NAME}
+    SHARED
+    ${LIB_CUSTOM_SRCS}
+    ${LIB_CODEGEN_SRCS}
+  )
+endif()
 
 target_include_directories(
   ${LIB_TARGET_NAME}
