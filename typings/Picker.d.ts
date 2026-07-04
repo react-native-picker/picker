@@ -14,7 +14,7 @@ export type ItemValue = number | string | object;
 export interface PickerItemProps<T = ItemValue> {
   label?: string;
   value?: T;
-  color?: string;
+  color?: ColorValue;
   fontFamily?: string;
   testID?: string;
   /**

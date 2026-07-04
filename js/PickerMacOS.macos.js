@@ -14,12 +14,11 @@
 'use strict';
 
 import * as React from 'react';
-import {processColor, StyleSheet, View} from 'react-native';
+import {StyleSheet, View, processColor} from 'react-native';
 import RNCPickerNativeComponent from './RNCPickerNativeComponent';
 
 import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
-import type {ProcessedColorValue} from 'react-native/Libraries/StyleSheet/processColor';
 import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
 import type {
   ViewStyleProp,
@@ -38,8 +37,9 @@ type PickerMacOSChangeEvent = SyntheticEvent<
 type RNCPickerMacOSItemType = $ReadOnly<{|
   label: ?Label,
   value: ?(number | string),
-  textColor: ?ProcessedColorValue,
+  textColor: ?number,
   testID: ?string,
+  enabled: ?boolean,
 |}>;
 
 type RNCPickerMacOSType = HostComponent<
@@ -49,6 +49,7 @@ type RNCPickerMacOSType = HostComponent<
     selectedIndex: number,
     style?: ?TextStyleProp,
     testID?: ?string,
+    enabled?: ?boolean,
   |}>,
 >;
 
@@ -62,6 +63,9 @@ type Props = $ReadOnly<{|
   onChange?: ?(event: PickerMacOSChangeEvent) => mixed,
   onValueChange?: ?(itemValue: string | number, itemIndex: number) => mixed,
   selectedValue: ?(number | string),
+  color?: ?ColorValue,
+  textAlign?: ?string,
+  enabled?: ?boolean,
 |}>;
 
 type State = {|
@@ -74,6 +78,8 @@ type ItemProps = $ReadOnly<{|
   value?: ?(number | string),
   color?: ?ColorValue,
   testID: ?string,
+  enabled?: ?boolean,
+  style?: ?Object,
 |}>;
 
 const PickerMacOSItem = (props: ItemProps): null => {
@@ -100,12 +106,18 @@ class PickerMacOS extends React.Component<Props, State> {
       if (child.props.value === props.selectedValue) {
         selectedIndex = index;
       }
-      items.push({
+      const item: any = {
         value: child.props.value,
         label: child.props.label,
-        textColor: processColor(child.props.color),
         testID: child.props.testID,
-      });
+        enabled: child.props.enabled !== false,
+      };
+      // Color priority: explicit color prop > style.color
+      const colorValue = child.props.color ?? child.props.style?.color;
+      if (colorValue != null) {
+        item.textColor = processColor(colorValue);
+      }
+      items.push(item);
     });
     return {selectedIndex, items};
   }
@@ -123,6 +135,13 @@ class PickerMacOS extends React.Component<Props, State> {
           items={this.state.items}
           selectedIndex={this.state.selectedIndex}
           onChange={this._onChange}
+          color={this.props.color}
+          textAlign={this.props.textAlign}
+          enabled={this.props.enabled !== false}
+          fontSize={this.props.itemStyle?.fontSize}
+          fontWeight={this.props.itemStyle?.fontWeight}
+          fontStyle={this.props.itemStyle?.fontStyle}
+          fontFamily={this.props.itemStyle?.fontFamily}
         />
       </View>
     );

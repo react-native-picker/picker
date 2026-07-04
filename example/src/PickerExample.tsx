@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, View, StyleSheet, Button} from 'react-native';
+import {Text, View, StyleSheet, Button, Platform} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
 const Item: any = Picker.Item;
@@ -156,6 +156,21 @@ function CustomDropdownArrowColorPickerExample() {
   );
 }
 
+function CustomFontPickerExample() {
+  const [value, setValue] = React.useState('key1');
+  return (
+    <Picker
+      selectedValue={value}
+      onValueChange={(v) => setValue(v)}
+      itemStyle={{fontSize: 20, fontFamily: 'Courier New'}}
+    >
+      <Item label="Courier 20px" value="key0" />
+      <Item label="Also Courier 20px" value="key1" />
+      <Item label="Same here" value="key2" />
+    </Picker>
+  );
+}
+
 function NoListenerPickerExample() {
   return (
     <View>
@@ -295,32 +310,44 @@ export const examples = [
     title: 'Disabled Specific Picker',
     render: DisabledSpecificPickerExample,
   },
+  ...(Platform.OS !== 'macos'
+    ? [
+        {
+          title: 'Dropdown Picker',
+          render: DropdownPickerExample,
+        },
+        {
+          title: 'Multiline Dropdown Picker',
+          render: DropdownMultilinePickerExample,
+        },
+        {
+          title: 'Picker with prompt message',
+          render: PromptPickerExample,
+        },
+        {
+          title: 'Multiline Picker with prompt message',
+          render: PromptMultilinePickerExample,
+        },
+      ]
+    : []),
+  ...(Platform.OS !== 'macos'
+    ? [
+        {
+          title: 'Picker with no listener',
+          render: NoListenerPickerExample,
+        },
+        {
+          title: 'Colorful pickers',
+          render: ColorPickerExample,
+        },
+        {
+          title: 'Picker with changed color of arrow',
+          render: CustomDropdownArrowColorPickerExample,
+        },
+      ]
+    : []),
   {
-    title: 'Dropdown Picker',
-    render: DropdownPickerExample,
-  },
-  {
-    title: 'Multiline Dropdown Picker',
-    render: DropdownMultilinePickerExample,
-  },
-  {
-    title: 'Picker with prompt message',
-    render: PromptPickerExample,
-  },
-  {
-    title: 'Multiline Picker with prompt message',
-    render: PromptMultilinePickerExample,
-  },
-  {
-    title: 'Picker with no listener',
-    render: NoListenerPickerExample,
-  },
-  {
-    title: 'Colorful pickers',
-    render: ColorPickerExample,
-  },
-  {
-    title: 'Picker with changed color of arrow',
-    render: CustomDropdownArrowColorPickerExample,
+    title: 'Custom Font Picker',
+    render: CustomFontPickerExample,
   },
 ];

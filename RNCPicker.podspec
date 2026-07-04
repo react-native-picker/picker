@@ -17,14 +17,14 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/react-native-picker/picker.git", :tag => "v#{s.version}" }
 
   if fabric_enabled
-    s.platforms       = { ios: '11.0', tvos: '11.0' }
-    s.source_files    = 'ios/**/*.{h,m,mm,cpp}'
+    s.platforms       = { ios: '11.0', tvos: '11.0', osx: '10.15' }
+    s.ios.source_files = 'ios/**/*.{h,m,mm,cpp}'
+    s.osx.source_files = 'macos/**/*.{h,m,mm,cpp}'
     s.requires_arc    = true
 
     install_modules_dependencies(s)
   else 
     s.ios.source_files  = "ios/**/*.{h,m,mm}"
-    s.osx.source_files  = "macos/**/*.{h,m,mm}"
   end
   
   s.dependency 'React-Core'

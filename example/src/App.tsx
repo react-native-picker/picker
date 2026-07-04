@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   I18nManager,
   Switch,
 } from 'react-native';
@@ -20,23 +19,28 @@ export default function App() {
     I18nManager.allowRTL(true);
   }, []);
   return (
-    <SafeAreaView style={styles.main}>
+    <View style={styles.main}>
       <ScrollView>
-        <View style={styles.rtlSwitchContainer}>
-          <Switch
-            value={isRTL}
-            onValueChange={(newValue) => {
-              setIsRTL(newValue);
-              I18nManager.forceRTL(newValue);
-            }}
-          />
-          <Text>{I18nManager.isRTL ? 'RTL' : 'LTR'}</Text>
-        </View>
+        {Platform.OS !== 'macos' && (
+          <View style={styles.rtlSwitchContainer}>
+            <Text style={styles.label}>Layout Direction:</Text>
+            <Switch
+              value={isRTL}
+              onValueChange={(newValue) => {
+                setIsRTL(newValue);
+                I18nManager.forceRTL(newValue);
+              }}
+            />
+            <Text style={styles.label}>
+              {I18nManager.isRTL ? 'RTL' : 'LTR'}
+            </Text>
+          </View>
+        )}
         <View style={styles.container}>
           <Text style={styles.heading}>Picker Examples</Text>
           {PickerExamples.examples.map((element) => (
             <View style={styles.elementContainer} key={element.title}>
-              <Text style={styles.title}> {element.title} </Text>
+              <Text style={styles.title}>{element.title}</Text>
               {element.render()}
             </View>
           ))}
@@ -46,7 +50,7 @@ export default function App() {
           {Platform.OS === 'ios' &&
             PickerIOSExamples.examples.map((element) => (
               <View style={styles.elementContainer} key={element.title}>
-                <Text style={styles.title}> {element.title} </Text>
+                <Text style={styles.title}>{element.title}</Text>
                 {element.render()}
               </View>
             ))}
@@ -56,38 +60,49 @@ export default function App() {
           {Platform.OS === 'windows' &&
             PickerWindowsExamples.examples.map((element) => (
               <View style={styles.elementContainer} key={element.title}>
-                <Text style={styles.title}> {element.title} </Text>
+                <Text style={styles.title}>{element.title}</Text>
                 {element.render()}
               </View>
             ))}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   main: {
+    flex: 1,
     backgroundColor: '#F5FCFF',
   },
   container: {
     padding: 24,
     paddingBottom: 60,
   },
+  label: {
+    fontSize: 14,
+    color: '#333',
+  },
   title: {
-    fontSize: 18,
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1a1a1a',
+    marginBottom: 4,
   },
   elementContainer: {
-    marginTop: 8,
+    marginTop: 16,
   },
   heading: {
     fontSize: 22,
-    color: 'black',
+    fontWeight: 'bold',
+    color: '#111',
+    marginBottom: 8,
   },
   rtlSwitchContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 40,
+    alignItems: 'center',
+    gap: 10,
+    paddingHorizontal: 24,
     paddingTop: 20,
   },
 });

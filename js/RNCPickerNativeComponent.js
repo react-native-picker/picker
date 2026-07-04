@@ -33,6 +33,7 @@ type RNCPickerIOSTypeItemType = $ReadOnly<{|
   value: ?UnsafeMixed,
   textColor: ?ColorValue,
   testID: ?string,
+  enabled: ?boolean,
 |}>;
 
 export type NativeProps = $ReadOnly<{|
@@ -50,6 +51,7 @@ export type NativeProps = $ReadOnly<{|
   fontFamily?: string,
   testID?: ?string,
   themeVariant?: ?string,
+  enabled?: boolean,
 
   // TODO: for some reason codegen does not create `fromRawValue` inline functions for
   // objects inside the `ReadOnlyArray` of items, so we need to explicitly define a prop

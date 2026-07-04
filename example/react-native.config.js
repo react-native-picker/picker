@@ -8,6 +8,9 @@ const project = (() => {
       ios: {
         sourceDir: 'ios',
       },
+      macos: {
+        sourceDir: 'macos',
+      },
       windows: {
         sourceDir: 'windows',
         solutionFile: 'windows/Example.sln',

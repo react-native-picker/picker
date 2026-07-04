@@ -6,4 +6,16 @@ require "#{ws_dir}/node_modules/react-native-test-app/macos/test_app.rb"
 
 workspace 'Example.xcworkspace'
 
-use_test_app! :hermes_enabled => true
+use_test_app! :new_arch_enabled => true, :post_install => proc { |installer|
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['SWIFT_ENABLE_EXPLICIT_MODULES'] = 'NO'
+    end
+  end
+  # Also set it on the main project if accessible
+  installer.generated_projects&.each do |project|
+    project.build_configurations.each do |config|
+      config.build_settings['SWIFT_ENABLE_EXPLICIT_MODULES'] = 'NO'
+    end
+  end
+}
