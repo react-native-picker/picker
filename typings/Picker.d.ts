@@ -122,6 +122,8 @@ export interface PickerProps<T = ItemValue> extends ViewProps {
   onBlur?: (e: NativeSyntheticEvent<TargetedEvent>) => void;
 }
 
+declare class PickerItem<T = ItemValue> extends React.Component<PickerItemProps<T>, {}> {}
+
 declare class Picker<T> extends React.Component<PickerProps<T>, {}> {
   /**
    * On Android, display the options in a dialog (this is the default).
@@ -132,7 +134,7 @@ declare class Picker<T> extends React.Component<PickerProps<T>, {}> {
    */
   static readonly MODE_DROPDOWN: 'dropdown';
 
-  static Item: React.ComponentType<PickerItemProps<T>>;
+  static Item: typeof PickerItem;
 
   /**
    * @platform android
