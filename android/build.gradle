@@ -75,11 +75,11 @@ if (isNewArchitectureEnabled()) {
 
 android {
     def agpVersion = com.android.Version.ANDROID_GRADLE_PLUGIN_VERSION
-  if (agpVersion.tokenize('.')[0].toInteger() >= 7) {
-    namespace "com.reactnativecommunity.picker"
-  }
+    if (agpVersion.tokenize('.')[0].toInteger() >= 7) {
+        namespace "com.reactnativecommunity.picker"
+    }
 
-  compileSdkVersion safeExtGet('compileSdkVersion', 31)
+    compileSdkVersion safeExtGet('compileSdkVersion', 31)
 
     defaultConfig {
         minSdkVersion safeExtGet('minSdkVersion', 21)
@@ -100,6 +100,10 @@ android {
                 ]
             }
         }
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 
