@@ -145,7 +145,8 @@
     "typings",
     "windows",
     "react-native.config.js",
-    "RNCPicker.podspec"
+    "RNCPicker.podspec",
+    "Package.swift"
   ],
   "react-native-builder-bob": {
     "source": "js",
@@ -180,5 +181,8 @@
   "workspaces": [
     "example"
   ],
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "yarn@4.1.1",
+  "swiftpmConfig": {
+    "name": "RNCPicker"
+  }
 }
