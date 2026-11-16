@@ -87,8 +87,15 @@ jobs:
         run: yarn
       - name: Install Podfiles
         run: cd example && npx pod-install
+      # Build only: `yarn ios` launches the newest simulator runtime on the
+      # runner, which can be newer than the selected Xcode supports
       - name: Build example app
-        run: yarn ios --no-packager
+        run: |
+          cd example/ios
+          xcodebuild -workspace Example.xcworkspace -scheme Example \
+            -configuration Debug -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO build
   macos:
     runs-on: macos-15
     strategy:
