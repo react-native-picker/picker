@@ -18,34 +18,25 @@ import {processColor, StyleSheet, View} from 'react-native';
 import RNCPickerNativeComponent, {
   Commands as iOSPickerCommands,
 } from './RNCPickerNativeComponent';
-import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
+import type {NativeSyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
 import type {
   ColorValue,
   ViewStyleProp,
 } from 'react-native/Libraries/StyleSheet/StyleSheet';
-import type {Element, ChildrenArray} from 'react';
 
-type PickerIOSChangeEvent = SyntheticEvent<
+type PickerIOSChangeEvent = NativeSyntheticEvent<
   $ReadOnly<{|
     newValue: number | string,
     newIndex: number,
   |}>,
 >;
 
-type RNCPickerIOSItemType = $ReadOnly<{|
-  label: ?Label,
-  value: ?(number | string),
-  textColor: ?ColorValue,
-  testID: ?string,
-|}>;
-
 type Label = Stringish | number;
 
 type Props = $ReadOnly<{|
   ...ViewProps,
-  // $FlowFixMe
-  children: ChildrenArray<Element<typeof PickerIOSItem>>,
+  children: React.Node,
   itemStyle?: ?ViewStyleProp,
   numberOfLines: ?number,
   onChange?: ?(event: PickerIOSChangeEvent) => mixed,
@@ -93,15 +84,19 @@ function useMergeRefs<T>(...refs: $ReadOnlyArray<?Ref<T>>): CallbackRef<T> {
   );
 }
 
-// $FlowFixMe
-const PickerIOSItem: RNCPickerIOSItemType = (props: ItemProps): null => {
+const PickerIOSItem = (props: ItemProps): null => {
   return null;
 };
 
-const PickerIOSWithForwardedRef: React.AbstractComponent<
-  Props,
-  React.ElementRef<typeof RNCPickerNativeComponent>,
-> = React.forwardRef(function PickerIOS(props, forwardedRef): React.Node {
+const PickerIOSWithForwardedRef: React.ComponentType<{
+  ...Props,
+  ref?: React.RefSetter<React.ElementRef<typeof RNCPickerNativeComponent>>,
+}> = React.forwardRef(function PickerIOS(
+  props: Props,
+  forwardedRef: React.RefSetter<
+    React.ElementRef<typeof RNCPickerNativeComponent>,
+  >,
+): React.Node {
   const {
     children,
     selectedValue,
@@ -121,10 +116,12 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
     typeof RNCPickerNativeComponent,
   > | null>(null);
 
-  // $FlowFixMe
+  // $FlowFixMe[incompatible-type]
   const ref = useMergeRefs(nativePickerRef, forwardedRef);
 
-  const [nativeSelectedIndex, setNativeSelectedIndex] = React.useState({
+  const [nativeSelectedIndex, setNativeSelectedIndex] = React.useState<{
+    value: ?number,
+  }>({
     value: null,
   });
 
@@ -204,7 +201,7 @@ const PickerIOSWithForwardedRef: React.AbstractComponent<
         accessibilityLabel={accessibilityLabel}
         accessibilityHint={accessibilityHint}
         style={[styles.pickerIOS, itemStyle]}
-        // $FlowFixMe
+        // $FlowFixMe[incompatible-type] null children are passed through as-is.
         items={items}
         onChange={_onChange}
         numberOfLines={parsedNumberOfLines}
@@ -224,7 +221,7 @@ const styles = StyleSheet.create({
   },
 });
 
-// $FlowFixMe
+// $FlowFixMe[prop-missing] Item is attached as a static.
 PickerIOSWithForwardedRef.Item = PickerIOSItem;
 
 export default PickerIOSWithForwardedRef;
