@@ -1,4 +1,10 @@
 buildscript {
+    ext {
+        // react-native is hoisted to the repository root, where the library's
+        // build.gradle cannot find it on its own.
+        REACT_NATIVE_NODE_MODULES_DIR = file("${rootDir}/../../node_modules/react-native").canonicalPath
+    }
+
     apply(from: {
         def searchDir = rootDir.toPath()
         do {
