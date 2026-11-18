@@ -5611,8 +5611,8 @@ __metadata:
     semantic-release: "npm:^19.0.3"
     typescript: "npm:^4.2.3"
   peerDependencies:
-    react: 19.2.0
-    react-native: 0.83.10
+    react: "*"
+    react-native: "*"
   languageName: unknown
   linkType: soft
 
@@ -6152,13 +6152,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/metro-config@npm:^2.0.0":
-  version: 2.0.1
-  resolution: "@rnx-kit/metro-config@npm:2.0.1"
+"@rnx-kit/metro-config@npm:^2.2.6":
+  version: 2.2.6
+  resolution: "@rnx-kit/metro-config@npm:2.2.6"
   dependencies:
     "@rnx-kit/tools-node": "npm:^3.0.0"
-    "@rnx-kit/tools-react-native": "npm:^2.0.0"
-    "@rnx-kit/tools-workspaces": "npm:^0.2.0"
+    "@rnx-kit/tools-react-native": "npm:^2.3.1"
+    "@rnx-kit/tools-workspaces": "npm:^0.2.6"
   peerDependencies:
     "@react-native/metro-config": "*"
     react: "*"
@@ -6166,7 +6166,7 @@ __metadata:
   peerDependenciesMeta:
     "@react-native/metro-config":
       optional: true
-  checksum: 10/b355bd671cd07c7458844ad3843fb2e85eb88d140cf6ddf34fa70bc93638c537d9ca37e6ed6f7a1a84ba93eb4beec61ea195ee64846b2408b5422908ba6b2d2f
+  checksum: 10/fc72fe563499c25f2e53b861226f32f18e3863a40e0f2f101ae4f04a0b3482de5e49aef5d59fdb4e1c7da83309e54e783472a61c005ea5b3d95b086d02b4bd58
   languageName: node
   linkType: hard
 
@@ -6207,16 +6207,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/tools-react-native@npm:^2.0.0":
-  version: 2.0.2
-  resolution: "@rnx-kit/tools-react-native@npm:2.0.2"
-  dependencies:
-    "@rnx-kit/tools-node": "npm:^3.0.0"
-  checksum: 10/da678400eff9efeeda25fcd6da103f9e55386fe17843a7155cf89fa4c8528a50aa7ccd0169eaa71496a4c9b1004aede5048fa0e75d32be0680193964275f6897
-  languageName: node
-  linkType: hard
-
-"@rnx-kit/tools-react-native@npm:^2.3.11":
+"@rnx-kit/tools-react-native@npm:^2.3.1, @rnx-kit/tools-react-native@npm:^2.3.11":
   version: 2.3.11
   resolution: "@rnx-kit/tools-react-native@npm:2.3.11"
   dependencies:
@@ -6232,15 +6223,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnx-kit/tools-workspaces@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@rnx-kit/tools-workspaces@npm:0.2.0"
+"@rnx-kit/tools-workspaces@npm:^0.2.6":
+  version: 0.2.6
+  resolution: "@rnx-kit/tools-workspaces@npm:0.2.6"
   dependencies:
     fast-glob: "npm:^3.2.7"
     find-up: "npm:^5.0.0"
-    read-yaml-file: "npm:^2.1.0"
+    js-yaml: "npm:^5.2.3"
+    micromatch: "npm:^4.0.0"
     strip-json-comments: "npm:^3.1.1"
-  checksum: 10/02e1fe5acd70433ab053023820e875083eefa31451758ee5a75bfc0ec687406b82c2517c7e39f716b077c403b69cb5941584729a48ff62d6caf5ba73fa601b2d
+  checksum: 10/ca99ce1157394c25eab0d9fd3ba02559d0ba8b0261c9e934aaf0e56086947ff6ed7781a55eefded670d82a1c7c9a43386432b691422b7376a8c2948093e6f61d
   languageName: node
   linkType: hard
 
@@ -7310,7 +7302,7 @@ __metadata:
     "@react-native/eslint-config": "npm:0.83.10"
     "@react-native/metro-config": "npm:0.83.10"
     "@react-native/typescript-config": "npm:0.83.10"
-    "@rnx-kit/metro-config": "npm:^2.0.0"
+    "@rnx-kit/metro-config": "npm:^2.2.6"
     "@types/react": "npm:^19.2.0"
     "@types/react-test-renderer": "npm:^18.0.0"
     babel-jest: "npm:^29.6.3"
@@ -7771,6 +7763,13 @@ __metadata:
   version: 2.0.1
   resolution: "argparse@npm:2.0.1"
   checksum: 10/18640244e641a417ec75a9bd38b0b2b6b95af5199aa241b131d4b2fb206f334d7ecc600bd194861610a5579084978bfcbb02baa399dbe442d56d0ae5e60dbaef
+  languageName: node
+  linkType: hard
+
+"argparse@npm:^3.0.3":
+  version: 3.0.4
+  resolution: "argparse@npm:3.0.4"
+  checksum: 10/682c0e8ff7a17b86bc48f46b83977f3207f70bef1e1bbe8653db92bf9860388536ff1728709b805f8df8ff4b561cfaec4bf912614b4c152acd05036fa22eb267
   languageName: node
   linkType: hard
 
@@ -15962,7 +15961,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-yaml@npm:^4.0.0, js-yaml@npm:^4.1.0":
+"js-yaml@npm:^4.1.0":
   version: 4.1.0
   resolution: "js-yaml@npm:4.1.0"
   dependencies:
@@ -15970,6 +15969,17 @@ __metadata:
   bin:
     js-yaml: bin/js-yaml.js
   checksum: 10/c138a34a3fd0d08ebaf71273ad4465569a483b8a639e0b118ff65698d257c2791d3199e3f303631f2cb98213fa7b5f5d6a4621fd0fff819421b990d30d967140
+  languageName: node
+  linkType: hard
+
+"js-yaml@npm:^5.2.3":
+  version: 5.5.0
+  resolution: "js-yaml@npm:5.5.0"
+  dependencies:
+    argparse: "npm:^3.0.3"
+  bin:
+    js-yaml: bin/js-yaml.mjs
+  checksum: 10/c01359a4fe69a1c032e9e57d7387a1cbdfbbd45bc69924885a3c9a9a020e066627dc125f7b46f7b929186b5a65471ae5fa478d3f773e35f7ccdf57d32fcf369f
   languageName: node
   linkType: hard
 
@@ -20920,16 +20930,6 @@ __metadata:
     parse-json: "npm:^5.0.0"
     type-fest: "npm:^0.6.0"
   checksum: 10/eb696e60528b29aebe10e499ba93f44991908c57d70f2d26f369e46b8b9afc208ef11b4ba64f67630f31df8b6872129e0a8933c8c53b7b4daf0eace536901222
-  languageName: node
-  linkType: hard
-
-"read-yaml-file@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "read-yaml-file@npm:2.1.0"
-  dependencies:
-    js-yaml: "npm:^4.0.0"
-    strip-bom: "npm:^4.0.0"
-  checksum: 10/52765eb183e79466f51eebeb19b933cc0f0e907052d062d67300b97e79910064a24b370cdb0b5dd8b05afff3d0ec57282670fd9070dc608e13b11820ac79183d
   languageName: node
   linkType: hard
 

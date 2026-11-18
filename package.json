@@ -6,7 +6,7 @@
   "main": "dist/commonjs/index.js",
   "module": "dist/module/index.js",
   "types": "./typings/index.d.ts",
-  "react-native": "0.83.10",
+  "react-native": "js/index.js",
   "scripts": {
     "prepare": "bob build",
     "build": "bob build",
@@ -45,8 +45,8 @@
   "author": "",
   "license": "MIT",
   "peerDependencies": {
-    "react": "19.2.0",
-    "react-native": "0.83.10"
+    "react": "*",
+    "react-native": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
