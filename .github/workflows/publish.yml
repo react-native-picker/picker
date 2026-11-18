@@ -4,31 +4,58 @@ on:
     branches:
       - 'master'
 
+# Never run two releases at once; queue them instead.
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+permissions:
+  contents: write # push the release commit and tag, create the GitHub release
+  id-token: write # npm trusted publishing (OIDC)
+
 jobs:
   publish:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0        
+          fetch-depth: 0
+      # release-it bumps the version from the conventional commits since the
+      # last tag, but it would also cut a patch release for commits such as
+      # `chore:` or `ci:`. Only release when there is a feat, fix, perf or
+      # breaking change, as semantic-release did.
+      - name: Check for releasable commits
+        id: check
+        run: |
+          last_tag=$(git describe --tags --abbrev=0 --match 'v*')
+          if git log "$last_tag"..HEAD --format='%s%n%b' |
+            grep -qE '^(feat|fix|perf)(\([^)]*\))?!?: |^[a-z]+(\([^)]*\))?!: |^BREAKING[ -]CHANGE:'; then
+            echo "release=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No releasable commits since $last_tag; skipping release."
+            echo "release=false" >> "$GITHUB_OUTPUT"
+          fi
       - uses: actions/setup-node@v4
+        if: steps.check.outputs.release == 'true'
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Get yarn cache
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - uses: actions/cache@v3
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          node-version: 24
+          cache: yarn
+          registry-url: 'https://registry.npmjs.org'
+      # Trusted publishing needs npm 11.5.1 or later.
+      - name: Update npm
+        if: steps.check.outputs.release == 'true'
+        run: npm install -g npm@latest
       - name: Install Dependencies
-        run: yarn
-      - name: Publish Package
-        run: yarn ci:publish
+        if: steps.check.outputs.release == 'true'
+        run: yarn install --immutable
+      - name: Configure git
+        if: steps.check.outputs.release == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Release
+        if: steps.check.outputs.release == 'true'
+        run: yarn release --ci
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
