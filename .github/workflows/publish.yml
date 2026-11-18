@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - 'master'
+  # Lets a maintainer re-run a release by hand, e.g. after a push whose
+  # commit message skipped workflows.
+  workflow_dispatch:
 
 # Never run two releases at once; queue them instead.
 concurrency:
