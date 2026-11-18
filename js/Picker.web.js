@@ -37,10 +37,10 @@ const Select = forwardRef((props: $FlowFixMe, forwardedRef: $FlowFixMe) =>
   }),
 );
 
-const Picker: React$AbstractComponent<PickerProps, empty> = forwardRef<
-  PickerProps,
-  $FlowFixMe,
->((props, forwardedRef) => {
+const Picker: React.ComponentType<{
+  ...PickerProps,
+  ref?: React.RefSetter<mixed>,
+}> = forwardRef<PickerProps, $FlowFixMe>((props, forwardedRef) => {
   const {
     enabled,
     onValueChange,
@@ -63,7 +63,6 @@ const Picker: React$AbstractComponent<PickerProps, empty> = forwardRef<
   );
 
   return (
-    // $FlowFixMe
     <Select
       disabled={enabled === false ? true : undefined}
       onChange={handleChange}
@@ -74,7 +73,7 @@ const Picker: React$AbstractComponent<PickerProps, empty> = forwardRef<
   );
 });
 
-// $FlowFixMe
+// $FlowFixMe[prop-missing] Item is attached as a static.
 Picker.Item = PickerItem;
 
 export default Picker;

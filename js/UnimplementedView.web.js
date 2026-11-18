@@ -13,11 +13,12 @@
 import * as React from 'react';
 import {View, StyleSheet} from 'react-native';
 declare var __DEV__: boolean;
+declare var process: {env: {NODE_ENV?: string, ...}, ...};
 /**
  * Common implementation for a simple stubbed view. Simply applies the view's styles to the inner
  * View component and renders its children.
  */
-const UnimplementedView = (props: $FlowFixMeProps): React.Node => {
+const UnimplementedView = (props: $FlowFixMe): React.Node => {
   return (
     <View style={[styles.unimplementedView, props.style]}>
       {props.children}
