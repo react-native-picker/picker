@@ -14,6 +14,7 @@
 #import <React/RCTUtils.h>
 
 @interface RNCPicker() <UIPickerViewDataSource, UIPickerViewDelegate, UIPickerViewAccessibilityDelegate>
+@property (nonatomic, assign) NSUInteger selectionGeneration;
 @end
 
 @implementation RNCPicker
@@ -39,8 +40,26 @@
 
 RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
 
+// Selection is deferred so UIPickerView can finish processing the props update.
+// A native callback or reload may establish a newer selection before this runs.
+- (void)scheduleSelectionOfRow:(NSInteger)row
+                      animated:(BOOL)animated
+                    generation:(NSUInteger)generation
+{
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if (self.selectionGeneration == generation) {
+      [self selectRow:row inComponent:0 animated:animated];
+    }
+  });
+}
+
 - (void)setItems:(NSArray<NSDictionary *> *)items
 {
+  if ([_items isEqualToArray:items]) {
+    return;
+  }
+
+  _selectionGeneration += 1;
   _items = [items copy];
   [self setNeedsLayout];
 }
@@ -50,14 +69,32 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
   if (_selectedIndex != selectedIndex) {
     BOOL animated = _selectedIndex != NSNotFound; // Don't animate the initial value
     _selectedIndex = selectedIndex;
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [self selectRow:selectedIndex inComponent:0 animated:animated];
-    });
+    NSUInteger selectionGeneration = ++_selectionGeneration;
+    [self scheduleSelectionOfRow:selectedIndex
+                         animated:animated
+                       generation:selectionGeneration];
+  }
+}
+
+- (void)reloadAllComponents
+{
+  // Re-queue the latest known selection after the reload without animation.
+  NSUInteger selectionGeneration = ++_selectionGeneration;
+  [super reloadAllComponents];
+
+  if (_selectedIndex != NSNotFound && _selectedIndex < (NSInteger)_items.count) {
+    [self scheduleSelectionOfRow:_selectedIndex
+                         animated:NO
+                       generation:selectionGeneration];
   }
 }
 
 - (void)setNumberOfLines:(NSInteger)numberOfLines
 {
+  if (_numberOfLines == numberOfLines) {
+    return;
+  }
+
   _numberOfLines = numberOfLines;
   [self reloadAllComponents];
   [self setNeedsLayout];
@@ -65,6 +102,10 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
 
 - (void) setFont:(UIFont *)font
 {
+  if ([_font isEqual:font]) {
+    return;
+  }
+
   _font = font;
   [self reloadAllComponents];
   [self setNeedsLayout];
@@ -135,6 +176,7 @@ numberOfRowsInComponent:(__unused NSInteger)component
 - (void)pickerView:(__unused UIPickerView *)pickerView
       didSelectRow:(NSInteger)row inComponent:(__unused NSInteger)component
 {
+  _selectionGeneration += 1;
   _selectedIndex = row;
   if (_onChange && _items.count > (NSUInteger)row) {
     _onChange(@{
@@ -162,6 +204,7 @@ numberOfRowsInComponent:(__unused NSInteger)component
       didSelectRow:(NSInteger)row inComponent:(__unused NSInteger)component
   withEventEmitter:(facebook::react::SharedViewEventEmitter)eventEmitter
 {
+    _selectionGeneration += 1;
     _selectedIndex = row;
       if (eventEmitter != nullptr && _items.count > (NSUInteger)row) {
           std::dynamic_pointer_cast<const facebook::react::RNCPickerEventEmitter>(eventEmitter)
