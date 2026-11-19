@@ -37,6 +37,7 @@ type Label = Stringish | number;
 type Props = $ReadOnly<{|
   ...ViewProps,
   children: React.Node,
+  enabled?: ?boolean,
   itemStyle?: ?ViewStyleProp,
   numberOfLines: ?number,
   onChange?: ?(event: PickerIOSChangeEvent) => mixed,
@@ -110,7 +111,11 @@ const PickerIOSWithForwardedRef: React.ComponentType<{
     style,
     accessibilityLabel,
     accessibilityHint,
+    accessibilityState,
+    enabled,
   } = props;
+
+  const disabled = enabled === false;
 
   const nativePickerRef = React.useRef<React.ElementRef<
     typeof RNCPickerNativeComponent,
@@ -193,13 +198,18 @@ const PickerIOSWithForwardedRef: React.ComponentType<{
   );
 
   return (
-    <View style={style}>
+    <View style={style} pointerEvents={disabled ? 'none' : undefined}>
       <RNCPickerNativeComponent
         ref={ref}
         themeVariant={themeVariant}
         testID={testID}
         accessibilityLabel={accessibilityLabel}
         accessibilityHint={accessibilityHint}
+        accessibilityState={
+          disabled
+            ? {...accessibilityState, disabled: true}
+            : accessibilityState
+        }
         style={[styles.pickerIOS, itemStyle]}
         // $FlowFixMe[incompatible-type] null children are passed through as-is.
         items={items}

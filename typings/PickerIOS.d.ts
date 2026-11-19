@@ -19,6 +19,11 @@ export interface PickerIOSProps extends ViewProps {
 	selectedValue?: ItemValue;
 	testID?: string;
 	numberOfLines?: number;
+	/**
+	 * If set to false, the picker will be disabled, i.e. the user will not be able to make a
+	 * selection.
+	 */
+	enabled?: boolean;
 	themeVariant ?: string;
 }
 
