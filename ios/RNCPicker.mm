@@ -45,8 +45,37 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:(NSCoder *)aDecoder)
   [self setNeedsLayout];
 }
 
+- (BOOL)isUserScrolling
+{
+  // UIPickerView drives each wheel with an internal UIScrollView. Walk the
+  // subview tree and report whether any of them is currently being touched or
+  // is still settling after a fling.
+  NSMutableArray<UIView *> *stack = [NSMutableArray arrayWithArray:self.subviews];
+  while (stack.count > 0) {
+    UIView *view = stack.lastObject;
+    [stack removeLastObject];
+    if ([view isKindOfClass:[UIScrollView class]]) {
+      UIScrollView *scrollView = (UIScrollView *)view;
+      if (scrollView.isTracking || scrollView.isDragging || scrollView.isDecelerating) {
+        return YES;
+      }
+    }
+    [stack addObjectsFromArray:view.subviews];
+  }
+  return NO;
+}
+
 - (void)setSelectedIndex:(NSInteger)selectedIndex
 {
+  // While the user is physically manipulating the wheel, a controlled parent can
+  // echo back a stale selected index and re-drive selectRow: mid-gesture. Under
+  // the New Architecture this re-enters UIPickerView's suspended update cycle
+  // during hit-testing and crashes. didSelectRow: already keeps the internal
+  // index accurate, so skipping the programmatic update here is safe; idle resets
+  // still apply.
+  if ([self isUserScrolling]) {
+    return;
+  }
   if (_selectedIndex != selectedIndex) {
     BOOL animated = _selectedIndex != NSNotFound; // Don't animate the initial value
     _selectedIndex = selectedIndex;
