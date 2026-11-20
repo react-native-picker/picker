@@ -118,7 +118,15 @@ numberOfRowsInComponent:(__unused NSInteger)component
   RNCPickerLabel* label = view.subviews[0];
   label.font = _font;
 
-  label.textColor = [RCTConvert UIColor:_items[row][@"textColor"]] ?: _color;
+  id colorValue = _items[row][@"textColor"];
+
+  // New Architecture: color props is already resolved to UIColor
+  // Old architecture: JS color value, RCTConvert is required
+  if ([colorValue isKindOfClass:[UIColor class]]) {
+    label.textColor = (UIColor *)colorValue;
+  } else {
+    label.textColor = [RCTConvert UIColor:colorValue] ?: _color;
+  }
 
   label.textAlignment = _textAlign;
   label.text = [self pickerView:pickerView titleForRow:row forComponent:component];
