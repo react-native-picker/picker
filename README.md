@@ -327,6 +327,15 @@ such that the total number of lines does not exceed this number. Default is '1'
 | ------- | -------- | -------- |
 | ColorValue  | No       | iOS  |
 
+### `preserveSpacesInLabel`
+
+If set to true, the items label will be displayed with spaces preserved.
+
+@default false
+| Type      | Required | Platform |
+| ------- | -------- | -------- |
+| boolean  | no       | Web |
+
 ## Methods
 
 ### `blur` (Android only, lib version 1.16.0+)

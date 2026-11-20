@@ -28,6 +28,7 @@ type PickerProps = {
   itemStyle?: GenericStyleProp<TextStyle>,
   mode?: string,
   prompt?: string,
+  preserveSpacesInLabel?: boolean,
 };
 
 const Select = forwardRef((props: $FlowFixMe, forwardedRef: $FlowFixMe) =>
@@ -68,8 +69,17 @@ const Picker: React.ComponentType<{
       onChange={handleChange}
       ref={forwardedRef}
       value={selectedValue}
-      {...other}
-    />
+      {...other}>
+      {React.Children.map(other.children, (child) => {
+        if (React.isValidElement(child)) {
+          let cloneElement = React.cloneElement(child, {
+            preserveSpacesInLabel: other.preserveSpacesInLabel || false,
+          });
+
+          return cloneElement;
+        }
+      })}
+    </Select>
   );
 });
 
