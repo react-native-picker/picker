@@ -7,10 +7,10 @@
  * @format
  * @flow
  */
-import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
+import type {NativeSyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {ViewStyleProp} from 'react-native/Libraries/StyleSheet/StyleSheet';
 
-export type PickerAndroidChangeEvent = SyntheticEvent<
+export type PickerAndroidChangeEvent = NativeSyntheticEvent<
   $ReadOnly<{|
     position: number,
   |}>,

@@ -1,4 +1,10 @@
 buildscript {
+    ext {
+        // react-native is hoisted to the repository root, where the library's
+        // build.gradle cannot find it on its own.
+        REACT_NATIVE_NODE_MODULES_DIR = file("${rootDir}/../../node_modules/react-native").canonicalPath
+    }
+
     apply(from: {
         def searchDir = rootDir.toPath()
         do {
@@ -24,19 +30,6 @@ buildscript {
 
 allprojects {
     repositories {
-        maven {
-            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-            url({
-                def searchDir = rootDir.toPath()
-                do {
-                    def p = searchDir.resolve("node_modules/react-native/android")
-                    if (p.toFile().exists()) {
-                        return p.toRealPath().toString()
-                    }
-                } while (searchDir = searchDir.getParent())
-                throw new GradleException("Could not find `react-native`");
-            }())
-        }
         mavenCentral()
         google()
     }
