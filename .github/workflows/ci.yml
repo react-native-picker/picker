@@ -49,6 +49,21 @@ jobs:
         run: yarn
       - name: TypeScript type check
         run: yarn validate:typescript
+  jest:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
+      - name: Install Dependencies
+        run: yarn
+      - name: Jest
+        run: yarn test:jest
   android:
     runs-on: ubuntu-latest
     strategy:
