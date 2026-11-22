@@ -37,6 +37,11 @@ node_modules/react-native/interface.js
 node_modules/react-native/flow/
 
 [options]
+enums=true
+experimental.pattern_matching=true
+casting_syntax=both
+component_syntax=true
+
 emoji=true
 
 exact_by_default=true
@@ -53,10 +58,6 @@ munge_underscores=true
 module.name_mapper='^react-native/\(.*\)$' -> '<PROJECT_ROOT>/node_modules/react-native/\1'
 module.name_mapper='^@?[./a-zA-Z0-9$_-]+\.\(bmp\|gif\|jpg\|jpeg\|png\|psd\|svg\|webp\|m4v\|mov\|mp4\|mpeg\|mpg\|webm\|aac\|aiff\|caf\|m4a\|mp3\|wav\|html\|pdf\)$' -> '<PROJECT_ROOT>/node_modules/react-native/Libraries/Image/RelativeImageStub'
 
-suppress_type=$FlowIssue
-suppress_type=$FlowFixMe
-suppress_type=$FlowFixMeProps
-suppress_type=$FlowFixMeState
 
 server.max_workers=2
 
@@ -80,4 +81,4 @@ untyped-import
 untyped-type-import
 
 [version]
-^0.222.0
+^0.289.0

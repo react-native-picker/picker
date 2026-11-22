@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Button, Text, StyleSheet, View} from 'react-native';
 import {PickerIOS} from '@react-native-picker/picker';
 
 const CAR_MAKES_AND_MODELS = {
@@ -127,6 +127,32 @@ function PickerExample() {
   );
 }
 
+function ControlledPickerRapidUpdatesExample() {
+  const [value, setValue] = React.useState('first');
+
+  return (
+    <View>
+      <Text>Rapidly alternate the two buttons while the wheel is moving.</Text>
+      <Button title="Select first" onPress={() => setValue('first')} />
+      <Button title="Select last" onPress={() => setValue('last')} />
+      <PickerIOS
+        accessibilityLabel="Controlled picker rapid updates reproduction"
+        selectedValue={value}
+        testID="controlled-picker-rapid-updates"
+        onValueChange={(nextValue) => setValue(nextValue)}
+      >
+        <PickerIOS.Item label="First" value="first" />
+        <PickerIOS.Item label="Second" value="second" />
+        <PickerIOS.Item label="Third" value="third" />
+        <PickerIOS.Item label="Last" value="last" />
+      </PickerIOS>
+      <Text testID="controlled-picker-rapid-updates-value">
+        Selected: {value}
+      </Text>
+    </View>
+  );
+}
+
 function PickerStyleExample() {
   const [carMake, setCarMake] = React.useState<string>('cadillac');
 
@@ -155,6 +181,10 @@ export const examples = [
   {
     title: '<PickerIOS>',
     render: PickerExample,
+  },
+  {
+    title: '<PickerIOS> with rapid controlled updates',
+    render: ControlledPickerRapidUpdatesExample,
   },
   {
     title: '<PickerIOS> with custom styling',

@@ -54,7 +54,7 @@ export interface PickerProps<T = ItemValue> extends ViewProps {
   /**
    * If set to false, the picker will be disabled, i.e. the user will not be able to make a
    * selection.
-   * @platform android
+   * @platform android | ios | web | windows
    */
   enabled?: boolean;
   /**
