@@ -8,6 +8,7 @@
  * @flow
  */
 /* eslint-env jest */
+declare var jest: $FlowFixMe;
 
 // Reset the mocks before each test
 global.beforeEach(() => {

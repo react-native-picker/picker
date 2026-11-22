@@ -78,7 +78,7 @@ type PickerProps = $ReadOnly<{|
   /**
    * If set to false, the picker will be disabled, i.e. the user will not be able to make a
    * selection.
-   * @platform android
+   * @platform android, ios, web, windows
    */
   enabled?: ?boolean,
 
@@ -166,17 +166,12 @@ class Picker extends React.Component<PickerProps> {
 
   render(): React.Node {
     if (Platform.OS === 'ios') {
-      /* $FlowFixMe(>=0.81.0 site=react_native_ios_fb) This suppression was
-       * added when renaming suppression sites. */
       return <PickerIOS {...this.props}>{this.props.children}</PickerIOS>;
     } else if (Platform.OS === 'macos') {
-      /* $FlowFixMe(>=0.81.0 site=react_native_ios_fb) This suppression was
-       * added when renaming suppression sites. */
+      // $FlowFixMe[incompatible-type]
       return <PickerMacOS {...this.props}>{this.props.children}</PickerMacOS>;
     } else if (Platform.OS === 'android') {
       return (
-        /* $FlowFixMe(>=0.81.0 site=react_native_android_fb) This suppression
-         * was added when renaming suppression sites. */
         <PickerAndroid ref={this.pickerRef} {...this.props}>
           {this.props.children}
         </PickerAndroid>

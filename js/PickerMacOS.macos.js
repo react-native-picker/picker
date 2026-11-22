@@ -17,7 +17,7 @@ import * as React from 'react';
 import {processColor, StyleSheet, View} from 'react-native';
 import RNCPickerNativeComponent from './RNCPickerNativeComponent';
 
-import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
+import type {NativeSyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheet';
 import type {ProcessedColorValue} from 'react-native/Libraries/StyleSheet/processColor';
 import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
@@ -25,10 +25,10 @@ import type {
   ViewStyleProp,
   TextStyleProp,
 } from 'react-native/Libraries/StyleSheet/StyleSheet';
-import type {Element, ElementRef, ChildrenArray} from 'react';
-import type {HostComponent} from 'react-native/Libraries/Renderer/shims/ReactNativeTypes';
+import type {ElementRef} from 'react';
+import type {HostComponent} from 'react-native';
 
-type PickerMacOSChangeEvent = SyntheticEvent<
+type PickerMacOSChangeEvent = NativeSyntheticEvent<
   $ReadOnly<{|
     newValue: number | string,
     newIndex: number,
@@ -56,8 +56,7 @@ type Label = Stringish | number;
 
 type Props = $ReadOnly<{|
   ...ViewProps,
-  // $FlowFixMe
-  children: ChildrenArray<Element<typeof PickerMacOSItem>>,
+  children: React.Node,
   itemStyle?: ?ViewStyleProp,
   onChange?: ?(event: PickerMacOSChangeEvent) => mixed,
   onValueChange?: ?(itemValue: string | number, itemIndex: number) => mixed,
@@ -119,7 +118,6 @@ class PickerMacOS extends React.Component<Props, State> {
           }}
           testID={this.props.testID}
           style={[styles.pickerMacOS, this.props.itemStyle]}
-          // $FlowFixMe
           items={this.state.items}
           selectedIndex={this.state.selectedIndex}
           onChange={this._onChange}
