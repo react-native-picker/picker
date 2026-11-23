@@ -17,9 +17,6 @@
 
 module.exports = {
   project: {
-    android: {
-      sourceDir: './FabricExample/android',
-    },
     windows: {
       sourceDir: './example/windows',
       solutionFile: 'PickerExample.sln',
