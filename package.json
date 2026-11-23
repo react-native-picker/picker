@@ -13,7 +13,6 @@
     "start": "react-native start",
     "start:macos": "react-native start --projectRoot ./ --use-react-native-macos",
     "ios": "cd example && react-native run-ios",
-    "web": "expo web",
     "android": "cd example && react-native run-android",
     "macos": "cd example && react-native run-macos --scheme Example",
     "test": "yarn validate:eslint && yarn validate:flow && yarn validate:typescript && yarn test:jest",
@@ -21,17 +20,6 @@
     "validate:flow": "flow check",
     "validate:typescript": "tsc --project ./",
     "test:jest": "jest js/",
-    "test:detox:android:test:debug": "detox test -c android.emu.debug",
-    "test:detox:android:test:release": "detox test -c android.emu.release",
-    "test:detox:android:build:debug": "detox build -c android.emu.debug",
-    "test:detox:android:build:release": "detox build -c android.emu.release",
-    "test:detox:android:bundle:release": "mkdir -p .tmp && react-native bundle --max-workers 4 --platform android --dev false --entry-file example/index.js --bundle-output .tmp/android-bundle.js",
-    "test:detox:ios:test:debug": "detox test -c ios.sim.debug",
-    "test:detox:ios:test:release": "detox test -c ios.sim.release",
-    "test:detox:ios:build:debug": "detox build -c ios.sim.debug",
-    "test:detox:ios:build:release": "detox build -c ios.sim.release",
-    "test:detox:ios:bundle:release": "mkdir -p .tmp && react-native bundle --max-workers 4 --platform ios --dev false --entry-file example/index.js --bundle-output .tmp/ios-bundle.js",
-    "test:detox:clean": "rimraf example/android/build && rimraf example/android/app/build && rimraf example/android/.gradle && rimraf example/ios/build",
     "release": "release-it"
   },
   "keywords": [
@@ -52,7 +40,6 @@
     "@babel/plugin-syntax-flow": "^7.23.3",
     "@babel/plugin-syntax-jsx": "^7.23.3",
     "@babel/runtime": "^7.6.2",
-    "@expo/webpack-config": "^0.12.40",
     "@react-native/babel-preset": "0.83.10",
     "@react-native/eslint-config": "^0.72.2",
     "@release-it/conventional-changelog": "^12.0.2",
@@ -60,11 +47,9 @@
     "@types/react": "^19.2.0",
     "babel-jest": "^29.7.0",
     "babel-plugin-module-resolver": "^3.2.0",
-    "detox": "^17.10.6",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "expo": "^41.0.1",
     "flow-bin": "^0.289.0",
     "husky": "^2.2.0",
     "jest": "^29.7.0",
@@ -82,36 +67,6 @@
     "release-it": "^21.1.2",
     "rimraf": "^2.6.3",
     "typescript": "^4.2.3"
-  },
-  "detox": {
-    "test-runner": "jest",
-    "runner-config": "example/e2e/config.json",
-    "configurations": {
-      "ios.sim.debug": {
-        "binaryPath": "example/ios/build/Build/Products/Debug-iphonesimulator/PickerExample.app",
-        "build": "export RCT_NO_LAUNCH_PACKAGER=true && xcodebuild -project example/ios/PickerExample.xcodeproj -destination 'platform=iOS Simulator,name=iPhone X' -scheme PickerExample -parallelizeTargets -configuration Debug -derivedDataPath example/ios/build  -UseModernBuildSystem=YES | xcpretty -k",
-        "type": "ios.simulator",
-        "name": "iPhone X"
-      },
-      "ios.sim.release": {
-        "binaryPath": "example/ios/build/Build/Products/Release-iphonesimulator/PickerExample.app",
-        "build": "export RCT_NO_LAUNCH_PACKAGER=true && xcodebuild -project example/ios/PickerExample.xcodeproj -destination 'platform=iOS Simulator,name=iPhone X' -scheme PickerExample -parallelizeTargets -configuration Release -derivedDataPath example/ios/build  -UseModernBuildSystem=YES | xcpretty -k",
-        "type": "ios.simulator",
-        "name": "iPhone X"
-      },
-      "android.emu.debug": {
-        "binaryPath": "example/android/app/build/outputs/apk/debug/app-debug.apk",
-        "build": "export RCT_NO_LAUNCH_PACKAGER=true && pushd example/android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && popd",
-        "type": "android.emulator",
-        "name": "TestingAVD"
-      },
-      "android.emu.release": {
-        "binaryPath": "example/android/app/build/outputs/apk/release/app-release.apk",
-        "build": "export RCT_NO_LAUNCH_PACKAGER=true && pushd example/android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release && popd",
-        "type": "android.emulator",
-        "name": "TestingAVD"
-      }
-    }
   },
   "husky": {
     "hooks": {

@@ -20,9 +20,6 @@ node_modules/react-native/Libraries/polyfills/.*
 
 .*/node_modules/resolve/test/resolver/malformed_package_json/package\.json$
 
-; Ignore traveling-fastlane-darwin
-.*/node_modules/@expo/traveling-fastlane-darwin/.*
-
 
 [untyped]
 .*/node_modules/@react-native-community/cli/.*/.*

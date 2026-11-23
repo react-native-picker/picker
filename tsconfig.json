@@ -23,11 +23,15 @@
       "es2016",
       "esnext",
       "dom"
-    ]
+    ],
+    "allowJs": true,
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "exclude": [
     "node_modules",
     "**/*.spec.ts"
-  ],
-  "extends": "expo/tsconfig.base"
+  ]
 }
