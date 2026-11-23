@@ -14,7 +14,7 @@
     "start:macos": "react-native start --projectRoot ./ --use-react-native-macos",
     "ios": "cd example && react-native run-ios",
     "web": "expo web",
-    "android": "react-native run-android",
+    "android": "cd example && react-native run-android",
     "macos": "cd example && react-native run-macos --scheme Example",
     "test": "yarn validate:eslint && yarn validate:flow && yarn validate:typescript && yarn test:jest",
     "validate:eslint": "eslint 'js/**/*.js' 'example/**/*.js'",
