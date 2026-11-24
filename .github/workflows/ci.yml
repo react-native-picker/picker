@@ -125,3 +125,35 @@ jobs:
         run: cd example/macos && pod install
       - name: Build example app
         run: yarn macos --no-packager 
+  windows:
+    # Steps follow react-native-test-app's own Windows CI job.
+    runs-on: windows-2022
+    timeout-minutes: 60
+    env:
+      WindowsTargetPlatformVersion: "10.0.26100.0"
+    steps:
+      - name: Enable long paths
+        run: |
+          New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
+        shell: powershell
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+      - uses: microsoft/setup-msbuild@v2
+      - name: Install Dependencies
+        run: yarn
+      - name: Generate Visual Studio solution
+        run: yarn install-windows-test-app --msbuildprops WindowsTargetPlatformVersion=$env:WindowsTargetPlatformVersion
+        working-directory: example
+      - name: Build example app
+        run: yarn windows --logging --no-packager --no-launch --no-deploy --no-telemetry
+        working-directory: example
+      - name: Upload build logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-msbuild-logs
+          path: example/windows/*.binlog
+          retention-days: 14
