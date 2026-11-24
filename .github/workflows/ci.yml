@@ -151,7 +151,7 @@ jobs:
         run: yarn install-windows-test-app --msbuildprops WindowsTargetPlatformVersion=$env:WindowsTargetPlatformVersion
         working-directory: example
       - name: Build example app
-        run: yarn windows --logging --no-packager --no-launch --no-deploy --no-telemetry --msbuildprops WindowsAppSDKVerifyTransitiveDependencies=false
+        run: yarn windows --logging --no-packager --no-launch --no-deploy --no-telemetry
         working-directory: example
       - name: Upload build logs
         if: failure()
