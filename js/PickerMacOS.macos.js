@@ -130,11 +130,15 @@ class PickerMacOS extends React.Component<Props, State> {
     if (this.props.onChange) {
       this.props.onChange(event);
     }
-    if (this.props.onValueChange) {
-      this.props.onValueChange(
-        event.nativeEvent.newValue,
-        event.nativeEvent.newIndex,
-      );
+    const {onValueChange} = this.props;
+    if (onValueChange) {
+      const {newIndex, newValue} = event.nativeEvent;
+      // Report the item's own value, as Android does, so its type and identity
+      // survive the round trip through native.
+      const itemValue = React.Children.toArray<$FlowFixMe>(this.props.children)[
+        newIndex
+      ]?.props?.value;
+      onValueChange(itemValue !== undefined ? itemValue : newValue, newIndex);
     }
 
     // The picker is a controlled component. This means we expect the
