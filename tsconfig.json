@@ -1,6 +1,7 @@
 {
   "include": [
-    "typings/**/*.d.ts"
+    "typings/**/*.d.ts",
+    "typings/__tests__/**/*.tsx"
   ],
   "compilerOptions": {
     "target": "es6",

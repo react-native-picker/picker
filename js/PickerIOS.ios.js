@@ -191,10 +191,15 @@ const PickerIOSWithForwardedRef: React.ComponentType<{
   const _onChange = React.useCallback(
     (event: $FlowFixMe) => {
       onChange?.(event);
-      onValueChange?.(event.nativeEvent.newValue, event.nativeEvent.newIndex);
-      setNativeSelectedIndex({value: event.nativeEvent.newIndex});
+      const {newIndex, newValue} = event.nativeEvent;
+      // Report the item's own value, as Android does, so its type and identity
+      // survive the round trip through native.
+      const itemValue =
+        React.Children.toArray<$FlowFixMe>(children)[newIndex]?.props?.value;
+      onValueChange?.(itemValue !== undefined ? itemValue : newValue, newIndex);
+      setNativeSelectedIndex({value: newIndex});
     },
-    [onChange, onValueChange],
+    [onChange, onValueChange, children],
   );
 
   return (
